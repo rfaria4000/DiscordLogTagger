@@ -6,7 +6,7 @@ from discord import app_commands
 
 from urllib.parse import urlparse
 
-from fflogs import authorizeFFLogs
+from fflogs import authorizeFFLogs, getFFLogsFightData
 
 class FFLogsReportError(Exception):
     """Raise an exception upon receiving invalid report link."""
@@ -25,12 +25,12 @@ client = discord.Client(intents=intents)
 tree = app_commands.CommandTree(client)
 
 def isValidFFLogsPrefix(link: str) -> bool:
-    """Test link and return True if is an FFLogs Report link."""
+    """Tests link and return True if is an FFLogs Report link."""
     fflogsEndpoint = "https://www.fflogs.com/reports/"
     return link.startswith(fflogsEndpoint)
 
 def getFFLogReportCode(link:str) -> str:
-    """Extract url path for FFLogs Report code."""
+    """Extracts url path for FFLogs Report code."""
     if not isValidFFLogsPrefix(link): raise FFLogsReportError("Not a valid FFLogs report.")
     parsedLink = urlparse(link)
     return parsedLink.path.split("/")[2]
@@ -45,7 +45,8 @@ def getFFLogReportCode(link:str) -> str:
 async def tag(interaction, link: str):
     try:
         logReportCode = getFFLogReportCode(link)
-
+        fightData = getFFLogsFightData(logReportCode)
+        print(fightData)
         await interaction.response.send_message(link)
     except FFLogsReportError as exc:
       await interaction.response.send_message(exc)

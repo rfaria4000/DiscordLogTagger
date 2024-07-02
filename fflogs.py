@@ -36,7 +36,9 @@ query getReport($fightCode: String){
 }
 """
 
-def authorizeFFLogs(client_id, client_secret):
+headers = {}
+
+def authorizeFFLogs(client_id, client_secret) -> None:
   data = {
     'grant_type': 'client_credentials',
   }
@@ -48,13 +50,15 @@ def authorizeFFLogs(client_id, client_secret):
     'Authorization': f'Bearer {authResponse["access_token"]}',
   }
 
+
+def getFFLogsFightData(code: str) -> object:
+  """Returns fight data from given FFLogs report code."""
   variables = {
-    "fightCode": "7Myb4A6dDq1HnWvc"
+    "fightCode": f"{code}"
   }
 
   response = requests.post('https://www.fflogs.com/api/v2/client', 
                            headers=headers,
                            json={"query": fightQuery, "variables": variables}
                            ).json()
-  print(response.text)
-  pass
+  return response
