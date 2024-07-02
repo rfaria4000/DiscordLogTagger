@@ -26,7 +26,16 @@ async def on_message(message):
         return
     
     if message.content == "Test Log Bot":
-        await message.channel.send("Received")
+        embedVar = discord.Embed(title="The Unending Coil of Bahamut - June 18, 2024",color=0xffd1dc)
+        embedVar.add_field(name="Pulls", value="13")
+        # embedVar.add_field(name="Date", value="Today", inline=True)
+        embedVar.add_field(name="Clear?", value="Yes")
+        embedVar.add_field(name="Furthest phase", value="P4")
+        # embedVar.add_field(name="View report", value="[View report](https://www.fflogs.com/reports/7Myb4A6dDq1HnWvc)")
+        embedVar.url = "https://www.fflogs.com/reports/7Myb4A6dDq1HnWvc"
+        # embedVar.add_field(name="Link to report", value="https://www.fflogs.com/reports/7Myb4A6dDq1HnWvc")
+        
+        await message.channel.send(embed=embedVar)
 
 # @client.event
 # async def on_message(message):
