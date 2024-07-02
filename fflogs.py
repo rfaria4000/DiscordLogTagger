@@ -1,37 +1,37 @@
 import requests
 
-publicEndpoint = "https://www.fflogs.com/api/v2/client"
-authEndpoint = "https://www.fflogs.com/oauth/authorize"
-tokenEndpoint = "https://www.fflogs.com/oauth/token"
-redirectURL = "https://localhost:8080"
+# publicEndpoint = "https://www.fflogs.com/api/v2/client"
+# authEndpoint = "https://www.fflogs.com/oauth/authorize"
+# tokenEndpoint = "https://www.fflogs.com/oauth/token"
+# redirectURL = "https://localhost:8080"
 
-fightQuery = """
-query getReport($fightCode: String){
-	reportData{
-		report(code: $fightCode){
-			masterData{
-				actors{
-					id
-					name
-				}
-			}
+# fightQuery = """
+# query getReport($fightCode: String){
+# 	reportData{
+# 		report(code: $fightCode){
+# 			masterData{
+# 				actors{
+# 					id
+# 					name
+# 				}
+# 			}
 			
-			startTime
+# 			startTime
 			
-			fights(killType: Encounters){
-				name
-				kill
-				lastPhase
-				bossPercentage
-				friendlyPlayers
-				encounterID
-			}
-		}
-	}
-}
-"""
+# 			fights(killType: Encounters){
+# 				name
+# 				kill
+# 				lastPhase
+# 				bossPercentage
+# 				friendlyPlayers
+# 				encounterID
+# 			}
+# 		}
+# 	}
+# }
+# """
 
-headers = {}
+# headers = {}
 # session = requests.Session()
 
 def authorizeFFLogs(client_id, client_secret) -> None:
@@ -99,13 +99,31 @@ class FFLogsSession:
   """
 
   def __init__(self, client_id, client_secret) -> None:
+    self.client_id = client_id
+    self.cliend_secret = client_secret
     session = requests.Session()
     session.auth = (client_id, client_secret)
     authResponse = session.post(self.tokenEndpoint, data=self.data).json()
-    session.headers.update({'Authorization': f'Bearer {authResponse["access_token"]}'})
-    self.session = session
-    print(authResponse)
+    self.authHeader = {'Authorization': f'Bearer {authResponse["access_token"]}'}
 
   def getReportData(self, code: str) -> object:
     """Returns fight data from given FFLogs report code."""
-    print(self.session)
+
+    variables = {
+    "fightCode": f"{code}"
+    }
+
+    response = requests.post('https://www.fflogs.com/api/v2/client', 
+                           headers=self.authHeader,
+                           json={"query": self.fightQuery, "variables": variables}
+                           ).json()
+    
+    return response
+
+    # print(self.session.auth)
+
+    # response = requests.post('https://www.fflogs.com/api/v2/client', 
+    #                        headers=headers,
+    #                        json={"query": fightQuery, "variables": variables}
+    #                        ).json()
+    # return self.session.post(self.publicEndpoint,json={"query": self.fightQuery, "variables": variables}).json()

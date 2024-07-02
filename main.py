@@ -47,9 +47,10 @@ def getFFLogReportCode(link:str) -> str:
 async def tag(interaction, link: str):
     try:
         logReportCode = getFFLogReportCode(link)
-        fightData = getFFLogsFightData(logReportCode)
-        ffLogsSession.getReportData(logReportCode)
-        print(fightData)
+        reportData = ffLogsSession.getReportData(logReportCode)
+        print(reportData)
+        # fightData = getFFLogsFightData(logReportCode)
+        # print(fightData)
         await interaction.response.send_message(link)
     except FFLogsReportError as exc:
       await interaction.response.send_message(exc)
