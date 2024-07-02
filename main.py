@@ -13,17 +13,23 @@ intents = discord.Intents.default()
 intents.message_content = True
 
 client = discord.Client(intents=intents)
-
 tree = app_commands.CommandTree(client)
+
+def isValidFFLogsString(link: str):
+    """Test link and return True if is an FFLogs Report Link."""
+    fflogsReportPrefix = "https://www.fflogs.com/reports/"
+    return link.startswith(fflogsReportPrefix)
 
 @tree.command(
   name="tag",
   description="Automatically generates a descripiton for a linked FFLogs report.",
   guild=discord.Object(id=DISCORD_GUILD_ID)
 )
-async def tag(interaction):
-    print("Called")
-    await interaction.response.send_message("Hello")
+# @app_commands.rename(link="Link to an FFLogs report.")
+@app_commands.describe(link="Link to an FFLogs report.")
+async def tag(interaction, link: str):
+    print(isValidFFLogsString(link))
+    await interaction.response.send_message(link)
 
 @client.event
 async def on_ready():
