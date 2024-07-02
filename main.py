@@ -4,6 +4,11 @@ from dotenv import load_dotenv
 import discord
 from discord import app_commands
 
+import re
+
+class FFLogsReportError(Exception):
+    """Raise an exception upon receiving invalid report link."""
+
 load_dotenv(".env")
 DISCORD_TOKEN = os.environ.get("ENV_DISCORD_TOKEN")
 DISCORD_GUILD_NAME = os.environ.get("ENV_DISCORD_GUILD_NAME")
@@ -15,10 +20,13 @@ intents.message_content = True
 client = discord.Client(intents=intents)
 tree = app_commands.CommandTree(client)
 
-def isValidFFLogsString(link: str):
+def isValidFFLogsPrefix(link: str) -> bool:
     """Test link and return True if is an FFLogs Report Link."""
     fflogsReportPrefix = "https://www.fflogs.com/reports/"
     return link.startswith(fflogsReportPrefix)
+
+def getFFLogReportCode(link:str) -> str:
+    if not isValidFFLogsPrefix(link): raise FFLogsReportError("Not a valid FFLogs report.")
 
 @tree.command(
   name="tag",
@@ -28,8 +36,12 @@ def isValidFFLogsString(link: str):
 # @app_commands.rename(link="Link to an FFLogs report.")
 @app_commands.describe(link="Link to an FFLogs report.")
 async def tag(interaction, link: str):
-    print(isValidFFLogsString(link))
-    await interaction.response.send_message(link)
+    print(isValidFFLogsPrefix(link))
+    try:
+        getFFLogReportCode(link)
+        await interaction.response.send_message(link)
+    except FFLogsReportError as exc:
+      await interaction.response.send_message(exc)
 
 @client.event
 async def on_ready():
