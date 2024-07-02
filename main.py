@@ -1,12 +1,10 @@
 import os
-from dotenv import load_dotenv
-
 import discord
+
+from dotenv import load_dotenv
 from discord import app_commands
-
 from urllib.parse import urlparse
-
-from fflogs import authorizeFFLogs, getFFLogsFightData, FFLogsSession
+from fflogs import FFLogsSession
 
 class FFLogsReportError(Exception):
     """Raise an exception upon receiving invalid report link."""
