@@ -6,7 +6,7 @@ from discord import app_commands
 
 from urllib.parse import urlparse
 
-from fflogs import authorizeFFLogs, getFFLogsFightData
+from fflogs import authorizeFFLogs, getFFLogsFightData, FFLogsSession
 
 class FFLogsReportError(Exception):
     """Raise an exception upon receiving invalid report link."""
@@ -23,6 +23,8 @@ intents.message_content = True
 
 client = discord.Client(intents=intents)
 tree = app_commands.CommandTree(client)
+
+ffLogsSession = FFLogsSession(FFLOGS_CLIENT_ID, FFLOGS_CLIENT_SECRET)
 
 def isValidFFLogsPrefix(link: str) -> bool:
     """Tests link and return True if is an FFLogs Report link."""
@@ -46,6 +48,7 @@ async def tag(interaction, link: str):
     try:
         logReportCode = getFFLogReportCode(link)
         fightData = getFFLogsFightData(logReportCode)
+        ffLogsSession.getReportData(logReportCode)
         print(fightData)
         await interaction.response.send_message(link)
     except FFLogsReportError as exc:
@@ -57,7 +60,7 @@ async def on_ready():
 
     print(f'{client.user} has connnected to Discord')
     print(f'{guild.name}: has id:{guild.id}')
-    authorizeFFLogs(FFLOGS_CLIENT_ID,FFLOGS_CLIENT_SECRET)
+    # authorizeFFLogs(FFLOGS_CLIENT_ID,FFLOGS_CLIENT_SECRET)
     await tree.sync(guild=discord.Object(id=guild.id))
 
 @client.event
