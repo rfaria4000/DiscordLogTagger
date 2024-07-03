@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 from discord import app_commands
 from urllib.parse import urlparse
 from fflogs import FFLogsSession
+import embed
 
 class FFLogsReportError(Exception):
     """Raise an exception upon receiving invalid report link."""
@@ -46,12 +47,14 @@ async def tag(interaction, link: str):
     try:
         logReportCode = getFFLogReportCode(link)
         reportData = ffLogsSession.getReportData(logReportCode)
-        print(reportData)
+        reportEmbed = embed.generateEmbedFromReport(reportData)
         # fightData = getFFLogsFightData(logReportCode)
         # print(fightData)
         await interaction.response.send_message(link)
     except FFLogsReportError as exc:
       await interaction.response.send_message(exc)
+    except embed.ReportDataError as exc:
+        await interaction.response.send_message(exc)
 
 @client.event
 async def on_ready():
@@ -89,5 +92,5 @@ async def on_message(message):
   
 #   if message.content.startsWith('$hello'):
 #     await message.channel.send('Hello!')
-
-client.run(DISCORD_TOKEN)
+if __name__ == "__main__":
+  client.run(DISCORD_TOKEN)
