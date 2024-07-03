@@ -28,6 +28,7 @@ class FFLogsSession:
           kill
           lastPhase
           bossPercentage
+          fightPercentage
           friendlyPlayers
           encounterID
         }

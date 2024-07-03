@@ -1,5 +1,7 @@
 from discord import Embed
 from datetime import datetime
+
+from typing import Tuple, List
 import ast 
 
 jsonString = """
@@ -9,6 +11,28 @@ mockReport = ast.literal_eval(jsonString)
 
 class ReportDataError(Exception):
     """The received reportData is not correctly formatted or missing."""
+
+def extractReportFields(reportData: dict) -> Tuple[List[object], str, List[object]]:
+  """
+  Extracts the list of actors, date, and list of fights from a report.
+   
+   Args:
+    `reportData`: A dict representing a json object containing reportData.
+
+  Returns:
+    A tuple containing the list of actor objects, the date of the report in 
+    "Month Day, Year" format, and a list of fights.
+  """
+  flattenedReport = reportData.get("data").get("reportData").get("report")
+
+  actorList = flattenedReport.get("masterData").get("actors")
+
+  startTimeUNIX = flattenedReport.get("startTime") // 1000 #millisecond precision
+  startTimeString = datetime.fromtimestamp(startTimeUNIX).strftime("%B %d, %Y")
+
+  fightsList = flattenedReport.get("fights")
+
+  return actorList, startTimeString, fightsList
 
 def generateEmbedFromReport(reportData: dict, link: str) -> Embed:
   """
@@ -24,21 +48,29 @@ def generateEmbedFromReport(reportData: dict, link: str) -> Embed:
   Raises:
     `ReportDataError`: the reportData is not correctly formatted or missing.
   """
+
   if "errors" in reportData:
      raise ReportDataError("The received report data is not correctly formatted or missing.")
   # print(reportData.get("data").get("reportData"))
-  flattenedReport = reportData.get("data").get("reportData").get("report")
-  actorList = flattenedReport.get("masterData").get("actors")
-  startTimeUNIX = flattenedReport.get("startTime") // 1000 #millisecond precision
-  startTimeString = datetime.fromtimestamp(startTimeUNIX).strftime("%B %d, %Y")
-  fightsList = flattenedReport.get("fights")
-  pullTotal = len(fightsList)
+  actors, dateString, fights = extractReportFields(reportData)
+  fightsNameSet =set([fight.get("name") for fight in fights])
+  print(fightsNameSet)
+  titleFight = ""
+  description = ""
+  if len(fightsNameSet) == 1:
+     titleFight = next(iter(fightsNameSet))
+  else:
+    titleFight = "Multiple Fights"
+    description = "Fights: " + ", ".join([fightName for fightName in fightsNameSet])
 
-  reportEmbed = Embed(title="Test")
+  pullTotal = len(fights)
+
+  reportEmbed = Embed(title=titleFight + " - " + dateString)
+  reportEmbed.description = description
   reportEmbed.add_field(name="Pulls", value=pullTotal)
   reportEmbed.url = link
 
-  print(startTimeString)
+  print(dateString)
 
   return reportEmbed
 
