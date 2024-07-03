@@ -47,12 +47,12 @@ async def tag(interaction, link: str):
     try:
         logReportCode = getFFLogReportCode(link)
         reportData = ffLogsSession.getReportData(logReportCode)
-        reportEmbed = embed.generateEmbedFromReport(reportData)
-        await interaction.response.send_message(link)
+        reportEmbed = embed.generateEmbedFromReport(reportData, link)
+        await interaction.response.send_message(embed = reportEmbed)
     except FFLogsReportError as exc:
       await interaction.response.send_message(exc, ephemeral=True)
     except embed.ReportDataError as exc:
-        await interaction.response.send_message(exc, ephemeral=True)
+        await interaction.channel.send_message(exc, ephemeral=True)
 
 @client.event
 async def on_ready():
