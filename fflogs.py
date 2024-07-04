@@ -25,10 +25,12 @@ class FFLogsSession:
         
         fights(killType: Encounters){
           name
+          id
           kill
           lastPhase
           bossPercentage
           fightPercentage
+          difficulty
           friendlyPlayers
           encounterID
         }

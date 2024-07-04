@@ -12,6 +12,14 @@ mockReport = ast.literal_eval(jsonString)
 class ReportDataError(Exception):
     """The received reportData is not correctly formatted or missing."""
 
+def isFightUltimate(fight: dict) -> bool:
+   """Returns whether a fight is an Ultimate."""
+   return fight.get("lastPhase") > 0
+
+def isFightSavage(fight: dict) -> bool:
+   """Returns whether a fight is a Savage."""
+   return fight.get("difficulty") == 101
+
 def extractReportFields(reportData: dict) -> Tuple[List[object], str, List[object]]:
   """
   Extracts the list of actors, date, and list of fights from a report.
@@ -54,7 +62,8 @@ def generateEmbedFromReport(reportData: dict, link: str) -> Embed:
   # print(reportData.get("data").get("reportData"))
   actors, dateString, fights = extractReportFields(reportData)
   fightsNameSet =set([fight.get("name") for fight in fights])
-  print(fightsNameSet)
+  print(fights)
+  print(isFightUltimate(fight) for fight in fights)
   titleFight = ""
   description = ""
   if len(fightsNameSet) == 1:
