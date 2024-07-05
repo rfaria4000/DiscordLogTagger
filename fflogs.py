@@ -34,6 +34,8 @@ class FFLogsSession:
           friendlyPlayers
           encounterID
         }
+
+        rankings
       }
     }
   }

@@ -20,7 +20,7 @@ def isFightSavage(fight: dict) -> bool:
    """Returns whether a fight is a Savage."""
    return fight.get("difficulty") == 101
 
-def extractReportFields(reportData: dict) -> Tuple[List[object], str, List[object]]:
+def extractReportFields(reportData: dict) -> Tuple[List[object], str, List[object], List[object]]:
   """
   Extracts the list of actors, date, and list of fights from a report.
    
@@ -40,9 +40,11 @@ def extractReportFields(reportData: dict) -> Tuple[List[object], str, List[objec
 
   fightsList = flattenedReport.get("fights")
 
-  return actorList, startTimeString, fightsList
+  rankingsList = flattenedReport.get("rankings").get("data")
 
-def generateEmbedFromReport(reportData: dict, link: str) -> Embed:
+  return actorList, startTimeString, fightsList, rankingsList
+
+def generateEmbedFromReport(reportData: dict, link: str, description: str) -> Embed:
   """
   Generates a Discord Embed from report data acquired from an FFLogs query.
   
@@ -56,16 +58,15 @@ def generateEmbedFromReport(reportData: dict, link: str) -> Embed:
   Raises:
     `ReportDataError`: the reportData is not correctly formatted or missing.
   """
-
+  print(reportData)
   if "errors" in reportData:
      raise ReportDataError("The received report data is not correctly formatted or missing.")
   # print(reportData.get("data").get("reportData"))
-  actors, dateString, fights = extractReportFields(reportData)
+  actors, dateString, fights, rankings = extractReportFields(reportData)
   fightsNameSet =set([fight.get("name") for fight in fights])
   print(fights)
   print(isFightUltimate(fight) for fight in fights)
   titleFight = ""
-  description = ""
   if len(fightsNameSet) == 1:
      titleFight = next(iter(fightsNameSet))
   else:
@@ -76,7 +77,8 @@ def generateEmbedFromReport(reportData: dict, link: str) -> Embed:
 
   reportEmbed = Embed(title=titleFight + " - " + dateString)
   reportEmbed.description = description
-  reportEmbed.add_field(name="Pulls", value=pullTotal)
+  reportEmbed.add_field(name="Pulls", value=pullTotal, inline=False)
+  reportEmbed.add_field(name="Clear?", value=True, inline=True)
   reportEmbed.url = link
 
   print(dateString)

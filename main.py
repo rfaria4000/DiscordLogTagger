@@ -43,16 +43,17 @@ def getFFLogReportCode(link:str) -> str:
 )
 # @app_commands.rename(link="displayVariableNameHere")
 @app_commands.describe(link="Link to an FFLogs report.")
-async def tag(interaction, link: str):
+@app_commands.describe(description="Add further context to the report.")
+async def tag(interaction, link: str, description:str =""):
     try:
         logReportCode = getFFLogReportCode(link)
         reportData = ffLogsSession.getReportData(logReportCode)
-        reportEmbed = embed.generateEmbedFromReport(reportData, link)
+        reportEmbed = embed.generateEmbedFromReport(reportData, link, description)
         await interaction.response.send_message(embed = reportEmbed)
     except FFLogsReportError as exc:
       await interaction.response.send_message(exc, ephemeral=True)
     except embed.ReportDataError as exc:
-        await interaction.channel.send_message(exc, ephemeral=True)
+        await interaction.response.send_message(exc, ephemeral=True)
 
 @client.event
 async def on_ready():
