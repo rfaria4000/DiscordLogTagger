@@ -49,15 +49,15 @@ def extractReportFields(reportData: dict) -> Tuple[List[object], str, List[objec
 
   return actorList, startTimeString, fightsList, rankingsList
 
-def simplifyRanking(ranking: dict) -> dict:
-  """Convert a ranking object into a dictionary mapping fight ID to a list of parse tuples."""
+def simplifyRanking(ranking: dict) -> tuple:
+  """Convert a ranking object into a tuple with fightIDs and list of player parses."""
   characterParseList = []
   for role in ranking["roles"].values():
      for player in role["characters"]:
         # Tanks and healers have a combined player field - this prunes that 
         if "name_2" in player: continue
         characterParseList.append((player["name"], player["rankPercent"]))
-  return {ranking.get("fightID"): characterParseList}
+  return (ranking.get("fightID"), characterParseList)
   
 
 def generateEmbedFromReport(reportData: dict, link: str, description: str = "") -> Embed:
@@ -90,8 +90,7 @@ def generateEmbedFromReport(reportData: dict, link: str, description: str = "") 
 
   pullTotal = len(fights)
 
-  simplifiedRankings = list(map(simplifyRanking, rankings))
-  print(simplifiedRankings)
+  simplifiedRankings = dict(map(simplifyRanking, rankings))
 
   reportEmbed = Embed(title=titleFight + " - " + dateString)
   reportEmbed.description = description
