@@ -59,6 +59,9 @@ def simplifyRanking(ranking: dict) -> tuple:
         characterParseList.append((player["name"], player["rankPercent"]))
   return (ranking.get("fightID"), characterParseList)
   
+def simplifyActor(actor: dict) -> tuple:
+   """Convert a dict representing an actor to a tuple of id and name."""
+   return actor.values()
 
 def generateEmbedFromReport(reportData: dict, link: str, description: str = "") -> Embed:
   """
@@ -90,7 +93,9 @@ def generateEmbedFromReport(reportData: dict, link: str, description: str = "") 
 
   pullTotal = len(fights)
 
+  #The keys to both dicts are numbers.
   simplifiedRankings = dict(map(simplifyRanking, rankings))
+  simplifiedActors = dict(map(simplifyActor, actors))
 
   reportEmbed = Embed(title=titleFight + " - " + dateString)
   reportEmbed.description = description
