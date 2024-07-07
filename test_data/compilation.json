@@ -1,0 +1,4660 @@
+{
+	"data": {
+		"reportData": {
+			"report": {
+				"masterData": {
+					"actors": [
+						{
+							"id": -1,
+							"name": "Environment"
+						},
+						{
+							"id": 1,
+							"name": "Rai'en Enkidou"
+						},
+						{
+							"id": 2,
+							"name": "Final Nub"
+						},
+						{
+							"id": 3,
+							"name": "Violet Calistria"
+						},
+						{
+							"id": 4,
+							"name": "Miko Tay"
+						},
+						{
+							"id": 5,
+							"name": "Estellia Lu'naa"
+						},
+						{
+							"id": 6,
+							"name": "Neri Tanatako"
+						},
+						{
+							"id": 7,
+							"name": "Yhu Zwhan"
+						},
+						{
+							"id": 8,
+							"name": "Lux Galain"
+						},
+						{
+							"id": 9,
+							"name": "Ruby Carbuncle"
+						},
+						{
+							"id": 10,
+							"name": "Ser Adelphel"
+						},
+						{
+							"id": 11,
+							"name": "Ser Grinnaux"
+						},
+						{
+							"id": 12,
+							"name": "Multiple Players"
+						},
+						{
+							"id": 13,
+							"name": "Demi-Bahamut"
+						},
+						{
+							"id": 14,
+							"name": "Earthly Star"
+						},
+						{
+							"id": 15,
+							"name": "Esteem"
+						},
+						{
+							"id": 16,
+							"name": "Topaz Titan"
+						},
+						{
+							"id": 17,
+							"name": "Ser Charibert"
+						},
+						{
+							"id": 18,
+							"name": "Ser Adelphel"
+						},
+						{
+							"id": 19,
+							"name": "Emerald Garuda"
+						},
+						{
+							"id": 20,
+							"name": "Ser Grinnaux"
+						},
+						{
+							"id": 21,
+							"name": "Ruby Ifrit"
+						},
+						{
+							"id": 22,
+							"name": "Demi-Phoenix"
+						},
+						{
+							"id": 23,
+							"name": "Brightsphere"
+						},
+						{
+							"id": 24,
+							"name": "Ser Charibert"
+						},
+						{
+							"id": 25,
+							"name": "Ser Zephirin"
+						},
+						{
+							"id": 26,
+							"name": "Haurchefant"
+						},
+						{
+							"id": 27,
+							"name": "spear of the Fury"
+						},
+						{
+							"id": 28,
+							"name": "King Thordan"
+						},
+						{
+							"id": 29,
+							"name": "King Thordan"
+						},
+						{
+							"id": 30,
+							"name": "Ser Ignasse"
+						},
+						{
+							"id": 31,
+							"name": "Ser Guerrique"
+						},
+						{
+							"id": 32,
+							"name": "Ser Paulecrain"
+						},
+						{
+							"id": 33,
+							"name": "Ser Vellguine"
+						},
+						{
+							"id": 34,
+							"name": "Ser Guerrique"
+						},
+						{
+							"id": 35,
+							"name": "Ser Hermenost"
+						},
+						{
+							"id": 36,
+							"name": "Ser Janlenoux"
+						},
+						{
+							"id": 37,
+							"name": "Ser Janlenoux"
+						},
+						{
+							"id": 38,
+							"name": "Ser Hermenost"
+						},
+						{
+							"id": 39,
+							"name": "Ser Noudenet"
+						},
+						{
+							"id": 40,
+							"name": "Ser Haumeric"
+						},
+						{
+							"id": 41,
+							"name": "Ser Haumeric"
+						},
+						{
+							"id": 42,
+							"name": "holy comet"
+						},
+						{
+							"id": 43,
+							"name": ""
+						},
+						{
+							"id": 44,
+							"name": "Nidhogg"
+						},
+						{
+							"id": 45,
+							"name": "Nidhogg"
+						},
+						{
+							"id": 46,
+							"name": "Nidhogg"
+						},
+						{
+							"id": 47,
+							"name": "Estinien"
+						},
+						{
+							"id": 48,
+							"name": "left eye"
+						},
+						{
+							"id": 49,
+							"name": "right eye"
+						},
+						{
+							"id": 50,
+							"name": "Alphinaud"
+						},
+						{
+							"id": 51,
+							"name": "Ysayle"
+						},
+						{
+							"id": 52,
+							"name": "Multiple Enemies"
+						},
+						{
+							"id": 53,
+							"name": "the Gilded Price"
+						},
+						{
+							"id": 54,
+							"name": "the Azure Price"
+						},
+						{
+							"id": 55,
+							"name": "Limit Break"
+						},
+						{
+							"id": 56,
+							"name": "King Thordan"
+						},
+						{
+							"id": 57,
+							"name": "Darkscale"
+						},
+						{
+							"id": 58,
+							"name": "Vidofnir"
+						},
+						{
+							"id": 59,
+							"name": "Vedrfolnir"
+						},
+						{
+							"id": 60,
+							"name": "Darkscale"
+						},
+						{
+							"id": 61,
+							"name": "Darkscale"
+						},
+						{
+							"id": 62,
+							"name": "Vedrfolnir"
+						},
+						{
+							"id": 63,
+							"name": "Vidofnir"
+						},
+						{
+							"id": 64,
+							"name": "Vidofnir"
+						},
+						{
+							"id": 65,
+							"name": "Meteor Circle"
+						},
+						{
+							"id": 66,
+							"name": "Nidhogg"
+						},
+						{
+							"id": 67,
+							"name": "Hraesvelgr"
+						},
+						{
+							"id": 68,
+							"name": "Hraesvelgr"
+						},
+						{
+							"id": 69,
+							"name": "Emma Fenyra"
+						},
+						{
+							"id": 70,
+							"name": "Syllia Binala"
+						},
+						{
+							"id": 71,
+							"name": "Chancellor Jarnathan"
+						},
+						{
+							"id": 72,
+							"name": "Rhela Khamazom"
+						},
+						{
+							"id": 73,
+							"name": "Zanian Blaise"
+						},
+						{
+							"id": 74,
+							"name": "Lyra Lucksbane"
+						},
+						{
+							"id": 75,
+							"name": "Voipax Nohault"
+						},
+						{
+							"id": 76,
+							"name": "Ataraxia Tourmaline"
+						},
+						{
+							"id": 77,
+							"name": "Phoenix Stygian"
+						},
+						{
+							"id": 78,
+							"name": "Euclid Thales"
+						},
+						{
+							"id": 79,
+							"name": "Astara Moonshine"
+						},
+						{
+							"id": 80,
+							"name": "Gann Ondorf"
+						},
+						{
+							"id": 81,
+							"name": "Fjourd De'lar"
+						},
+						{
+							"id": 82,
+							"name": "Carina Rinino"
+						},
+						{
+							"id": 83,
+							"name": "John Mollite"
+						},
+						{
+							"id": 84,
+							"name": "Ada Beans"
+						},
+						{
+							"id": 85,
+							"name": "Chairo Usagi"
+						},
+						{
+							"id": 86,
+							"name": "Neonras Mori"
+						},
+						{
+							"id": 87,
+							"name": "Munch Butt"
+						},
+						{
+							"id": 88,
+							"name": "Yen Rivii"
+						},
+						{
+							"id": 89,
+							"name": "Eponin Yatsurugi"
+						},
+						{
+							"id": 90,
+							"name": ""
+						},
+						{
+							"id": 91,
+							"name": "Nishinara Kogane"
+						},
+						{
+							"id": 92,
+							"name": "Dreki Vetrarsnjonum"
+						},
+						{
+							"id": 93,
+							"name": "Ekaton Okto"
+						},
+						{
+							"id": 94,
+							"name": "Requinn Flutterbane"
+						},
+						{
+							"id": 95,
+							"name": "Lothdrim Solkriv"
+						},
+						{
+							"id": 96,
+							"name": "Vera Abarahct"
+						},
+						{
+							"id": 97,
+							"name": "Sanon Moritik"
+						},
+						{
+							"id": 98,
+							"name": "Stray Kat"
+						},
+						{
+							"id": 99,
+							"name": "Codex Switch"
+						},
+						{
+							"id": 100,
+							"name": "Forgiven Ivory"
+						},
+						{
+							"id": 101,
+							"name": "Pinto Bean"
+						},
+						{
+							"id": 102,
+							"name": "Fenrir Gungnir"
+						},
+						{
+							"id": 103,
+							"name": "Kazek Avesna"
+						},
+						{
+							"id": 104,
+							"name": "Jem Meme"
+						},
+						{
+							"id": 105,
+							"name": "Yaretzi Lookstwice"
+						},
+						{
+							"id": 106,
+							"name": "Yyorre Venian"
+						},
+						{
+							"id": 107,
+							"name": "Yyorre Venian"
+						},
+						{
+							"id": 108,
+							"name": "Sensei Boomin"
+						},
+						{
+							"id": 109,
+							"name": "Irene Saturn"
+						},
+						{
+							"id": 110,
+							"name": "Java Catnip"
+						},
+						{
+							"id": 111,
+							"name": "Crystal Blueveil"
+						},
+						{
+							"id": 112,
+							"name": "Xanthe Kajal"
+						},
+						{
+							"id": 113,
+							"name": "Freya White"
+						},
+						{
+							"id": 114,
+							"name": "Thalia Yelmis"
+						},
+						{
+							"id": 115,
+							"name": ""
+						},
+						{
+							"id": 116,
+							"name": "Shabadadu Jafaenia"
+						},
+						{
+							"id": 117,
+							"name": "Akane Erchim"
+						},
+						{
+							"id": 118,
+							"name": "Automaton Queen"
+						},
+						{
+							"id": 119,
+							"name": "liturgic bell"
+						},
+						{
+							"id": 120,
+							"name": "The Scarlet Price"
+						},
+						{
+							"id": 121,
+							"name": "Youthinasia Pasha"
+						},
+						{
+							"id": 122,
+							"name": "Goober Eliminator"
+						},
+						{
+							"id": 123,
+							"name": "Jajaji Jaji"
+						},
+						{
+							"id": 124,
+							"name": "Spring Mountain"
+						},
+						{
+							"id": 125,
+							"name": "Ekaton Okto"
+						},
+						{
+							"id": 126,
+							"name": "Elibron Mystic"
+						},
+						{
+							"id": 127,
+							"name": "Zac Potato"
+						},
+						{
+							"id": 128,
+							"name": "Miranda Barimen"
+						},
+						{
+							"id": 129,
+							"name": "Banana Jane"
+						},
+						{
+							"id": 130,
+							"name": "Micho Rizo"
+						},
+						{
+							"id": 131,
+							"name": "Kyie Stronk"
+						},
+						{
+							"id": 132,
+							"name": "Aquan Fukana"
+						},
+						{
+							"id": 133,
+							"name": "Zac Potato"
+						},
+						{
+							"id": 134,
+							"name": "Dill Funter"
+						},
+						{
+							"id": 135,
+							"name": "Banana Jane"
+						},
+						{
+							"id": 136,
+							"name": "Sumire Yumishi"
+						},
+						{
+							"id": 137,
+							"name": "Vathrah Wilzuun"
+						},
+						{
+							"id": 138,
+							"name": "Estellia Lu'naa"
+						},
+						{
+							"id": 139,
+							"name": "Reyn Thyme"
+						},
+						{
+							"id": 140,
+							"name": "Vidar Blackwell"
+						},
+						{
+							"id": 141,
+							"name": "Holly Wick"
+						},
+						{
+							"id": 142,
+							"name": "Celia Praxis"
+						},
+						{
+							"id": 143,
+							"name": "Kimaia Evenwind"
+						},
+						{
+							"id": 144,
+							"name": "Irsorr Kross"
+						},
+						{
+							"id": 145,
+							"name": "Evelyn Urumet"
+						},
+						{
+							"id": 146,
+							"name": "Skylar Zayo"
+						},
+						{
+							"id": 147,
+							"name": "Shiho Kaida"
+						},
+						{
+							"id": 148,
+							"name": "Ladios Relgar"
+						},
+						{
+							"id": 149,
+							"name": "Tybal Timore"
+						},
+						{
+							"id": 150,
+							"name": "Mila Lhea"
+						},
+						{
+							"id": 151,
+							"name": "Azariah Mavot"
+						},
+						{
+							"id": 152,
+							"name": "Lavinia Rott"
+						},
+						{
+							"id": 153,
+							"name": "Athiraa X'"
+						},
+						{
+							"id": 154,
+							"name": "Avi Nori"
+						},
+						{
+							"id": 155,
+							"name": "Rikobra San"
+						},
+						{
+							"id": 156,
+							"name": ""
+						},
+						{
+							"id": 157,
+							"name": "Thyndia Cirha"
+						},
+						{
+							"id": 158,
+							"name": "Miranda Barimen"
+						},
+						{
+							"id": 159,
+							"name": ""
+						},
+						{
+							"id": 160,
+							"name": "Siskiyoh Sama"
+						},
+						{
+							"id": 161,
+							"name": "Neko Wafers"
+						},
+						{
+							"id": 162,
+							"name": "Jonatello Mercurial"
+						},
+						{
+							"id": 163,
+							"name": "Yaeba Quasin"
+						},
+						{
+							"id": 164,
+							"name": "Shinhye Lee"
+						},
+						{
+							"id": 165,
+							"name": "Frenchie Miyashiro"
+						},
+						{
+							"id": 166,
+							"name": "Altair Nashira"
+						},
+						{
+							"id": 167,
+							"name": "Rinxi Aisyren"
+						},
+						{
+							"id": 168,
+							"name": "Maple Syrup'"
+						},
+						{
+							"id": 169,
+							"name": "Nyx Shadowbane"
+						},
+						{
+							"id": 170,
+							"name": "Ninak K'sitog"
+						},
+						{
+							"id": 171,
+							"name": "Pennelo Wiseau"
+						},
+						{
+							"id": 172,
+							"name": "Serge Cross"
+						},
+						{
+							"id": 173,
+							"name": "Menou Tsuiseki"
+						},
+						{
+							"id": 174,
+							"name": "Eos"
+						},
+						{
+							"id": 175,
+							"name": "Taro T'ea"
+						},
+						{
+							"id": 176,
+							"name": "Mira Entaru"
+						},
+						{
+							"id": 177,
+							"name": "Irusan'a Coron'zom"
+						},
+						{
+							"id": 178,
+							"name": "Bobbity Ross"
+						},
+						{
+							"id": 179,
+							"name": "Sylvr Lunae"
+						},
+						{
+							"id": 180,
+							"name": "Ryula Kawakami"
+						},
+						{
+							"id": 181,
+							"name": "Leon Garsias"
+						},
+						{
+							"id": 182,
+							"name": "Faygo Soda"
+						},
+						{
+							"id": 183,
+							"name": "Kryst Olmeth"
+						},
+						{
+							"id": 184,
+							"name": "Eos"
+						},
+						{
+							"id": 185,
+							"name": "Earth Homunculus"
+						},
+						{
+							"id": 186,
+							"name": "Ice Homunculus"
+						},
+						{
+							"id": 187,
+							"name": "Fire Homunculus"
+						},
+						{
+							"id": 188,
+							"name": "Lightning Homunculus"
+						},
+						{
+							"id": 189,
+							"name": "Wind Homunculus"
+						},
+						{
+							"id": 190,
+							"name": "Valefor"
+						},
+						{
+							"id": 191,
+							"name": "Water Homunculus"
+						},
+						{
+							"id": 192,
+							"name": "Titan-Egi"
+						},
+						{
+							"id": 193,
+							"name": "Carbuncle"
+						},
+						{
+							"id": 194,
+							"name": "Greater Demon"
+						},
+						{
+							"id": 195,
+							"name": "Valar"
+						},
+						{
+							"id": 196,
+							"name": "Garuda-Egi"
+						},
+						{
+							"id": 197,
+							"name": "Carbuncle"
+						},
+						{
+							"id": 198,
+							"name": "Ifrit-Egi"
+						},
+						{
+							"id": 199,
+							"name": "Dira"
+						},
+						{
+							"id": 200,
+							"name": "Cursed Eye"
+						},
+						{
+							"id": 201,
+							"name": "Bone Dragon"
+						},
+						{
+							"id": 202,
+							"name": "Rook Autoturret"
+						},
+						{
+							"id": 203,
+							"name": "Platinal"
+						},
+						{
+							"id": 204,
+							"name": "Bone Dragon"
+						},
+						{
+							"id": 205,
+							"name": "Rotting Eye"
+						},
+						{
+							"id": 206,
+							"name": "Rook Autoturret"
+						},
+						{
+							"id": 207,
+							"name": "Atomos"
+						},
+						{
+							"id": 208,
+							"name": "Greater Demon"
+						},
+						{
+							"id": 209,
+							"name": "Valefor"
+						},
+						{
+							"id": 210,
+							"name": "Dira"
+						},
+						{
+							"id": 211,
+							"name": "Magic Pot"
+						},
+						{
+							"id": 212,
+							"name": "Thanatos"
+						},
+						{
+							"id": 213,
+							"name": "Thanatos"
+						},
+						{
+							"id": 214,
+							"name": "Nemesis"
+						},
+						{
+							"id": 215,
+							"name": "Sandman"
+						},
+						{
+							"id": 216,
+							"name": "Multiple Enemies"
+						},
+						{
+							"id": 217,
+							"name": "Vassago"
+						},
+						{
+							"id": 218,
+							"name": "Allagan Bomb"
+						},
+						{
+							"id": 219,
+							"name": "Allagan Balloon"
+						},
+						{
+							"id": 220,
+							"name": "Allagan Napalm"
+						},
+						{
+							"id": 221,
+							"name": "Ifrit-Egi"
+						},
+						{
+							"id": 222,
+							"name": ""
+						},
+						{
+							"id": 223,
+							"name": "Garuda-Egi"
+						},
+						{
+							"id": 224,
+							"name": "Titan-Egi"
+						},
+						{
+							"id": 225,
+							"name": "King Behemoth"
+						},
+						{
+							"id": 226,
+							"name": "Energy Tower Console"
+						},
+						{
+							"id": 227,
+							"name": "Puroboros"
+						},
+						{
+							"id": 228,
+							"name": "Iron Giant"
+						},
+						{
+							"id": 229,
+							"name": "Comet"
+						},
+						{
+							"id": 230,
+							"name": "Phlegethon"
+						},
+						{
+							"id": 231,
+							"name": "Phlegethon"
+						},
+						{
+							"id": 232,
+							"name": "Iron Claws"
+						},
+						{
+							"id": 233,
+							"name": "Iron Giant"
+						},
+						{
+							"id": 234,
+							"name": ""
+						},
+						{
+							"id": 235,
+							"name": ""
+						},
+						{
+							"id": 236,
+							"name": ""
+						},
+						{
+							"id": 237,
+							"name": "Aesgir Siegwine"
+						},
+						{
+							"id": 238,
+							"name": "Sevarsis Shi'karla"
+						},
+						{
+							"id": 239,
+							"name": "Captain Varron"
+						},
+						{
+							"id": 240,
+							"name": "Choioioio Oioioio"
+						},
+						{
+							"id": 241,
+							"name": "Reyas Soldeus"
+						},
+						{
+							"id": 242,
+							"name": "Salvi Leviathan"
+						},
+						{
+							"id": 243,
+							"name": "Bastion Auretheus"
+						},
+						{
+							"id": 244,
+							"name": "Kane Matcha"
+						},
+						{
+							"id": 245,
+							"name": "Sonna Mancini"
+						},
+						{
+							"id": 246,
+							"name": "Phi Pinx"
+						},
+						{
+							"id": 247,
+							"name": "Gideon Voydz"
+						},
+						{
+							"id": 248,
+							"name": "Dagda Draycott"
+						},
+						{
+							"id": 249,
+							"name": "M'atcha L'atte"
+						},
+						{
+							"id": 250,
+							"name": "Earthly Star"
+						},
+						{
+							"id": 251,
+							"name": "Spiff Ingway"
+						},
+						{
+							"id": 252,
+							"name": "Kazek Asvana"
+						},
+						{
+							"id": 253,
+							"name": "Smarty Paws"
+						},
+						{
+							"id": 254,
+							"name": "Power Snake"
+						},
+						{
+							"id": 255,
+							"name": "Eerie Dazie"
+						},
+						{
+							"id": 256,
+							"name": "Damalia Dhamel"
+						},
+						{
+							"id": 257,
+							"name": "Unrecognized Hero"
+						},
+						{
+							"id": 258,
+							"name": "Nyx Aurelia"
+						},
+						{
+							"id": 259,
+							"name": "Primal Dust"
+						},
+						{
+							"id": 260,
+							"name": "Blk Alpha"
+						},
+						{
+							"id": 261,
+							"name": "Addy Moo"
+						},
+						{
+							"id": 262,
+							"name": "Floral Hearts"
+						},
+						{
+							"id": 263,
+							"name": "Mai Anh"
+						},
+						{
+							"id": 264,
+							"name": "Camilla Thorne"
+						},
+						{
+							"id": 265,
+							"name": "Kotta Vae"
+						},
+						{
+							"id": 266,
+							"name": "Nero Thedemonslayer"
+						},
+						{
+							"id": 267,
+							"name": "Spiff Ingway"
+						},
+						{
+							"id": 268,
+							"name": "Jun Rau"
+						},
+						{
+							"id": 269,
+							"name": "Mystical Witchtress"
+						},
+						{
+							"id": 270,
+							"name": "Ksatriya Rama"
+						},
+						{
+							"id": 271,
+							"name": "Lee- Lee"
+						},
+						{
+							"id": 272,
+							"name": "Zane Hurst"
+						},
+						{
+							"id": 273,
+							"name": "Aesgir Siegwine"
+						},
+						{
+							"id": 274,
+							"name": "Aesgir Siegwine"
+						},
+						{
+							"id": 275,
+							"name": "Mirage Frostwind"
+						},
+						{
+							"id": 276,
+							"name": "Bnuuy Zapmunk"
+						},
+						{
+							"id": 277,
+							"name": "Lua Byblis"
+						},
+						{
+							"id": 278,
+							"name": "Saint Lioncourt"
+						},
+						{
+							"id": 279,
+							"name": "Zeijon Timore"
+						},
+						{
+							"id": 280,
+							"name": "Keira Dracht"
+						},
+						{
+							"id": 281,
+							"name": "Nuvem Orpheus"
+						},
+						{
+							"id": 282,
+							"name": "Wee Woo"
+						},
+						{
+							"id": 283,
+							"name": "Shay Shakir"
+						},
+						{
+							"id": 284,
+							"name": "Ogo Lux"
+						},
+						{
+							"id": 285,
+							"name": "Shae Clarent"
+						},
+						{
+							"id": 286,
+							"name": "Emeric Halkias"
+						},
+						{
+							"id": 287,
+							"name": "Iminogari Wolfblood"
+						},
+						{
+							"id": 288,
+							"name": "Shay Shakir"
+						},
+						{
+							"id": 289,
+							"name": "Dai Bao"
+						},
+						{
+							"id": 290,
+							"name": "Fay Ted"
+						},
+						{
+							"id": 291,
+							"name": "Sonna Mancini"
+						},
+						{
+							"id": 292,
+							"name": "Mecro Lancer"
+						},
+						{
+							"id": 293,
+							"name": "Masayasu Kiba"
+						},
+						{
+							"id": 294,
+							"name": "Pyrox Estavius"
+						},
+						{
+							"id": 295,
+							"name": "Beryl Rhansa"
+						},
+						{
+							"id": 296,
+							"name": "Pyrox Estavius"
+						},
+						{
+							"id": 297,
+							"name": "Doro Doro"
+						},
+						{
+							"id": 298,
+							"name": "Seria Douglas"
+						},
+						{
+							"id": 299,
+							"name": "Seria Douglas"
+						},
+						{
+							"id": 300,
+							"name": "Aiba Three"
+						},
+						{
+							"id": 301,
+							"name": "Kimira Noirdouglas"
+						},
+						{
+							"id": 302,
+							"name": "Sakura Torsvik"
+						},
+						{
+							"id": 303,
+							"name": "Signe Djt-gilda"
+						},
+						{
+							"id": 304,
+							"name": "Davatos Jintavos"
+						},
+						{
+							"id": 305,
+							"name": "Echo Green"
+						},
+						{
+							"id": 306,
+							"name": "Annette Kholin"
+						},
+						{
+							"id": 307,
+							"name": "Fourth Harbinger"
+						},
+						{
+							"id": 308,
+							"name": "Snusnu Sentinel"
+						},
+						{
+							"id": 309,
+							"name": ""
+						},
+						{
+							"id": 310,
+							"name": "Brush Stroke"
+						},
+						{
+							"id": 311,
+							"name": "Wendy Bergamot"
+						},
+						{
+							"id": 312,
+							"name": "Arata No-okami"
+						},
+						{
+							"id": 313,
+							"name": "Laura Valedor"
+						},
+						{
+							"id": 314,
+							"name": "Suki Tamago"
+						},
+						{
+							"id": 315,
+							"name": "Mariana Tlapale"
+						},
+						{
+							"id": 316,
+							"name": "Shae Clarent"
+						},
+						{
+							"id": 317,
+							"name": "Wynovere Skinny"
+						},
+						{
+							"id": 318,
+							"name": "Extreme Reality"
+						},
+						{
+							"id": 319,
+							"name": "Dyari Cast"
+						},
+						{
+							"id": 320,
+							"name": "Julius Zielliger"
+						},
+						{
+							"id": 321,
+							"name": "Mich Durendaire"
+						},
+						{
+							"id": 322,
+							"name": "Raecear Olieral"
+						},
+						{
+							"id": 323,
+							"name": "Nausica Keiyuki"
+						},
+						{
+							"id": 324,
+							"name": "Mariana Tlapale"
+						},
+						{
+							"id": 325,
+							"name": "Goober Eliminator"
+						},
+						{
+							"id": 326,
+							"name": "Havenice Day"
+						},
+						{
+							"id": 327,
+							"name": "Haroku Kazama"
+						},
+						{
+							"id": 328,
+							"name": "Ruby Wixx"
+						},
+						{
+							"id": 329,
+							"name": "Hareforce Bun"
+						},
+						{
+							"id": 330,
+							"name": "Dino Nuggies"
+						},
+						{
+							"id": 331,
+							"name": "Jun Rau"
+						},
+						{
+							"id": 332,
+							"name": "Eludecia Highwind"
+						},
+						{
+							"id": 333,
+							"name": "Thanatos Amalgamate"
+						},
+						{
+							"id": 334,
+							"name": "Kanau Takahashi"
+						},
+						{
+							"id": 335,
+							"name": "Ophilia West"
+						},
+						{
+							"id": 336,
+							"name": "Oir Almathen"
+						},
+						{
+							"id": 337,
+							"name": "W'fayee Quohn"
+						},
+						{
+							"id": 338,
+							"name": "Tenley Aruna"
+						},
+						{
+							"id": 339,
+							"name": "Irsorr Kross"
+						},
+						{
+							"id": 340,
+							"name": "Balthier Eruyt"
+						},
+						{
+							"id": 341,
+							"name": "Tronne Bunn"
+						},
+						{
+							"id": 342,
+							"name": "Fremy Meitzen"
+						},
+						{
+							"id": 343,
+							"name": "Aranea Bairon"
+						},
+						{
+							"id": 344,
+							"name": "Perry Blonde"
+						},
+						{
+							"id": 345,
+							"name": "Krove Ozir"
+						},
+						{
+							"id": 346,
+							"name": "Dot Xero"
+						},
+						{
+							"id": 347,
+							"name": "Gilien Goldwater"
+						},
+						{
+							"id": 348,
+							"name": "Leonardo Auditore"
+						},
+						{
+							"id": 349,
+							"name": "Lonely Silver"
+						},
+						{
+							"id": 350,
+							"name": "Soren Myste"
+						},
+						{
+							"id": 351,
+							"name": "Ivory N'a"
+						},
+						{
+							"id": 352,
+							"name": "Aery Lu'ne"
+						},
+						{
+							"id": 353,
+							"name": "Mitsu Akii"
+						},
+						{
+							"id": 354,
+							"name": "Remi Hime"
+						},
+						{
+							"id": 355,
+							"name": "Zansei Kurogane"
+						},
+						{
+							"id": 356,
+							"name": "Noa Sumisu"
+						},
+						{
+							"id": 357,
+							"name": "Yelyzaveta Oleksandra"
+						},
+						{
+							"id": 358,
+							"name": "Min Maximus"
+						},
+						{
+							"id": 359,
+							"name": "Kasenri Despian"
+						},
+						{
+							"id": 360,
+							"name": "Lydaceus Grimwulf"
+						},
+						{
+							"id": 361,
+							"name": "Burwenna Browne"
+						},
+						{
+							"id": 362,
+							"name": "Spagooblio Di"
+						},
+						{
+							"id": 363,
+							"name": "Kim Taeyawn"
+						},
+						{
+							"id": 364,
+							"name": "Burwenna Browne"
+						},
+						{
+							"id": 365,
+							"name": "Sparkle Reshi"
+						},
+						{
+							"id": 366,
+							"name": "Twili Midna"
+						},
+						{
+							"id": 367,
+							"name": "Leonardo Auditore"
+						},
+						{
+							"id": 368,
+							"name": "Lazy Way"
+						},
+						{
+							"id": 369,
+							"name": "Cecilia Tayuun"
+						},
+						{
+							"id": 370,
+							"name": "Crystal Blueveil"
+						},
+						{
+							"id": 371,
+							"name": "Rael Zephyr"
+						},
+						{
+							"id": 372,
+							"name": "Eris Basilio"
+						},
+						{
+							"id": 373,
+							"name": "Furman The'german"
+						},
+						{
+							"id": 374,
+							"name": "Kingsley Carlyle"
+						},
+						{
+							"id": 375,
+							"name": "Shiny Trainer"
+						},
+						{
+							"id": 376,
+							"name": "Dydjec Qrow"
+						},
+						{
+							"id": 377,
+							"name": "Wild Dancer"
+						},
+						{
+							"id": 378,
+							"name": "Leonardo Auditore"
+						},
+						{
+							"id": 379,
+							"name": "Leonardo Auditore"
+						},
+						{
+							"id": 380,
+							"name": "Val Sylvia"
+						},
+						{
+							"id": 381,
+							"name": "Abriel Flametender"
+						},
+						{
+							"id": 382,
+							"name": ""
+						},
+						{
+							"id": 383,
+							"name": "Rinoa Coleau"
+						},
+						{
+							"id": 384,
+							"name": "Aldeos Falden"
+						},
+						{
+							"id": 385,
+							"name": "Desdemona Vaux"
+						},
+						{
+							"id": 386,
+							"name": "Qopy Kat"
+						},
+						{
+							"id": 387,
+							"name": "Tick Tourcenet"
+						},
+						{
+							"id": 388,
+							"name": "Misaki Setsura"
+						},
+						{
+							"id": 389,
+							"name": "Raijher Hestia"
+						},
+						{
+							"id": 390,
+							"name": "Razgriz Silversoul"
+						},
+						{
+							"id": 391,
+							"name": "Sakura Avalon"
+						},
+						{
+							"id": 392,
+							"name": "Tommy Oh'tommy"
+						},
+						{
+							"id": 393,
+							"name": "Zero Mew"
+						},
+						{
+							"id": 394,
+							"name": "Cathara Dayne"
+						},
+						{
+							"id": 395,
+							"name": "Ancient Dragon"
+						},
+						{
+							"id": 396,
+							"name": "Argilla Uzuki"
+						},
+						{
+							"id": 397,
+							"name": "Liara Blackstar"
+						},
+						{
+							"id": 398,
+							"name": "Jick Nonas"
+						},
+						{
+							"id": 399,
+							"name": "Monarch Gannikis"
+						},
+						{
+							"id": 400,
+							"name": "Tsukiko Qalli"
+						},
+						{
+							"id": 401,
+							"name": "Shadow Buda"
+						},
+						{
+							"id": 402,
+							"name": "Kiriko Hanyaa"
+						},
+						{
+							"id": 403,
+							"name": "King Valldookin"
+						},
+						{
+							"id": 404,
+							"name": "Qopy Kat"
+						},
+						{
+							"id": 405,
+							"name": "Creamy Dear"
+						},
+						{
+							"id": 406,
+							"name": "Leonardo Auditore"
+						},
+						{
+							"id": 407,
+							"name": "Tierisch Tintenfisch"
+						},
+						{
+							"id": 408,
+							"name": "Haraya Dren"
+						},
+						{
+							"id": 409,
+							"name": "Mabara Shigure"
+						},
+						{
+							"id": 410,
+							"name": "Daromir Syphex"
+						},
+						{
+							"id": 411,
+							"name": "Aurora Hanaharic"
+						},
+						{
+							"id": 412,
+							"name": "Aurora Hanaharic"
+						},
+						{
+							"id": 413,
+							"name": "Yi-xuan Tykha"
+						},
+						{
+							"id": 414,
+							"name": ""
+						},
+						{
+							"id": 415,
+							"name": "Mirnoru Tarshino"
+						},
+						{
+							"id": 416,
+							"name": "Celexa Luz"
+						},
+						{
+							"id": 417,
+							"name": "Ujitake Tachikawa"
+						},
+						{
+							"id": 418,
+							"name": "Aksis Dawnbreaker"
+						},
+						{
+							"id": 419,
+							"name": "Skoen Wyda"
+						},
+						{
+							"id": 420,
+							"name": "Zain Firelight"
+						},
+						{
+							"id": 421,
+							"name": "Spicy Momo"
+						},
+						{
+							"id": 422,
+							"name": "Shala Qa'ra"
+						},
+						{
+							"id": 423,
+							"name": "Faolan Flynn"
+						},
+						{
+							"id": 424,
+							"name": "Fallen Luna"
+						},
+						{
+							"id": 425,
+							"name": "Giggle Wiggle"
+						},
+						{
+							"id": 426,
+							"name": "Miriam Karanthos"
+						},
+						{
+							"id": 427,
+							"name": "Kai Lux"
+						},
+						{
+							"id": 428,
+							"name": "Bella Shadowmoore"
+						},
+						{
+							"id": 429,
+							"name": "Red Piper"
+						},
+						{
+							"id": 430,
+							"name": "Sion Klauser"
+						},
+						{
+							"id": 431,
+							"name": "Denice Lookstwice"
+						},
+						{
+							"id": 432,
+							"name": "Yaretzi Lookstwice"
+						},
+						{
+							"id": 433,
+							"name": "Glace Neos"
+						},
+						{
+							"id": 434,
+							"name": "Nymix Feldan"
+						},
+						{
+							"id": 435,
+							"name": "Xavier Drake"
+						},
+						{
+							"id": 436,
+							"name": "Princesco Creamy"
+						},
+						{
+							"id": 437,
+							"name": "Crayola Knight"
+						},
+						{
+							"id": 438,
+							"name": "Raijher Hestia"
+						},
+						{
+							"id": 439,
+							"name": "Krove Ozir"
+						},
+						{
+							"id": 440,
+							"name": "Adrian Housavior"
+						},
+						{
+							"id": 441,
+							"name": "Xahkih Xistu"
+						},
+						{
+							"id": 442,
+							"name": "Florimont Fortanceste"
+						},
+						{
+							"id": 443,
+							"name": "Ashe Alteluna"
+						},
+						{
+							"id": 444,
+							"name": "Ivory N'a"
+						},
+						{
+							"id": 445,
+							"name": "Azariah Mavot"
+						},
+						{
+							"id": 446,
+							"name": ""
+						},
+						{
+							"id": 447,
+							"name": "Novus Portmanteau"
+						},
+						{
+							"id": 448,
+							"name": "Sabitsuki Nagare"
+						},
+						{
+							"id": 449,
+							"name": ""
+						},
+						{
+							"id": 450,
+							"name": "Sabitsuki Nagare"
+						},
+						{
+							"id": 451,
+							"name": "Liffmaga Atoaka"
+						},
+						{
+							"id": 452,
+							"name": "Selene"
+						},
+						{
+							"id": 453,
+							"name": "King Valldookin"
+						},
+						{
+							"id": 454,
+							"name": "Selene"
+						},
+						{
+							"id": 455,
+							"name": "X'ochi Tia"
+						},
+						{
+							"id": 456,
+							"name": "Destroyer Ofgroomers"
+						},
+						{
+							"id": 457,
+							"name": "Dreamdrop Depression"
+						},
+						{
+							"id": 458,
+							"name": "Krove Ozir"
+						},
+						{
+							"id": 459,
+							"name": "Krove Ozir"
+						},
+						{
+							"id": 460,
+							"name": "Jollywolly Minecraft"
+						},
+						{
+							"id": 461,
+							"name": "Y'thot Nunh"
+						},
+						{
+							"id": 462,
+							"name": "Ellie Tyanu"
+						},
+						{
+							"id": 463,
+							"name": "Khloe Tyanu"
+						},
+						{
+							"id": 464,
+							"name": "Earthly Star"
+						},
+						{
+							"id": 465,
+							"name": "Rhae Fawna"
+						},
+						{
+							"id": 466,
+							"name": "Harley North"
+						},
+						{
+							"id": 467,
+							"name": "Earthly Star"
+						},
+						{
+							"id": 468,
+							"name": "Rissa Khatris"
+						},
+						{
+							"id": 469,
+							"name": "Turfing Sun"
+						},
+						{
+							"id": 470,
+							"name": "Link Vincent"
+						},
+						{
+							"id": 471,
+							"name": "Kliu Lubraen"
+						},
+						{
+							"id": 472,
+							"name": ""
+						},
+						{
+							"id": 473,
+							"name": "Xu Argenti"
+						},
+						{
+							"id": 474,
+							"name": "Rinna Embers"
+						},
+						{
+							"id": 475,
+							"name": "Altairien Aquila"
+						},
+						{
+							"id": 476,
+							"name": "Ahrun'ya Vashai"
+						},
+						{
+							"id": 477,
+							"name": "Beefcake Corn"
+						},
+						{
+							"id": 478,
+							"name": "King Valldookin"
+						},
+						{
+							"id": 479,
+							"name": "Sunberry Cinnamonroll"
+						},
+						{
+							"id": 480,
+							"name": "Floweri Kitty"
+						},
+						{
+							"id": 481,
+							"name": "Ahyasha M'ranbu"
+						},
+						{
+							"id": 482,
+							"name": "Willow Dharkheart"
+						},
+						{
+							"id": 483,
+							"name": "Paddy Cake"
+						},
+						{
+							"id": 484,
+							"name": "Paddy Cake"
+						},
+						{
+							"id": 485,
+							"name": "I'chi Hayashi"
+						},
+						{
+							"id": 486,
+							"name": "Elijah Sidonis"
+						},
+						{
+							"id": 487,
+							"name": "Tweak Nyakk"
+						},
+						{
+							"id": 488,
+							"name": "Floral Hearts"
+						},
+						{
+							"id": 489,
+							"name": "Winterra Lunafey"
+						},
+						{
+							"id": 490,
+							"name": "Cheeek Clapper"
+						},
+						{
+							"id": 491,
+							"name": "Avryll Frias"
+						},
+						{
+							"id": 492,
+							"name": "Yushiro Hikifune"
+						},
+						{
+							"id": 493,
+							"name": "Kirika Nanami"
+						},
+						{
+							"id": 494,
+							"name": "Prince Phillip"
+						},
+						{
+							"id": 495,
+							"name": "Blood Goddess"
+						},
+						{
+							"id": 496,
+							"name": "Kirika Nanami"
+						},
+						{
+							"id": 497,
+							"name": "Kirika Nanami"
+						},
+						{
+							"id": 498,
+							"name": "Link Frost"
+						},
+						{
+							"id": 499,
+							"name": "Krove Ozir"
+						},
+						{
+							"id": 500,
+							"name": "Blood Goddess"
+						},
+						{
+							"id": 501,
+							"name": "Dalrith Tia"
+						},
+						{
+							"id": 502,
+							"name": "Tommy Jay"
+						},
+						{
+							"id": 503,
+							"name": ""
+						},
+						{
+							"id": 504,
+							"name": "Varis Noirtel"
+						},
+						{
+							"id": 505,
+							"name": "Kulaan Do'qah"
+						},
+						{
+							"id": 506,
+							"name": "Yi-xuan Tykha"
+						},
+						{
+							"id": 507,
+							"name": "Saralynn Blade"
+						},
+						{
+							"id": 508,
+							"name": "Yi-xuan Tykha"
+						},
+						{
+							"id": 509,
+							"name": "Saralynn Blade"
+						},
+						{
+							"id": 510,
+							"name": "Lunette Frostwing"
+						},
+						{
+							"id": 511,
+							"name": "Magnolia Varanni"
+						},
+						{
+							"id": 512,
+							"name": "Yi-xuan Tykha"
+						},
+						{
+							"id": 513,
+							"name": "Yi-xuan Tykha"
+						},
+						{
+							"id": 514,
+							"name": "Kumatestu Mantheron"
+						},
+						{
+							"id": 515,
+							"name": "Yi-xuan Tykha"
+						},
+						{
+							"id": 516,
+							"name": "Natalie Eevoal"
+						},
+						{
+							"id": 517,
+							"name": "Draven Icepelt"
+						},
+						{
+							"id": 518,
+							"name": "Zane Hurst"
+						},
+						{
+							"id": 519,
+							"name": "Karshaek Solan"
+						},
+						{
+							"id": 520,
+							"name": "Bell Fleur"
+						},
+						{
+							"id": 521,
+							"name": "Nozomi Punch"
+						},
+						{
+							"id": 522,
+							"name": "Blue Hour"
+						},
+						{
+							"id": 523,
+							"name": "Power Snake"
+						},
+						{
+							"id": 524,
+							"name": "Aragon Of'gondor"
+						},
+						{
+							"id": 525,
+							"name": "Auru Owusu"
+						},
+						{
+							"id": 526,
+							"name": "Somai Yashmal"
+						},
+						{
+							"id": 527,
+							"name": "Kat Gs"
+						},
+						{
+							"id": 528,
+							"name": "Machaa Mars"
+						},
+						{
+							"id": 529,
+							"name": ""
+						},
+						{
+							"id": 530,
+							"name": "Kite Cerilius"
+						},
+						{
+							"id": 531,
+							"name": "Jayce Albrecht"
+						},
+						{
+							"id": 532,
+							"name": "Wild Dancer"
+						},
+						{
+							"id": 533,
+							"name": "Shosroy Jonsui"
+						},
+						{
+							"id": 534,
+							"name": "Shosroy Jonsui"
+						},
+						{
+							"id": 535,
+							"name": ""
+						},
+						{
+							"id": 536,
+							"name": ""
+						},
+						{
+							"id": 537,
+							"name": ""
+						},
+						{
+							"id": 538,
+							"name": "Codex Switch"
+						},
+						{
+							"id": 539,
+							"name": "Jayce Albrecht"
+						},
+						{
+							"id": 540,
+							"name": "Evangeline Xyrphyra"
+						},
+						{
+							"id": 541,
+							"name": "Candren Nakamura"
+						},
+						{
+							"id": 542,
+							"name": "Tera Valeri"
+						},
+						{
+							"id": 543,
+							"name": "Icaria Syen"
+						},
+						{
+							"id": 544,
+							"name": "Kui Kui"
+						},
+						{
+							"id": 545,
+							"name": "Larakai'na Hotori"
+						},
+						{
+							"id": 546,
+							"name": "Chocolatechip Cookie"
+						},
+						{
+							"id": 547,
+							"name": "Freak Elf"
+						},
+						{
+							"id": 548,
+							"name": "Emerald Carbuncle"
+						},
+						{
+							"id": 549,
+							"name": "Carbuncle"
+						},
+						{
+							"id": 550,
+							"name": "Earthly Star"
+						},
+						{
+							"id": 551,
+							"name": "bunshin"
+						},
+						{
+							"id": 552,
+							"name": "Demi-Bahamut"
+						},
+						{
+							"id": 553,
+							"name": "Esteem"
+						},
+						{
+							"id": 554,
+							"name": "Topaz Titan"
+						},
+						{
+							"id": 555,
+							"name": "Automaton Queen"
+						},
+						{
+							"id": 556,
+							"name": "Emerald Garuda"
+						},
+						{
+							"id": 557,
+							"name": "Seraph"
+						},
+						{
+							"id": 558,
+							"name": "Ruby Ifrit"
+						},
+						{
+							"id": 559,
+							"name": "Demi-Phoenix"
+						},
+						{
+							"id": 560,
+							"name": "Dragon-king Thordan"
+						},
+						{
+							"id": 561,
+							"name": "Dragon-king Thordan"
+						},
+						{
+							"id": 562,
+							"name": "Gurt Trude"
+						},
+						{
+							"id": 563,
+							"name": "Tatertotty Taroyam"
+						},
+						{
+							"id": 564,
+							"name": "Vanessa Starling"
+						},
+						{
+							"id": 565,
+							"name": "Luthiel Helluin"
+						},
+						{
+							"id": 566,
+							"name": "Loco Moco'"
+						},
+						{
+							"id": 567,
+							"name": "Snowy Fang"
+						},
+						{
+							"id": 568,
+							"name": "Age Nightroad"
+						},
+						{
+							"id": 569,
+							"name": "Mistress Noire"
+						},
+						{
+							"id": 570,
+							"name": "Ingrid Highwind"
+						},
+						{
+							"id": 571,
+							"name": "Nick Chugget"
+						},
+						{
+							"id": 572,
+							"name": "A'zagar Tian"
+						},
+						{
+							"id": 573,
+							"name": "Tanu Ki"
+						},
+						{
+							"id": 574,
+							"name": "Coffea Bean"
+						},
+						{
+							"id": 575,
+							"name": "Firefly Fresh"
+						},
+						{
+							"id": 576,
+							"name": "Frahlia Terrens"
+						},
+						{
+							"id": 577,
+							"name": ""
+						},
+						{
+							"id": 578,
+							"name": "Heladrion Ilimoira"
+						},
+						{
+							"id": 579,
+							"name": "Frahlia Terrens"
+						},
+						{
+							"id": 580,
+							"name": "Firefly Fresh"
+						},
+						{
+							"id": 581,
+							"name": "Scythe Goddess"
+						},
+						{
+							"id": 582,
+							"name": "Asintyr Vorum"
+						},
+						{
+							"id": 583,
+							"name": "Milos Aurelius"
+						},
+						{
+							"id": 584,
+							"name": "Scythe Goddess"
+						},
+						{
+							"id": 585,
+							"name": "Zarelia Ostornwyn"
+						},
+						{
+							"id": 586,
+							"name": "Zarelia Ostornwyn"
+						},
+						{
+							"id": 587,
+							"name": "Rian Gosling"
+						},
+						{
+							"id": 588,
+							"name": "Festive Traincar"
+						},
+						{
+							"id": 589,
+							"name": "Estellia Lu'naa"
+						},
+						{
+							"id": 590,
+							"name": "Big Mcstronghuge"
+						},
+						{
+							"id": 591,
+							"name": "Angel Cakes"
+						},
+						{
+							"id": 592,
+							"name": "Loco Moco'"
+						},
+						{
+							"id": 593,
+							"name": "Papa Samku"
+						},
+						{
+							"id": 594,
+							"name": "Downy Aevis"
+						},
+						{
+							"id": 595,
+							"name": "Territorial Slug"
+						},
+						{
+							"id": 596,
+							"name": "Multiple Enemies"
+						},
+						{
+							"id": 597,
+							"name": "Territorial Salamander"
+						},
+						{
+							"id": 598,
+							"name": "Territorial Gigantoad"
+						},
+						{
+							"id": 599,
+							"name": "Inkyung Kang"
+						},
+						{
+							"id": 600,
+							"name": "Inkyung Kang"
+						},
+						{
+							"id": 601,
+							"name": "Higure Matamune"
+						},
+						{
+							"id": 602,
+							"name": "Jackalope Fynn"
+						},
+						{
+							"id": 603,
+							"name": "Varic Kindlespirit"
+						},
+						{
+							"id": 604,
+							"name": "First Name"
+						},
+						{
+							"id": 605,
+							"name": "Raffin Woglinde"
+						},
+						{
+							"id": 606,
+							"name": "Bugg Don"
+						},
+						{
+							"id": 607,
+							"name": "Milasa Kitlo"
+						},
+						{
+							"id": 608,
+							"name": "Kenshiden Dragonsbane"
+						},
+						{
+							"id": 609,
+							"name": "Miyamizu Yotsuha"
+						},
+						{
+							"id": 610,
+							"name": "Raynie Alistel"
+						},
+						{
+							"id": 611,
+							"name": "Shana Carefree"
+						},
+						{
+							"id": 612,
+							"name": "Kei Ren"
+						},
+						{
+							"id": 613,
+							"name": ""
+						},
+						{
+							"id": 614,
+							"name": "Kumiko Neko"
+						},
+						{
+							"id": 615,
+							"name": "Choke Hold"
+						},
+						{
+							"id": 616,
+							"name": "Kumiko Neko"
+						},
+						{
+							"id": 617,
+							"name": "Kumiko Neko"
+						},
+						{
+							"id": 618,
+							"name": "Kumiko Neko"
+						},
+						{
+							"id": 619,
+							"name": "Leo Amethyst"
+						},
+						{
+							"id": 620,
+							"name": "Kumiko Neko"
+						},
+						{
+							"id": 621,
+							"name": "Dovalyn Magika"
+						},
+						{
+							"id": 622,
+							"name": "Kei Ren"
+						},
+						{
+							"id": 623,
+							"name": "Kumiko Neko"
+						},
+						{
+							"id": 624,
+							"name": "Kei Ren"
+						},
+						{
+							"id": 625,
+							"name": "Kumiko Neko"
+						},
+						{
+							"id": 626,
+							"name": "Alpesh Ciana"
+						},
+						{
+							"id": 627,
+							"name": "Amez Devourer"
+						},
+						{
+							"id": 628,
+							"name": "Jordan Grey"
+						},
+						{
+							"id": 629,
+							"name": "Olivia Isawa"
+						},
+						{
+							"id": 630,
+							"name": "Sokuku Trina"
+						},
+						{
+							"id": 631,
+							"name": "Madison Leonyx"
+						},
+						{
+							"id": 632,
+							"name": "Olivia Isawa"
+						},
+						{
+							"id": 633,
+							"name": "Casanova Endeavor"
+						},
+						{
+							"id": 634,
+							"name": "Erys Ardere"
+						},
+						{
+							"id": 635,
+							"name": "Azada Scriv"
+						},
+						{
+							"id": 636,
+							"name": "Olivia Isawa"
+						},
+						{
+							"id": 637,
+							"name": "Solus Cor"
+						},
+						{
+							"id": 638,
+							"name": "Lost Nobody"
+						},
+						{
+							"id": 639,
+							"name": "Olivia Isawa"
+						},
+						{
+							"id": 640,
+							"name": "Bladyn Zaccai"
+						},
+						{
+							"id": 641,
+							"name": "Olivia Isawa"
+						},
+						{
+							"id": 642,
+							"name": "Shenanigans Are"
+						},
+						{
+							"id": 643,
+							"name": "Olivia Isawa"
+						},
+						{
+							"id": 644,
+							"name": "Iphisona Musa"
+						},
+						{
+							"id": 645,
+							"name": "Kettu Vos"
+						},
+						{
+							"id": 646,
+							"name": "We'll Do'it'live'"
+						},
+						{
+							"id": 647,
+							"name": "Metal Heck"
+						},
+						{
+							"id": 648,
+							"name": "Tyler Fouz'r"
+						},
+						{
+							"id": 649,
+							"name": "Olivia Isawa"
+						},
+						{
+							"id": 650,
+							"name": "Callisto Knightshade"
+						},
+						{
+							"id": 651,
+							"name": "Zookers Zunyah"
+						},
+						{
+							"id": 652,
+							"name": "Jaycus Wintersguard"
+						},
+						{
+							"id": 653,
+							"name": "Olivia Isawa"
+						},
+						{
+							"id": 654,
+							"name": "Bsko Whitefang"
+						},
+						{
+							"id": 655,
+							"name": "Shadow Nightfrost"
+						},
+						{
+							"id": 656,
+							"name": "Olivia Isawa"
+						},
+						{
+							"id": 657,
+							"name": "Happy Strykr"
+						},
+						{
+							"id": 658,
+							"name": "Happy Strykr"
+						},
+						{
+							"id": 659,
+							"name": "Ziddi Wyatt"
+						},
+						{
+							"id": 660,
+							"name": "Gerhardt Kinderlach"
+						},
+						{
+							"id": 661,
+							"name": "Rakuyo Krimzon"
+						},
+						{
+							"id": 662,
+							"name": "Wonder Boy"
+						},
+						{
+							"id": 663,
+							"name": "Rory Grimms"
+						},
+						{
+							"id": 664,
+							"name": "Osiris Muffintop"
+						},
+						{
+							"id": 665,
+							"name": "Violet Calistria"
+						},
+						{
+							"id": 666,
+							"name": "Imperial War Hound"
+						},
+						{
+							"id": 667,
+							"name": "8th Cohort Hoplomachus"
+						},
+						{
+							"id": 668,
+							"name": "8th Cohort Signifer"
+						},
+						{
+							"id": 669,
+							"name": "8th Cohort Sagittarius"
+						},
+						{
+							"id": 670,
+							"name": "8th Cohort Eques"
+						},
+						{
+							"id": 671,
+							"name": "8th Cohort Decurion"
+						},
+						{
+							"id": 672,
+							"name": "The Black Eft"
+						},
+						{
+							"id": 673,
+							"name": "8th Cohort Laquearius"
+						},
+						{
+							"id": 674,
+							"name": "8th Cohort Signifer"
+						},
+						{
+							"id": 675,
+							"name": "The Black Eft"
+						},
+						{
+							"id": 676,
+							"name": "Magitek Colossus"
+						},
+						{
+							"id": 677,
+							"name": "Disposal Chute"
+						},
+						{
+							"id": 678,
+							"name": "8th Cohort Secutor"
+						},
+						{
+							"id": 679,
+							"name": "8th Cohort Medicus"
+						},
+						{
+							"id": 680,
+							"name": "8th Cohort Laquearius"
+						},
+						{
+							"id": 681,
+							"name": "Magitek Vanguard"
+						},
+						{
+							"id": 682,
+							"name": "Magitek Death Claw"
+						},
+						{
+							"id": 683,
+							"name": "Magitek Vanguard F-1"
+						},
+						{
+							"id": 684,
+							"name": "Magitek Vanguard F-1"
+						},
+						{
+							"id": 685,
+							"name": "Magitek Vanguard"
+						},
+						{
+							"id": 686,
+							"name": "Magitek Colossus"
+						},
+						{
+							"id": 687,
+							"name": "Cid"
+						},
+						{
+							"id": 688,
+							"name": "Livia Sas Junius"
+						},
+						{
+							"id": 689,
+							"name": "Livia Sas Junius"
+						},
+						{
+							"id": 690,
+							"name": "Gochujang Chigae"
+						},
+						{
+							"id": 691,
+							"name": "Amethyst Lucivarian"
+						},
+						{
+							"id": 692,
+							"name": "Rustisia Vesper"
+						},
+						{
+							"id": 693,
+							"name": "Benedict Buttercupy"
+						},
+						{
+							"id": 694,
+							"name": "Courtney Blackwell"
+						},
+						{
+							"id": 695,
+							"name": "Enna Vehn"
+						},
+						{
+							"id": 696,
+							"name": "Phinx Rune"
+						},
+						{
+							"id": 697,
+							"name": ""
+						},
+						{
+							"id": 698,
+							"name": "Gladio Sieghart"
+						},
+						{
+							"id": 699,
+							"name": "Zenkii Vajura"
+						},
+						{
+							"id": 700,
+							"name": "Arakhis Maclo"
+						},
+						{
+							"id": 701,
+							"name": "Gilgamesh"
+						},
+						{
+							"id": 702,
+							"name": "Enkidu"
+						},
+						{
+							"id": 703,
+							"name": "Enkidu"
+						},
+						{
+							"id": 704,
+							"name": "Woken Wind"
+						},
+						{
+							"id": 705,
+							"name": "Gilgamesh"
+						},
+						{
+							"id": 706,
+							"name": "Gilgamesh"
+						},
+						{
+							"id": 707,
+							"name": "Multiple Enemies"
+						},
+						{
+							"id": 708,
+							"name": "Iron Chain"
+						},
+						{
+							"id": 709,
+							"name": "Dragon's Head"
+						},
+						{
+							"id": 710,
+							"name": "Electrogenetic Force"
+						},
+						{
+							"id": 711,
+							"name": "Mehli Qalli"
+						},
+						{
+							"id": 712,
+							"name": "Artimes Vanguard"
+						},
+						{
+							"id": 713,
+							"name": "Serena Alcarin"
+						},
+						{
+							"id": 714,
+							"name": "Pol Gara"
+						},
+						{
+							"id": 715,
+							"name": "R'veyhu Ishtah"
+						},
+						{
+							"id": 716,
+							"name": "Devin Rewn-nb"
+						},
+						{
+							"id": 717,
+							"name": "Skooma Moonsugar"
+						},
+						{
+							"id": 718,
+							"name": "Summer Roll"
+						},
+						{
+							"id": 719,
+							"name": ""
+						},
+						{
+							"id": 720,
+							"name": "Akadachi Hirosama"
+						},
+						{
+							"id": 721,
+							"name": "Luo Xiaoli"
+						},
+						{
+							"id": 722,
+							"name": "A'ghon Tia"
+						},
+						{
+							"id": 723,
+							"name": "Gitrara Gitra"
+						},
+						{
+							"id": 724,
+							"name": "Lady' Noire"
+						},
+						{
+							"id": 725,
+							"name": "Jude Letitbe"
+						},
+						{
+							"id": 726,
+							"name": "Nick Chugget"
+						},
+						{
+							"id": 727,
+							"name": "Omicron Cygni"
+						},
+						{
+							"id": 728,
+							"name": "Henris Pontier"
+						},
+						{
+							"id": 729,
+							"name": "Cosette Bellerose"
+						},
+						{
+							"id": 730,
+							"name": "Jalter D'arc"
+						},
+						{
+							"id": 731,
+							"name": "Alata Yoonmin"
+						},
+						{
+							"id": 732,
+							"name": "Bun Knee"
+						},
+						{
+							"id": 733,
+							"name": "Ritz Crakers"
+						},
+						{
+							"id": 734,
+							"name": "Florence Ultravio"
+						},
+						{
+							"id": 735,
+							"name": "Shota Kimoto"
+						},
+						{
+							"id": 736,
+							"name": "Mori Aubreys"
+						},
+						{
+							"id": 737,
+							"name": "Xiaolong Daedalos"
+						},
+						{
+							"id": 738,
+							"name": "Eos"
+						},
+						{
+							"id": 739,
+							"name": "Titan-Egi"
+						},
+						{
+							"id": 740,
+							"name": "Artemis Warren"
+						},
+						{
+							"id": 741,
+							"name": "Garuda-Egi"
+						},
+						{
+							"id": 742,
+							"name": "Titan-Egi"
+						},
+						{
+							"id": 743,
+							"name": "Kira Akigari"
+						},
+						{
+							"id": 744,
+							"name": "Ifrit-Egi"
+						},
+						{
+							"id": 745,
+							"name": "Carbuncle"
+						},
+						{
+							"id": 746,
+							"name": "Garuda-Egi"
+						},
+						{
+							"id": 747,
+							"name": "Titan-Egi"
+						},
+						{
+							"id": 748,
+							"name": "Garuda-Egi"
+						},
+						{
+							"id": 749,
+							"name": "Ifrit-Egi"
+						},
+						{
+							"id": 750,
+							"name": "Ifrit-Egi"
+						},
+						{
+							"id": 751,
+							"name": "Selene"
+						},
+						{
+							"id": 752,
+							"name": "Garuda-Egi"
+						},
+						{
+							"id": 753,
+							"name": "Rook Autoturret"
+						},
+						{
+							"id": 754,
+							"name": "Carbuncle"
+						},
+						{
+							"id": 755,
+							"name": "Carbuncle"
+						},
+						{
+							"id": 756,
+							"name": "Allagan Energy Tower"
+						},
+						{
+							"id": 757,
+							"name": "King Behemoth"
+						},
+						{
+							"id": 758,
+							"name": "Asherah Azarael"
+						},
+						{
+							"id": 759,
+							"name": "Jee Co"
+						},
+						{
+							"id": 760,
+							"name": "Oooo Shiny"
+						},
+						{
+							"id": 761,
+							"name": "Caiah Vio"
+						},
+						{
+							"id": 762,
+							"name": "Ebae Diesalot"
+						},
+						{
+							"id": 763,
+							"name": "Peadee Boronoath"
+						},
+						{
+							"id": 764,
+							"name": "Ambrea Verlaine"
+						},
+						{
+							"id": 765,
+							"name": "Lirael Rossignol"
+						},
+						{
+							"id": 766,
+							"name": "Aaron Zuriel"
+						},
+						{
+							"id": 767,
+							"name": "Zaina Avan"
+						},
+						{
+							"id": 768,
+							"name": "X'akhra Tiaque"
+						},
+						{
+							"id": 769,
+							"name": "Dancing Wolf"
+						},
+						{
+							"id": 770,
+							"name": "Ascian Of The Twelfth Chalice"
+						},
+						{
+							"id": 771,
+							"name": "Y'mhitra The Learned"
+						},
+						{
+							"id": 772,
+							"name": "Multiple Enemies"
+						},
+						{
+							"id": 773,
+							"name": "Ifrit-Egi"
+						},
+						{
+							"id": 774,
+							"name": "Lingering Aether"
+						},
+						{
+							"id": 775,
+							"name": "Garuda-Egi"
+						},
+						{
+							"id": 776,
+							"name": "Titan-Egi"
+						},
+						{
+							"id": 777,
+							"name": "Ifrit-Egi"
+						},
+						{
+							"id": 778,
+							"name": "Garuda-Egi"
+						},
+						{
+							"id": 779,
+							"name": "Titan-Egi"
+						},
+						{
+							"id": 780,
+							"name": ""
+						},
+						{
+							"id": 781,
+							"name": "Gem Lilac"
+						},
+						{
+							"id": 782,
+							"name": "Romulus Ventriloquist"
+						},
+						{
+							"id": 783,
+							"name": "Runwith Scis'r"
+						},
+						{
+							"id": 784,
+							"name": "Obsidian Sif"
+						},
+						{
+							"id": 785,
+							"name": "Ratmir Venasch"
+						},
+						{
+							"id": 786,
+							"name": "Nadeem Redeemed"
+						},
+						{
+							"id": 787,
+							"name": "Khal Kagoon"
+						},
+						{
+							"id": 788,
+							"name": "Callisto Knightshade"
+						},
+						{
+							"id": 789,
+							"name": "Gwen Gatteschi"
+						},
+						{
+							"id": 790,
+							"name": "Drox Ryujin"
+						},
+						{
+							"id": 791,
+							"name": "Tent Tickles"
+						},
+						{
+							"id": 792,
+							"name": "Choke Hold"
+						},
+						{
+							"id": 793,
+							"name": "Choke Hold"
+						},
+						{
+							"id": 794,
+							"name": "Choke Hold"
+						},
+						{
+							"id": 795,
+							"name": "Choke Hold"
+						},
+						{
+							"id": 796,
+							"name": "Choke Hold"
+						},
+						{
+							"id": 797,
+							"name": "Choke Hold"
+						},
+						{
+							"id": 798,
+							"name": "Choke Hold"
+						},
+						{
+							"id": 799,
+							"name": "Leili Kouris"
+						},
+						{
+							"id": 800,
+							"name": "Heather Weather"
+						},
+						{
+							"id": 801,
+							"name": "Catys Miny"
+						},
+						{
+							"id": 802,
+							"name": "Hanten Lagusa"
+						},
+						{
+							"id": 803,
+							"name": "Asuna Himma"
+						},
+						{
+							"id": 804,
+							"name": "Bleu Eunoia"
+						},
+						{
+							"id": 805,
+							"name": "Anaximander Aletheia"
+						},
+						{
+							"id": 806,
+							"name": "Dezmond Wright"
+						},
+						{
+							"id": 807,
+							"name": "Salvos Kupu"
+						},
+						{
+							"id": 808,
+							"name": "Serena Alcarin"
+						},
+						{
+							"id": 809,
+							"name": "Chibi Hinata"
+						},
+						{
+							"id": 810,
+							"name": "Chibi Hinata"
+						},
+						{
+							"id": 811,
+							"name": "Ibsul Shimada"
+						},
+						{
+							"id": 812,
+							"name": "Gwen Gatteschi"
+						},
+						{
+							"id": 813,
+							"name": "Yozora Nhmir"
+						},
+						{
+							"id": 814,
+							"name": "Vespira Zampage"
+						},
+						{
+							"id": 815,
+							"name": "Megarian Id"
+						},
+						{
+							"id": 816,
+							"name": "Chibi Hinata"
+						},
+						{
+							"id": 817,
+							"name": "Rainey Exe"
+						},
+						{
+							"id": 818,
+							"name": "Aero Vi"
+						},
+						{
+							"id": 819,
+							"name": "Gethrude Aran"
+						},
+						{
+							"id": 820,
+							"name": "Cheri Berry"
+						},
+						{
+							"id": 821,
+							"name": "Zack Lightbringer"
+						},
+						{
+							"id": 822,
+							"name": "Kyahat Elakha"
+						},
+						{
+							"id": 823,
+							"name": "Kien Cix"
+						},
+						{
+							"id": 824,
+							"name": "Maxamillion Triblade"
+						},
+						{
+							"id": 825,
+							"name": "Axton Dragonheart"
+						},
+						{
+							"id": 826,
+							"name": "Theblack Rose"
+						},
+						{
+							"id": 827,
+							"name": "K'lyhia Golo"
+						},
+						{
+							"id": 828,
+							"name": "Drox Ryujin"
+						},
+						{
+							"id": 829,
+							"name": "Mattie The'smoll"
+						},
+						{
+							"id": 830,
+							"name": "Tamamiko Haranobu"
+						},
+						{
+							"id": 831,
+							"name": "Skadi Fonn"
+						},
+						{
+							"id": 832,
+							"name": "Arasiva Ballare"
+						},
+						{
+							"id": 833,
+							"name": "Shuleyn Elilnebbwyn"
+						},
+						{
+							"id": 834,
+							"name": "Blue Rarity"
+						},
+						{
+							"id": 835,
+							"name": "Violet Calistria"
+						},
+						{
+							"id": 836,
+							"name": "Ogi Nami-carry"
+						},
+						{
+							"id": 837,
+							"name": "Watchful Onyx"
+						},
+						{
+							"id": 838,
+							"name": "Meganeura"
+						},
+						{
+							"id": 839,
+							"name": "Sentient Inkhorn"
+						},
+						{
+							"id": 840,
+							"name": "Sentient Tome"
+						},
+						{
+							"id": 841,
+							"name": "Gubal Falcon"
+						},
+						{
+							"id": 842,
+							"name": "Marolith"
+						},
+						{
+							"id": 843,
+							"name": "Demon Tome"
+						},
+						{
+							"id": 844,
+							"name": "Demon Tome"
+						},
+						{
+							"id": 845,
+							"name": "Spandule"
+						},
+						{
+							"id": 846,
+							"name": "Page 64"
+						},
+						{
+							"id": 847,
+							"name": "Spine Duster"
+						},
+						{
+							"id": 848,
+							"name": "Pseudo Sprite"
+						},
+						{
+							"id": 849,
+							"name": "Byblos"
+						},
+						{
+							"id": 850,
+							"name": "Page 64"
+						},
+						{
+							"id": 851,
+							"name": "Whale Oil"
+						},
+						{
+							"id": 852,
+							"name": "Tomewind"
+						},
+						{
+							"id": 853,
+							"name": "Tomeshifter Imp"
+						},
+						{
+							"id": 854,
+							"name": "Skatene"
+						},
+						{
+							"id": 855,
+							"name": "Vodoriga Biblioclast"
+						},
+						{
+							"id": 856,
+							"name": "Logos"
+						},
+						{
+							"id": 857,
+							"name": "Speedreader"
+						},
+						{
+							"id": 858,
+							"name": "The Everliving Bibliotaph"
+						},
+						{
+							"id": 859,
+							"name": "Voidsphere"
+						},
+						{
+							"id": 860,
+							"name": "Tempest Djt-bidit"
+						}
+					]
+				},
+				"startTime": 1716689216948,
+				"rankings": {
+					"data": [
+						{
+							"fightID": 34,
+							"partition": 31,
+							"zone": 45,
+							"encounter": {
+								"id": 1065,
+								"name": "Dragonsong's Reprise"
+							},
+							"difficulty": 100,
+							"size": 8,
+							"kill": 1,
+							"duration": 1092033,
+							"bracketData": 6.5,
+							"deaths": 0,
+							"damageTakenExcludingTanks": 14121286,
+							"roles": {
+								"tanks": {
+									"name": "Tanks",
+									"characters": [
+										{
+											"id": 16831933,
+											"name": "Icaria Syen",
+											"server": {
+												"id": 7,
+												"name": "Diabolos",
+												"region": "NA"
+											},
+											"class": "DarkKnight",
+											"spec": "",
+											"amount": 4568.7524384191,
+											"bracketData": 6.5,
+											"bracket": 6,
+											"rank": "~1080",
+											"best": "~690",
+											"totalParses": 1771,
+											"bracketPercent": 39,
+											"rankPercent": 39
+										},
+										{
+											"id": 19568738,
+											"name": "Candren Nakamura",
+											"server": {
+												"id": 12,
+												"name": "Gilgamesh",
+												"region": "NA"
+											},
+											"class": "Warrior",
+											"spec": "",
+											"amount": 4584.7602917409,
+											"bracketData": 6.5,
+											"bracket": 6,
+											"rank": "~1528",
+											"best": "~1528",
+											"totalParses": 2038,
+											"bracketPercent": 25,
+											"rankPercent": 25
+										},
+										{
+											"id": 16831933,
+											"name": "Icaria Syen",
+											"class": "DarkKnight",
+											"spec": "",
+											"id_2": 19568738,
+											"name_2": "Candren Nakamura",
+											"class_2": "Warrior",
+											"spec_2": "",
+											"amount": 9153.51,
+											"bracketData": 6.5,
+											"bracket": 6,
+											"rank": "~1503",
+											"best": "~1503",
+											"totalParses": 2059,
+											"bracketPercent": 27,
+											"rankPercent": 27
+										}
+									]
+								},
+								"healers": {
+									"name": "Healers",
+									"characters": [
+										{
+											"id": 17854815,
+											"name": "Chocolatechip Cookie",
+											"server": {
+												"id": 22,
+												"name": "Siren",
+												"region": "NA"
+											},
+											"class": "Astrologian",
+											"spec": "",
+											"amount": 3878.0350994987,
+											"bracketData": 6.5,
+											"bracket": 6,
+											"rank": 287,
+											"best": 287,
+											"totalParses": 1038,
+											"bracketPercent": 72,
+											"rankPercent": 72
+										},
+										{
+											"id": 11487852,
+											"name": "Larakai'na Hotori",
+											"server": {
+												"id": 1,
+												"name": "Adamantoise",
+												"region": "NA"
+											},
+											"class": "Scholar",
+											"spec": "",
+											"amount": 3278.4333273083,
+											"bracketData": 6.5,
+											"bracket": 6,
+											"rank": "~993",
+											"best": 192,
+											"totalParses": 1577,
+											"bracketPercent": 37,
+											"rankPercent": 37
+										},
+										{
+											"id": 17854815,
+											"name": "Chocolatechip Cookie",
+											"class": "Astrologian",
+											"spec": "",
+											"id_2": 11487852,
+											"name_2": "Larakai'na Hotori",
+											"class_2": "Scholar",
+											"spec_2": "",
+											"amount": 7156.47,
+											"bracketData": 6.5,
+											"bracket": 6,
+											"rank": 464,
+											"best": 464,
+											"totalParses": 1112,
+											"bracketPercent": 58,
+											"rankPercent": 58
+										}
+									]
+								},
+								"dps": {
+									"name": "Damage Dealers",
+									"characters": [
+										{
+											"id": 14566444,
+											"name": "Kui Kui",
+											"server": {
+												"id": 24,
+												"name": "Zalera",
+												"region": "NA"
+											},
+											"class": "Machinist",
+											"spec": "",
+											"amount": 6509.518319166,
+											"bracketData": 6.5,
+											"bracket": 6,
+											"rank": "~1155",
+											"best": "~1059",
+											"totalParses": 1376,
+											"bracketPercent": 16,
+											"rankPercent": 16
+										},
+										{
+											"id": 18989323,
+											"name": "Freak Elf",
+											"server": {
+												"id": 12,
+												"name": "Gilgamesh",
+												"region": "NA"
+											},
+											"class": "Ninja",
+											"spec": "",
+											"amount": 7082.702243531,
+											"bracketData": 6.5,
+											"bracket": 6,
+											"rank": 494,
+											"best": 494,
+											"totalParses": 1441,
+											"bracketPercent": 66,
+											"rankPercent": 65
+										},
+										{
+											"id": 7502,
+											"name": "Tera Valeri",
+											"server": {
+												"id": 10,
+												"name": "Faerie",
+												"region": "NA"
+											},
+											"class": "Summoner",
+											"spec": "",
+											"amount": 6690.4270957103,
+											"bracketData": 6.5,
+											"bracket": 6,
+											"rank": "~773",
+											"best": "~697",
+											"totalParses": 1886,
+											"bracketPercent": 59,
+											"rankPercent": 59
+										},
+										{
+											"id": 18830499,
+											"name": "Estellia Lu'naa",
+											"server": {
+												"id": 23,
+												"name": "Ultros",
+												"region": "NA"
+											},
+											"class": "Reaper",
+											"spec": "",
+											"amount": 6988.6915293406,
+											"bracketData": 6.5,
+											"bracket": 6,
+											"rank": "~697",
+											"best": "~697",
+											"totalParses": 1453,
+											"bracketPercent": 52,
+											"rankPercent": 52
+										}
+									]
+								}
+							},
+							"bracket": 6,
+							"reportsBlacklistForCharacters": [],
+							"speed": {
+								"rank": 205,
+								"best": 144,
+								"totalParses": 438,
+								"rankPercent": 53
+							},
+							"execution": {
+								"rank": 101,
+								"best": 164,
+								"totalParses": 438,
+								"rankPercent": 76
+							}
+						}
+					]
+				},
+				"fights": [
+					{
+						"name": "Dragonsong's Reprise",
+						"id": 1,
+						"kill": false,
+						"lastPhase": 2,
+						"bossPercentage": 99.09,
+						"fightPercentage": 89.77,
+						"combatTime": 161098,
+						"gameZone": {
+							"name": "Medias Res"
+						},
+						"friendlyPlayers": [
+							12,
+							8,
+							7,
+							6,
+							5,
+							4,
+							3,
+							2,
+							1
+						],
+						"encounterID": 1065
+					},
+					{
+						"name": "Dragonsong's Reprise",
+						"id": 2,
+						"kill": false,
+						"lastPhase": 2,
+						"bossPercentage": 65.42,
+						"fightPercentage": 81.35,
+						"combatTime": 68045,
+						"gameZone": {
+							"name": "Medias Res"
+						},
+						"friendlyPlayers": [
+							12,
+							8,
+							7,
+							6,
+							5,
+							4,
+							3,
+							2,
+							1
+						],
+						"encounterID": 1065
+					},
+					{
+						"name": "Dragonsong's Reprise",
+						"id": 3,
+						"kill": false,
+						"lastPhase": 2,
+						"bossPercentage": 36.82,
+						"fightPercentage": 74.2,
+						"combatTime": 157987,
+						"gameZone": {
+							"name": "Medias Res"
+						},
+						"friendlyPlayers": [
+							12,
+							8,
+							7,
+							6,
+							5,
+							4,
+							3,
+							2,
+							1
+						],
+						"encounterID": 1065
+					},
+					{
+						"name": "Dragonsong's Reprise",
+						"id": 4,
+						"kill": false,
+						"lastPhase": 1,
+						"bossPercentage": 3.04,
+						"fightPercentage": 25.15,
+						"combatTime": 474907,
+						"gameZone": {
+							"name": "Medias Res"
+						},
+						"friendlyPlayers": [
+							12,
+							8,
+							7,
+							6,
+							5,
+							4,
+							3,
+							2,
+							1
+						],
+						"encounterID": 1065
+					},
+					{
+						"name": "Dragonsong's Reprise",
+						"id": 5,
+						"kill": false,
+						"lastPhase": 5,
+						"bossPercentage": 68.1,
+						"fightPercentage": 23.4,
+						"combatTime": 525493,
+						"gameZone": {
+							"name": "Medias Res"
+						},
+						"friendlyPlayers": [
+							12,
+							8,
+							7,
+							6,
+							5,
+							4,
+							3,
+							2,
+							1
+						],
+						"encounterID": 1065
+					},
+					{
+						"name": "Dragonsong's Reprise",
+						"id": 6,
+						"kill": false,
+						"lastPhase": 5,
+						"bossPercentage": 67.07,
+						"fightPercentage": 23.35,
+						"combatTime": 546986,
+						"gameZone": {
+							"name": "Medias Res"
+						},
+						"friendlyPlayers": [
+							12,
+							8,
+							7,
+							6,
+							5,
+							4,
+							3,
+							2,
+							1
+						],
+						"encounterID": 1065
+					},
+					{
+						"name": "Dragonsong's Reprise",
+						"id": 7,
+						"kill": false,
+						"lastPhase": 6,
+						"bossPercentage": 65.48,
+						"fightPercentage": 16.54,
+						"combatTime": 709256,
+						"gameZone": {
+							"name": "Medias Res"
+						},
+						"friendlyPlayers": [
+							12,
+							8,
+							7,
+							55,
+							6,
+							5,
+							4,
+							3,
+							2,
+							1
+						],
+						"encounterID": 1065
+					},
+					{
+						"name": "Dragonsong's Reprise",
+						"id": 8,
+						"kill": false,
+						"lastPhase": 1,
+						"bossPercentage": 12.62,
+						"fightPercentage": 93.44,
+						"combatTime": 107266,
+						"gameZone": {
+							"name": "Medias Res"
+						},
+						"friendlyPlayers": [
+							12,
+							6,
+							5,
+							117,
+							116,
+							3,
+							114,
+							113,
+							1
+						],
+						"encounterID": 1065
+					},
+					{
+						"name": "Dragonsong's Reprise",
+						"id": 10,
+						"kill": false,
+						"lastPhase": 2,
+						"bossPercentage": 99.27,
+						"fightPercentage": 89.81,
+						"combatTime": 166187,
+						"gameZone": {
+							"name": "Medias Res"
+						},
+						"friendlyPlayers": [
+							12,
+							6,
+							5,
+							117,
+							116,
+							3,
+							114,
+							113,
+							1
+						],
+						"encounterID": 1065
+					},
+					{
+						"name": "Dragonsong's Reprise",
+						"id": 11,
+						"kill": false,
+						"lastPhase": 6,
+						"bossPercentage": 30.99,
+						"fightPercentage": 13.09,
+						"combatTime": 780081,
+						"gameZone": {
+							"name": "Medias Res"
+						},
+						"friendlyPlayers": [
+							12,
+							55,
+							6,
+							117,
+							5,
+							116,
+							3,
+							114,
+							1,
+							113
+						],
+						"encounterID": 1065
+					},
+					{
+						"name": "Dragonsong's Reprise",
+						"id": 12,
+						"kill": false,
+						"lastPhase": 1,
+						"bossPercentage": 100,
+						"fightPercentage": 29.9,
+						"combatTime": 445260,
+						"gameZone": {
+							"name": "Medias Res"
+						},
+						"friendlyPlayers": [
+							12,
+							6,
+							117,
+							5,
+							116,
+							3,
+							114,
+							1,
+							113
+						],
+						"encounterID": 1065
+					},
+					{
+						"name": "Dragonsong's Reprise",
+						"id": 13,
+						"kill": false,
+						"lastPhase": 3,
+						"bossPercentage": 68.99,
+						"fightPercentage": 57.24,
+						"combatTime": 233671,
+						"gameZone": {
+							"name": "Medias Res"
+						},
+						"friendlyPlayers": [
+							12,
+							6,
+							117,
+							5,
+							116,
+							3,
+							114,
+							1,
+							113
+						],
+						"encounterID": 1065
+					},
+					{
+						"name": "Dragonsong's Reprise",
+						"id": 14,
+						"kill": false,
+						"lastPhase": 2,
+						"bossPercentage": 39.24,
+						"fightPercentage": 74.81,
+						"combatTime": 139712,
+						"gameZone": {
+							"name": "Medias Res"
+						},
+						"friendlyPlayers": [
+							12,
+							6,
+							117,
+							5,
+							116,
+							3,
+							114,
+							1,
+							113
+						],
+						"encounterID": 1065
+					},
+					{
+						"name": "Bone Dragon",
+						"id": 18,
+						"kill": true,
+						"lastPhase": 0,
+						"bossPercentage": 0.01,
+						"fightPercentage": 0.01,
+						"combatTime": 103705,
+						"gameZone": {
+							"name": "Labyrinth of the Ancients"
+						},
+						"friendlyPlayers": [
+							12,
+							138,
+							175,
+							173,
+							172,
+							171,
+							170,
+							169,
+							168,
+							167,
+							166,
+							165,
+							164,
+							163,
+							162,
+							161,
+							160,
+							183,
+							182,
+							181,
+							180,
+							179,
+							178,
+							177,
+							176
+						],
+						"encounterID": 2980
+					},
+					{
+						"name": "Thanatos",
+						"id": 20,
+						"kill": true,
+						"lastPhase": 0,
+						"bossPercentage": 0.01,
+						"fightPercentage": 0.01,
+						"combatTime": 64514,
+						"gameZone": {
+							"name": "Labyrinth of the Ancients"
+						},
+						"friendlyPlayers": [
+							12,
+							138,
+							175,
+							173,
+							172,
+							171,
+							170,
+							169,
+							168,
+							167,
+							166,
+							165,
+							164,
+							163,
+							162,
+							161,
+							160,
+							183,
+							182,
+							181,
+							180,
+							179,
+							178,
+							177,
+							176
+						],
+						"encounterID": 2981
+					},
+					{
+						"name": "King Behemoth",
+						"id": 22,
+						"kill": true,
+						"lastPhase": 0,
+						"bossPercentage": 0.01,
+						"fightPercentage": 0.01,
+						"combatTime": 56489,
+						"gameZone": {
+							"name": "Labyrinth of the Ancients"
+						},
+						"friendlyPlayers": [
+							12,
+							138,
+							175,
+							173,
+							172,
+							171,
+							170,
+							169,
+							168,
+							167,
+							166,
+							165,
+							164,
+							163,
+							162,
+							161,
+							160,
+							183,
+							182,
+							181,
+							180,
+							179,
+							178,
+							177,
+							176
+						],
+						"encounterID": 2982
+					},
+					{
+						"name": "Phlegethon",
+						"id": 23,
+						"kill": false,
+						"lastPhase": 0,
+						"bossPercentage": 3.67,
+						"fightPercentage": 3.67,
+						"combatTime": 98881,
+						"gameZone": {
+							"name": "Labyrinth of the Ancients"
+						},
+						"friendlyPlayers": [
+							12,
+							138,
+							175,
+							173,
+							172,
+							171,
+							170,
+							169,
+							168,
+							167,
+							166,
+							165,
+							164,
+							163,
+							162,
+							161,
+							160,
+							183,
+							182,
+							181,
+							180,
+							179,
+							178,
+							177,
+							176
+						],
+						"encounterID": 2983
+					},
+					{
+						"name": "Phlegethon",
+						"id": 24,
+						"kill": true,
+						"lastPhase": 0,
+						"bossPercentage": 0.01,
+						"fightPercentage": 0.01,
+						"combatTime": 124399,
+						"gameZone": {
+							"name": "Labyrinth of the Ancients"
+						},
+						"friendlyPlayers": [
+							12,
+							138,
+							175,
+							173,
+							172,
+							171,
+							170,
+							169,
+							168,
+							167,
+							166,
+							165,
+							164,
+							163,
+							162,
+							161,
+							160,
+							183,
+							182,
+							181,
+							180,
+							179,
+							178,
+							177,
+							176
+						],
+						"encounterID": 2983
+					},
+					{
+						"name": "Dragonsong's Reprise",
+						"id": 25,
+						"kill": false,
+						"lastPhase": 2,
+						"bossPercentage": 99.16,
+						"fightPercentage": 89.79,
+						"combatTime": 176745,
+						"gameZone": {
+							"name": "Medias Res"
+						},
+						"friendlyPlayers": [
+							543,
+							542,
+							541,
+							12,
+							5,
+							547,
+							546,
+							545,
+							544
+						],
+						"encounterID": 1065
+					},
+					{
+						"name": "Dragonsong's Reprise",
+						"id": 26,
+						"kill": false,
+						"lastPhase": 6,
+						"bossPercentage": 45.22,
+						"fightPercentage": 14.52,
+						"combatTime": 737182,
+						"gameZone": {
+							"name": "Medias Res"
+						},
+						"friendlyPlayers": [
+							543,
+							542,
+							541,
+							12,
+							55,
+							5,
+							547,
+							546,
+							545,
+							544
+						],
+						"encounterID": 1065
+					},
+					{
+						"name": "Dragonsong's Reprise",
+						"id": 27,
+						"kill": false,
+						"lastPhase": 3,
+						"bossPercentage": 59.59,
+						"fightPercentage": 54.89,
+						"combatTime": 242537,
+						"gameZone": {
+							"name": "Medias Res"
+						},
+						"friendlyPlayers": [
+							543,
+							542,
+							541,
+							12,
+							5,
+							547,
+							546,
+							545,
+							544
+						],
+						"encounterID": 1065
+					},
+					{
+						"name": "Dragonsong's Reprise",
+						"id": 28,
+						"kill": false,
+						"lastPhase": 7,
+						"bossPercentage": 13.92,
+						"fightPercentage": 1.39,
+						"combatTime": 1072754,
+						"gameZone": {
+							"name": "Medias Res"
+						},
+						"friendlyPlayers": [
+							543,
+							542,
+							541,
+							12,
+							55,
+							5,
+							547,
+							546,
+							545,
+							544
+						],
+						"encounterID": 1065
+					},
+					{
+						"name": "Dragonsong's Reprise",
+						"id": 29,
+						"kill": false,
+						"lastPhase": 3,
+						"bossPercentage": 51.98,
+						"fightPercentage": 52.99,
+						"combatTime": 253407,
+						"gameZone": {
+							"name": "Medias Res"
+						},
+						"friendlyPlayers": [
+							543,
+							542,
+							541,
+							12,
+							5,
+							547,
+							546,
+							545,
+							544
+						],
+						"encounterID": 1065
+					},
+					{
+						"name": "Dragonsong's Reprise",
+						"id": 30,
+						"kill": false,
+						"lastPhase": 2,
+						"bossPercentage": 36.05,
+						"fightPercentage": 74.01,
+						"combatTime": 149594,
+						"gameZone": {
+							"name": "Medias Res"
+						},
+						"friendlyPlayers": [
+							543,
+							542,
+							541,
+							12,
+							5,
+							547,
+							546,
+							545,
+							544
+						],
+						"encounterID": 1065
+					},
+					{
+						"name": "Dragonsong's Reprise",
+						"id": 31,
+						"kill": false,
+						"lastPhase": 6,
+						"bossPercentage": 66.31,
+						"fightPercentage": 16.63,
+						"combatTime": 718463,
+						"gameZone": {
+							"name": "Medias Res"
+						},
+						"friendlyPlayers": [
+							543,
+							542,
+							541,
+							12,
+							55,
+							5,
+							547,
+							546,
+							545,
+							544
+						],
+						"encounterID": 1065
+					},
+					{
+						"name": "Dragonsong's Reprise",
+						"id": 32,
+						"kill": false,
+						"lastPhase": 6,
+						"bossPercentage": 0.83,
+						"fightPercentage": 10.08,
+						"combatTime": 837410,
+						"gameZone": {
+							"name": "Medias Res"
+						},
+						"friendlyPlayers": [
+							543,
+							542,
+							541,
+							12,
+							55,
+							5,
+							547,
+							546,
+							545,
+							544
+						],
+						"encounterID": 1065
+					},
+					{
+						"name": "Dragonsong's Reprise",
+						"id": 34,
+						"kill": true,
+						"lastPhase": 7,
+						"bossPercentage": 0.01,
+						"fightPercentage": 0,
+						"combatTime": 1092033,
+						"gameZone": {
+							"name": "Medias Res"
+						},
+						"friendlyPlayers": [
+							543,
+							542,
+							541,
+							12,
+							55,
+							5,
+							547,
+							546,
+							545,
+							544
+						],
+						"encounterID": 1065
+					},
+					{
+						"name": "Castrum Meridianum",
+						"id": 36,
+						"kill": true,
+						"lastPhase": 0,
+						"bossPercentage": 0.01,
+						"fightPercentage": 0.01,
+						"combatTime": null,
+						"gameZone": {
+							"name": "Castrum Meridianum"
+						},
+						"friendlyPlayers": [
+							12,
+							138,
+							665,
+							664,
+							663,
+							55
+						],
+						"encounterID": 11043
+					},
+					{
+						"name": "Gilgamesh",
+						"id": 37,
+						"kill": true,
+						"lastPhase": 0,
+						"bossPercentage": 30.14,
+						"fightPercentage": 30.14,
+						"combatTime": 297835,
+						"gameZone": {
+							"name": "Amdapor Keep"
+						},
+						"friendlyPlayers": [
+							700,
+							12,
+							699,
+							138,
+							698,
+							665,
+							696,
+							695,
+							55,
+							694
+						],
+						"encounterID": 1513
+					},
+					{
+						"name": "Bone Dragon",
+						"id": 41,
+						"kill": true,
+						"lastPhase": 0,
+						"bossPercentage": 0.01,
+						"fightPercentage": 0.01,
+						"combatTime": 105109,
+						"gameZone": {
+							"name": "Labyrinth of the Ancients"
+						},
+						"friendlyPlayers": [
+							718,
+							717,
+							12,
+							716,
+							138,
+							735,
+							733,
+							732,
+							731,
+							730,
+							665,
+							729,
+							728,
+							727,
+							725,
+							724,
+							723,
+							722,
+							721,
+							720,
+							743,
+							740,
+							737,
+							736,
+							696
+						],
+						"encounterID": 2980
+					},
+					{
+						"name": "Thanatos",
+						"id": 43,
+						"kill": true,
+						"lastPhase": 0,
+						"bossPercentage": 0.01,
+						"fightPercentage": 0.01,
+						"combatTime": 70179,
+						"gameZone": {
+							"name": "Labyrinth of the Ancients"
+						},
+						"friendlyPlayers": [
+							718,
+							717,
+							12,
+							716,
+							138,
+							735,
+							733,
+							732,
+							731,
+							730,
+							665,
+							729,
+							728,
+							727,
+							725,
+							724,
+							723,
+							722,
+							721,
+							720,
+							743,
+							740,
+							737,
+							736,
+							696
+						],
+						"encounterID": 2981
+					},
+					{
+						"name": "King Behemoth",
+						"id": 45,
+						"kill": true,
+						"lastPhase": 0,
+						"bossPercentage": 0.01,
+						"fightPercentage": 0.01,
+						"combatTime": 65342,
+						"gameZone": {
+							"name": "Labyrinth of the Ancients"
+						},
+						"friendlyPlayers": [
+							718,
+							717,
+							12,
+							716,
+							138,
+							735,
+							733,
+							732,
+							731,
+							730,
+							729,
+							665,
+							728,
+							727,
+							725,
+							724,
+							723,
+							722,
+							721,
+							720,
+							743,
+							740,
+							737,
+							736,
+							696
+						],
+						"encounterID": 2982
+					},
+					{
+						"name": "Phlegethon",
+						"id": 46,
+						"kill": true,
+						"lastPhase": 0,
+						"bossPercentage": 0.01,
+						"fightPercentage": 0.01,
+						"combatTime": 125928,
+						"gameZone": {
+							"name": "Labyrinth of the Ancients"
+						},
+						"friendlyPlayers": [
+							718,
+							717,
+							716,
+							12,
+							138,
+							735,
+							733,
+							732,
+							731,
+							730,
+							665,
+							729,
+							728,
+							727,
+							725,
+							724,
+							723,
+							722,
+							721,
+							720,
+							743,
+							740,
+							737,
+							736,
+							696
+						],
+						"encounterID": 2983
+					},
+					{
+						"name": "the Great Gubal Library",
+						"id": 49,
+						"kill": true,
+						"lastPhase": 0,
+						"bossPercentage": 0.01,
+						"fightPercentage": 0.01,
+						"combatTime": null,
+						"gameZone": {
+							"name": "The Great Gubal Library"
+						},
+						"friendlyPlayers": [
+							12,
+							138,
+							55,
+							837,
+							836,
+							835
+						],
+						"encounterID": 11109
+					}
+				]
+			}
+		}
+	}
+}

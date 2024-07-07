@@ -58,6 +58,7 @@ def simplifyActor(actor: dict) -> list:
 def reduceFights(fights: dict, simplifiedRankings: dict):
   """Converts list of fight objects into a dict of unique fights with aggregate data."""
   fightDict = {}
+  bestPull = None
   for fight in fights:
     encounterID = fight["encounterID"]
     if not encounterID in fightDict.keys():
@@ -65,12 +66,12 @@ def reduceFights(fights: dict, simplifiedRankings: dict):
          "name": fight["name"],
          "pulls": 0,
          "clearPulls": [],
-         "bestPull": fight[id]
+         "bestPullID": fight["id"]
       }
+      bestPull = fight
     fightDict[encounterID]["pulls"] += 1
     if fight['kill']: fightDict[encounterID]["clearPulls"].append(fight["id"])
   print(fightDict)
-  print(fights)
 
 def generateEmbedFromReport(reportData: dict, link: str, description: str = "") -> Embed:
   """
@@ -120,11 +121,13 @@ def generateEmbedFromReport(reportData: dict, link: str, description: str = "") 
 
 if __name__ == "__main__":
   dir = os.path.dirname(__file__)
-  mockUltReport, mockExtremeReport = None, None
+  mockUltReport, mockExtremeReport, mockCompilationReport = None, None, None
   with open(os.path.join(dir, "test_data/ultimate.json"), "r") as f:
     mockUltReport = json.load(f)
-    print(mockUltReport)
   with open(os.path.join(dir, "test_data/extreme.json"), "r") as f:
     mockExtremeReport = json.load(f)
+  with open(os.path.join(dir, "test_data/compilation.json"), "r") as f:
+     mockCompilationReport = json.load(f)
   generateEmbedFromReport(mockExtremeReport, "lol")
   generateEmbedFromReport(mockUltReport, "nope")
+  generateEmbedFromReport(mockCompilationReport, "big boy")
