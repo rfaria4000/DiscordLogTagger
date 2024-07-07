@@ -22,6 +22,7 @@ class FFLogsSession:
         }
         
         startTime
+        rankings
         
         fights(killType: Encounters){
           name
@@ -30,12 +31,11 @@ class FFLogsSession:
           lastPhase
           bossPercentage
           fightPercentage
+          combatTime
           difficulty
           friendlyPlayers
           encounterID
         }
-
-        rankings
       }
     }
   }

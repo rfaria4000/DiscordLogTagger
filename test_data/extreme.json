@@ -1,0 +1,2817 @@
+{
+	"data": {
+		"reportData": {
+			"report": {
+				"masterData": {
+					"actors": [
+						{
+							"id": -1,
+							"name": "Environment"
+						},
+						{
+							"id": 1,
+							"name": "Zeromus"
+						},
+						{
+							"id": 2,
+							"name": "Idol Yenn'akane"
+						},
+						{
+							"id": 3,
+							"name": "Zeromus"
+						},
+						{
+							"id": 4,
+							"name": "Kehlow Kehlow"
+						},
+						{
+							"id": 5,
+							"name": "Vindriana Hyborn"
+						},
+						{
+							"id": 6,
+							"name": "Automaton Queen"
+						},
+						{
+							"id": 7,
+							"name": "Cymry Orpheum"
+						},
+						{
+							"id": 8,
+							"name": "Sharisper Knoll"
+						},
+						{
+							"id": 9,
+							"name": "Kasumi Miyumi"
+						},
+						{
+							"id": 10,
+							"name": "Vaixa Sunday"
+						},
+						{
+							"id": 11,
+							"name": "Andriel Rahz"
+						},
+						{
+							"id": 12,
+							"name": "Demi-Bahamut"
+						},
+						{
+							"id": 13,
+							"name": "Multiple Players"
+						},
+						{
+							"id": 14,
+							"name": "Carbuncle"
+						},
+						{
+							"id": 15,
+							"name": "Topaz Titan"
+						},
+						{
+							"id": 16,
+							"name": "Emerald Garuda"
+						},
+						{
+							"id": 17,
+							"name": "Multiple Enemies"
+						},
+						{
+							"id": 18,
+							"name": "Comet"
+						},
+						{
+							"id": 19,
+							"name": "Ruby Ifrit"
+						},
+						{
+							"id": 20,
+							"name": "liturgic bell"
+						},
+						{
+							"id": 21,
+							"name": "Demi-Phoenix"
+						},
+						{
+							"id": 22,
+							"name": "toxic bubble"
+						},
+						{
+							"id": 23,
+							"name": ""
+						},
+						{
+							"id": 24,
+							"name": "Astraphel Starweaver"
+						},
+						{
+							"id": 25,
+							"name": "Virlomi Devi"
+						},
+						{
+							"id": 26,
+							"name": "Doggo Botto"
+						},
+						{
+							"id": 27,
+							"name": "Marishi Bukiko"
+						},
+						{
+							"id": 28,
+							"name": "Yrys Ram-bou"
+						},
+						{
+							"id": 29,
+							"name": "Brynjar Ragnarok"
+						},
+						{
+							"id": 30,
+							"name": "Ta'tzuyuh Nunh"
+						},
+						{
+							"id": 31,
+							"name": "Edsuu Highwind"
+						},
+						{
+							"id": 32,
+							"name": "Alastor Bloodwing"
+						},
+						{
+							"id": 33,
+							"name": "Nergui Dataq"
+						},
+						{
+							"id": 34,
+							"name": "Aster Crunchwrap"
+						},
+						{
+							"id": 35,
+							"name": "Flow Haymacker"
+						},
+						{
+							"id": 36,
+							"name": "Saya Minatsuki"
+						},
+						{
+							"id": 37,
+							"name": "V'dam Thel"
+						},
+						{
+							"id": 38,
+							"name": "Aela Rin"
+						},
+						{
+							"id": 39,
+							"name": "Ta'tzuyuh Nunh"
+						},
+						{
+							"id": 40,
+							"name": "Dio Dedoldia"
+						},
+						{
+							"id": 41,
+							"name": "Spacierslia Milynes"
+						},
+						{
+							"id": 42,
+							"name": ""
+						},
+						{
+							"id": 43,
+							"name": "Lilyana Archer"
+						},
+						{
+							"id": 44,
+							"name": "Indignation Judgement"
+						},
+						{
+							"id": 45,
+							"name": "Indignation Judgement"
+						},
+						{
+							"id": 46,
+							"name": "Yo Yi"
+						},
+						{
+							"id": 47,
+							"name": "Soulvanya Solstice"
+						},
+						{
+							"id": 48,
+							"name": "Yo Yi"
+						},
+						{
+							"id": 49,
+							"name": "Avathorn Renar'us"
+						},
+						{
+							"id": 50,
+							"name": "Avathorn Renar'us"
+						},
+						{
+							"id": 51,
+							"name": "Hex Vitale"
+						},
+						{
+							"id": 52,
+							"name": "Virlomi Devi"
+						},
+						{
+							"id": 53,
+							"name": "Kazan Kaujin"
+						},
+						{
+							"id": 54,
+							"name": "Ellie Mavus"
+						},
+						{
+							"id": 55,
+							"name": "Cornelius Fortemlius"
+						},
+						{
+							"id": 56,
+							"name": "Retro Icy"
+						},
+						{
+							"id": 57,
+							"name": "Vigil Strayed"
+						},
+						{
+							"id": 58,
+							"name": "Yo Yi"
+						},
+						{
+							"id": 59,
+							"name": "Laureine Maknaryden"
+						},
+						{
+							"id": 60,
+							"name": "Jaenelle Chaosborne"
+						},
+						{
+							"id": 61,
+							"name": "Zaeluer Med"
+						},
+						{
+							"id": 62,
+							"name": "Lorilae Karafrost"
+						},
+						{
+							"id": 63,
+							"name": "Hana Arborea"
+						},
+						{
+							"id": 64,
+							"name": "Ellie Mavus"
+						},
+						{
+							"id": 65,
+							"name": "Story Bear"
+						},
+						{
+							"id": 66,
+							"name": "Maple Pug"
+						},
+						{
+							"id": 67,
+							"name": "Elsie Xan'el"
+						},
+						{
+							"id": 68,
+							"name": "Katherine Cactuar"
+						},
+						{
+							"id": 69,
+							"name": "Mahogany Chaise"
+						},
+						{
+							"id": 70,
+							"name": "Sakura Tohsaka"
+						},
+						{
+							"id": 71,
+							"name": "Kinanna Lafleur"
+						},
+						{
+							"id": 72,
+							"name": "Dante Torobolino"
+						},
+						{
+							"id": 73,
+							"name": "Eistera Kha"
+						},
+						{
+							"id": 74,
+							"name": "Skylar Starmore"
+						},
+						{
+							"id": 75,
+							"name": "Eos"
+						},
+						{
+							"id": 76,
+							"name": "Shilvara Ara"
+						},
+						{
+							"id": 77,
+							"name": "Irenia Selen"
+						},
+						{
+							"id": 78,
+							"name": "Sir Bluvins"
+						},
+						{
+							"id": 79,
+							"name": "Layla Egneel"
+						},
+						{
+							"id": 80,
+							"name": "Eistera Kha"
+						},
+						{
+							"id": 81,
+							"name": "Sayaya Saya"
+						},
+						{
+							"id": 82,
+							"name": "Sayaya Saya"
+						},
+						{
+							"id": 83,
+							"name": "Yumishiori Rhul"
+						},
+						{
+							"id": 84,
+							"name": "Rhandric Rhul"
+						},
+						{
+							"id": 85,
+							"name": "Ricard Greywoode"
+						},
+						{
+							"id": 86,
+							"name": "Nyxen Arklight"
+						},
+						{
+							"id": 87,
+							"name": "Zukken Carapoto"
+						},
+						{
+							"id": 88,
+							"name": "Joshua Hardin"
+						},
+						{
+							"id": 89,
+							"name": "Estellia Lu'naa"
+						},
+						{
+							"id": 90,
+							"name": "Ruby Primrose"
+						},
+						{
+							"id": 91,
+							"name": "Ciri Altera"
+						},
+						{
+							"id": 92,
+							"name": "Rhotsyng Sterrkhansyn"
+						},
+						{
+							"id": 93,
+							"name": "Aria Wesker"
+						},
+						{
+							"id": 94,
+							"name": "Avos Omega"
+						},
+						{
+							"id": 95,
+							"name": "Automaton Queen"
+						},
+						{
+							"id": 96,
+							"name": "Effexor Soma"
+						},
+						{
+							"id": 97,
+							"name": "Lulu Pillow"
+						},
+						{
+							"id": 98,
+							"name": "Ramu Ne"
+						},
+						{
+							"id": 99,
+							"name": "Ramu Ne"
+						},
+						{
+							"id": 100,
+							"name": "Chana Kaellindra"
+						},
+						{
+							"id": 101,
+							"name": "Deliru Violente"
+						},
+						{
+							"id": 102,
+							"name": "Virlomi Devi"
+						},
+						{
+							"id": 103,
+							"name": "Silmara Yalagch"
+						},
+						{
+							"id": 104,
+							"name": "Elder Knief"
+						},
+						{
+							"id": 105,
+							"name": "Ivy Aesir"
+						},
+						{
+							"id": 106,
+							"name": "Ivy Aesir"
+						},
+						{
+							"id": 107,
+							"name": "Gojira Cole"
+						},
+						{
+							"id": 108,
+							"name": "Nothoughts Headempty"
+						},
+						{
+							"id": 109,
+							"name": "Still Helm"
+						},
+						{
+							"id": 110,
+							"name": "Beatrix Rysto"
+						},
+						{
+							"id": 111,
+							"name": "Skylar Starmore"
+						},
+						{
+							"id": 112,
+							"name": "Wolf Nightkeeper"
+						},
+						{
+							"id": 113,
+							"name": ""
+						},
+						{
+							"id": 114,
+							"name": "Ruby Miller"
+						},
+						{
+							"id": 115,
+							"name": "Cyrus Miller"
+						},
+						{
+							"id": 116,
+							"name": "Virlomi Devi"
+						},
+						{
+							"id": 117,
+							"name": "Kuldana Sin'del"
+						},
+						{
+							"id": 118,
+							"name": "Ruby Miller"
+						},
+						{
+							"id": 119,
+							"name": "Kei Miki"
+						},
+						{
+							"id": 120,
+							"name": "Yoshi Rio"
+						},
+						{
+							"id": 121,
+							"name": ""
+						},
+						{
+							"id": 122,
+							"name": "Malkodu Morswind"
+						},
+						{
+							"id": 123,
+							"name": "Bobby Dank"
+						},
+						{
+							"id": 124,
+							"name": "Nothoughts Headempty"
+						},
+						{
+							"id": 125,
+							"name": "Lady Zendella"
+						},
+						{
+							"id": 126,
+							"name": "Nothoughts Headempty"
+						},
+						{
+							"id": 127,
+							"name": "Rhoegar Smith"
+						},
+						{
+							"id": 128,
+							"name": "Nothoughts Headempty"
+						},
+						{
+							"id": 129,
+							"name": "Poki Malaka"
+						},
+						{
+							"id": 130,
+							"name": "Virlomi Devi"
+						},
+						{
+							"id": 131,
+							"name": "V'seji Noiyv"
+						},
+						{
+							"id": 132,
+							"name": "Toga Michiru"
+						},
+						{
+							"id": 133,
+							"name": "Dogi Butz"
+						},
+						{
+							"id": 134,
+							"name": "Ahri Lockehearte"
+						},
+						{
+							"id": 135,
+							"name": "Virlomi Devi"
+						},
+						{
+							"id": 136,
+							"name": "Tenebe Hash"
+						},
+						{
+							"id": 137,
+							"name": "Kanna Shai"
+						},
+						{
+							"id": 138,
+							"name": "Akuma Shogun"
+						},
+						{
+							"id": 139,
+							"name": "Nagi Thaantos"
+						},
+						{
+							"id": 140,
+							"name": "G'ihpsy Claihr"
+						},
+						{
+							"id": 141,
+							"name": "Lady Emeria"
+						},
+						{
+							"id": 142,
+							"name": "Lady Emeria"
+						},
+						{
+							"id": 143,
+							"name": "William Wildlife"
+						},
+						{
+							"id": 144,
+							"name": "Chicken Cordon-bleu"
+						},
+						{
+							"id": 145,
+							"name": "Cynthia Fraldarius"
+						},
+						{
+							"id": 146,
+							"name": "Dreylin Dreyliacci"
+						},
+						{
+							"id": 147,
+							"name": "Chikaga Kigami"
+						},
+						{
+							"id": 148,
+							"name": "Poki Malaka"
+						},
+						{
+							"id": 149,
+							"name": "Lunaqua Purneko"
+						},
+						{
+							"id": 150,
+							"name": "Yummura Gooms"
+						},
+						{
+							"id": 151,
+							"name": "Icarus Idy"
+						},
+						{
+							"id": 152,
+							"name": "Suki Nyannyan"
+						},
+						{
+							"id": 153,
+							"name": "Mog Knight"
+						},
+						{
+							"id": 154,
+							"name": "Meru Meru"
+						},
+						{
+							"id": 155,
+							"name": "Emerald Carbuncle"
+						},
+						{
+							"id": 156,
+							"name": "Demi-Bahamut"
+						},
+						{
+							"id": 157,
+							"name": "Esteem"
+						},
+						{
+							"id": 158,
+							"name": "Emerald Garuda"
+						},
+						{
+							"id": 159,
+							"name": "Topaz Titan"
+						},
+						{
+							"id": 160,
+							"name": "Ruby Ifrit"
+						},
+						{
+							"id": 161,
+							"name": "liturgic bell"
+						},
+						{
+							"id": 162,
+							"name": "Demi-Phoenix"
+						},
+						{
+							"id": 163,
+							"name": ""
+						},
+						{
+							"id": 164,
+							"name": "Limit Break"
+						},
+						{
+							"id": 165,
+							"name": "Amaterasu Tsukuyomi"
+						},
+						{
+							"id": 166,
+							"name": "Silvie Bloodmoon"
+						},
+						{
+							"id": 167,
+							"name": "Alistarn Chromwell"
+						},
+						{
+							"id": 168,
+							"name": "Ivy Aesir"
+						},
+						{
+							"id": 169,
+							"name": "Kasumi Miyumi"
+						},
+						{
+							"id": 170,
+							"name": "Kasumi Miyumi"
+						},
+						{
+							"id": 171,
+							"name": "Nay Min"
+						},
+						{
+							"id": 172,
+							"name": "Zash Alamel"
+						},
+						{
+							"id": 173,
+							"name": "Jafar A'driek"
+						},
+						{
+							"id": 174,
+							"name": "Jafar A'driek"
+						},
+						{
+							"id": 175,
+							"name": "Talia Avicia"
+						},
+						{
+							"id": 176,
+							"name": "Wind Chime"
+						},
+						{
+							"id": 177,
+							"name": "Jack Myste"
+						},
+						{
+							"id": 178,
+							"name": "Kuu'min Rider"
+						},
+						{
+							"id": 179,
+							"name": "Kuu'min Rider"
+						},
+						{
+							"id": 180,
+							"name": "Nay Min"
+						},
+						{
+							"id": 181,
+							"name": "Cosmic Chan"
+						},
+						{
+							"id": 182,
+							"name": "Lucky Melancholy"
+						},
+						{
+							"id": 183,
+							"name": "Nergui Dataq"
+						},
+						{
+							"id": 184,
+							"name": "Jo Moral"
+						},
+						{
+							"id": 185,
+							"name": "Ivy Aesir"
+						},
+						{
+							"id": 186,
+							"name": "Ragnarok Doombringer"
+						},
+						{
+							"id": 187,
+							"name": "Yuumi Yuu"
+						},
+						{
+							"id": 188,
+							"name": ""
+						},
+						{
+							"id": 189,
+							"name": "Lionnet Jantell"
+						},
+						{
+							"id": 190,
+							"name": ""
+						},
+						{
+							"id": 191,
+							"name": "Dovah Wolfsire"
+						},
+						{
+							"id": 192,
+							"name": "Tabu Rasa"
+						},
+						{
+							"id": 193,
+							"name": "Demi-Bahamut"
+						},
+						{
+							"id": 194,
+							"name": "bunshin"
+						},
+						{
+							"id": 195,
+							"name": "Ruby Ifrit"
+						},
+						{
+							"id": 196,
+							"name": "Topaz Titan"
+						},
+						{
+							"id": 197,
+							"name": "Carbuncle"
+						},
+						{
+							"id": 198,
+							"name": "Emerald Garuda"
+						},
+						{
+							"id": 199,
+							"name": "Demi-Phoenix"
+						},
+						{
+							"id": 200,
+							"name": "liturgic bell"
+						},
+						{
+							"id": 201,
+							"name": "Neru Naru"
+						},
+						{
+							"id": 202,
+							"name": "Ashia Hagane"
+						},
+						{
+							"id": 203,
+							"name": "Fiona Collins"
+						},
+						{
+							"id": 204,
+							"name": "Leifei Uchiha"
+						},
+						{
+							"id": 205,
+							"name": "Sinashi Zamani"
+						},
+						{
+							"id": 206,
+							"name": "Ardyn Lucis-caelum"
+						},
+						{
+							"id": 207,
+							"name": "Aria Estelle"
+						},
+						{
+							"id": 208,
+							"name": "Unagi Box"
+						},
+						{
+							"id": 209,
+							"name": "E'min Farshaw"
+						},
+						{
+							"id": 210,
+							"name": "Chem Saint"
+						},
+						{
+							"id": 211,
+							"name": "Miku De'blanche"
+						},
+						{
+							"id": 212,
+							"name": "liturgic bell"
+						},
+						{
+							"id": 213,
+							"name": "Khulan Sagahl"
+						},
+						{
+							"id": 214,
+							"name": "Cake Biscuits"
+						},
+						{
+							"id": 215,
+							"name": ""
+						},
+						{
+							"id": 216,
+							"name": "E'lias Doomclaw"
+						},
+						{
+							"id": 217,
+							"name": "Elyse Silvermoon"
+						},
+						{
+							"id": 218,
+							"name": "Alyce Hunter"
+						},
+						{
+							"id": 219,
+							"name": "Trash Kiriguya"
+						},
+						{
+							"id": 220,
+							"name": "Zephyr Daze"
+						},
+						{
+							"id": 221,
+							"name": "Ryllia Lyehga"
+						},
+						{
+							"id": 222,
+							"name": "Genevieve Austori"
+						},
+						{
+							"id": 223,
+							"name": "Lil' Feet"
+						},
+						{
+							"id": 224,
+							"name": "Arun Sylbalar"
+						},
+						{
+							"id": 225,
+							"name": "Trenchcoat Raccoons"
+						},
+						{
+							"id": 226,
+							"name": "Sverna Moritik"
+						},
+						{
+							"id": 227,
+							"name": "Red Strider"
+						},
+						{
+							"id": 228,
+							"name": "Lokk Miura"
+						},
+						{
+							"id": 229,
+							"name": "Valerie Corvus"
+						},
+						{
+							"id": 230,
+							"name": "Revani Pavlova"
+						},
+						{
+							"id": 231,
+							"name": "Hulk Anator"
+						},
+						{
+							"id": 232,
+							"name": "Nay Min"
+						},
+						{
+							"id": 233,
+							"name": "Penelope Illuma"
+						},
+						{
+							"id": 234,
+							"name": "Rin Hozuki"
+						},
+						{
+							"id": 235,
+							"name": "Aliria Lillian"
+						},
+						{
+							"id": 236,
+							"name": "Pitelski Highwind"
+						},
+						{
+							"id": 237,
+							"name": "Lucilius Knight"
+						},
+						{
+							"id": 238,
+							"name": "Krile Baldesion"
+						},
+						{
+							"id": 239,
+							"name": "Billos Billos"
+						},
+						{
+							"id": 240,
+							"name": "Moon Dawn"
+						},
+						{
+							"id": 241,
+							"name": "Quantum Argentum"
+						},
+						{
+							"id": 242,
+							"name": "Ruby Primrose"
+						},
+						{
+							"id": 243,
+							"name": "Izlude Amaterasu"
+						},
+						{
+							"id": 244,
+							"name": "Tabu Rasa"
+						},
+						{
+							"id": 245,
+							"name": "Curtis White"
+						},
+						{
+							"id": 246,
+							"name": "Shinobu Hoshizaki"
+						},
+						{
+							"id": 247,
+							"name": "Automaton Queen"
+						},
+						{
+							"id": 248,
+							"name": "liturgic bell"
+						},
+						{
+							"id": 249,
+							"name": "Sikera Usum"
+						},
+						{
+							"id": 250,
+							"name": "Odra Drage"
+						},
+						{
+							"id": 251,
+							"name": "Rividelia Shenwood"
+						},
+						{
+							"id": 252,
+							"name": "Altara Ghealdan"
+						},
+						{
+							"id": 253,
+							"name": "Ranmae Valere"
+						},
+						{
+							"id": 254,
+							"name": "Aru Starr"
+						},
+						{
+							"id": 255,
+							"name": "F'reya Highwind"
+						},
+						{
+							"id": 256,
+							"name": "Koya Kasumi"
+						},
+						{
+							"id": 257,
+							"name": "Ren Lunyasch"
+						},
+						{
+							"id": 258,
+							"name": "Strawberry Jelly"
+						},
+						{
+							"id": 259,
+							"name": "Wawa Bee"
+						},
+						{
+							"id": 260,
+							"name": "Madusha Silva"
+						},
+						{
+							"id": 261,
+							"name": "K'ai Sansen"
+						},
+						{
+							"id": 262,
+							"name": "Lunatique Chase"
+						},
+						{
+							"id": 263,
+							"name": "Jassu Jirome"
+						},
+						{
+							"id": 264,
+							"name": "Sir Alexandr"
+						},
+						{
+							"id": 265,
+							"name": "K'ai Sansen"
+						},
+						{
+							"id": 266,
+							"name": "Efren Gharl"
+						},
+						{
+							"id": 267,
+							"name": "Loona Dreamcatcher"
+						},
+						{
+							"id": 268,
+							"name": "Madusha Silva"
+						},
+						{
+							"id": 269,
+							"name": "K'ai Sansen"
+						},
+						{
+							"id": 270,
+							"name": "Kali Amony"
+						},
+						{
+							"id": 271,
+							"name": "Kat Tatiana"
+						},
+						{
+							"id": 272,
+							"name": "Tabu Rasa"
+						},
+						{
+							"id": 273,
+							"name": "Torch Qt"
+						},
+						{
+							"id": 274,
+							"name": "Esteem"
+						},
+						{
+							"id": 275,
+							"name": "M'aique Delieur"
+						},
+						{
+							"id": 276,
+							"name": "Kather Laqi"
+						},
+						{
+							"id": 277,
+							"name": "Altara Ghealdan"
+						},
+						{
+							"id": 278,
+							"name": "Altara Ghealdan"
+						},
+						{
+							"id": 279,
+							"name": "Altara Ghealdan"
+						},
+						{
+							"id": 280,
+							"name": "Aaz Galliarch"
+						},
+						{
+							"id": 281,
+							"name": "Aaz Galliarch"
+						},
+						{
+							"id": 282,
+							"name": "Aaz Galliarch"
+						},
+						{
+							"id": 283,
+							"name": "Solaire Arkwright"
+						},
+						{
+							"id": 284,
+							"name": "Curtis White"
+						},
+						{
+							"id": 285,
+							"name": "Ka Rate"
+						},
+						{
+							"id": 286,
+							"name": "Carbuncle"
+						},
+						{
+							"id": 287,
+							"name": "Demi-Bahamut"
+						},
+						{
+							"id": 288,
+							"name": "Topaz Titan"
+						},
+						{
+							"id": 289,
+							"name": "Emerald Garuda"
+						},
+						{
+							"id": 290,
+							"name": "Ruby Ifrit"
+						},
+						{
+							"id": 291,
+							"name": "Demi-Phoenix"
+						},
+						{
+							"id": 292,
+							"name": "N'irnaen Ives"
+						},
+						{
+							"id": 293,
+							"name": "Raikhal Elysium"
+						},
+						{
+							"id": 294,
+							"name": "Skorpion Scorpio"
+						},
+						{
+							"id": 295,
+							"name": "Anubis Constantine"
+						},
+						{
+							"id": 296,
+							"name": "Silvie Bloodmoon"
+						},
+						{
+							"id": 297,
+							"name": "Logan Cooper"
+						},
+						{
+							"id": 298,
+							"name": "Mocha Caramel"
+						},
+						{
+							"id": 299,
+							"name": "Puru Xiv"
+						},
+						{
+							"id": 300,
+							"name": "Kaia Teneiv"
+						}
+					]
+				},
+				"startTime": 1696566161511,
+				"rankings": {
+					"data": [
+						{
+							"fightID": 10,
+							"partition": 7,
+							"zone": 55,
+							"encounter": {
+								"id": 1070,
+								"name": "Zeromus"
+							},
+							"difficulty": 100,
+							"size": 8,
+							"kill": 1,
+							"duration": 620324,
+							"bracketData": 6.5,
+							"deaths": 15,
+							"damageTakenExcludingTanks": 11983867,
+							"roles": {
+								"tanks": {
+									"name": "Tanks",
+									"characters": [
+										{
+											"id": 17302457,
+											"name": "Icarus Idy",
+											"server": {
+												"id": 16,
+												"name": "Lamia",
+												"region": "NA"
+											},
+											"class": "DarkKnight",
+											"spec": "",
+											"amount": 6218.3456431577,
+											"bracketData": 6.5,
+											"bracket": 6,
+											"rank": "~13981",
+											"best": "~13981",
+											"totalParses": 14564,
+											"bracketPercent": 4,
+											"rankPercent": 4
+										},
+										{
+											"id": 12440298,
+											"name": "Yummura Gooms",
+											"server": {
+												"id": 22,
+												"name": "Siren",
+												"region": "NA"
+											},
+											"class": "Warrior",
+											"spec": "",
+											"amount": 8747.2320536807,
+											"bracketData": 6.5,
+											"bracket": 6,
+											"rank": "~4391",
+											"best": "-",
+											"totalParses": 20911,
+											"bracketPercent": 79,
+											"rankPercent": 79
+										},
+										{
+											"id": 17302457,
+											"name": "Icarus Idy",
+											"class": "DarkKnight",
+											"spec": "",
+											"id_2": 12440298,
+											"name_2": "Yummura Gooms",
+											"class_2": "Warrior",
+											"spec_2": "",
+											"amount": 14965.6,
+											"bracketData": 6.5,
+											"bracket": 6,
+											"rank": "~12986",
+											"best": "~12986",
+											"totalParses": 16439,
+											"bracketPercent": 21,
+											"rankPercent": 21
+										}
+									]
+								},
+								"healers": {
+									"name": "Healers",
+									"characters": [
+										{
+											"id": 12375876,
+											"name": "Suki Nyannyan",
+											"server": {
+												"id": 22,
+												"name": "Siren",
+												"region": "NA"
+											},
+											"class": "WhiteMage",
+											"spec": "",
+											"amount": 3244.740391989,
+											"bracketData": 6.5,
+											"bracket": 6,
+											"rank": "~22442",
+											"best": "-",
+											"totalParses": 23378,
+											"bracketPercent": 4,
+											"rankPercent": 4
+										},
+										{
+											"id": 19364330,
+											"name": "Kasumi Miyumi",
+											"server": {
+												"id": 23,
+												"name": "Ultros",
+												"region": "NA"
+											},
+											"class": "Sage",
+											"spec": "",
+											"amount": 4468.0525752065,
+											"bracketData": 6.5,
+											"bracket": 6,
+											"rank": "~18569",
+											"best": "-",
+											"totalParses": 22107,
+											"bracketPercent": 16,
+											"rankPercent": 16
+										},
+										{
+											"id": 12375876,
+											"name": "Suki Nyannyan",
+											"class": "WhiteMage",
+											"spec": "",
+											"id_2": 19364330,
+											"name_2": "Kasumi Miyumi",
+											"class_2": "Sage",
+											"spec_2": "",
+											"amount": 7712.79,
+											"bracketData": 6.5,
+											"bracket": 6,
+											"rank": "~46258",
+											"best": "~46258",
+											"totalParses": 48186,
+											"bracketPercent": 4,
+											"rankPercent": 4
+										}
+									]
+								},
+								"dps": {
+									"name": "Damage Dealers",
+									"characters": [
+										{
+											"id": 19387584,
+											"name": "Meru Meru",
+											"server": {
+												"id": 20,
+												"name": "Midgardsormr",
+												"region": "NA"
+											},
+											"class": "Dragoon",
+											"spec": "",
+											"amount": 10557.053652621,
+											"bracketData": 6.5,
+											"bracket": 6,
+											"rank": "~8593",
+											"best": "-",
+											"totalParses": 10480,
+											"bracketPercent": 18,
+											"rankPercent": 18
+										},
+										{
+											"id": 18936830,
+											"name": "Ruby Primrose",
+											"server": {
+												"id": 17,
+												"name": "Leviathan",
+												"region": "NA"
+											},
+											"class": "Machinist",
+											"spec": "",
+											"amount": 11097.136279755,
+											"bracketData": 6.5,
+											"bracket": 6,
+											"rank": "~8837",
+											"best": "-",
+											"totalParses": 13190,
+											"bracketPercent": 33,
+											"rankPercent": 33
+										},
+										{
+											"id": 19616396,
+											"name": "Mog Knight",
+											"server": {
+												"id": 20,
+												"name": "Midgardsormr",
+												"region": "NA"
+											},
+											"class": "Summoner",
+											"spec": "",
+											"amount": 7792.0781100647,
+											"bracketData": 6.5,
+											"bracket": 6,
+											"rank": "~18547",
+											"best": "-",
+											"totalParses": 19121,
+											"bracketPercent": 3,
+											"rankPercent": 3
+										},
+										{
+											"id": 18830499,
+											"name": "Estellia Lu'naa",
+											"server": {
+												"id": 23,
+												"name": "Ultros",
+												"region": "NA"
+											},
+											"class": "Reaper",
+											"spec": "",
+											"amount": 13129.193162033,
+											"bracketData": 6.5,
+											"bracket": 6,
+											"rank": "~3915",
+											"best": "-",
+											"totalParses": 16316,
+											"bracketPercent": 76,
+											"rankPercent": 76
+										}
+									]
+								}
+							},
+							"bracket": 6,
+							"reportsBlacklistForCharacters": [],
+							"speed": {
+								"rank": "~1079",
+								"best": "~1079",
+								"totalParses": 1241,
+								"rankPercent": 13
+							},
+							"execution": {
+								"rank": "~1116",
+								"best": "~1116",
+								"totalParses": 1241,
+								"rankPercent": 10
+							}
+						},
+						{
+							"fightID": 15,
+							"partition": 7,
+							"zone": 55,
+							"encounter": {
+								"id": 1070,
+								"name": "Zeromus"
+							},
+							"difficulty": 100,
+							"size": 8,
+							"kill": 1,
+							"duration": 562635,
+							"bracketData": 6.5,
+							"deaths": 12,
+							"damageTakenExcludingTanks": 8668532,
+							"roles": {
+								"tanks": {
+									"name": "Tanks",
+									"characters": [
+										{
+											"id": 18936830,
+											"name": "Ruby Primrose",
+											"server": {
+												"id": 17,
+												"name": "Leviathan",
+												"region": "NA"
+											},
+											"class": "Paladin",
+											"spec": "",
+											"amount": 8897.565001211,
+											"bracketData": 6.5,
+											"bracket": 6,
+											"rank": "~1888",
+											"best": "-",
+											"totalParses": 18882,
+											"bracketPercent": 90,
+											"rankPercent": 90
+										},
+										{
+											"id": 16644208,
+											"name": "Tabu Rasa",
+											"server": {
+												"id": 23,
+												"name": "Ultros",
+												"region": "NA"
+											},
+											"class": "Gunbreaker",
+											"spec": "",
+											"amount": 8710.2738677081,
+											"bracketData": 6.5,
+											"bracket": 6,
+											"rank": "~3918",
+											"best": "-",
+											"totalParses": 15071,
+											"bracketPercent": 74,
+											"rankPercent": 74
+										},
+										{
+											"id": 18936830,
+											"name": "Ruby Primrose",
+											"class": "Paladin",
+											"spec": "",
+											"id_2": 16644208,
+											"name_2": "Tabu Rasa",
+											"class_2": "Gunbreaker",
+											"spec_2": "",
+											"amount": 17607.8,
+											"bracketData": 6.5,
+											"bracket": 6,
+											"rank": "~1006",
+											"best": "~1006",
+											"totalParses": 14380,
+											"bracketPercent": 93,
+											"rankPercent": 93
+										}
+									]
+								},
+								"healers": {
+									"name": "Healers",
+									"characters": [
+										{
+											"id": 14164511,
+											"name": "Izlude Amaterasu",
+											"server": {
+												"id": 3,
+												"name": "Behemoth",
+												"region": "NA"
+											},
+											"class": "WhiteMage",
+											"spec": "",
+											"amount": 4009.8323631185,
+											"bracketData": 6.5,
+											"bracket": 6,
+											"rank": "~20806",
+											"best": "-",
+											"totalParses": 23378,
+											"bracketPercent": 11,
+											"rankPercent": 11
+										},
+										{
+											"id": 19364330,
+											"name": "Kasumi Miyumi",
+											"server": {
+												"id": 23,
+												"name": "Ultros",
+												"region": "NA"
+											},
+											"class": "Sage",
+											"spec": "",
+											"amount": 4164.9539432409,
+											"bracketData": 6.5,
+											"bracket": 6,
+											"rank": "~19454",
+											"best": "-",
+											"totalParses": 22107,
+											"bracketPercent": 12,
+											"rankPercent": 12
+										},
+										{
+											"id": 14164511,
+											"name": "Izlude Amaterasu",
+											"class": "WhiteMage",
+											"spec": "",
+											"id_2": 19364330,
+											"name_2": "Kasumi Miyumi",
+											"class_2": "Sage",
+											"spec_2": "",
+											"amount": 8174.79,
+											"bracketData": 6.5,
+											"bracket": 6,
+											"rank": "~44812",
+											"best": "~44812",
+											"totalParses": 48186,
+											"bracketPercent": 7,
+											"rankPercent": 7
+										}
+									]
+								},
+								"dps": {
+									"name": "Damage Dealers",
+									"characters": [
+										{
+											"id": 19526373,
+											"name": "Shinobu Hoshizaki",
+											"server": {
+												"id": 12,
+												"name": "Gilgamesh",
+												"region": "NA"
+											},
+											"class": "Dragoon",
+											"spec": "",
+											"amount": 11785.478320826,
+											"bracketData": 6.5,
+											"bracket": 6,
+											"rank": "~6288",
+											"best": "-",
+											"totalParses": 10480,
+											"bracketPercent": 40,
+											"rankPercent": 40
+										},
+										{
+											"id": 18435331,
+											"name": "Quantum Argentum",
+											"server": {
+												"id": 17,
+												"name": "Leviathan",
+												"region": "NA"
+											},
+											"class": "Machinist",
+											"spec": "",
+											"amount": 11835.021556493,
+											"bracketData": 6.5,
+											"bracket": 6,
+											"rank": "~6199",
+											"best": "-",
+											"totalParses": 13190,
+											"bracketPercent": 53,
+											"rankPercent": 53
+										},
+										{
+											"id": 16996490,
+											"name": "Curtis White",
+											"server": {
+												"id": 14,
+												"name": "Hyperion",
+												"region": "NA"
+											},
+											"class": "RedMage",
+											"spec": "",
+											"amount": 8759.5948889128,
+											"bracketData": 6.5,
+											"bracket": 6,
+											"rank": "~11503",
+											"best": "-",
+											"totalParses": 13072,
+											"bracketPercent": 12,
+											"rankPercent": 12
+										},
+										{
+											"id": 18830499,
+											"name": "Estellia Lu'naa",
+											"server": {
+												"id": 23,
+												"name": "Ultros",
+												"region": "NA"
+											},
+											"class": "Reaper",
+											"spec": "",
+											"amount": 13781.791153605,
+											"bracketData": 6.5,
+											"bracket": 6,
+											"rank": "~815",
+											"best": "-",
+											"totalParses": 16316,
+											"bracketPercent": 95,
+											"rankPercent": 95
+										}
+									]
+								}
+							},
+							"bracket": 6,
+							"reportsBlacklistForCharacters": [],
+							"speed": {
+								"rank": "~757",
+								"best": "~757",
+								"totalParses": 1241,
+								"rankPercent": 39
+							},
+							"execution": {
+								"rank": "~1116",
+								"best": "~1116",
+								"totalParses": 1241,
+								"rankPercent": 10
+							}
+						},
+						{
+							"fightID": 16,
+							"partition": 7,
+							"zone": 55,
+							"encounter": {
+								"id": 1070,
+								"name": "Zeromus"
+							},
+							"difficulty": 100,
+							"size": 8,
+							"kill": 1,
+							"duration": 534435,
+							"bracketData": 6.5,
+							"deaths": 4,
+							"damageTakenExcludingTanks": 7527326,
+							"roles": {
+								"tanks": {
+									"name": "Tanks",
+									"characters": [
+										{
+											"id": 19364330,
+											"name": "Kasumi Miyumi",
+											"server": {
+												"id": 23,
+												"name": "Ultros",
+												"region": "NA"
+											},
+											"class": "DarkKnight",
+											"spec": "",
+											"amount": 7581.9618024542,
+											"bracketData": 6.5,
+											"bracket": 6,
+											"rank": "~10049",
+											"best": "-",
+											"totalParses": 14564,
+											"bracketPercent": 31,
+											"rankPercent": 31
+										},
+										{
+											"id": 16644208,
+											"name": "Tabu Rasa",
+											"server": {
+												"id": 23,
+												"name": "Ultros",
+												"region": "NA"
+											},
+											"class": "Paladin",
+											"spec": "",
+											"amount": 8549.3053567258,
+											"bracketData": 6.5,
+											"bracket": 6,
+											"rank": "~5286",
+											"best": "-",
+											"totalParses": 18882,
+											"bracketPercent": 72,
+											"rankPercent": 72
+										},
+										{
+											"id": 19364330,
+											"name": "Kasumi Miyumi",
+											"class": "DarkKnight",
+											"spec": "",
+											"id_2": 16644208,
+											"name_2": "Tabu Rasa",
+											"class_2": "Paladin",
+											"spec_2": "",
+											"amount": 16131.3,
+											"bracketData": 6.5,
+											"bracket": 6,
+											"rank": "~5643",
+											"best": "-",
+											"totalParses": 14852,
+											"bracketPercent": 62,
+											"rankPercent": 62
+										}
+									]
+								},
+								"healers": {
+									"name": "Healers",
+									"characters": [
+										{
+											"id": 14164511,
+											"name": "Izlude Amaterasu",
+											"server": {
+												"id": 3,
+												"name": "Behemoth",
+												"region": "NA"
+											},
+											"class": "WhiteMage",
+											"spec": "",
+											"amount": 4926.6550503184,
+											"bracketData": 6.5,
+											"bracket": 6,
+											"rank": "~17065",
+											"best": "-",
+											"totalParses": 23378,
+											"bracketPercent": 27,
+											"rankPercent": 27
+										},
+										{
+											"id": 384059,
+											"name": "Kat Tatiana",
+											"server": {
+												"id": 2,
+												"name": "Balmung",
+												"region": "NA"
+											},
+											"class": "Sage",
+											"spec": "",
+											"amount": 7914.8568014507,
+											"bracketData": 6.5,
+											"bracket": 6,
+											"rank": "~663",
+											"best": "-",
+											"totalParses": 22107,
+											"bracketPercent": 97,
+											"rankPercent": 97
+										},
+										{
+											"id": 14164511,
+											"name": "Izlude Amaterasu",
+											"class": "WhiteMage",
+											"spec": "",
+											"id_2": 384059,
+											"name_2": "Kat Tatiana",
+											"class_2": "Sage",
+											"spec_2": "",
+											"amount": 12841.5,
+											"bracketData": 6.5,
+											"bracket": 6,
+											"rank": "~11082",
+											"best": "-",
+											"totalParses": 48186,
+											"bracketPercent": 77,
+											"rankPercent": 77
+										}
+									]
+								},
+								"dps": {
+									"name": "Damage Dealers",
+									"characters": [
+										{
+											"id": 18936830,
+											"name": "Ruby Primrose",
+											"server": {
+												"id": 17,
+												"name": "Leviathan",
+												"region": "NA"
+											},
+											"class": "Machinist",
+											"spec": "",
+											"amount": 10230.403495457,
+											"bracketData": 6.5,
+											"bracket": 6,
+											"rank": "~10947",
+											"best": "-",
+											"totalParses": 13190,
+											"bracketPercent": 17,
+											"rankPercent": 17
+										},
+										{
+											"id": 16996490,
+											"name": "Curtis White",
+											"server": {
+												"id": 14,
+												"name": "Hyperion",
+												"region": "NA"
+											},
+											"class": "RedMage",
+											"spec": "",
+											"amount": 10469.940726118,
+											"bracketData": 6.5,
+											"bracket": 6,
+											"rank": "~8104",
+											"best": "-",
+											"totalParses": 13072,
+											"bracketPercent": 38,
+											"rankPercent": 38
+										},
+										{
+											"id": 18695415,
+											"name": "Torch Qt",
+											"server": {
+												"id": 20,
+												"name": "Midgardsormr",
+												"region": "NA"
+											},
+											"class": "Samurai",
+											"spec": "",
+											"amount": 12620.264838605,
+											"bracketData": 6.5,
+											"bracket": 6,
+											"rank": "~6437",
+											"best": "-",
+											"totalParses": 14970,
+											"bracketPercent": 57,
+											"rankPercent": 57
+										},
+										{
+											"id": 18830499,
+											"name": "Estellia Lu'naa",
+											"server": {
+												"id": 23,
+												"name": "Ultros",
+												"region": "NA"
+											},
+											"class": "Reaper",
+											"spec": "",
+											"amount": 13447.368054499,
+											"bracketData": 6.5,
+											"bracket": 6,
+											"rank": "~2284",
+											"best": "-",
+											"totalParses": 16316,
+											"bracketPercent": 86,
+											"rankPercent": 86
+										}
+									]
+								}
+							},
+							"bracket": 6,
+							"reportsBlacklistForCharacters": [],
+							"speed": {
+								"rank": "~483",
+								"best": "~483",
+								"totalParses": 1241,
+								"rankPercent": 61
+							},
+							"execution": {
+								"rank": "~682",
+								"best": "~682",
+								"totalParses": 1241,
+								"rankPercent": 45
+							}
+						},
+						{
+							"fightID": 17,
+							"partition": 7,
+							"zone": 55,
+							"encounter": {
+								"id": 1070,
+								"name": "Zeromus"
+							},
+							"difficulty": 100,
+							"size": 8,
+							"kill": 1,
+							"duration": 560920,
+							"bracketData": 6.5,
+							"deaths": 11,
+							"damageTakenExcludingTanks": 11068871,
+							"roles": {
+								"tanks": {
+									"name": "Tanks",
+									"characters": [
+										{
+											"id": 19364330,
+											"name": "Kasumi Miyumi",
+											"server": {
+												"id": 23,
+												"name": "Ultros",
+												"region": "NA"
+											},
+											"class": "DarkKnight",
+											"spec": "",
+											"amount": 6732.7829318446,
+											"bracketData": 6.5,
+											"bracket": 6,
+											"rank": "~13107",
+											"best": "-",
+											"totalParses": 14564,
+											"bracketPercent": 10,
+											"rankPercent": 10
+										},
+										{
+											"id": 16996490,
+											"name": "Curtis White",
+											"server": {
+												"id": 14,
+												"name": "Hyperion",
+												"region": "NA"
+											},
+											"class": "Warrior",
+											"spec": "",
+											"amount": 7414.9635737733,
+											"bracketData": 6.5,
+											"bracket": 6,
+											"rank": "~17565",
+											"best": "-",
+											"totalParses": 20911,
+											"bracketPercent": 16,
+											"rankPercent": 16
+										},
+										{
+											"id": 19364330,
+											"name": "Kasumi Miyumi",
+											"class": "DarkKnight",
+											"spec": "",
+											"id_2": 16996490,
+											"name_2": "Curtis White",
+											"class_2": "Warrior",
+											"spec_2": "",
+											"amount": 14147.7,
+											"bracketData": 6.5,
+											"bracket": 6,
+											"rank": "~14959",
+											"best": "-",
+											"totalParses": 16439,
+											"bracketPercent": 9,
+											"rankPercent": 9
+										}
+									]
+								},
+								"healers": {
+									"name": "Healers",
+									"characters": [
+										{
+											"id": 14164511,
+											"name": "Izlude Amaterasu",
+											"server": {
+												"id": 3,
+												"name": "Behemoth",
+												"region": "NA"
+											},
+											"class": "WhiteMage",
+											"spec": "",
+											"amount": 4678.2040225017,
+											"bracketData": 6.5,
+											"bracket": 6,
+											"rank": "~18234",
+											"best": "-",
+											"totalParses": 23378,
+											"bracketPercent": 22,
+											"rankPercent": 22
+										},
+										{
+											"id": 384059,
+											"name": "Kat Tatiana",
+											"server": {
+												"id": 2,
+												"name": "Balmung",
+												"region": "NA"
+											},
+											"class": "Sage",
+											"spec": "",
+											"amount": 6945.2328726112,
+											"bracketData": 6.5,
+											"bracket": 6,
+											"rank": "~4642",
+											"best": "-",
+											"totalParses": 22107,
+											"bracketPercent": 79,
+											"rankPercent": 79
+										},
+										{
+											"id": 14164511,
+											"name": "Izlude Amaterasu",
+											"class": "WhiteMage",
+											"spec": "",
+											"id_2": 384059,
+											"name_2": "Kat Tatiana",
+											"class_2": "Sage",
+											"spec_2": "",
+											"amount": 11623.4,
+											"bracketData": 6.5,
+											"bracket": 6,
+											"rank": "~21201",
+											"best": "-",
+											"totalParses": 48186,
+											"bracketPercent": 56,
+											"rankPercent": 56
+										}
+									]
+								},
+								"dps": {
+									"name": "Damage Dealers",
+									"characters": [
+										{
+											"id": 18936830,
+											"name": "Ruby Primrose",
+											"server": {
+												"id": 17,
+												"name": "Leviathan",
+												"region": "NA"
+											},
+											"class": "Machinist",
+											"spec": "",
+											"amount": 9884.2540946442,
+											"bracketData": 6.5,
+											"bracket": 6,
+											"rank": "~11475",
+											"best": "-",
+											"totalParses": 13190,
+											"bracketPercent": 13,
+											"rankPercent": 13
+										},
+										{
+											"id": 15616395,
+											"name": "Ka Rate",
+											"server": {
+												"id": 16,
+												"name": "Lamia",
+												"region": "NA"
+											},
+											"class": "Summoner",
+											"spec": "",
+											"amount": 11198.638165269,
+											"bracketData": 6.5,
+											"bracket": 6,
+											"rank": "~10707",
+											"best": "-",
+											"totalParses": 19121,
+											"bracketPercent": 44,
+											"rankPercent": 44
+										},
+										{
+											"id": 18695415,
+											"name": "Torch Qt",
+											"server": {
+												"id": 20,
+												"name": "Midgardsormr",
+												"region": "NA"
+											},
+											"class": "Samurai",
+											"spec": "",
+											"amount": 11529.172970329,
+											"bracketData": 6.5,
+											"bracket": 6,
+											"rank": "~10778",
+											"best": "-",
+											"totalParses": 14970,
+											"bracketPercent": 28,
+											"rankPercent": 28
+										},
+										{
+											"id": 18830499,
+											"name": "Estellia Lu'naa",
+											"server": {
+												"id": 23,
+												"name": "Ultros",
+												"region": "NA"
+											},
+											"class": "Reaper",
+											"spec": "",
+											"amount": 13781.268590735,
+											"bracketData": 6.5,
+											"bracket": 6,
+											"rank": "~815",
+											"best": "-",
+											"totalParses": 16316,
+											"bracketPercent": 95,
+											"rankPercent": 95
+										}
+									]
+								}
+							},
+							"bracket": 6,
+							"reportsBlacklistForCharacters": [],
+							"speed": {
+								"rank": "~732",
+								"best": "~732",
+								"totalParses": 1241,
+								"rankPercent": 41
+							},
+							"execution": {
+								"rank": "~1116",
+								"best": "~1116",
+								"totalParses": 1241,
+								"rankPercent": 10
+							}
+						},
+						{
+							"fightID": 18,
+							"partition": 7,
+							"zone": 55,
+							"encounter": {
+								"id": 1070,
+								"name": "Zeromus"
+							},
+							"difficulty": 100,
+							"size": 8,
+							"kill": 1,
+							"duration": 511847,
+							"bracketData": 6.5,
+							"deaths": 3,
+							"damageTakenExcludingTanks": 8798619,
+							"roles": {
+								"tanks": {
+									"name": "Tanks",
+									"characters": [
+										{
+											"id": 19364330,
+											"name": "Kasumi Miyumi",
+											"server": {
+												"id": 23,
+												"name": "Ultros",
+												"region": "NA"
+											},
+											"class": "DarkKnight",
+											"spec": "",
+											"amount": 6206.8296625302,
+											"bracketData": 6.5,
+											"bracket": 6,
+											"rank": "~13981",
+											"best": "-",
+											"totalParses": 14564,
+											"bracketPercent": 4,
+											"rankPercent": 4
+										},
+										{
+											"id": 16996490,
+											"name": "Curtis White",
+											"server": {
+												"id": 14,
+												"name": "Hyperion",
+												"region": "NA"
+											},
+											"class": "Warrior",
+											"spec": "",
+											"amount": 7686.3816541121,
+											"bracketData": 6.5,
+											"bracket": 6,
+											"rank": "~16101",
+											"best": "-",
+											"totalParses": 20911,
+											"bracketPercent": 23,
+											"rankPercent": 23
+										},
+										{
+											"id": 19364330,
+											"name": "Kasumi Miyumi",
+											"class": "DarkKnight",
+											"spec": "",
+											"id_2": 16996490,
+											"name_2": "Curtis White",
+											"class_2": "Warrior",
+											"spec_2": "",
+											"amount": 13893.2,
+											"bracketData": 6.5,
+											"bracket": 6,
+											"rank": "~15288",
+											"best": "-",
+											"totalParses": 16439,
+											"bracketPercent": 7,
+											"rankPercent": 7
+										}
+									]
+								},
+								"healers": {
+									"name": "Healers",
+									"characters": [
+										{
+											"id": 14164511,
+											"name": "Izlude Amaterasu",
+											"server": {
+												"id": 3,
+												"name": "Behemoth",
+												"region": "NA"
+											},
+											"class": "WhiteMage",
+											"spec": "",
+											"amount": 4862.6084610124,
+											"bracketData": 6.5,
+											"bracket": 6,
+											"rank": "~17299",
+											"best": "-",
+											"totalParses": 23378,
+											"bracketPercent": 26,
+											"rankPercent": 26
+										},
+										{
+											"id": 384059,
+											"name": "Kat Tatiana",
+											"server": {
+												"id": 2,
+												"name": "Balmung",
+												"region": "NA"
+											},
+											"class": "Sage",
+											"spec": "",
+											"amount": 7650.5461822167,
+											"bracketData": 6.5,
+											"bracket": 6,
+											"rank": "~1326",
+											"best": "-",
+											"totalParses": 22107,
+											"bracketPercent": 94,
+											"rankPercent": 94
+										},
+										{
+											"id": 14164511,
+											"name": "Izlude Amaterasu",
+											"class": "WhiteMage",
+											"spec": "",
+											"id_2": 384059,
+											"name_2": "Kat Tatiana",
+											"class_2": "Sage",
+											"spec_2": "",
+											"amount": 12513.2,
+											"bracketData": 6.5,
+											"bracket": 6,
+											"rank": "~13492",
+											"best": "-",
+											"totalParses": 48186,
+											"bracketPercent": 72,
+											"rankPercent": 72
+										}
+									]
+								},
+								"dps": {
+									"name": "Damage Dealers",
+									"characters": [
+										{
+											"id": 19001996,
+											"name": "Kaia Teneiv",
+											"server": {
+												"id": 116,
+												"name": "Marilith",
+												"region": "NA"
+											},
+											"class": "Dragoon",
+											"spec": "",
+											"amount": 13762.364328385,
+											"bracketData": 6.5,
+											"bracket": 6,
+											"rank": "~419",
+											"best": "-",
+											"totalParses": 10480,
+											"bracketPercent": 96,
+											"rankPercent": 96
+										},
+										{
+											"id": 18936830,
+											"name": "Ruby Primrose",
+											"server": {
+												"id": 17,
+												"name": "Leviathan",
+												"region": "NA"
+											},
+											"class": "Machinist",
+											"spec": "",
+											"amount": 12101.601440563,
+											"bracketData": 6.5,
+											"bracket": 6,
+											"rank": "~4880",
+											"best": "-",
+											"totalParses": 13190,
+											"bracketPercent": 63,
+											"rankPercent": 63
+										},
+										{
+											"id": 15616395,
+											"name": "Ka Rate",
+											"server": {
+												"id": 16,
+												"name": "Lamia",
+												"region": "NA"
+											},
+											"class": "Summoner",
+											"spec": "",
+											"amount": 12132.806830978,
+											"bracketData": 6.5,
+											"bracket": 6,
+											"rank": "~5162",
+											"best": "-",
+											"totalParses": 19121,
+											"bracketPercent": 73,
+											"rankPercent": 73
+										},
+										{
+											"id": 18830499,
+											"name": "Estellia Lu'naa",
+											"server": {
+												"id": 23,
+												"name": "Ultros",
+												"region": "NA"
+											},
+											"class": "Reaper",
+											"spec": "",
+											"amount": 13743.965946041,
+											"bracketData": 6.5,
+											"bracket": 6,
+											"rank": "~978",
+											"best": "-",
+											"totalParses": 16316,
+											"bracketPercent": 94,
+											"rankPercent": 94
+										}
+									]
+								}
+							},
+							"bracket": 6,
+							"reportsBlacklistForCharacters": [],
+							"speed": {
+								"rank": "~260",
+								"best": "~260",
+								"totalParses": 1241,
+								"rankPercent": 79
+							},
+							"execution": {
+								"rank": "~620",
+								"best": "~620",
+								"totalParses": 1241,
+								"rankPercent": 50
+							}
+						}
+					]
+				},
+				"fights": [
+					{
+						"name": "Zeromus",
+						"kill": false,
+						"lastPhase": 0,
+						"bossPercentage": 61.24,
+						"fightPercentage": 61.24,
+						"combatTime": 74438,
+						"gameZone": {
+							"name": "The Abyssal Fracture"
+						},
+						"friendlyPlayers": [
+							13,
+							11,
+							10,
+							9,
+							8,
+							7,
+							5,
+							4,
+							2
+						],
+						"encounterID": 1070
+					},
+					{
+						"name": "Zeromus",
+						"kill": false,
+						"lastPhase": 0,
+						"bossPercentage": 63.85,
+						"fightPercentage": 63.85,
+						"combatTime": 201600,
+						"gameZone": {
+							"name": "The Abyssal Fracture"
+						},
+						"friendlyPlayers": [
+							13,
+							11,
+							10,
+							9,
+							8,
+							7,
+							5,
+							4,
+							2
+						],
+						"encounterID": 1070
+					},
+					{
+						"name": "Zeromus",
+						"kill": false,
+						"lastPhase": 0,
+						"bossPercentage": 54.34,
+						"fightPercentage": 54.34,
+						"combatTime": 274642,
+						"gameZone": {
+							"name": "The Abyssal Fracture"
+						},
+						"friendlyPlayers": [
+							13,
+							11,
+							10,
+							9,
+							8,
+							7,
+							5,
+							4,
+							2
+						],
+						"encounterID": 1070
+					},
+					{
+						"name": "Zeromus",
+						"kill": false,
+						"lastPhase": 0,
+						"bossPercentage": 57.92,
+						"fightPercentage": 57.92,
+						"combatTime": 245593,
+						"gameZone": {
+							"name": "The Abyssal Fracture"
+						},
+						"friendlyPlayers": [
+							94,
+							93,
+							77,
+							13,
+							92,
+							91,
+							90,
+							89,
+							9
+						],
+						"encounterID": 1070
+					},
+					{
+						"name": "Zeromus",
+						"kill": false,
+						"lastPhase": 0,
+						"bossPercentage": 63.4,
+						"fightPercentage": 63.4,
+						"combatTime": 195283,
+						"gameZone": {
+							"name": "The Abyssal Fracture"
+						},
+						"friendlyPlayers": [
+							94,
+							93,
+							77,
+							13,
+							92,
+							91,
+							90,
+							89,
+							9
+						],
+						"encounterID": 1070
+					},
+					{
+						"name": "Zeromus",
+						"kill": false,
+						"lastPhase": 0,
+						"bossPercentage": 63.09,
+						"fightPercentage": 63.09,
+						"combatTime": 201631,
+						"gameZone": {
+							"name": "The Abyssal Fracture"
+						},
+						"friendlyPlayers": [
+							94,
+							93,
+							77,
+							13,
+							92,
+							91,
+							90,
+							89,
+							9
+						],
+						"encounterID": 1070
+					},
+					{
+						"name": "Zeromus",
+						"kill": false,
+						"lastPhase": 0,
+						"bossPercentage": 61.83,
+						"fightPercentage": 61.83,
+						"combatTime": 202060,
+						"gameZone": {
+							"name": "The Abyssal Fracture"
+						},
+						"friendlyPlayers": [
+							94,
+							93,
+							77,
+							13,
+							92,
+							91,
+							90,
+							9,
+							89
+						],
+						"encounterID": 1070
+					},
+					{
+						"name": "Zeromus",
+						"kill": false,
+						"lastPhase": 0,
+						"bossPercentage": 55.02,
+						"fightPercentage": 55.02,
+						"combatTime": 276578,
+						"gameZone": {
+							"name": "The Abyssal Fracture"
+						},
+						"friendlyPlayers": [
+							13,
+							90,
+							154,
+							89,
+							153,
+							9,
+							152,
+							151,
+							150
+						],
+						"encounterID": 1070
+					},
+					{
+						"name": "Zeromus",
+						"kill": false,
+						"lastPhase": 0,
+						"bossPercentage": 61.83,
+						"fightPercentage": 61.83,
+						"combatTime": 195185,
+						"gameZone": {
+							"name": "The Abyssal Fracture"
+						},
+						"friendlyPlayers": [
+							13,
+							154,
+							90,
+							153,
+							89,
+							9,
+							152,
+							151,
+							150
+						],
+						"encounterID": 1070
+					},
+					{
+						"name": "Zeromus",
+						"kill": true,
+						"lastPhase": 0,
+						"bossPercentage": 0.01,
+						"fightPercentage": 0.01,
+						"combatTime": 620324,
+						"gameZone": {
+							"name": "The Abyssal Fracture"
+						},
+						"friendlyPlayers": [
+							13,
+							90,
+							154,
+							89,
+							153,
+							9,
+							152,
+							151,
+							150,
+							164
+						],
+						"encounterID": 1070
+					},
+					{
+						"name": "Zeromus",
+						"kill": false,
+						"lastPhase": 0,
+						"bossPercentage": 14.08,
+						"fightPercentage": 14.08,
+						"combatTime": 458341,
+						"gameZone": {
+							"name": "The Abyssal Fracture"
+						},
+						"friendlyPlayers": [
+							191,
+							189,
+							13,
+							187,
+							186,
+							90,
+							89,
+							9,
+							192
+						],
+						"encounterID": 1070
+					},
+					{
+						"name": "Zeromus",
+						"kill": false,
+						"lastPhase": 0,
+						"bossPercentage": 61.15,
+						"fightPercentage": 61.15,
+						"combatTime": 195154,
+						"gameZone": {
+							"name": "The Abyssal Fracture"
+						},
+						"friendlyPlayers": [
+							189,
+							13,
+							187,
+							186,
+							90,
+							89,
+							9,
+							211,
+							192
+						],
+						"encounterID": 1070
+					},
+					{
+						"name": "Zeromus",
+						"kill": false,
+						"lastPhase": 0,
+						"bossPercentage": 40.58,
+						"fightPercentage": 40.58,
+						"combatTime": 388308,
+						"gameZone": {
+							"name": "The Abyssal Fracture"
+						},
+						"friendlyPlayers": [
+							189,
+							13,
+							187,
+							186,
+							90,
+							9,
+							89,
+							211,
+							192
+						],
+						"encounterID": 1070
+					},
+					{
+						"name": "Zeromus",
+						"kill": false,
+						"lastPhase": 0,
+						"bossPercentage": 41.4,
+						"fightPercentage": 41.4,
+						"combatTime": 347256,
+						"gameZone": {
+							"name": "The Abyssal Fracture"
+						},
+						"friendlyPlayers": [
+							189,
+							13,
+							187,
+							186,
+							90,
+							89,
+							9,
+							164,
+							211,
+							192
+						],
+						"encounterID": 1070
+					},
+					{
+						"name": "Zeromus",
+						"kill": true,
+						"lastPhase": 0,
+						"bossPercentage": 0.01,
+						"fightPercentage": 0.01,
+						"combatTime": 562635,
+						"gameZone": {
+							"name": "The Abyssal Fracture"
+						},
+						"friendlyPlayers": [
+							13,
+							89,
+							9,
+							246,
+							245,
+							244,
+							164,
+							243,
+							242,
+							241
+						],
+						"encounterID": 1070
+					},
+					{
+						"name": "Zeromus",
+						"kill": true,
+						"lastPhase": 0,
+						"bossPercentage": 0.01,
+						"fightPercentage": 0.01,
+						"combatTime": 534435,
+						"gameZone": {
+							"name": "The Abyssal Fracture"
+						},
+						"friendlyPlayers": [
+							271,
+							13,
+							90,
+							169,
+							89,
+							245,
+							243,
+							273,
+							272
+						],
+						"encounterID": 1070
+					},
+					{
+						"name": "Zeromus",
+						"kill": true,
+						"lastPhase": 0,
+						"bossPercentage": 0.01,
+						"fightPercentage": 0.01,
+						"combatTime": 560920,
+						"gameZone": {
+							"name": "The Abyssal Fracture"
+						},
+						"friendlyPlayers": [
+							271,
+							285,
+							13,
+							284,
+							90,
+							89,
+							169,
+							164,
+							243,
+							273
+						],
+						"encounterID": 1070
+					},
+					{
+						"name": "Zeromus",
+						"kill": true,
+						"lastPhase": 0,
+						"bossPercentage": 0.01,
+						"fightPercentage": 0.01,
+						"combatTime": 511847,
+						"gameZone": {
+							"name": "The Abyssal Fracture"
+						},
+						"friendlyPlayers": [
+							271,
+							285,
+							13,
+							284,
+							300,
+							90,
+							169,
+							89,
+							164,
+							243
+						],
+						"encounterID": 1070
+					}
+				]
+			}
+		}
+	}
+}
