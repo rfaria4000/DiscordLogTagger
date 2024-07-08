@@ -34,16 +34,6 @@ def generateFightTier(fight:dict, simplifiedRankings: dict) -> int:
   if isFightExtreme(fight, simplifiedRankings): return 1
   return 0
 
-def compareFights(fightOne: dict, fightTwo: dict, simplifiedRankings: dict) -> dict:
-  """
-  Return the more salient of the two fights.
-
-  Priority is, in order: fight difficulty, clear, fight duration.
-  For right now, ultimate fights with different names will prioritize longer fights.
-  """
-  # TODO: IMPLEMENT FIGHT COMPARISON FOR SIMPLIFY FIGHTS
-  return
-
 def extractReportFields(reportData: dict) -> Tuple[List[object], str, List[object], List[object]]:
   """
   Extracts the list of actors, date, and list of fights from a report.
@@ -59,7 +49,7 @@ def extractReportFields(reportData: dict) -> Tuple[List[object], str, List[objec
   flattenedReport = reportData.get("data").get("reportData").get("report")
 
   actorList = flattenedReport.get("masterData").get("actors")
-  #TODO: ADD ACTOR TYPE TO QUERY AND 
+  #TODO: ADD ACTOR TYPE TO QUERY FOR BETTER FILTERING
 
   startTimeUNIX = flattenedReport.get("startTime") // 1000 #millisecond precision
   startTimeString = datetime.fromtimestamp(startTimeUNIX).strftime("%B %d, %Y")
@@ -84,6 +74,31 @@ def simplifyActor(actor: dict) -> list:
    """Convert a dict representing an actor to a list of id and name."""
    return actor.values()
 
+def compareFights(fightOne: dict, fightTwo: dict, simplifiedRankings: dict) -> dict:
+  """
+  Return the more salient of the two fights.
+
+  Priority is, in order: clear (if above tier 0), fight difficulty, fight duration.
+  For right now, ultimate fights with different names will prioritize longer fights.
+  """
+  # TODO: IMPLEMENT FIGHT COMPARISON FOR SIMPLIFY FIGHTS
+  fightOneTier = generateFightTier(fightOne, simplifiedRankings)
+  fightTwoTier = generateFightTier(fightTwo, simplifiedRankings)
+
+  if fightTwo["kill"] and not fightOne["kill"]:
+    if fightTwoTier > 0: return fightTwo
+  if fightOne["kill"] and not fightTwo["kill"]:
+    if fightOneTier > 0: return fightOne
+  
+  #TODO: CHANGE COMBAT TIME TO START/END TIME FOR COMPATABILITY?
+
+  # if fightTwoTier > fightOneTier: return fightTwo
+  # if fightTwo["kill"] and not fightOne["kill"]: return fightTwo
+  # if fightTwo["name"] != fightOne["name"]:
+  #   if fightTwo["combatTime"] and fightTwo["combatTime"]:
+  #      if fightTwo["combatTime"] > fightOne["combatTime"]: return fightTwo
+  return fightOne
+
 def reduceFights(fights: dict, simplifiedRankings: dict):
   """Converts list of fight objects into a dict of unique fights with aggregate data."""
   fightDict = {}
@@ -92,15 +107,17 @@ def reduceFights(fights: dict, simplifiedRankings: dict):
     if not encounterID in fightDict.keys():
       fightDict[encounterID] = {
          "name": fight["name"],
-         "pulls": 0,
+         "pulls": 1,
          "clearPulls": [],
          "bestPull": fight,
          "fightTier": generateFightTier(fight, simplifiedRankings)
       }
+      continue
     fightDict[encounterID]["pulls"] += 1
     if fight['kill']: 
       fightDict[encounterID]["clearPulls"].append(fight["id"])
       fightDict[encounterID]["fightTier"] = generateFightTier(fight, simplifiedRankings)
+  # TODO: FINISH FUNCTION
   print(fightDict)
 
 def generateEmbedFromReport(reportData: dict, link: str, description: str = "") -> Embed:
@@ -137,6 +154,7 @@ def generateEmbedFromReport(reportData: dict, link: str, description: str = "") 
   simplifiedRankings = dict(map(simplifyRanking, rankings))
   simplifiedActors = dict(map(simplifyActor, actors))
 
+  # print(simplifiedActors)
   print(reduceFights(fights, simplifiedRankings))
 
   reportEmbed = Embed(title=titleFight + " - " + dateString)
