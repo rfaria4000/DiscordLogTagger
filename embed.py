@@ -86,9 +86,9 @@ def compareFights(fightOne: dict, fightTwo: dict, simplifiedRankings: dict) -> d
   Return the more salient of the two fights.
 
   Priority is, in order: clear (if above tier 0), fight difficulty, fight duration.
-  For right now, ultimate fights with different names will prioritize longer fights.
+  For right now, fights with different names in the same tier will prioritize longer fights.
   """
-  # TODO: IMPLEMENT FIGHT COMPARISON FOR SIMPLIFY FIGHTS
+
   fightOneRating = generateFightTier(fightOne, simplifiedRankings)
   fightTwoRating = generateFightTier(fightTwo, simplifiedRankings)
 
@@ -102,36 +102,38 @@ def compareFights(fightOne: dict, fightTwo: dict, simplifiedRankings: dict) -> d
     return fightOne if fightOne["fightPercentage"] < fightTwo["fightPercentage"] else fightTwo
 
   isFightOneShorter = getFightDuration(fightOne) < getFightDuration(fightTwo)
-  # Same fights should prio shorter kill time
+
   if fightOne["name"] == fightTwo["name"]:
     return fightOne if isFightOneShorter else fightTwo
   else:
-    #Clears of different fights of same tier should prioritize longer fights?
     return fightTwo if isFightOneShorter else fightOne
 
 def reduceFights(fights: dict, simplifiedRankings: dict):
   """Converts list of fight objects into a dict of unique fights with aggregate data."""
-  fightDict = {}
+  uniqueFightDict = {}
   for fight in fights:
     encounterID = fight["encounterID"]
-    if not encounterID in fightDict.keys():
-      fightDict[encounterID] = {
+    if not encounterID in uniqueFightDict.keys():
+      uniqueFightDict[encounterID] = {
          "name": fight["name"],
-         "pulls": 1,
+         "pullCount": 1,
          "clearPulls": [],
          "bestPull": fight,
          "fightTier": generateFightTier(fight, simplifiedRankings)
       }
       continue
-    fightDict[encounterID]["pulls"] += 1
+    
+    uniqueFight = uniqueFightDict[encounterID]
+    uniqueFight["pullCount"] += 1
+    
     if fight['kill']: 
-      fightDict[encounterID]["clearPulls"].append(fight["id"])
-      fightDict[encounterID]["fightTier"] = generateFightTier(fight, simplifiedRankings)
-    fightDict[encounterID]["bestPull"] = compareFights(fight, 
-                                                       fightDict[encounterID]["bestPull"],
-                                                       simplifiedRankings)
-  # TODO: FINISH FUNCTION 
-  print(fightDict)
+      uniqueFight["clearPulls"].append(fight["id"])
+      uniqueFight["fightTier"] = generateFightTier(fight, simplifiedRankings)
+    
+    uniqueFight["bestPull"] = compareFights(fight, 
+                                            uniqueFight["bestPull"],
+                                            simplifiedRankings)
+  return uniqueFightDict
 
 def generateEmbedFromReport(reportData: dict, link: str, description: str = "") -> Embed:
   """
