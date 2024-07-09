@@ -140,6 +140,7 @@ def chooseHighlightFight(simplifiedFights: dict) -> int:
   """Returns the highlight fight for the sake of thumbnails."""
   pass
 
+# TODO: Think about multiFight embed colors 
 def generateEmbedColor(fight: dict, rankings: dict):
   """Generate a hex code for an Embed based on a fight."""
   if not fight["kill"]: return 0xff0000
@@ -148,6 +149,7 @@ def generateEmbedColor(fight: dict, rankings: dict):
   if fight["id"] in rankings:
     for character, parse in rankings[fight["id"]]:
       if parse > bestParse: bestParse = parse
+  else: return 0xabebc6 
   
   if bestParse < 25: return 0x666666
   elif bestParse < 50: return 0x1eff00
@@ -157,6 +159,23 @@ def generateEmbedColor(fight: dict, rankings: dict):
   elif bestParse == 99: return 0xe268a8
   else: return 0xe5cc80
   # Match cases are in Python 3.10 and above D:
+
+def generateClearEmoji(fightID: dict, rankings:dict) -> str:
+  """Generate an emoji based on a cleared fights."""
+  if not fightID in rankings: return "✅"
+
+  bestParse = 0
+  for character, parse in rankings[fightID]:
+    bestParse = max(bestParse, parse) 
+
+  if bestParse < 25: return "🩶"
+  elif bestParse < 50: return "💚"
+  elif bestParse < 75: return "💙"
+  elif bestParse < 95: return "💜"
+  elif bestParse < 99: return "🧡"
+  elif bestParse == 99: return "🩷"
+  else: return "💛"
+
 
 def generateImageURL(encounterID: dict) -> str:
   """Generate a URL to a thumbnail based on the fight."""
@@ -197,8 +216,9 @@ def generateMultiFightEmbed(simplifiedFights: dict, dateStart: str, link: str, r
   if not fight["clearPulls"]: 
     clearPulls += "❌"
   else:
+    # TODO: Change checkmark with a colored dot for the best parse in a ranked fight
     for fightID in fight["clearPulls"]:
-      clearPulls += f"[✅]({fightURLPrefix}#fight={fightID}) "
+      clearPulls += f"[{generateClearEmoji(fightID, rankings)}]({fightURLPrefix}#fight={fightID}) "
   multiFightEmbed.add_field(name="Clear Pulls?", value=clearPulls)
   bestPullString = generateBestPullString(fight)
   bestPullID = fight["bestPull"]["id"]
