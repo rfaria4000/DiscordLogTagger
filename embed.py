@@ -55,14 +55,13 @@ def extractReportFields(reportData: dict) -> Tuple[List[object], str, List[objec
   actorList = flattenedReport.get("masterData").get("actors")
   #TODO: ADD ACTOR TYPE TO QUERY FOR BETTER FILTERING
 
-  startTimeUNIX = flattenedReport.get("startTime") // 1000 #millisecond precision
-  startTimeString = datetime.fromtimestamp(startTimeUNIX).strftime("%B %d, %Y")
+  startTimeUNIX = flattenedReport.get("startTime")  // 1000 # millisecond precision
 
   fightsList = flattenedReport.get("fights")
 
   rankingsList = flattenedReport.get("rankings").get("data")
 
-  return actorList, startTimeString, fightsList, rankingsList
+  return actorList, startTimeUNIX, fightsList, rankingsList
 
 def simplifyRanking(ranking: dict) -> tuple:
   """Convert a ranking object into a tuple with fightIDs and list of player parses."""
@@ -108,11 +107,12 @@ def compareFights(fightOne: dict, fightTwo: dict, simplifiedRankings: dict) -> d
   else:
     return fightTwo if isFightOneShorter else fightOne
 
-def reduceFights(fights: dict, simplifiedRankings: dict):
+def reduceFights(fights: dict, simplifiedRankings: dict) -> dict:
   """Converts list of fight objects into a dict of unique fights with aggregate data."""
   uniqueFightDict = {}
   for fight in fights:
     encounterID = fight["encounterID"]
+
     if not encounterID in uniqueFightDict.keys():
       uniqueFightDict[encounterID] = {
          "name": fight["name"],
@@ -135,6 +135,36 @@ def reduceFights(fights: dict, simplifiedRankings: dict):
                                             simplifiedRankings)
   return uniqueFightDict
 
+def chooseHighlightFight(simplifiedFights: dict) -> int:
+  """Returns the highlight fight for the sake of thumbnails."""
+
+def generateImageURL(encounterID: dict) -> str:
+  """Generate an URL to a thumbnail based on the fight."""
+  return f"https://assets.rpglogs.com/img/ff/bosses/{encounterID}-icon.jpg"
+
+def generateSingleFightEmbed():
+  """Generate Embed for a report featuring a specific fight."""
+  print("single fight")
+
+def generateMultiFightEmbed(encounterID: int, fight: dict, dateStart: str) -> Embed:
+  """Generate Embed for a report featuring multiple fights of the same encounter."""
+  print(encounterID, fight)
+  multiFightEmbed = Embed(title=f'{fight["name"]} - <t:{dateStart}:D>')
+  multiFightEmbed.set_thumbnail(url=generateImageURL(encounterID))
+  multiFightEmbed.add_field(name="Pulls", value=fight["pullCount"])
+  clearPulls = ""
+  if not fight["clearPulls"]: clearPulls += "❌"
+  else:
+    for fightID in fight["clearPulls"]:
+      clearPulls += "[✅](https://google.com) "
+  multiFightEmbed.add_field(name="Clear Pulls?", value=clearPulls)
+  # multiFightEmbed.add_field(name="Best Pull", value=fight["bestPull"])
+  return multiFightEmbed
+
+def generateCompilationEmbed():
+  """Generate Embed for a report featuring multiple encounters."""
+  print("multiple encounters")
+
 def generateEmbedFromReport(reportData: dict, link: str, description: str = "") -> Embed:
   """
   Generates a Discord Embed from report data acquired from an FFLogs query.
@@ -153,7 +183,8 @@ def generateEmbedFromReport(reportData: dict, link: str, description: str = "") 
   if "errors" in reportData:
      raise ReportDataError("The received report data is not correctly formatted or missing.")
   # print(reportData.get("data").get("reportData"))
-  actors, dateString, fights, rankings = extractReportFields(reportData)
+  actors, dateStart, fights, rankings = extractReportFields(reportData)
+  
   fightsNameSet =set([fight.get("name") for fight in fights])
   # print(fights)
   titleFight = ""
@@ -168,9 +199,20 @@ def generateEmbedFromReport(reportData: dict, link: str, description: str = "") 
   #The keys to both dicts are numbers.
   simplifiedRankings = dict(map(simplifyRanking, rankings))
   simplifiedActors = dict(map(simplifyActor, actors))
+  simplifiedFights = reduceFights(fights, simplifiedRankings)
 
+  returnEmbed = None
+
+  if len(simplifiedFights) == 1:
+    returnEmbed = generateMultiFightEmbed(*list(simplifiedFights.items())[0], dateStart)
+  else:
+    returnEmbed = generateCompilationEmbed()
   # print(simplifiedActors)
-  print(reduceFights(fights, simplifiedRankings))
+  returnEmbed.url = link
+  returnEmbed.description = description
+  return returnEmbed
+  print(simplifiedFights)
+
 
   # TODO: CHANGE DATE TO BE A DISCORD DATE TAG
   reportEmbed = Embed(title=titleFight + " - " + dateString)
