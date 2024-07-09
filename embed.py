@@ -2,7 +2,8 @@ from discord import Embed
 from datetime import datetime
 
 from typing import Tuple, List
-import json, os
+from urllib.parse import urlparse
+import json, os, math
 
 # Clear values for the purpose of comparing fights.
 # Makes a clear of any fight with a rating higher than a pull off any fight.
@@ -137,28 +138,76 @@ def reduceFights(fights: dict, simplifiedRankings: dict) -> dict:
 
 def chooseHighlightFight(simplifiedFights: dict) -> int:
   """Returns the highlight fight for the sake of thumbnails."""
+  pass
+
+def generateEmbedColor(fight: dict, rankings: dict):
+  """Generate a hex code for an Embed based on a fight."""
+  if not fight["kill"]: return 0xff0000
+
+  bestParse = 0
+  if fight["id"] in rankings:
+    for character, parse in rankings[fight["id"]]:
+      if parse > bestParse: bestParse = parse
+  
+  if bestParse < 25: return 0x666666
+  elif bestParse < 50: return 0x1eff00
+  elif bestParse < 75: return 0x0070ff
+  elif bestParse < 95: return 0xa335ee
+  elif bestParse < 99: return 0xff8000
+  elif bestParse == 99: return 0xe268a8
+  else: return 0xe5cc80
+  # Match cases are in Python 3.10 and above D:
 
 def generateImageURL(encounterID: dict) -> str:
-  """Generate an URL to a thumbnail based on the fight."""
+  """Generate a URL to a thumbnail based on the fight."""
   return f"https://assets.rpglogs.com/img/ff/bosses/{encounterID}-icon.jpg"
+
+def extractSimplifiedFight(simplifiedFights:dict) -> Tuple[int, str]:
+  """Return the encounterID and simplified fight data as a tuple."""
+  return (list(simplifiedFights.items())[0])
+
+def generateBestPullString(fight: dict) -> str:
+  """Generates string to describe the best pull of a fight."""
+  bestPull, fightTier = fight["bestPull"], fight["fightTier"]
+  startTime, endTime = bestPull["startTime"],  bestPull["endTime"]
+  timeElapsed = math.floor((endTime - startTime) / 1000)
+  minutes, seconds = timeElapsed//60, timeElapsed%60
+  if bestPull["kill"]:
+    return f"Clear in {minutes}:{seconds}"
+  else:
+    if fight["fightTier"] == 3:
+      return f'Phase {bestPull["lastPhase"]} - {bestPull["bossPercentage"]}% remaining'
+    else:
+      return f'{bestPull["fightPercentage"]}% remaining'
 
 def generateSingleFightEmbed():
   """Generate Embed for a report featuring a specific fight."""
   print("single fight")
 
-def generateMultiFightEmbed(encounterID: int, fight: dict, dateStart: str) -> Embed:
+def generateMultiFightEmbed(simplifiedFights: dict, dateStart: str, link: str, rankings: dict) -> Embed:
   """Generate Embed for a report featuring multiple fights of the same encounter."""
+  encounterID, fight = extractSimplifiedFight(simplifiedFights)
+  linkObject = urlparse(link)
+  fightURLPrefix = f"{linkObject.scheme}://{linkObject.netloc + linkObject.path}"
   print(encounterID, fight)
   multiFightEmbed = Embed(title=f'{fight["name"]} - <t:{dateStart}:D>')
   multiFightEmbed.set_thumbnail(url=generateImageURL(encounterID))
   multiFightEmbed.add_field(name="Pulls", value=fight["pullCount"])
   clearPulls = ""
-  if not fight["clearPulls"]: clearPulls += "❌"
+  if not fight["clearPulls"]: 
+    clearPulls += "❌"
   else:
     for fightID in fight["clearPulls"]:
-      clearPulls += "[✅](https://google.com) "
+      clearPulls += f"[✅]({fightURLPrefix}#fight={fightID}) "
   multiFightEmbed.add_field(name="Clear Pulls?", value=clearPulls)
-  # multiFightEmbed.add_field(name="Best Pull", value=fight["bestPull"])
+  bestPullString = generateBestPullString(fight)
+  bestPullID = fight["bestPull"]["id"]
+  multiFightEmbed.add_field(name="Best Pull", 
+                            value=f'[{bestPullString}]({fightURLPrefix}#fight={bestPullID})')
+  print(generateBestPullString(fight))
+
+  # generateEmbedColor(fight["bestPull"], rankings)
+  multiFightEmbed.color = generateEmbedColor(fight["bestPull"], rankings)
   return multiFightEmbed
 
 def generateCompilationEmbed():
@@ -184,46 +233,23 @@ def generateEmbedFromReport(reportData: dict, link: str, description: str = "") 
      raise ReportDataError("The received report data is not correctly formatted or missing.")
   # print(reportData.get("data").get("reportData"))
   actors, dateStart, fights, rankings = extractReportFields(reportData)
-  
-  fightsNameSet =set([fight.get("name") for fight in fights])
-  # print(fights)
-  titleFight = ""
-  if len(fightsNameSet) == 1:
-     titleFight = next(iter(fightsNameSet))
-  else:
-    titleFight = "Multiple Fights"
-    description = "Fights: " + ", ".join([fightName for fightName in fightsNameSet])
-
-  pullTotal = len(fights)
 
   #The keys to both dicts are numbers.
   simplifiedRankings = dict(map(simplifyRanking, rankings))
   simplifiedActors = dict(map(simplifyActor, actors))
   simplifiedFights = reduceFights(fights, simplifiedRankings)
 
+  print(simplifiedRankings)
   returnEmbed = None
 
   if len(simplifiedFights) == 1:
-    returnEmbed = generateMultiFightEmbed(*list(simplifiedFights.items())[0], dateStart)
+    returnEmbed = generateMultiFightEmbed(simplifiedFights, dateStart, link, simplifiedRankings)
   else:
     returnEmbed = generateCompilationEmbed()
   # print(simplifiedActors)
   returnEmbed.url = link
   returnEmbed.description = description
   return returnEmbed
-  print(simplifiedFights)
-
-
-  # TODO: CHANGE DATE TO BE A DISCORD DATE TAG
-  reportEmbed = Embed(title=titleFight + " - " + dateString)
-  reportEmbed.description = description
-  reportEmbed.add_field(name="Pulls", value=pullTotal, inline=False)
-  reportEmbed.add_field(name="Clear?", value=True, inline=True)
-  reportEmbed.url = link
-
-  # print(dateString)
-
-  return reportEmbed
 
 if __name__ == "__main__":
   dir = os.path.dirname(__file__)
