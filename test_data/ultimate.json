@@ -2,6 +2,7 @@
 	"data": {
 		"reportData": {
 			"report": {
+				"code": "7Myb4A6dDq1HnWvc",
 				"masterData": {
 					"actors": [
 						{
@@ -913,8 +914,10 @@
 						"kill": false,
 						"lastPhase": 3,
 						"bossPercentage": 62.1,
+						"difficulty": 100,
 						"fightPercentage": 40.73,
-						"combatTime": 470846,
+						"startTime": 523,
+						"endTime": 471903,
 						"gameZone": {
 							"name": "The Binding Coil of Bahamut"
 						},
@@ -937,8 +940,10 @@
 						"kill": false,
 						"lastPhase": 1,
 						"bossPercentage": 4.82,
+						"difficulty": 100,
 						"fightPercentage": 80.96,
-						"combatTime": 128936,
+						"startTime": 498748,
+						"endTime": 628398,
 						"gameZone": {
 							"name": "The Binding Coil of Bahamut"
 						},
@@ -961,8 +966,10 @@
 						"kill": false,
 						"lastPhase": 3,
 						"bossPercentage": 59.46,
+						"difficulty": 100,
 						"fightPercentage": 40.72,
-						"combatTime": 477170,
+						"startTime": 654107,
+						"endTime": 1132079,
 						"gameZone": {
 							"name": "The Binding Coil of Bahamut"
 						},
@@ -985,8 +992,10 @@
 						"kill": false,
 						"lastPhase": 4,
 						"bossPercentage": 30.77,
+						"difficulty": 100,
 						"fightPercentage": 26.15,
-						"combatTime": 722803,
+						"startTime": 1163405,
+						"endTime": 1886966,
 						"gameZone": {
 							"name": "The Binding Coil of Bahamut"
 						},
@@ -1009,8 +1018,10 @@
 						"kill": false,
 						"lastPhase": 2,
 						"bossPercentage": 21.22,
+						"difficulty": 100,
 						"fightPercentage": 64.24,
-						"combatTime": 260989,
+						"startTime": 2018259,
+						"endTime": 2280009,
 						"gameZone": {
 							"name": "The Binding Coil of Bahamut"
 						},
@@ -1033,8 +1044,10 @@
 						"kill": false,
 						"lastPhase": 1,
 						"bossPercentage": 81.31,
+						"difficulty": 100,
 						"fightPercentage": 96.26,
-						"combatTime": 27337,
+						"startTime": 2314986,
+						"endTime": 2343083,
 						"gameZone": {
 							"name": "The Binding Coil of Bahamut"
 						},
@@ -1057,8 +1070,10 @@
 						"kill": false,
 						"lastPhase": 3,
 						"bossPercentage": 52.02,
+						"difficulty": 100,
 						"fightPercentage": 40.3,
-						"combatTime": 567801,
+						"startTime": 2455327,
+						"endTime": 3023754,
 						"gameZone": {
 							"name": "The Binding Coil of Bahamut"
 						},
@@ -1081,8 +1096,10 @@
 						"kill": false,
 						"lastPhase": 2,
 						"bossPercentage": 0.01,
+						"difficulty": 100,
 						"fightPercentage": 60,
-						"combatTime": 302546,
+						"startTime": 4238779,
+						"endTime": 4541949,
 						"gameZone": {
 							"name": "The Binding Coil of Bahamut"
 						},
@@ -1105,8 +1122,10 @@
 						"kill": false,
 						"lastPhase": 3,
 						"bossPercentage": 50.55,
+						"difficulty": 100,
 						"fightPercentage": 40.33,
-						"combatTime": 544629,
+						"startTime": 4570096,
+						"endTime": 5115614,
 						"gameZone": {
 							"name": "The Binding Coil of Bahamut"
 						},
@@ -1129,8 +1148,10 @@
 						"kill": false,
 						"lastPhase": 4,
 						"bossPercentage": 52.46,
+						"difficulty": 100,
 						"fightPercentage": 30.49,
-						"combatTime": 790198,
+						"startTime": 5336725,
+						"endTime": 6127684,
 						"gameZone": {
 							"name": "The Binding Coil of Bahamut"
 						},
@@ -1154,8 +1175,10 @@
 						"kill": false,
 						"lastPhase": 3,
 						"bossPercentage": 59.82,
+						"difficulty": 100,
 						"fightPercentage": 40.72,
-						"combatTime": 483372,
+						"startTime": 6161064,
+						"endTime": 6645331,
 						"gameZone": {
 							"name": "The Binding Coil of Bahamut"
 						},
@@ -1178,8 +1201,10 @@
 						"kill": false,
 						"lastPhase": 5,
 						"bossPercentage": 8.65,
+						"difficulty": 100,
 						"fightPercentage": 1.73,
-						"combatTime": 1091186,
+						"startTime": 6671809,
+						"endTime": 7763889,
 						"gameZone": {
 							"name": "The Binding Coil of Bahamut"
 						},
@@ -1203,8 +1228,10 @@
 						"kill": false,
 						"lastPhase": 2,
 						"bossPercentage": 0.01,
+						"difficulty": 100,
 						"fightPercentage": 60,
-						"combatTime": 299741,
+						"startTime": 7800378,
+						"endTime": 8101012,
 						"gameZone": {
 							"name": "The Binding Coil of Bahamut"
 						},
@@ -1227,8 +1254,10 @@
 						"kill": false,
 						"lastPhase": 3,
 						"bossPercentage": 53.76,
+						"difficulty": 100,
 						"fightPercentage": 40.3,
-						"combatTime": 571427,
+						"startTime": 8125302,
+						"endTime": 8697620,
 						"gameZone": {
 							"name": "The Binding Coil of Bahamut"
 						},

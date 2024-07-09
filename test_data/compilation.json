@@ -2,6 +2,7 @@
 	"data": {
 		"reportData": {
 			"report": {
+				"code": "CRh38LcT7BzAdHyr",
 				"masterData": {
 					"actors": [
 						{
@@ -3697,8 +3698,10 @@
 						"kill": false,
 						"lastPhase": 2,
 						"bossPercentage": 99.09,
+						"difficulty": 100,
 						"fightPercentage": 89.77,
-						"combatTime": 161098,
+						"startTime": 3420,
+						"endTime": 165323,
 						"gameZone": {
 							"name": "Medias Res"
 						},
@@ -3721,8 +3724,10 @@
 						"kill": false,
 						"lastPhase": 2,
 						"bossPercentage": 65.42,
+						"difficulty": 100,
 						"fightPercentage": 81.35,
-						"combatTime": 68045,
+						"startTime": 259488,
+						"endTime": 328201,
 						"gameZone": {
 							"name": "Medias Res"
 						},
@@ -3745,8 +3750,10 @@
 						"kill": false,
 						"lastPhase": 2,
 						"bossPercentage": 36.82,
+						"difficulty": 100,
 						"fightPercentage": 74.2,
-						"combatTime": 157987,
+						"startTime": 353433,
+						"endTime": 512045,
 						"gameZone": {
 							"name": "Medias Res"
 						},
@@ -3769,8 +3776,10 @@
 						"kill": false,
 						"lastPhase": 1,
 						"bossPercentage": 3.04,
+						"difficulty": 100,
 						"fightPercentage": 25.15,
-						"combatTime": 474907,
+						"startTime": 545212,
+						"endTime": 1020743,
 						"gameZone": {
 							"name": "Medias Res"
 						},
@@ -3793,8 +3802,10 @@
 						"kill": false,
 						"lastPhase": 5,
 						"bossPercentage": 68.1,
+						"difficulty": 100,
 						"fightPercentage": 23.4,
-						"combatTime": 525493,
+						"startTime": 1102089,
+						"endTime": 1628209,
 						"gameZone": {
 							"name": "Medias Res"
 						},
@@ -3817,8 +3828,10 @@
 						"kill": false,
 						"lastPhase": 5,
 						"bossPercentage": 67.07,
+						"difficulty": 100,
 						"fightPercentage": 23.35,
-						"combatTime": 546986,
+						"startTime": 1712683,
+						"endTime": 2260295,
 						"gameZone": {
 							"name": "Medias Res"
 						},
@@ -3841,8 +3854,10 @@
 						"kill": false,
 						"lastPhase": 6,
 						"bossPercentage": 65.48,
+						"difficulty": 100,
 						"fightPercentage": 16.54,
-						"combatTime": 709256,
+						"startTime": 2308120,
+						"endTime": 3018003,
 						"gameZone": {
 							"name": "Medias Res"
 						},
@@ -3866,8 +3881,10 @@
 						"kill": false,
 						"lastPhase": 1,
 						"bossPercentage": 12.62,
+						"difficulty": 100,
 						"fightPercentage": 93.44,
-						"combatTime": 107266,
+						"startTime": 3919524,
+						"endTime": 4028086,
 						"gameZone": {
 							"name": "Medias Res"
 						},
@@ -3890,8 +3907,10 @@
 						"kill": false,
 						"lastPhase": 2,
 						"bossPercentage": 99.27,
+						"difficulty": 100,
 						"fightPercentage": 89.81,
-						"combatTime": 166187,
+						"startTime": 4084346,
+						"endTime": 4251780,
 						"gameZone": {
 							"name": "Medias Res"
 						},
@@ -3914,8 +3933,10 @@
 						"kill": false,
 						"lastPhase": 6,
 						"bossPercentage": 30.99,
+						"difficulty": 100,
 						"fightPercentage": 13.09,
-						"combatTime": 780081,
+						"startTime": 4377192,
+						"endTime": 5158299,
 						"gameZone": {
 							"name": "Medias Res"
 						},
@@ -3939,8 +3960,10 @@
 						"kill": false,
 						"lastPhase": 1,
 						"bossPercentage": 100,
+						"difficulty": 100,
 						"fightPercentage": 29.9,
-						"combatTime": 445260,
+						"startTime": 5332269,
+						"endTime": 5778689,
 						"gameZone": {
 							"name": "Medias Res"
 						},
@@ -3963,8 +3986,10 @@
 						"kill": false,
 						"lastPhase": 3,
 						"bossPercentage": 68.99,
+						"difficulty": 100,
 						"fightPercentage": 57.24,
-						"combatTime": 233671,
+						"startTime": 5869340,
+						"endTime": 6104304,
 						"gameZone": {
 							"name": "Medias Res"
 						},
@@ -3987,8 +4012,10 @@
 						"kill": false,
 						"lastPhase": 2,
 						"bossPercentage": 39.24,
+						"difficulty": 100,
 						"fightPercentage": 74.81,
-						"combatTime": 139712,
+						"startTime": 6136375,
+						"endTime": 6277245,
 						"gameZone": {
 							"name": "Medias Res"
 						},
@@ -4011,8 +4038,10 @@
 						"kill": true,
 						"lastPhase": 0,
 						"bossPercentage": 0.01,
+						"difficulty": 100,
 						"fightPercentage": 0.01,
-						"combatTime": 103705,
+						"startTime": 6874428,
+						"endTime": 6979081,
 						"gameZone": {
 							"name": "Labyrinth of the Ancients"
 						},
@@ -4051,8 +4080,10 @@
 						"kill": true,
 						"lastPhase": 0,
 						"bossPercentage": 0.01,
+						"difficulty": 100,
 						"fightPercentage": 0.01,
-						"combatTime": 64514,
+						"startTime": 7153459,
+						"endTime": 7218965,
 						"gameZone": {
 							"name": "Labyrinth of the Ancients"
 						},
@@ -4091,8 +4122,10 @@
 						"kill": true,
 						"lastPhase": 0,
 						"bossPercentage": 0.01,
+						"difficulty": 100,
 						"fightPercentage": 0.01,
-						"combatTime": 56489,
+						"startTime": 7414004,
+						"endTime": 7471119,
 						"gameZone": {
 							"name": "Labyrinth of the Ancients"
 						},
@@ -4131,8 +4164,10 @@
 						"kill": false,
 						"lastPhase": 0,
 						"bossPercentage": 3.67,
+						"difficulty": 100,
 						"fightPercentage": 3.67,
-						"combatTime": 98881,
+						"startTime": 7504451,
+						"endTime": 7604134,
 						"gameZone": {
 							"name": "Labyrinth of the Ancients"
 						},
@@ -4171,8 +4206,10 @@
 						"kill": true,
 						"lastPhase": 0,
 						"bossPercentage": 0.01,
+						"difficulty": 100,
 						"fightPercentage": 0.01,
-						"combatTime": 124399,
+						"startTime": 7658882,
+						"endTime": 7784677,
 						"gameZone": {
 							"name": "Labyrinth of the Ancients"
 						},
@@ -4211,8 +4248,10 @@
 						"kill": false,
 						"lastPhase": 2,
 						"bossPercentage": 99.16,
+						"difficulty": 100,
 						"fightPercentage": 89.79,
-						"combatTime": 176745,
+						"startTime": 10024890,
+						"endTime": 10202707,
 						"gameZone": {
 							"name": "Medias Res"
 						},
@@ -4235,8 +4274,10 @@
 						"kill": false,
 						"lastPhase": 6,
 						"bossPercentage": 45.22,
+						"difficulty": 100,
 						"fightPercentage": 14.52,
-						"combatTime": 737182,
+						"startTime": 10376904,
+						"endTime": 11114888,
 						"gameZone": {
 							"name": "Medias Res"
 						},
@@ -4260,8 +4301,10 @@
 						"kill": false,
 						"lastPhase": 3,
 						"bossPercentage": 59.59,
+						"difficulty": 100,
 						"fightPercentage": 54.89,
-						"combatTime": 242537,
+						"startTime": 11164933,
+						"endTime": 11408362,
 						"gameZone": {
 							"name": "Medias Res"
 						},
@@ -4284,8 +4327,10 @@
 						"kill": false,
 						"lastPhase": 7,
 						"bossPercentage": 13.92,
+						"difficulty": 100,
 						"fightPercentage": 1.39,
-						"combatTime": 1072754,
+						"startTime": 11435174,
+						"endTime": 12508149,
 						"gameZone": {
 							"name": "Medias Res"
 						},
@@ -4309,8 +4354,10 @@
 						"kill": false,
 						"lastPhase": 3,
 						"bossPercentage": 51.98,
+						"difficulty": 100,
 						"fightPercentage": 52.99,
-						"combatTime": 253407,
+						"startTime": 12590441,
+						"endTime": 12844829,
 						"gameZone": {
 							"name": "Medias Res"
 						},
@@ -4333,8 +4380,10 @@
 						"kill": false,
 						"lastPhase": 2,
 						"bossPercentage": 36.05,
+						"difficulty": 100,
 						"fightPercentage": 74.01,
-						"combatTime": 149594,
+						"startTime": 12869710,
+						"endTime": 13020368,
 						"gameZone": {
 							"name": "Medias Res"
 						},
@@ -4357,8 +4406,10 @@
 						"kill": false,
 						"lastPhase": 6,
 						"bossPercentage": 66.31,
+						"difficulty": 100,
 						"fightPercentage": 16.63,
-						"combatTime": 718463,
+						"startTime": 13050661,
+						"endTime": 13770018,
 						"gameZone": {
 							"name": "Medias Res"
 						},
@@ -4382,8 +4433,10 @@
 						"kill": false,
 						"lastPhase": 6,
 						"bossPercentage": 0.83,
+						"difficulty": 100,
 						"fightPercentage": 10.08,
-						"combatTime": 837410,
+						"startTime": 13808975,
+						"endTime": 14647273,
 						"gameZone": {
 							"name": "Medias Res"
 						},
@@ -4407,8 +4460,10 @@
 						"kill": true,
 						"lastPhase": 7,
 						"bossPercentage": 0.01,
+						"difficulty": 100,
 						"fightPercentage": 0,
-						"combatTime": 1092033,
+						"startTime": 14835733,
+						"endTime": 15928794,
 						"gameZone": {
 							"name": "Medias Res"
 						},
@@ -4432,8 +4487,10 @@
 						"kill": true,
 						"lastPhase": 0,
 						"bossPercentage": 0.01,
+						"difficulty": 10,
 						"fightPercentage": 0.01,
-						"combatTime": null,
+						"startTime": 18598993,
+						"endTime": 19502645,
 						"gameZone": {
 							"name": "Castrum Meridianum"
 						},
@@ -4453,8 +4510,10 @@
 						"kill": true,
 						"lastPhase": 0,
 						"bossPercentage": 30.14,
+						"difficulty": 100,
 						"fightPercentage": 30.14,
-						"combatTime": 297835,
+						"startTime": 19777359,
+						"endTime": 20075864,
 						"gameZone": {
 							"name": "Amdapor Keep"
 						},
@@ -4478,8 +4537,10 @@
 						"kill": true,
 						"lastPhase": 0,
 						"bossPercentage": 0.01,
+						"difficulty": 100,
 						"fightPercentage": 0.01,
-						"combatTime": 105109,
+						"startTime": 20588522,
+						"endTime": 20694166,
 						"gameZone": {
 							"name": "Labyrinth of the Ancients"
 						},
@@ -4518,8 +4579,10 @@
 						"kill": true,
 						"lastPhase": 0,
 						"bossPercentage": 0.01,
+						"difficulty": 100,
 						"fightPercentage": 0.01,
-						"combatTime": 70179,
+						"startTime": 20892622,
+						"endTime": 20963691,
 						"gameZone": {
 							"name": "Labyrinth of the Ancients"
 						},
@@ -4558,8 +4621,10 @@
 						"kill": true,
 						"lastPhase": 0,
 						"bossPercentage": 0.01,
+						"difficulty": 100,
 						"fightPercentage": 0.01,
-						"combatTime": 65342,
+						"startTime": 21190519,
+						"endTime": 21256305,
 						"gameZone": {
 							"name": "Labyrinth of the Ancients"
 						},
@@ -4598,8 +4663,10 @@
 						"kill": true,
 						"lastPhase": 0,
 						"bossPercentage": 0.01,
+						"difficulty": 100,
 						"fightPercentage": 0.01,
-						"combatTime": 125928,
+						"startTime": 21337507,
+						"endTime": 21464149,
 						"gameZone": {
 							"name": "Labyrinth of the Ancients"
 						},
@@ -4638,8 +4705,10 @@
 						"kill": true,
 						"lastPhase": 0,
 						"bossPercentage": 0.01,
+						"difficulty": 10,
 						"fightPercentage": 0.01,
-						"combatTime": null,
+						"startTime": 23149565,
+						"endTime": 23845079,
 						"gameZone": {
 							"name": "The Great Gubal Library"
 						},

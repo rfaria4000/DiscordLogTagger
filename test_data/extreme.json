@@ -2,6 +2,7 @@
 	"data": {
 		"reportData": {
 			"report": {
+				"code": "rT4xKXkcLgbAqa1d",
 				"masterData": {
 					"actors": [
 						{
@@ -2397,8 +2398,10 @@
 						"kill": false,
 						"lastPhase": 0,
 						"bossPercentage": 61.24,
+						"difficulty": 100,
 						"fightPercentage": 61.24,
-						"combatTime": 74438,
+						"startTime": 370,
+						"endTime": 75432,
 						"gameZone": {
 							"name": "The Abyssal Fracture"
 						},
@@ -2421,8 +2424,10 @@
 						"kill": false,
 						"lastPhase": 0,
 						"bossPercentage": 63.85,
+						"difficulty": 100,
 						"fightPercentage": 63.85,
-						"combatTime": 201600,
+						"startTime": 160566,
+						"endTime": 362968,
 						"gameZone": {
 							"name": "The Abyssal Fracture"
 						},
@@ -2445,8 +2450,10 @@
 						"kill": false,
 						"lastPhase": 0,
 						"bossPercentage": 54.34,
+						"difficulty": 100,
 						"fightPercentage": 54.34,
-						"combatTime": 274642,
+						"startTime": 419840,
+						"endTime": 695106,
 						"gameZone": {
 							"name": "The Abyssal Fracture"
 						},
@@ -2469,8 +2476,10 @@
 						"kill": false,
 						"lastPhase": 0,
 						"bossPercentage": 57.92,
+						"difficulty": 100,
 						"fightPercentage": 57.92,
-						"combatTime": 245593,
+						"startTime": 1353638,
+						"endTime": 1600129,
 						"gameZone": {
 							"name": "The Abyssal Fracture"
 						},
@@ -2493,8 +2502,10 @@
 						"kill": false,
 						"lastPhase": 0,
 						"bossPercentage": 63.4,
+						"difficulty": 100,
 						"fightPercentage": 63.4,
-						"combatTime": 195283,
+						"startTime": 1627744,
+						"endTime": 1824187,
 						"gameZone": {
 							"name": "The Abyssal Fracture"
 						},
@@ -2517,8 +2528,10 @@
 						"kill": false,
 						"lastPhase": 0,
 						"bossPercentage": 63.09,
+						"difficulty": 100,
 						"fightPercentage": 63.09,
-						"combatTime": 201631,
+						"startTime": 1852887,
+						"endTime": 2055278,
 						"gameZone": {
 							"name": "The Abyssal Fracture"
 						},
@@ -2541,8 +2554,10 @@
 						"kill": false,
 						"lastPhase": 0,
 						"bossPercentage": 61.83,
+						"difficulty": 100,
 						"fightPercentage": 61.83,
-						"combatTime": 202060,
+						"startTime": 2103751,
+						"endTime": 2306482,
 						"gameZone": {
 							"name": "The Abyssal Fracture"
 						},
@@ -2565,8 +2580,10 @@
 						"kill": false,
 						"lastPhase": 0,
 						"bossPercentage": 55.02,
+						"difficulty": 100,
 						"fightPercentage": 55.02,
-						"combatTime": 276578,
+						"startTime": 2845304,
+						"endTime": 3122905,
 						"gameZone": {
 							"name": "The Abyssal Fracture"
 						},
@@ -2589,8 +2606,10 @@
 						"kill": false,
 						"lastPhase": 0,
 						"bossPercentage": 61.83,
+						"difficulty": 100,
 						"fightPercentage": 61.83,
-						"combatTime": 195185,
+						"startTime": 3147885,
+						"endTime": 3343607,
 						"gameZone": {
 							"name": "The Abyssal Fracture"
 						},
@@ -2613,8 +2632,10 @@
 						"kill": true,
 						"lastPhase": 0,
 						"bossPercentage": 0.01,
+						"difficulty": 100,
 						"fightPercentage": 0.01,
-						"combatTime": 620324,
+						"startTime": 3366977,
+						"endTime": 3988286,
 						"gameZone": {
 							"name": "The Abyssal Fracture"
 						},
@@ -2638,8 +2659,10 @@
 						"kill": false,
 						"lastPhase": 0,
 						"bossPercentage": 14.08,
+						"difficulty": 100,
 						"fightPercentage": 14.08,
-						"combatTime": 458341,
+						"startTime": 4381162,
+						"endTime": 4840093,
 						"gameZone": {
 							"name": "The Abyssal Fracture"
 						},
@@ -2662,8 +2685,10 @@
 						"kill": false,
 						"lastPhase": 0,
 						"bossPercentage": 61.15,
+						"difficulty": 100,
 						"fightPercentage": 61.15,
-						"combatTime": 195154,
+						"startTime": 5011797,
+						"endTime": 5207487,
 						"gameZone": {
 							"name": "The Abyssal Fracture"
 						},
@@ -2686,8 +2711,10 @@
 						"kill": false,
 						"lastPhase": 0,
 						"bossPercentage": 40.58,
+						"difficulty": 100,
 						"fightPercentage": 40.58,
-						"combatTime": 388308,
+						"startTime": 5228683,
+						"endTime": 5617840,
 						"gameZone": {
 							"name": "The Abyssal Fracture"
 						},
@@ -2710,8 +2737,10 @@
 						"kill": false,
 						"lastPhase": 0,
 						"bossPercentage": 41.4,
+						"difficulty": 100,
 						"fightPercentage": 41.4,
-						"combatTime": 347256,
+						"startTime": 5637832,
+						"endTime": 5985843,
 						"gameZone": {
 							"name": "The Abyssal Fracture"
 						},
@@ -2735,8 +2764,10 @@
 						"kill": true,
 						"lastPhase": 0,
 						"bossPercentage": 0.01,
+						"difficulty": 100,
 						"fightPercentage": 0.01,
-						"combatTime": 562635,
+						"startTime": 6490642,
+						"endTime": 7054041,
 						"gameZone": {
 							"name": "The Abyssal Fracture"
 						},
@@ -2760,8 +2791,10 @@
 						"kill": true,
 						"lastPhase": 0,
 						"bossPercentage": 0.01,
+						"difficulty": 100,
 						"fightPercentage": 0.01,
-						"combatTime": 534435,
+						"startTime": 7644630,
+						"endTime": 8179735,
 						"gameZone": {
 							"name": "The Abyssal Fracture"
 						},
@@ -2784,8 +2817,10 @@
 						"kill": true,
 						"lastPhase": 0,
 						"bossPercentage": 0.01,
+						"difficulty": 100,
 						"fightPercentage": 0.01,
-						"combatTime": 560920,
+						"startTime": 8426034,
+						"endTime": 8987487,
 						"gameZone": {
 							"name": "The Abyssal Fracture"
 						},
@@ -2809,8 +2844,10 @@
 						"kill": true,
 						"lastPhase": 0,
 						"bossPercentage": 0.01,
+						"difficulty": 100,
 						"fightPercentage": 0.01,
-						"combatTime": 511847,
+						"startTime": 9145530,
+						"endTime": 9657913,
 						"gameZone": {
 							"name": "The Abyssal Fracture"
 						},

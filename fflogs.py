@@ -31,7 +31,8 @@ class FFLogsSession:
           lastPhase
           bossPercentage
           fightPercentage
-          combatTime
+          startTime
+          endTime
           difficulty
           friendlyPlayers
           encounterID

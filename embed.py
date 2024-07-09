@@ -4,6 +4,10 @@ from datetime import datetime
 from typing import Tuple, List
 import json, os
 
+# Clear values for the purpose of comparing fights.
+# Makes a clear of any fight with a rating higher than a pull off any fight.
+CLEAR_RATING_BONUS = 3
+CLEAR_THRESHOLD = 4
 
 class ReportDataError(Exception):
   """The received reportData is not correctly formatted or missing."""
@@ -74,6 +78,9 @@ def simplifyActor(actor: dict) -> list:
    """Convert a dict representing an actor to a list of id and name."""
    return actor.values()
 
+def getFightDuration(fight: dict) -> int:
+  return fight["endTime"] - fight["startTime"]
+
 def compareFights(fightOne: dict, fightTwo: dict, simplifiedRankings: dict) -> dict:
   """
   Return the more salient of the two fights.
@@ -82,22 +89,25 @@ def compareFights(fightOne: dict, fightTwo: dict, simplifiedRankings: dict) -> d
   For right now, ultimate fights with different names will prioritize longer fights.
   """
   # TODO: IMPLEMENT FIGHT COMPARISON FOR SIMPLIFY FIGHTS
-  fightOneTier = generateFightTier(fightOne, simplifiedRankings)
-  fightTwoTier = generateFightTier(fightTwo, simplifiedRankings)
+  fightOneRating = generateFightTier(fightOne, simplifiedRankings)
+  fightTwoRating = generateFightTier(fightTwo, simplifiedRankings)
 
-  if fightTwo["kill"] and not fightOne["kill"]:
-    if fightTwoTier > 0: return fightTwo
-  if fightOne["kill"] and not fightTwo["kill"]:
-    if fightOneTier > 0: return fightOne
+  if fightOneRating and fightOne["kill"]: fightOneRating += CLEAR_RATING_BONUS
+  if fightTwoRating and fightTwo["kill"]: fightTwoRating += CLEAR_RATING_BONUS
+
+  if fightOneRating != fightTwoRating: 
+    return fightOne if fightOneRating > fightTwoRating else fightTwo
   
-  #TODO: CHANGE COMBAT TIME TO START/END TIME FOR COMPATABILITY?
+  if fightOneRating < CLEAR_THRESHOLD:
+    return fightOne if fightOne["fightPercentage"] < fightTwo["fightPercentage"] else fightTwo
 
-  # if fightTwoTier > fightOneTier: return fightTwo
-  # if fightTwo["kill"] and not fightOne["kill"]: return fightTwo
-  # if fightTwo["name"] != fightOne["name"]:
-  #   if fightTwo["combatTime"] and fightTwo["combatTime"]:
-  #      if fightTwo["combatTime"] > fightOne["combatTime"]: return fightTwo
-  return fightOne
+  isFightOneShorter = getFightDuration(fightOne) < getFightDuration(fightTwo)
+  # Same fights should prio shorter kill time
+  if fightOne["name"] == fightTwo["name"]:
+    return fightOne if isFightOneShorter else fightTwo
+  else:
+    #Clears of different fights of same tier should prioritize longer fights?
+    return fightTwo if isFightOneShorter else fightOne
 
 def reduceFights(fights: dict, simplifiedRankings: dict):
   """Converts list of fight objects into a dict of unique fights with aggregate data."""
@@ -117,7 +127,10 @@ def reduceFights(fights: dict, simplifiedRankings: dict):
     if fight['kill']: 
       fightDict[encounterID]["clearPulls"].append(fight["id"])
       fightDict[encounterID]["fightTier"] = generateFightTier(fight, simplifiedRankings)
-  # TODO: FINISH FUNCTION
+    fightDict[encounterID]["bestPull"] = compareFights(fight, 
+                                                       fightDict[encounterID]["bestPull"],
+                                                       simplifiedRankings)
+  # TODO: FINISH FUNCTION 
   print(fightDict)
 
 def generateEmbedFromReport(reportData: dict, link: str, description: str = "") -> Embed:
@@ -157,6 +170,7 @@ def generateEmbedFromReport(reportData: dict, link: str, description: str = "") 
   # print(simplifiedActors)
   print(reduceFights(fights, simplifiedRankings))
 
+  # TODO: CHANGE DATE TO BE A DISCORD DATE TAG
   reportEmbed = Embed(title=titleFight + " - " + dateString)
   reportEmbed.description = description
   reportEmbed.add_field(name="Pulls", value=pullTotal, inline=False)
