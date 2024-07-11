@@ -62,7 +62,6 @@ def extractReportFields(reportData: dict) -> Tuple[List[object], str, List[objec
   flattenedReport = reportData.get("data").get("reportData").get("report")
 
   actorList = flattenedReport.get("masterData").get("actors")
-  #TODO: ADD ACTOR TYPE TO QUERY FOR BETTER FILTERING
 
   startTimeUNIX = flattenedReport.get("startTime")  // 1000 # millisecond precision
 
@@ -79,7 +78,7 @@ def simplifyRanking(ranking: dict) -> tuple:
      for player in role["characters"]:
         # Tanks and healers have a combined player field - this prunes that 
         if "name_2" in player: continue
-        characterParseList.append((player["name"], player["rankPercent"]))
+        characterParseList.append((player["name"], player["rankPercent"], player["class"]))
   return (ranking.get("fightID"), characterParseList)
   
 def simplifyActor(actor: dict) -> list:
@@ -167,7 +166,7 @@ def generateEmbedColor(fight: dict, rankings: dict):
 
   bestParse = 0
   if fight["id"] in rankings:
-    for character, parse in rankings[fight["id"]]:
+    for character, parse, job in rankings[fight["id"]]:
       bestParse = max(bestParse, parse) 
   else: return UNRANKED_CLEAR_HEXCODE #mint green
   
@@ -178,7 +177,7 @@ def generateClearEmoji(fightID: dict, rankings:dict) -> str:
   if not fightID in rankings: return UNRANKED_CLEAR_EMOJI
 
   bestParse = 0
-  for character, parse in rankings[fightID]:
+  for character, parse, job in rankings[fightID]:
     bestParse = max(bestParse, parse) 
 
   return PARSE_EMOJIS[generateRankingColorIndex(bestParse)]
@@ -211,6 +210,7 @@ def generateSingleFightEmbed():
 
 def generateMultiFightEmbed(simplifiedFights: dict, dateStart: str, link: str, rankings: dict) -> Embed:
   """Generate Embed for a report featuring multiple fights of the same encounter."""
+  print(rankings)
   encounterID, fight = extractSimplifiedFight(simplifiedFights)
   linkObject = urlparse(link)
   fightURLPrefix = f"{linkObject.scheme}://{linkObject.netloc + linkObject.path}"
@@ -230,10 +230,10 @@ def generateMultiFightEmbed(simplifiedFights: dict, dateStart: str, link: str, r
   # TODO: CHANGE BEST PULL TO FASTEST PARSE
   multiFightEmbed.add_field(name="Best Pull", 
                             value=f'[{bestPullString}]({fightURLPrefix}#fight={bestPullID})',
-                            inline=True)
+                            inline=False)
 
-  multiFightEmbed.add_field(name="Best Parse", value="[Ybolgblaet Lammstymm - 100](https://www.google.com)",
-                            inline=True)
+  multiFightEmbed.add_field(name="Best Parse", value="[Ybolgblaet Lammstymm - On track to a 100 on Machinist](https://www.google.com)",
+                            inline=False)
   # TODO: ADD BEST PARSE FIELD WITH LINK TO FIGHT WITH THAT PARSE
 
   # generateEmbedColor(fight["bestPull"], rankings)
@@ -290,6 +290,6 @@ if __name__ == "__main__":
     mockExtremeReport = json.load(f)
   with open(os.path.join(dir, "test_data/compilation.json"), "r") as f:
      mockCompilationReport = json.load(f)
-  generateEmbedFromReport(mockExtremeReport, "lol")
+  print(generateEmbedFromReport(mockExtremeReport, "lol").to_dict())
   generateEmbedFromReport(mockUltReport, "nope")
   generateEmbedFromReport(mockCompilationReport, "big boy")

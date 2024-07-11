@@ -21,6 +21,9 @@ class FFLogsSession:
           }
         }
         
+        owner{
+          name
+        }
         startTime
         rankings
         

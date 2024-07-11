@@ -75,6 +75,7 @@ async def on_message(message):
       embedVar = discord.Embed(title="The Unending Coil of Bahamut - June 18, 2024",color=0xffd1dc)
       embedVar.description = "Testing out what a description looks like"
       embedVar.set_thumbnail(url="https://assets.rpglogs.com/img/ff/bosses/1060-icon.jpg")
+      embedVar.set_author(name="Uploaded by DSXXI")
       embedVar.add_field(name="Pulls", value="13")
       # embedVar.add_field(name="Date", value="Today", inline=True)
       embedVar.add_field(name="Clear?", value="Yes")
