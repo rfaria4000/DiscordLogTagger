@@ -10,6 +10,14 @@ import json, os, math
 CLEAR_RATING_BONUS = 3
 CLEAR_THRESHOLD = 4
 
+WIPE_HEXCODE = 0xff0000
+UNRANKED_CLEAR_HEXCODE = 0xabebc6
+PARSE_HEXCODES = [0x666666, 0x1eff00, 0x0070ff, 0xa335ee, 0xff8000, 0xe268a8, 0xe5cc80]
+
+NO_CLEARS_EMOJI = "❌"
+UNRANKED_CLEAR_EMOJI = "✅"
+PARSE_EMOJIS = ["🩶", "💚", "💙", "💜", "🧡", "🩷", "💛"]
+
 class ReportDataError(Exception):
   """The received reportData is not correctly formatted or missing."""
 
@@ -140,25 +148,30 @@ def chooseHighlightFight(simplifiedFights: dict) -> int:
   """Returns the highlight fight for the sake of thumbnails."""
   pass
 
+def generateRankingColorIndex(parse: int) -> int:
+  """Return an index 0-6 for a list of possible outputs based on a parse."""
+  # Ranges can be found here: 
+  # https://www.archon.gg/ffxiv/articles/help/rankings-and-parses
+  if parse < 25: return 0
+  elif parse < 50: return 1
+  elif parse < 75: return 2
+  elif parse < 95: return 3
+  elif parse < 99: return 4
+  elif parse == 99: return 5
+  else: return 6
+
 # TODO: Think about multiFight embed colors 
 def generateEmbedColor(fight: dict, rankings: dict):
   """Generate a hex code for an Embed based on a fight."""
-  if not fight["kill"]: return 0xff0000
+  if not fight["kill"]: return WIPE_HEXCODE #red
 
   bestParse = 0
   if fight["id"] in rankings:
     for character, parse in rankings[fight["id"]]:
       if parse > bestParse: bestParse = parse
-  else: return 0xabebc6 
+  else: return UNRANKED_CLEAR_HEXCODE #mint green
   
-  if bestParse < 25: return 0x666666
-  elif bestParse < 50: return 0x1eff00
-  elif bestParse < 75: return 0x0070ff
-  elif bestParse < 95: return 0xa335ee
-  elif bestParse < 99: return 0xff8000
-  elif bestParse == 99: return 0xe268a8
-  else: return 0xe5cc80
-  # Match cases are in Python 3.10 and above D:
+  return PARSE_HEXCODES[generateRankingColorIndex(bestParse)]
 
 def generateClearEmoji(fightID: dict, rankings:dict) -> str:
   """Generate an emoji based on a cleared fights."""
@@ -167,6 +180,8 @@ def generateClearEmoji(fightID: dict, rankings:dict) -> str:
   bestParse = 0
   for character, parse in rankings[fightID]:
     bestParse = max(bestParse, parse) 
+
+
 
   if bestParse < 25: return "🩶"
   elif bestParse < 50: return "💚"
@@ -211,20 +226,24 @@ def generateMultiFightEmbed(simplifiedFights: dict, dateStart: str, link: str, r
   print(encounterID, fight)
   multiFightEmbed = Embed(title=f'{fight["name"]} - <t:{dateStart}:D>')
   multiFightEmbed.set_thumbnail(url=generateImageURL(encounterID))
-  multiFightEmbed.add_field(name="Pulls", value=fight["pullCount"])
+  multiFightEmbed.add_field(name="Pulls", value=fight["pullCount"], inline=False)
   clearPulls = ""
   if not fight["clearPulls"]: 
     clearPulls += "❌"
   else:
-    # TODO: Change checkmark with a colored dot for the best parse in a ranked fight
     for fightID in fight["clearPulls"]:
       clearPulls += f"[{generateClearEmoji(fightID, rankings)}]({fightURLPrefix}#fight={fightID}) "
-  multiFightEmbed.add_field(name="Clear Pulls?", value=clearPulls)
+  multiFightEmbed.add_field(name="Clear Pulls?", value=clearPulls, inline=False)
   bestPullString = generateBestPullString(fight)
   bestPullID = fight["bestPull"]["id"]
+  # TODO: CHANGE BEST PULL TO FASTEST PARSE
   multiFightEmbed.add_field(name="Best Pull", 
-                            value=f'[{bestPullString}]({fightURLPrefix}#fight={bestPullID})')
-  print(generateBestPullString(fight))
+                            value=f'[{bestPullString}]({fightURLPrefix}#fight={bestPullID})',
+                            inline=True)
+
+  multiFightEmbed.add_field(name="Best Parse", value="[Ybolgblaet Lammstymm - 100](https://www.google.com)",
+                            inline=True)
+  # TODO: ADD BEST PARSE FIELD WITH LINK TO FIGHT WITH THAT PARSE
 
   # generateEmbedColor(fight["bestPull"], rankings)
   multiFightEmbed.color = generateEmbedColor(fight["bestPull"], rankings)
