@@ -3,6 +3,8 @@ from datetime import datetime
 
 from typing import Tuple, List
 from urllib.parse import urlparse
+from collections import namedtuple
+
 import json, os, math
 
 # Clear values for the purpose of comparing fights.
@@ -17,6 +19,8 @@ PARSE_HEXCODES = [0x666666, 0x1eff00, 0x0070ff, 0xa335ee, 0xff8000, 0xe268a8, 0x
 NO_CLEARS_EMOJI = "❌"
 UNRANKED_CLEAR_EMOJI = "✅"
 PARSE_EMOJIS = ["🩶", "💚", "💙", "💜", "🧡", "🩷", "💛"]
+
+Ranking = namedtuple("Ranking", ["character", "parse", "job"])
 
 class ReportDataError(Exception):
   """The received reportData is not correctly formatted or missing."""
@@ -78,7 +82,7 @@ def simplifyRanking(ranking: dict) -> tuple:
      for player in role["characters"]:
         # Tanks and healers have a combined player field - this prunes that 
         if "name_2" in player: continue
-        characterParseList.append((player["name"], player["rankPercent"], player["class"]))
+        characterParseList.append(Ranking(player["name"], player["rankPercent"], player["class"]))
   return (ranking.get("fightID"), characterParseList)
   
 def simplifyActor(actor: dict) -> list:
@@ -127,7 +131,8 @@ def reduceFights(fights: dict, simplifiedRankings: dict) -> dict:
          "pullCount": 1,
          "clearPulls": [],
          "bestPull": fight,
-         "fightTier": generateFightTier(fight, simplifiedRankings)
+         "fightTier": generateFightTier(fight, simplifiedRankings),
+         "bestParse": None
       }
       continue
     
@@ -161,13 +166,14 @@ def generateRankingColorIndex(parse: int) -> int:
 
 # TODO: Think about multiFight embed colors 
 def generateEmbedColor(fight: dict, rankings: dict):
+  print(rankings)
   """Generate a hex code for an Embed based on a fight."""
   if not fight["kill"]: return WIPE_HEXCODE #red
 
   bestParse = 0
   if fight["id"] in rankings:
-    for character, parse, job in rankings[fight["id"]]:
-      bestParse = max(bestParse, parse) 
+    for ranking in rankings[fight["id"]]:
+      bestParse = max(bestParse, ranking.parse) 
   else: return UNRANKED_CLEAR_HEXCODE #mint green
   
   return PARSE_HEXCODES[generateRankingColorIndex(bestParse)]
@@ -177,8 +183,8 @@ def generateClearEmoji(fightID: dict, rankings:dict) -> str:
   if not fightID in rankings: return UNRANKED_CLEAR_EMOJI
 
   bestParse = 0
-  for character, parse, job in rankings[fightID]:
-    bestParse = max(bestParse, parse) 
+  for ranking in rankings[fightID]:
+    bestParse = max(bestParse, ranking.parse) 
 
   return PARSE_EMOJIS[generateRankingColorIndex(bestParse)]
 
