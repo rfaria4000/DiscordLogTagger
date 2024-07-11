@@ -168,29 +168,20 @@ def generateEmbedColor(fight: dict, rankings: dict):
   bestParse = 0
   if fight["id"] in rankings:
     for character, parse in rankings[fight["id"]]:
-      if parse > bestParse: bestParse = parse
+      bestParse = max(bestParse, parse) 
   else: return UNRANKED_CLEAR_HEXCODE #mint green
   
   return PARSE_HEXCODES[generateRankingColorIndex(bestParse)]
 
 def generateClearEmoji(fightID: dict, rankings:dict) -> str:
   """Generate an emoji based on a cleared fights."""
-  if not fightID in rankings: return "✅"
+  if not fightID in rankings: return UNRANKED_CLEAR_EMOJI
 
   bestParse = 0
   for character, parse in rankings[fightID]:
     bestParse = max(bestParse, parse) 
 
-
-
-  if bestParse < 25: return "🩶"
-  elif bestParse < 50: return "💚"
-  elif bestParse < 75: return "💙"
-  elif bestParse < 95: return "💜"
-  elif bestParse < 99: return "🧡"
-  elif bestParse == 99: return "🩷"
-  else: return "💛"
-
+  return PARSE_EMOJIS[generateRankingColorIndex(bestParse)]
 
 def generateImageURL(encounterID: dict) -> str:
   """Generate a URL to a thumbnail based on the fight."""
