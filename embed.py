@@ -12,6 +12,8 @@ import json, os, math
 CLEAR_RATING_BONUS = 3
 CLEAR_THRESHOLD = 4
 
+#TODO: Make a config file that will pull custom emojis for the bot
+
 WIPE_HEXCODE = 0xff0000
 UNRANKED_CLEAR_HEXCODE = 0xabebc6
 PARSE_HEXCODES = [0x666666, 0x1eff00, 0x0070ff, 0xa335ee, 0xff8000, 0xe268a8, 0xe5cc80]
