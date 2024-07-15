@@ -34,7 +34,6 @@ class FightTier(Enum):
   SAVAGE = 2
   ULTIMATE = 3
 
-
 # Aim: report Data -> ReportFields ->Dict[fightID, EncounterSummary]->ReportSummary
 #                                 \->       RankingSummary        -/
 class ReportDataError(Exception):
@@ -53,11 +52,33 @@ def makeTierEvaluator(rankings: dict) -> Callable[[dict], int]:
 def bestRanking(fightID: int) -> ReportSummary:
   pass
 
+def extractReportFields(reportData: dict) -> Tuple[List[object], str, List[object], List[object]]:
+  """
+  Extracts the list of actors, date, and list of fights from a report.
+   
+   Args:
+    `reportData`: A dict representing a json object containing reportData.
+
+  Returns:
+    A tuple containing the list of actor objects, the date of the report in 
+    "Month Day, Year" format, a list of fights, and a possibly empty list of 
+    rankings.
+  """
+  flattenedReport = reportData["data"]["reportData"]["report"]
+  owner = flattenedReport["owner"]["name"]
+  actorList = flattenedReport["masterData"]["actors"]
+  startTime = flattenedReport["startTime"]  // 1000 # millisecond precision
+  fightsList = flattenedReport["fights"]
+  rankingsList = flattenedReport["rankings"]["data"]
+
+  return ReportFields(owner, actorList, startTime, fightsList, rankingsList)
+
 def processFights(reportData: dict) -> dict:
   """Returns a dict of fights, mapping fightIDs to fight data."""
   if "errors" in reportData:
     raise ReportDataError("The received report data is not correctly formatted or missing.")
   
+  report = extractReportFields(reportData)
   return ReportSummary()
   
 if __name__ == "__main__":
