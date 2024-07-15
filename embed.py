@@ -277,7 +277,7 @@ def generateEmbedFromReport(reportData: dict, link: str, description: str = "") 
   simplifiedActors = dict(map(simplifyActor, actors))
   simplifiedFights = reduceFights(fights, simplifiedRankings)
 
-  print(simplifiedRankings)
+  print(simplifiedFights)
   returnEmbed = None
 
   if len(simplifiedFights) == 1:

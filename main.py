@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 from discord import app_commands
 from urllib.parse import urlparse
 from fflogs import FFLogsSession
+
 import embed
 
 class FFLogsReportError(Exception):
@@ -72,6 +73,16 @@ async def on_message(message):
       return
   
   if message.content == "Test Single":
+    testFieldinLine = {
+       "name": "Sleepy Eldwin",
+       "value": "💛 100 on <:Machinist:1261552059455373392>",
+       "inline": True
+    }
+    testFieldoutLine = {
+      "name": "Sleepy Eldwin",
+      "value": "💛 100 on <:Machinist:1261552059455373392>",
+      "inline": False
+    }
     singleDict = {
         "title": "Hydaelyn - <t:1720845660:R>",
         "url": "https://www.fflogs.com/reports/9mT1qQCXvtFnWpNJ#fight=3",
@@ -90,19 +101,25 @@ async def on_message(message):
           },
           {
               "name": "Party Members",
-              "value": "Sleepy Eldwin\nBruce Elegance\nShalis Addock\nAraiah Scythe\nLaarion Stormwind\nFama Red\n Yunalesca Strife\nAhrih Valencia",
+              "value": "\n".join(list(map(((lambda x: "<:Machinist:1261552059455373392> " + x)), ["Sleepy Eldwin", "Bruce Elegance", "Shalis Addock", "Araiah Scythe", "Laarion Stormwind", "Fama Red", "Yunalesca Strife", "Ahrih Valencia"]))),
               "inline": True
           },
+          # ["Sleepy Eldwin", "Bruce Elegance", "Shalis Addock", "Araiah Scythe", "Laarion Stormwind", "Fama Red", "Yunalesca Strife", "Ahrih Valencia"]
           {
-              "name": "Job",
-              "value": "<:Machinist:1261552059455373392>\n<:Samurai:1261552153806241792>\n<:Monk:1261552060193570846>\n<:Summoner:1261552067999305738>\n<:Paladin:1261551950604927107>\n<:DarkKnight:1261551947723440128>\n<:Scholar:1261552002987458630>\n<:WhiteMage:1261552003956346880>",
-              "inline": True
-          },
-          {
-             "name": "Parse",
-             "value": "💛 100\n💜 84\n💜 77\n💚 28\n💜 92\n💜 82\n💙 67\n🩶 3",
+             "name": "Parses",
+             "value": "\n".join(["<:Machinist:1261552059455373392> 💛 100", "<:Machinist:1261552059455373392> 💛 100", "<:Machinist:1261552059455373392> 💛 100","<:Machinist:1261552059455373392> 💛 100", "<:Machinist:1261552059455373392> 💛 100", "<:Machinist:1261552059455373392> 💛 100", "<:Machinist:1261552059455373392> 💛 100", "<:Machinist:1261552059455373392> 💛 100"]),
              "inline": True
           }
+          # {
+          #     "name": "Job",
+          #     "value": "<:Machinist:1261552059455373392>\n<:Samurai:1261552153806241792>\n<:Monk:1261552060193570846>\n<:Summoner:1261552067999305738>\n<:Paladin:1261551950604927107>\n<:DarkKnight:1261551947723440128>\n<:Scholar:1261552002987458630>\n<:WhiteMage:1261552003956346880>",
+          #     "inline": True
+          # },
+          # {
+          #    "name": "Parse",
+          #    "value": "💛 100\n💜 84\n💜 77\n💚 28\n💜 92\n💜 82\n💙 67\n🩶 3",
+          #    "inline": True
+          # }
         ]
      }
     await message.channel.send(embed=discord.Embed.from_dict(singleDict))
