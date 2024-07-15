@@ -39,12 +39,12 @@ class FightTier(Enum):
 class ReportDataError(Exception):
   """The received reportData is not correctly formatted or missing."""
 
-def makeTierEvaluator(rankings: dict) -> Callable[[dict], int]:
+def makeTierEvaluator(rankingSummaryDict: Dict[int, RankingSummary]) -> Callable[[dict], int]:
   """Return a function that returns the tier of a fight."""
   def evaluateDifficulty(fight: dict) -> int:
     if fight["lastPhase"] > 0: return FightTier.ULTIMATE
     if fight["difficulty"] == 101: return FightTier.SAVAGE
-    if fight["id"] in rankings.keys(): return FightTier.EXTREME
+    if fight["id"] in rankingSummaryDict.keys(): return FightTier.EXTREME
     return FightTier.UNRANKED
   
   return evaluateDifficulty
@@ -52,7 +52,19 @@ def makeTierEvaluator(rankings: dict) -> Callable[[dict], int]:
 def bestRanking(fightID: int) -> ReportSummary:
   pass
 
-def extractReportFields(reportData: dict) -> Tuple[List[object], str, List[object], List[object]]:
+def generateFightRankingTuples(ranking: dict) -> Tuple[int, RankingSummary]:
+  """Convert a ranking object into a tuple with fightIDs and list of player parses."""
+  rankingSummaryList = []
+  for role in ranking["roles"].values():
+     for player in role["characters"]:
+        # Tanks and healers have a combined player field - this prunes that 
+        if "name_2" in player: continue
+        rankingSummaryList.append(RankingSummary(player["name"], 
+                                                 player["rankPercent"], 
+                                                 player["class"]))
+  return (ranking.get("fightID"), rankingSummaryList)
+
+def extractReportFields(reportData: dict) -> Tuple[str, List[object], int, List[object], List[object]]:
   """
   Extracts the list of actors, date, and list of fights from a report.
    
@@ -79,7 +91,10 @@ def processFights(reportData: dict) -> dict:
     raise ReportDataError("The received report data is not correctly formatted or missing.")
   
   report = extractReportFields(reportData)
-  return ReportSummary()
+  # print(report.rankings)
+  fightRankings = dict(map(generateFightRankingTuples, report.rankings))
+  print(fightRankings)
+  return ReportSummary(report.owner, report.startTime)
   
 if __name__ == "__main__":
   #TODO: bring over testing function from embed
@@ -91,4 +106,4 @@ if __name__ == "__main__":
     mockExtremeReport = json.load(f)
   with open(os.path.join(dir, "test_data/compilation.json"), "r") as f:
      mockCompilationReport = json.load(f)
-  print(processFights(mockUltReport))
+  print(processFights(mockExtremeReport))
