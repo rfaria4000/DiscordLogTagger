@@ -5,6 +5,7 @@ from dotenv import load_dotenv
 from discord import app_commands
 from urllib.parse import urlparse
 from fflogs import FFLogsSession
+from processfights import processFights
 
 import embed
 
@@ -50,8 +51,9 @@ async def tag(interaction, link: str, description:str =""):
   try:
       logReportCode = getFFLogReportCode(link)
       reportData = ffLogsSession.getReportData(logReportCode)
-      reportEmbed = embed.generateEmbedFromReport(reportData, link, description)
-      await interaction.response.send_message(embed = reportEmbed)
+      await interaction.response.send_message(content="test")
+      # reportEmbed = embed.generateEmbedFromReport(reportData, link, description)
+      # await interaction.response.send_message(embed = reportEmbed)
   except FFLogsReportError as exc:
     await interaction.response.send_message(exc, ephemeral=True)
   except embed.ReportDataError as exc:

@@ -1,12 +1,11 @@
 from discord import Embed
-from datetime import datetime
-
-from typing import Tuple, List
-from urllib.parse import urlparse
+from typing import Tuple, List, NamedTuple
 from collections import namedtuple
 from enum import IntEnum
+from urllib.parse import urlparse
 
-import json, os, math
+import processfights as pf
+import json, os, math, re
 
 class PullState(IntEnum):
   WIPE = 0
@@ -30,136 +29,6 @@ UNRANKED_CLEAR_EMOJI = "✅"
 PARSE_EMOJIS = ["🩶", "💚", "💙", "💜", "🧡", "🩷", "💛"]
 
 Ranking = namedtuple("Ranking", ["character", "parse", "job"])
-
-class ReportDataError(Exception):
-  """The received reportData is not correctly formatted or missing."""
-
-def isFightUltimate(fight: dict) -> bool:
-  """Returns whether a fight is an Ultimate."""
-  return fight.get("lastPhase") > 0
-
-def isFightSavage(fight: dict) -> bool:
-  """Returns whether a fight is a Savage."""
-  return fight.get("difficulty") == 101
-
-def isFightExtreme(fight:dict, simplifiedRankings: dict) -> bool:
-  """Returns whether a fight is an Extreme."""
-  return fight["id"] in simplifiedRankings.keys()
-
-def generateFightTier(fight:dict, simplifiedRankings: dict) -> int:
-  """
-  Returns an int corresponding to the tier of a fight.
-
-  A 3 indicates an Ultimate fight.
-  A 2 indicates a Savage fight.
-  A 1 indicates a ranked Extreme fight (only on kill).
-  A 0 indicates an unranked Extreme or any other fight.
-  """
-  if isFightUltimate(fight): return 3
-  if isFightSavage(fight): return 2
-  if isFightExtreme(fight, simplifiedRankings): return 1
-  return 0
-
-def extractReportFields(reportData: dict) -> Tuple[List[object], str, List[object], List[object]]:
-  """
-  Extracts the list of actors, date, and list of fights from a report.
-   
-   Args:
-    `reportData`: A dict representing a json object containing reportData.
-
-  Returns:
-    A tuple containing the list of actor objects, the date of the report in 
-    "Month Day, Year" format, a list of fights, and a possibly empty list of 
-    rankings.
-  """
-  flattenedReport = reportData.get("data").get("reportData").get("report")
-
-  actorList = flattenedReport.get("masterData").get("actors")
-
-  startTimeUNIX = flattenedReport.get("startTime")  // 1000 # millisecond precision
-
-  fightsList = flattenedReport.get("fights")
-
-  rankingsList = flattenedReport.get("rankings").get("data")
-
-  return actorList, startTimeUNIX, fightsList, rankingsList
-
-def simplifyRanking(ranking: dict) -> tuple:
-  """Convert a ranking object into a tuple with fightIDs and list of player parses."""
-  characterParseList = []
-  for role in ranking["roles"].values():
-     for player in role["characters"]:
-        # Tanks and healers have a combined player field - this prunes that 
-        if "name_2" in player: continue
-        characterParseList.append(Ranking(player["name"], player["rankPercent"], player["class"]))
-  return (ranking.get("fightID"), characterParseList)
-  
-def simplifyActor(actor: dict) -> list:
-   """Convert a dict representing an actor to a list of id and name."""
-   return actor.values()
-
-def getFightDuration(fight: dict) -> int:
-  return fight["endTime"] - fight["startTime"]
-
-def compareFights(fightOne: dict, fightTwo: dict, simplifiedRankings: dict) -> dict:
-  """
-  Return the more salient of the two fights.
-
-  Priority is, in order: clear (if above tier 0), fight difficulty, fight duration.
-  For right now, fights with different names in the same tier will prioritize longer fights.
-  """
-
-  fightOneRating = generateFightTier(fightOne, simplifiedRankings)
-  fightTwoRating = generateFightTier(fightTwo, simplifiedRankings)
-
-  if fightOneRating and fightOne["kill"]: fightOneRating += CLEAR_RATING_BONUS
-  if fightTwoRating and fightTwo["kill"]: fightTwoRating += CLEAR_RATING_BONUS
-
-  if fightOneRating != fightTwoRating: 
-    return fightOne if fightOneRating > fightTwoRating else fightTwo
-  
-  if fightOneRating < CLEAR_THRESHOLD:
-    return fightOne if fightOne["fightPercentage"] < fightTwo["fightPercentage"] else fightTwo
-
-  isFightOneShorter = getFightDuration(fightOne) < getFightDuration(fightTwo)
-
-  if fightOne["name"] == fightTwo["name"]:
-    return fightOne if isFightOneShorter else fightTwo
-  else:
-    return fightTwo if isFightOneShorter else fightOne
-
-def reduceFights(fights: dict, simplifiedRankings: dict) -> dict:
-  """Converts list of fight objects into a dict of unique fights with aggregate data."""
-  uniqueFightDict = {}
-  for fight in fights:
-    encounterID = fight["encounterID"]
-
-    if not encounterID in uniqueFightDict.keys():
-      uniqueFightDict[encounterID] = {
-         "name": fight["name"],
-         "pullCount": 1,
-         "clearPulls": [],
-         "bestPull": fight,
-         "fightTier": generateFightTier(fight, simplifiedRankings),
-         "bestParse": None
-      }
-      continue
-    
-    uniqueFight = uniqueFightDict[encounterID]
-    uniqueFight["pullCount"] += 1
-    
-    if fight['kill']: 
-      uniqueFight["clearPulls"].append(fight["id"])
-      uniqueFight["fightTier"] = generateFightTier(fight, simplifiedRankings)
-    
-    uniqueFight["bestPull"] = compareFights(fight, 
-                                            uniqueFight["bestPull"],
-                                            simplifiedRankings)
-  return uniqueFightDict
-
-def chooseHighlightFight(simplifiedFights: dict) -> int:
-  """Returns the highlight fight for the sake of thumbnails."""
-  pass
 
 def generateRankingColorIndex(parse: int) -> int:
   """Return an index 0-6 for a list of possible outputs based on a parse."""
@@ -296,15 +165,33 @@ def generateEmbedFromReport(reportData: dict, link: str, description: str = "") 
   returnEmbed.description = description
   return returnEmbed
 
+def generateEmbed(reportData: dict, link:str, desc:str = "") -> Embed:
+  parsedLink = urlparse(link)
+  specificFight = None
+  if parsedLink.fragment:
+    try:
+      specificFight = int(re.search("(?<=fight=).*(?=&)", parsedLink.fragment).group())
+    except Exception:
+      pass
+  processedFight = pf.processFights(reportData, specificFight)
+
+  # if specificFight: return generateSingleFightEmbed()
+  # if len(processedFight.fightSummaries) == 1: return generateMultiFightEmbed()
+  # return generateCompilationEmbed()
+
 if __name__ == "__main__":
+  testLinkUltNoFragment = """
+    https://www.fflogs.com/reports/7Myb4A6dDq1HnWvc
+  """
   dir = os.path.dirname(__file__)
   mockUltReport, mockExtremeReport, mockCompilationReport = None, None, None
   with open(os.path.join(dir, "test_data/ultimate.json"), "r") as f:
     mockUltReport = json.load(f)
-  with open(os.path.join(dir, "test_data/extreme.json"), "r") as f:
-    mockExtremeReport = json.load(f)
-  with open(os.path.join(dir, "test_data/compilation.json"), "r") as f:
-     mockCompilationReport = json.load(f)
-  print(generateEmbedFromReport(mockExtremeReport, "lol").to_dict())
-  generateEmbedFromReport(mockUltReport, "nope")
-  generateEmbedFromReport(mockCompilationReport, "big boy")
+  generateEmbed(mockUltReport, testLinkUltNoFragment)
+  # with open(os.path.join(dir, "test_data/extreme.json"), "r") as f:
+  #   mockExtremeReport = json.load(f)
+  # with open(os.path.join(dir, "test_data/compilation.json"), "r") as f:
+  #    mockCompilationReport = json.load(f)
+  # print(generateEmbedFromReport(mockExtremeReport, "lol").to_dict())
+  # generateEmbedFromReport(mockUltReport, "nope")
+  # generateEmbedFromReport(mockCompilationReport, "big boy")
