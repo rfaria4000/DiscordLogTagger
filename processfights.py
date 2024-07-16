@@ -157,7 +157,7 @@ def populateActors(encounters: list, actors: Dict[int, str], rankings):
     friendlyPlayers = highlightPull["friendlyPlayers"]
     
     if highlightPull["id"] in rankings.keys():
-      encountersCopy[index]["hightlightPull"]["friendlyPlayers"] = rankings[highlightPull["id"]]
+      encountersCopy[index]["highlightPull"]["friendlyPlayers"] = rankings[highlightPull["id"]]
     else:
       playerList = list(map((lambda actorID: RankingSummary(actors[actorID][0], -1, actors[actorID][1])), friendlyPlayers))
       filteredPlayers = list(filter(lambda player: player[2] != "LimitBreak", playerList))
@@ -194,4 +194,4 @@ if __name__ == "__main__":
     mockExtremeReport = json.load(f)
   with open(os.path.join(dir, "test_data/compilation.json"), "r") as f:
      mockCompilationReport = json.load(f)
-  print(processFights(mockExtremeReport, 2))
+  print(processFights(mockExtremeReport))
