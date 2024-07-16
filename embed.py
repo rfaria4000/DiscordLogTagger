@@ -4,13 +4,20 @@ from datetime import datetime
 from typing import Tuple, List
 from urllib.parse import urlparse
 from collections import namedtuple
+from enum import IntEnum
 
 import json, os, math
 
-# Clear values for the purpose of comparing fights.
-# Makes a clear of any fight with a rating higher than a pull off any fight.
-CLEAR_RATING_BONUS = 3
-CLEAR_THRESHOLD = 4
+class PullState(IntEnum):
+  WIPE = 0
+  KILL = 1
+  GRAY = 2
+  GREEN = 3
+  BLUE = 4
+  PURPLE = 5
+  ORANGE = 6
+  PINK = 7
+  GOLD = 8
 
 #TODO: Make a config file that will pull custom emojis for the bot
 

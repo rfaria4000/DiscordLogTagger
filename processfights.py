@@ -1,6 +1,6 @@
 from typing import Callable, Tuple, NamedTuple, Dict, List
 from enum import Enum, IntEnum
-
+from copy import deepcopy
 import os, json
 
 class ReportFields(NamedTuple):
@@ -27,7 +27,7 @@ class ClearPull(NamedTuple):
 class ReportSummary(NamedTuple):
   owner: str
   startTime: int
-  fightSummaries: Dict[int, dict]
+  fightSummaries: list
 
 class FightTier(IntEnum):
   UNRANKED = 0
@@ -40,18 +40,8 @@ class FightTier(IntEnum):
 CLEAR_RATING_BONUS = 3
 CLEAR_THRESHOLD = 4
 
-class PullState(Enum):
-  WIPE = 0
-  KILL = 1
-  GRAY = 2
-  GREEN = 3
-  BLUE = 4
-  PURPLE = 5
-  ORANGE = 6
-  PINK = 7
-  GOLD = 8
 # Aim: report Data -> ReportFields ->Dict[fightID, EncounterSummary]->ReportSummary
-#                                 \->       RankingSummary        -/
+#                                  \--------RankingSummary---------/
 class ReportDataError(Exception):
   """The received reportData is not correctly formatted or missing."""
 
@@ -133,7 +123,7 @@ def extractReportFields(reportData: dict) -> Tuple[str, List[object], int, List[
 
   return ReportFields(owner, actorList, startTime, fightsList, rankingsList)
 
-def generateEncounters(fights: dict, rankingFunctions: RankingFunctions) -> dict:
+def generateEncounters(fights: dict, rankingFunctions: RankingFunctions) -> list:
   """Converts list of fight objects into a dict of unique fights with aggregate data."""
   encounters = {}
   for fight in fights:
@@ -144,7 +134,7 @@ def generateEncounters(fights: dict, rankingFunctions: RankingFunctions) -> dict
          "name": fight["name"],
          "pullCount": 0,
          "clearPulls": [],
-         "bestPull": fight,
+         "highlightPull": fight,
          "fightTier": rankingFunctions.difficulty(fight)
       }
 
@@ -157,26 +147,45 @@ def generateEncounters(fights: dict, rankingFunctions: RankingFunctions) -> dict
       )
       fightEncounter["fightTier"] = rankingFunctions.difficulty(fight)
     
-    fightEncounter["bestPull"] = rankingFunctions.compareFights(fight, fightEncounter["bestPull"])
-  return encounters
+    fightEncounter["highlightPull"] = rankingFunctions.compareFights(fight, fightEncounter["highlightPull"])
+  return list(encounters.values())
 
-def processFights(reportData: dict) -> dict:
+def populateActors(encounters: list, actors: Dict[int, str], rankings):
+  encountersCopy = deepcopy(encounters)
+  for index, encounter in enumerate(encountersCopy):
+    highlightPull = encounter["highlightPull"]
+    friendlyPlayers = highlightPull["friendlyPlayers"]
+    
+    if highlightPull["id"] in rankings.keys():
+      encountersCopy[index]["hightlightPull"]["friendlyPlayers"] = rankings[highlightPull["id"]]
+    else:
+      playerList = list(map((lambda actorID: RankingSummary(actors[actorID][0], -1, actors[actorID][1])), friendlyPlayers))
+      filteredPlayers = list(filter(lambda player: player[2] != "LimitBreak", playerList))
+      encountersCopy[index]["highlightPull"]["friendlyPlayers"] = filteredPlayers
+  
+  return encountersCopy
+
+def processFights(reportData: dict, specifiedFight: int = None) -> dict:
   """Returns a dict of fights, mapping fightIDs to fight data."""
   if "errors" in reportData:
     raise ReportDataError("The received report data is not correctly formatted or missing.")
   
   report: ReportFields = extractReportFields(reportData)
-  # print(report.rankings)
+  actors = dict(map((lambda actor: (list(actor.values())[0], list(actor.values())[1:])), report.actors))
   fightRankings: Dict[int, RankingSummary] = dict(map(generateFightRankingTuples, report.rankings))
   hydratedFunctions = makeRankingFunctions(fightRankings)
-  encounters = generateEncounters(report.fights, hydratedFunctions)
-  print(encounters)
-  #TODO: Hydrate actors for best pull
-
-  return ReportSummary(report.owner, report.startTime)
+  encounters = None
+  
+  if specifiedFight:
+    fight = list(filter((lambda fight: fight["id"] == specifiedFight), report.fights))
+    encounters = generateEncounters(fight, hydratedFunctions)
+  else:
+    encounters = generateEncounters(report.fights, hydratedFunctions)
+  
+  populatedEncounters = populateActors(encounters, actors, fightRankings)
+  return ReportSummary(report.owner, report.startTime, populatedEncounters)
   
 if __name__ == "__main__":
-  #TODO: bring over testing function from embed
   dir = os.path.dirname(__file__)
   mockUltReport, mockExtremeReport, mockCompilationReport = None, None, None
   with open(os.path.join(dir, "test_data/ultimate.json"), "r") as f:
@@ -185,4 +194,4 @@ if __name__ == "__main__":
     mockExtremeReport = json.load(f)
   with open(os.path.join(dir, "test_data/compilation.json"), "r") as f:
      mockCompilationReport = json.load(f)
-  print(processFights(mockExtremeReport))
+  print(processFights(mockExtremeReport, 2))

@@ -3,1214 +3,1515 @@
 		"reportData": {
 			"report": {
 				"code": "rT4xKXkcLgbAqa1d",
-        "owner": {
+				"owner": {
 					"name": "dapc"
 				},
 				"masterData": {
 					"actors": [
 						{
 							"id": -1,
-							"name": "Environment"
+							"name": "Environment",
+							"subType": "NPC"
 						},
 						{
 							"id": 1,
-							"name": "Zeromus"
+							"name": "Zeromus",
+							"subType": "Boss"
 						},
 						{
 							"id": 2,
-							"name": "Idol Yenn'akane"
+							"name": "Idol Yenn'akane",
+							"subType": "Samurai"
 						},
 						{
 							"id": 3,
-							"name": "Zeromus"
+							"name": "Zeromus",
+							"subType": "NPC"
 						},
 						{
 							"id": 4,
-							"name": "Kehlow Kehlow"
+							"name": "Kehlow Kehlow",
+							"subType": "Monk"
 						},
 						{
 							"id": 5,
-							"name": "Vindriana Hyborn"
+							"name": "Vindriana Hyborn",
+							"subType": "Gunbreaker"
 						},
 						{
 							"id": 6,
-							"name": "Automaton Queen"
+							"name": "Automaton Queen",
+							"subType": "Pet"
 						},
 						{
 							"id": 7,
-							"name": "Cymry Orpheum"
+							"name": "Cymry Orpheum",
+							"subType": "Summoner"
 						},
 						{
 							"id": 8,
-							"name": "Sharisper Knoll"
+							"name": "Sharisper Knoll",
+							"subType": "WhiteMage"
 						},
 						{
 							"id": 9,
-							"name": "Kasumi Miyumi"
+							"name": "Kasumi Miyumi",
+							"subType": "Sage"
 						},
 						{
 							"id": 10,
-							"name": "Vaixa Sunday"
+							"name": "Vaixa Sunday",
+							"subType": "Machinist"
 						},
 						{
 							"id": 11,
-							"name": "Andriel Rahz"
+							"name": "Andriel Rahz",
+							"subType": "Paladin"
 						},
 						{
 							"id": 12,
-							"name": "Demi-Bahamut"
+							"name": "Demi-Bahamut",
+							"subType": "Pet"
 						},
 						{
 							"id": 13,
-							"name": "Multiple Players"
+							"name": "Multiple Players",
+							"subType": "LimitBreak"
 						},
 						{
 							"id": 14,
-							"name": "Carbuncle"
+							"name": "Carbuncle",
+							"subType": "Pet"
 						},
 						{
 							"id": 15,
-							"name": "Topaz Titan"
+							"name": "Topaz Titan",
+							"subType": "Pet"
 						},
 						{
 							"id": 16,
-							"name": "Emerald Garuda"
+							"name": "Emerald Garuda",
+							"subType": "Pet"
 						},
 						{
 							"id": 17,
-							"name": "Multiple Enemies"
+							"name": "Multiple Enemies",
+							"subType": "NPC"
 						},
 						{
 							"id": 18,
-							"name": "Comet"
+							"name": "Comet",
+							"subType": "NPC"
 						},
 						{
 							"id": 19,
-							"name": "Ruby Ifrit"
+							"name": "Ruby Ifrit",
+							"subType": "Pet"
 						},
 						{
 							"id": 20,
-							"name": "liturgic bell"
+							"name": "liturgic bell",
+							"subType": "Pet"
 						},
 						{
 							"id": 21,
-							"name": "Demi-Phoenix"
+							"name": "Demi-Phoenix",
+							"subType": "Pet"
 						},
 						{
 							"id": 22,
-							"name": "toxic bubble"
+							"name": "toxic bubble",
+							"subType": "NPC"
 						},
 						{
 							"id": 23,
-							"name": ""
+							"name": "",
+							"subType": "Unknown"
 						},
 						{
 							"id": 24,
-							"name": "Astraphel Starweaver"
+							"name": "Astraphel Starweaver",
+							"subType": "Unknown"
 						},
 						{
 							"id": 25,
-							"name": "Virlomi Devi"
+							"name": "Virlomi Devi",
+							"subType": "Samurai"
 						},
 						{
 							"id": 26,
-							"name": "Doggo Botto"
+							"name": "Doggo Botto",
+							"subType": "Unknown"
 						},
 						{
 							"id": 27,
-							"name": "Marishi Bukiko"
+							"name": "Marishi Bukiko",
+							"subType": "Reaper"
 						},
 						{
 							"id": 28,
-							"name": "Yrys Ram-bou"
+							"name": "Yrys Ram-bou",
+							"subType": "Paladin"
 						},
 						{
 							"id": 29,
-							"name": "Brynjar Ragnarok"
+							"name": "Brynjar Ragnarok",
+							"subType": "Warrior"
 						},
 						{
 							"id": 30,
-							"name": "Ta'tzuyuh Nunh"
+							"name": "Ta'tzuyuh Nunh",
+							"subType": "Gunbreaker"
 						},
 						{
 							"id": 31,
-							"name": "Edsuu Highwind"
+							"name": "Edsuu Highwind",
+							"subType": "Machinist"
 						},
 						{
 							"id": 32,
-							"name": "Alastor Bloodwing"
+							"name": "Alastor Bloodwing",
+							"subType": "Gunbreaker"
 						},
 						{
 							"id": 33,
-							"name": "Nergui Dataq"
+							"name": "Nergui Dataq",
+							"subType": "Astrologian"
 						},
 						{
 							"id": 34,
-							"name": "Aster Crunchwrap"
+							"name": "Aster Crunchwrap",
+							"subType": "Astrologian"
 						},
 						{
 							"id": 35,
-							"name": "Flow Haymacker"
+							"name": "Flow Haymacker",
+							"subType": "DarkKnight"
 						},
 						{
 							"id": 36,
-							"name": "Saya Minatsuki"
+							"name": "Saya Minatsuki",
+							"subType": "Astrologian"
 						},
 						{
 							"id": 37,
-							"name": "V'dam Thel"
+							"name": "V'dam Thel",
+							"subType": "Gunbreaker"
 						},
 						{
 							"id": 38,
-							"name": "Aela Rin"
+							"name": "Aela Rin",
+							"subType": "Reaper"
 						},
 						{
 							"id": 39,
-							"name": "Ta'tzuyuh Nunh"
+							"name": "Ta'tzuyuh Nunh",
+							"subType": "Reaper"
 						},
 						{
 							"id": 40,
-							"name": "Dio Dedoldia"
+							"name": "Dio Dedoldia",
+							"subType": "Gunbreaker"
 						},
 						{
 							"id": 41,
-							"name": "Spacierslia Milynes"
+							"name": "Spacierslia Milynes",
+							"subType": "Sage"
 						},
 						{
 							"id": 42,
-							"name": ""
+							"name": "",
+							"subType": "Unknown"
 						},
 						{
 							"id": 43,
-							"name": "Lilyana Archer"
+							"name": "Lilyana Archer",
+							"subType": "RedMage"
 						},
 						{
 							"id": 44,
-							"name": "Indignation Judgement"
+							"name": "Indignation Judgement",
+							"subType": "Summoner"
 						},
 						{
 							"id": 45,
-							"name": "Indignation Judgement"
+							"name": "Indignation Judgement",
+							"subType": "Unknown"
 						},
 						{
 							"id": 46,
-							"name": "Yo Yi"
+							"name": "Yo Yi",
+							"subType": "WhiteMage"
 						},
 						{
 							"id": 47,
-							"name": "Soulvanya Solstice"
+							"name": "Soulvanya Solstice",
+							"subType": "Reaper"
 						},
 						{
 							"id": 48,
-							"name": "Yo Yi"
+							"name": "Yo Yi",
+							"subType": "RedMage"
 						},
 						{
 							"id": 49,
-							"name": "Avathorn Renar'us"
+							"name": "Avathorn Renar'us",
+							"subType": "Gunbreaker"
 						},
 						{
 							"id": 50,
-							"name": "Avathorn Renar'us"
+							"name": "Avathorn Renar'us",
+							"subType": "Reaper"
 						},
 						{
 							"id": 51,
-							"name": "Hex Vitale"
+							"name": "Hex Vitale",
+							"subType": "Reaper"
 						},
 						{
 							"id": 52,
-							"name": "Virlomi Devi"
+							"name": "Virlomi Devi",
+							"subType": "Ninja"
 						},
 						{
 							"id": 53,
-							"name": "Kazan Kaujin"
+							"name": "Kazan Kaujin",
+							"subType": "DarkKnight"
 						},
 						{
 							"id": 54,
-							"name": "Ellie Mavus"
+							"name": "Ellie Mavus",
+							"subType": "Reaper"
 						},
 						{
 							"id": 55,
-							"name": "Cornelius Fortemlius"
+							"name": "Cornelius Fortemlius",
+							"subType": "Machinist"
 						},
 						{
 							"id": 56,
-							"name": "Retro Icy"
+							"name": "Retro Icy",
+							"subType": "Reaper"
 						},
 						{
 							"id": 57,
-							"name": "Vigil Strayed"
+							"name": "Vigil Strayed",
+							"subType": "Machinist"
 						},
 						{
 							"id": 58,
-							"name": "Yo Yi"
+							"name": "Yo Yi",
+							"subType": "Ninja"
 						},
 						{
 							"id": 59,
-							"name": "Laureine Maknaryden"
+							"name": "Laureine Maknaryden",
+							"subType": "Gunbreaker"
 						},
 						{
 							"id": 60,
-							"name": "Jaenelle Chaosborne"
+							"name": "Jaenelle Chaosborne",
+							"subType": "Summoner"
 						},
 						{
 							"id": 61,
-							"name": "Zaeluer Med"
+							"name": "Zaeluer Med",
+							"subType": "Bard"
 						},
 						{
 							"id": 62,
-							"name": "Lorilae Karafrost"
+							"name": "Lorilae Karafrost",
+							"subType": "Gunbreaker"
 						},
 						{
 							"id": 63,
-							"name": "Hana Arborea"
+							"name": "Hana Arborea",
+							"subType": "WhiteMage"
 						},
 						{
 							"id": 64,
-							"name": "Ellie Mavus"
+							"name": "Ellie Mavus",
+							"subType": "Gunbreaker"
 						},
 						{
 							"id": 65,
-							"name": "Story Bear"
+							"name": "Story Bear",
+							"subType": "Warrior"
 						},
 						{
 							"id": 66,
-							"name": "Maple Pug"
+							"name": "Maple Pug",
+							"subType": "Paladin"
 						},
 						{
 							"id": 67,
-							"name": "Elsie Xan'el"
+							"name": "Elsie Xan'el",
+							"subType": "BlackMage"
 						},
 						{
 							"id": 68,
-							"name": "Katherine Cactuar"
+							"name": "Katherine Cactuar",
+							"subType": "Unknown"
 						},
 						{
 							"id": 69,
-							"name": "Mahogany Chaise"
+							"name": "Mahogany Chaise",
+							"subType": "Machinist"
 						},
 						{
 							"id": 70,
-							"name": "Sakura Tohsaka"
+							"name": "Sakura Tohsaka",
+							"subType": "DarkKnight"
 						},
 						{
 							"id": 71,
-							"name": "Kinanna Lafleur"
+							"name": "Kinanna Lafleur",
+							"subType": "Gunbreaker"
 						},
 						{
 							"id": 72,
-							"name": "Dante Torobolino"
+							"name": "Dante Torobolino",
+							"subType": "Dragoon"
 						},
 						{
 							"id": 73,
-							"name": "Eistera Kha"
+							"name": "Eistera Kha",
+							"subType": "Dancer"
 						},
 						{
 							"id": 74,
-							"name": "Skylar Starmore"
+							"name": "Skylar Starmore",
+							"subType": "Scholar"
 						},
 						{
 							"id": 75,
-							"name": "Eos"
+							"name": "Eos",
+							"subType": "Pet"
 						},
 						{
 							"id": 76,
-							"name": "Shilvara Ara"
+							"name": "Shilvara Ara",
+							"subType": "Unknown"
 						},
 						{
 							"id": 77,
-							"name": "Irenia Selen"
+							"name": "Irenia Selen",
+							"subType": "Gunbreaker"
 						},
 						{
 							"id": 78,
-							"name": "Sir Bluvins"
+							"name": "Sir Bluvins",
+							"subType": "Warrior"
 						},
 						{
 							"id": 79,
-							"name": "Layla Egneel"
+							"name": "Layla Egneel",
+							"subType": "WhiteMage"
 						},
 						{
 							"id": 80,
-							"name": "Eistera Kha"
+							"name": "Eistera Kha",
+							"subType": "Scholar"
 						},
 						{
 							"id": 81,
-							"name": "Sayaya Saya"
+							"name": "Sayaya Saya",
+							"subType": "Ninja"
 						},
 						{
 							"id": 82,
-							"name": "Sayaya Saya"
+							"name": "Sayaya Saya",
+							"subType": "Samurai"
 						},
 						{
 							"id": 83,
-							"name": "Yumishiori Rhul"
+							"name": "Yumishiori Rhul",
+							"subType": "Warrior"
 						},
 						{
 							"id": 84,
-							"name": "Rhandric Rhul"
+							"name": "Rhandric Rhul",
+							"subType": "BlackMage"
 						},
 						{
 							"id": 85,
-							"name": "Ricard Greywoode"
+							"name": "Ricard Greywoode",
+							"subType": "Machinist"
 						},
 						{
 							"id": 86,
-							"name": "Nyxen Arklight"
+							"name": "Nyxen Arklight",
+							"subType": "BlackMage"
 						},
 						{
 							"id": 87,
-							"name": "Zukken Carapoto"
+							"name": "Zukken Carapoto",
+							"subType": "Unknown"
 						},
 						{
 							"id": 88,
-							"name": "Joshua Hardin"
+							"name": "Joshua Hardin",
+							"subType": "Unknown"
 						},
 						{
 							"id": 89,
-							"name": "Estellia Lu'naa"
+							"name": "Estellia Lu'naa",
+							"subType": "Reaper"
 						},
 						{
 							"id": 90,
-							"name": "Ruby Primrose"
+							"name": "Ruby Primrose",
+							"subType": "Machinist"
 						},
 						{
 							"id": 91,
-							"name": "Ciri Altera"
+							"name": "Ciri Altera",
+							"subType": "Paladin"
 						},
 						{
 							"id": 92,
-							"name": "Rhotsyng Sterrkhansyn"
+							"name": "Rhotsyng Sterrkhansyn",
+							"subType": "RedMage"
 						},
 						{
 							"id": 93,
-							"name": "Aria Wesker"
+							"name": "Aria Wesker",
+							"subType": "WhiteMage"
 						},
 						{
 							"id": 94,
-							"name": "Avos Omega"
+							"name": "Avos Omega",
+							"subType": "Samurai"
 						},
 						{
 							"id": 95,
-							"name": "Automaton Queen"
+							"name": "Automaton Queen",
+							"subType": "Pet"
 						},
 						{
 							"id": 96,
-							"name": "Effexor Soma"
+							"name": "Effexor Soma",
+							"subType": "Unknown"
 						},
 						{
 							"id": 97,
-							"name": "Lulu Pillow"
+							"name": "Lulu Pillow",
+							"subType": "Unknown"
 						},
 						{
 							"id": 98,
-							"name": "Ramu Ne"
+							"name": "Ramu Ne",
+							"subType": "Reaper"
 						},
 						{
 							"id": 99,
-							"name": "Ramu Ne"
+							"name": "Ramu Ne",
+							"subType": "Ninja"
 						},
 						{
 							"id": 100,
-							"name": "Chana Kaellindra"
+							"name": "Chana Kaellindra",
+							"subType": "Unknown"
 						},
 						{
 							"id": 101,
-							"name": "Deliru Violente"
+							"name": "Deliru Violente",
+							"subType": "Sage"
 						},
 						{
 							"id": 102,
-							"name": "Virlomi Devi"
+							"name": "Virlomi Devi",
+							"subType": "Sage"
 						},
 						{
 							"id": 103,
-							"name": "Silmara Yalagch"
+							"name": "Silmara Yalagch",
+							"subType": "Warrior"
 						},
 						{
 							"id": 104,
-							"name": "Elder Knief"
+							"name": "Elder Knief",
+							"subType": "Reaper"
 						},
 						{
 							"id": 105,
-							"name": "Ivy Aesir"
+							"name": "Ivy Aesir",
+							"subType": "Unknown"
 						},
 						{
 							"id": 106,
-							"name": "Ivy Aesir"
+							"name": "Ivy Aesir",
+							"subType": "Thaumaturge"
 						},
 						{
 							"id": 107,
-							"name": "Gojira Cole"
+							"name": "Gojira Cole",
+							"subType": "Warrior"
 						},
 						{
 							"id": 108,
-							"name": "Nothoughts Headempty"
+							"name": "Nothoughts Headempty",
+							"subType": "Summoner"
 						},
 						{
 							"id": 109,
-							"name": "Still Helm"
+							"name": "Still Helm",
+							"subType": "Warrior"
 						},
 						{
 							"id": 110,
-							"name": "Beatrix Rysto"
+							"name": "Beatrix Rysto",
+							"subType": "Astrologian"
 						},
 						{
 							"id": 111,
-							"name": "Skylar Starmore"
+							"name": "Skylar Starmore",
+							"subType": "Unknown"
 						},
 						{
 							"id": 112,
-							"name": "Wolf Nightkeeper"
+							"name": "Wolf Nightkeeper",
+							"subType": "BlackMage"
 						},
 						{
 							"id": 113,
-							"name": ""
+							"name": "",
+							"subType": "Unknown"
 						},
 						{
 							"id": 114,
-							"name": "Ruby Miller"
+							"name": "Ruby Miller",
+							"subType": "Sage"
 						},
 						{
 							"id": 115,
-							"name": "Cyrus Miller"
+							"name": "Cyrus Miller",
+							"subType": "RedMage"
 						},
 						{
 							"id": 116,
-							"name": "Virlomi Devi"
+							"name": "Virlomi Devi",
+							"subType": "Bard"
 						},
 						{
 							"id": 117,
-							"name": "Kuldana Sin'del"
+							"name": "Kuldana Sin'del",
+							"subType": "Dancer"
 						},
 						{
 							"id": 118,
-							"name": "Ruby Miller"
+							"name": "Ruby Miller",
+							"subType": "Dancer"
 						},
 						{
 							"id": 119,
-							"name": "Kei Miki"
+							"name": "Kei Miki",
+							"subType": "Monk"
 						},
 						{
 							"id": 120,
-							"name": "Yoshi Rio"
+							"name": "Yoshi Rio",
+							"subType": "BlackMage"
 						},
 						{
 							"id": 121,
-							"name": ""
+							"name": "",
+							"subType": "Unknown"
 						},
 						{
 							"id": 122,
-							"name": "Malkodu Morswind"
+							"name": "Malkodu Morswind",
+							"subType": "DarkKnight"
 						},
 						{
 							"id": 123,
-							"name": "Bobby Dank"
+							"name": "Bobby Dank",
+							"subType": "DarkKnight"
 						},
 						{
 							"id": 124,
-							"name": "Nothoughts Headempty"
+							"name": "Nothoughts Headempty",
+							"subType": "Bard"
 						},
 						{
 							"id": 125,
-							"name": "Lady Zendella"
+							"name": "Lady Zendella",
+							"subType": "Scholar"
 						},
 						{
 							"id": 126,
-							"name": "Nothoughts Headempty"
+							"name": "Nothoughts Headempty",
+							"subType": "DarkKnight"
 						},
 						{
 							"id": 127,
-							"name": "Rhoegar Smith"
+							"name": "Rhoegar Smith",
+							"subType": "Machinist"
 						},
 						{
 							"id": 128,
-							"name": "Nothoughts Headempty"
+							"name": "Nothoughts Headempty",
+							"subType": "Sage"
 						},
 						{
 							"id": 129,
-							"name": "Poki Malaka"
+							"name": "Poki Malaka",
+							"subType": "Warrior"
 						},
 						{
 							"id": 130,
-							"name": "Virlomi Devi"
+							"name": "Virlomi Devi",
+							"subType": "Machinist"
 						},
 						{
 							"id": 131,
-							"name": "V'seji Noiyv"
+							"name": "V'seji Noiyv",
+							"subType": "Bard"
 						},
 						{
 							"id": 132,
-							"name": "Toga Michiru"
+							"name": "Toga Michiru",
+							"subType": "Paladin"
 						},
 						{
 							"id": 133,
-							"name": "Dogi Butz"
+							"name": "Dogi Butz",
+							"subType": "Samurai"
 						},
 						{
 							"id": 134,
-							"name": "Ahri Lockehearte"
+							"name": "Ahri Lockehearte",
+							"subType": "WhiteMage"
 						},
 						{
 							"id": 135,
-							"name": "Virlomi Devi"
+							"name": "Virlomi Devi",
+							"subType": "Dancer"
 						},
 						{
 							"id": 136,
-							"name": "Tenebe Hash"
+							"name": "Tenebe Hash",
+							"subType": "Reaper"
 						},
 						{
 							"id": 137,
-							"name": "Kanna Shai"
+							"name": "Kanna Shai",
+							"subType": "Ninja"
 						},
 						{
 							"id": 138,
-							"name": "Akuma Shogun"
+							"name": "Akuma Shogun",
+							"subType": "Sage"
 						},
 						{
 							"id": 139,
-							"name": "Nagi Thaantos"
+							"name": "Nagi Thaantos",
+							"subType": "Samurai"
 						},
 						{
 							"id": 140,
-							"name": "G'ihpsy Claihr"
+							"name": "G'ihpsy Claihr",
+							"subType": "BlackMage"
 						},
 						{
 							"id": 141,
-							"name": "Lady Emeria"
+							"name": "Lady Emeria",
+							"subType": "RedMage"
 						},
 						{
 							"id": 142,
-							"name": "Lady Emeria"
+							"name": "Lady Emeria",
+							"subType": "WhiteMage"
 						},
 						{
 							"id": 143,
-							"name": "William Wildlife"
+							"name": "William Wildlife",
+							"subType": "Monk"
 						},
 						{
 							"id": 144,
-							"name": "Chicken Cordon-bleu"
+							"name": "Chicken Cordon-bleu",
+							"subType": "BlueMage"
 						},
 						{
 							"id": 145,
-							"name": "Cynthia Fraldarius"
+							"name": "Cynthia Fraldarius",
+							"subType": "DarkKnight"
 						},
 						{
 							"id": 146,
-							"name": "Dreylin Dreyliacci"
+							"name": "Dreylin Dreyliacci",
+							"subType": "Unknown"
 						},
 						{
 							"id": 147,
-							"name": "Chikaga Kigami"
+							"name": "Chikaga Kigami",
+							"subType": "Ninja"
 						},
 						{
 							"id": 148,
-							"name": "Poki Malaka"
+							"name": "Poki Malaka",
+							"subType": "Summoner"
 						},
 						{
 							"id": 149,
-							"name": "Lunaqua Purneko"
+							"name": "Lunaqua Purneko",
+							"subType": "Unknown"
 						},
 						{
 							"id": 150,
-							"name": "Yummura Gooms"
+							"name": "Yummura Gooms",
+							"subType": "Warrior"
 						},
 						{
 							"id": 151,
-							"name": "Icarus Idy"
+							"name": "Icarus Idy",
+							"subType": "DarkKnight"
 						},
 						{
 							"id": 152,
-							"name": "Suki Nyannyan"
+							"name": "Suki Nyannyan",
+							"subType": "WhiteMage"
 						},
 						{
 							"id": 153,
-							"name": "Mog Knight"
+							"name": "Mog Knight",
+							"subType": "Summoner"
 						},
 						{
 							"id": 154,
-							"name": "Meru Meru"
+							"name": "Meru Meru",
+							"subType": "Dragoon"
 						},
 						{
 							"id": 155,
-							"name": "Emerald Carbuncle"
+							"name": "Emerald Carbuncle",
+							"subType": "Pet"
 						},
 						{
 							"id": 156,
-							"name": "Demi-Bahamut"
+							"name": "Demi-Bahamut",
+							"subType": "Pet"
 						},
 						{
 							"id": 157,
-							"name": "Esteem"
+							"name": "Esteem",
+							"subType": "Pet"
 						},
 						{
 							"id": 158,
-							"name": "Emerald Garuda"
+							"name": "Emerald Garuda",
+							"subType": "Pet"
 						},
 						{
 							"id": 159,
-							"name": "Topaz Titan"
+							"name": "Topaz Titan",
+							"subType": "Pet"
 						},
 						{
 							"id": 160,
-							"name": "Ruby Ifrit"
+							"name": "Ruby Ifrit",
+							"subType": "Pet"
 						},
 						{
 							"id": 161,
-							"name": "liturgic bell"
+							"name": "liturgic bell",
+							"subType": "Pet"
 						},
 						{
 							"id": 162,
-							"name": "Demi-Phoenix"
+							"name": "Demi-Phoenix",
+							"subType": "Pet"
 						},
 						{
 							"id": 163,
-							"name": ""
+							"name": "",
+							"subType": "Unknown"
 						},
 						{
 							"id": 164,
-							"name": "Limit Break"
+							"name": "Limit Break",
+							"subType": "LimitBreak"
 						},
 						{
 							"id": 165,
-							"name": "Amaterasu Tsukuyomi"
+							"name": "Amaterasu Tsukuyomi",
+							"subType": "Sage"
 						},
 						{
 							"id": 166,
-							"name": "Silvie Bloodmoon"
+							"name": "Silvie Bloodmoon",
+							"subType": "Gunbreaker"
 						},
 						{
 							"id": 167,
-							"name": "Alistarn Chromwell"
+							"name": "Alistarn Chromwell",
+							"subType": "Monk"
 						},
 						{
 							"id": 168,
-							"name": "Ivy Aesir"
+							"name": "Ivy Aesir",
+							"subType": "Unknown"
 						},
 						{
 							"id": 169,
-							"name": "Kasumi Miyumi"
+							"name": "Kasumi Miyumi",
+							"subType": "DarkKnight"
 						},
 						{
 							"id": 170,
-							"name": "Kasumi Miyumi"
+							"name": "Kasumi Miyumi",
+							"subType": "Summoner"
 						},
 						{
 							"id": 171,
-							"name": "Nay Min"
+							"name": "Nay Min",
+							"subType": "Warrior"
 						},
 						{
 							"id": 172,
-							"name": "Zash Alamel"
+							"name": "Zash Alamel",
+							"subType": "Reaper"
 						},
 						{
 							"id": 173,
-							"name": "Jafar A'driek"
+							"name": "Jafar A'driek",
+							"subType": "Paladin"
 						},
 						{
 							"id": 174,
-							"name": "Jafar A'driek"
+							"name": "Jafar A'driek",
+							"subType": "Warrior"
 						},
 						{
 							"id": 175,
-							"name": "Talia Avicia"
+							"name": "Talia Avicia",
+							"subType": "Warrior"
 						},
 						{
 							"id": 176,
-							"name": "Wind Chime"
+							"name": "Wind Chime",
+							"subType": "Scholar"
 						},
 						{
 							"id": 177,
-							"name": "Jack Myste"
+							"name": "Jack Myste",
+							"subType": "Ninja"
 						},
 						{
 							"id": 178,
-							"name": "Kuu'min Rider"
+							"name": "Kuu'min Rider",
+							"subType": "Unknown"
 						},
 						{
 							"id": 179,
-							"name": "Kuu'min Rider"
+							"name": "Kuu'min Rider",
+							"subType": "Sage"
 						},
 						{
 							"id": 180,
-							"name": "Nay Min"
+							"name": "Nay Min",
+							"subType": "DarkKnight"
 						},
 						{
 							"id": 181,
-							"name": "Cosmic Chan"
+							"name": "Cosmic Chan",
+							"subType": "Ninja"
 						},
 						{
 							"id": 182,
-							"name": "Lucky Melancholy"
+							"name": "Lucky Melancholy",
+							"subType": "DarkKnight"
 						},
 						{
 							"id": 183,
-							"name": "Nergui Dataq"
+							"name": "Nergui Dataq",
+							"subType": "Samurai"
 						},
 						{
 							"id": 184,
-							"name": "Jo Moral"
+							"name": "Jo Moral",
+							"subType": "Gunbreaker"
 						},
 						{
 							"id": 185,
-							"name": "Ivy Aesir"
+							"name": "Ivy Aesir",
+							"subType": "BlackMage"
 						},
 						{
 							"id": 186,
-							"name": "Ragnarok Doombringer"
+							"name": "Ragnarok Doombringer",
+							"subType": "Paladin"
 						},
 						{
 							"id": 187,
-							"name": "Yuumi Yuu"
+							"name": "Yuumi Yuu",
+							"subType": "Summoner"
 						},
 						{
 							"id": 188,
-							"name": ""
+							"name": "",
+							"subType": "Unknown"
 						},
 						{
 							"id": 189,
-							"name": "Lionnet Jantell"
+							"name": "Lionnet Jantell",
+							"subType": "Warrior"
 						},
 						{
 							"id": 190,
-							"name": ""
+							"name": "",
+							"subType": "Unknown"
 						},
 						{
 							"id": 191,
-							"name": "Dovah Wolfsire"
+							"name": "Dovah Wolfsire",
+							"subType": "WhiteMage"
 						},
 						{
 							"id": 192,
-							"name": "Tabu Rasa"
+							"name": "Tabu Rasa",
+							"subType": "Ninja"
 						},
 						{
 							"id": 193,
-							"name": "Demi-Bahamut"
+							"name": "Demi-Bahamut",
+							"subType": "Pet"
 						},
 						{
 							"id": 194,
-							"name": "bunshin"
+							"name": "bunshin",
+							"subType": "Pet"
 						},
 						{
 							"id": 195,
-							"name": "Ruby Ifrit"
+							"name": "Ruby Ifrit",
+							"subType": "Pet"
 						},
 						{
 							"id": 196,
-							"name": "Topaz Titan"
+							"name": "Topaz Titan",
+							"subType": "Pet"
 						},
 						{
 							"id": 197,
-							"name": "Carbuncle"
+							"name": "Carbuncle",
+							"subType": "Pet"
 						},
 						{
 							"id": 198,
-							"name": "Emerald Garuda"
+							"name": "Emerald Garuda",
+							"subType": "Pet"
 						},
 						{
 							"id": 199,
-							"name": "Demi-Phoenix"
+							"name": "Demi-Phoenix",
+							"subType": "Pet"
 						},
 						{
 							"id": 200,
-							"name": "liturgic bell"
+							"name": "liturgic bell",
+							"subType": "Pet"
 						},
 						{
 							"id": 201,
-							"name": "Neru Naru"
+							"name": "Neru Naru",
+							"subType": "Samurai"
 						},
 						{
 							"id": 202,
-							"name": "Ashia Hagane"
+							"name": "Ashia Hagane",
+							"subType": "Samurai"
 						},
 						{
 							"id": 203,
-							"name": "Fiona Collins"
+							"name": "Fiona Collins",
+							"subType": "Summoner"
 						},
 						{
 							"id": 204,
-							"name": "Leifei Uchiha"
+							"name": "Leifei Uchiha",
+							"subType": "Samurai"
 						},
 						{
 							"id": 205,
-							"name": "Sinashi Zamani"
+							"name": "Sinashi Zamani",
+							"subType": "Paladin"
 						},
 						{
 							"id": 206,
-							"name": "Ardyn Lucis-caelum"
+							"name": "Ardyn Lucis-caelum",
+							"subType": "Sage"
 						},
 						{
 							"id": 207,
-							"name": "Aria Estelle"
+							"name": "Aria Estelle",
+							"subType": "Paladin"
 						},
 						{
 							"id": 208,
-							"name": "Unagi Box"
+							"name": "Unagi Box",
+							"subType": "Machinist"
 						},
 						{
 							"id": 209,
-							"name": "E'min Farshaw"
+							"name": "E'min Farshaw",
+							"subType": "DarkKnight"
 						},
 						{
 							"id": 210,
-							"name": "Chem Saint"
+							"name": "Chem Saint",
+							"subType": "WhiteMage"
 						},
 						{
 							"id": 211,
-							"name": "Miku De'blanche"
+							"name": "Miku De'blanche",
+							"subType": "WhiteMage"
 						},
 						{
 							"id": 212,
-							"name": "liturgic bell"
+							"name": "liturgic bell",
+							"subType": "Pet"
 						},
 						{
 							"id": 213,
-							"name": "Khulan Sagahl"
+							"name": "Khulan Sagahl",
+							"subType": "DarkKnight"
 						},
 						{
 							"id": 214,
-							"name": "Cake Biscuits"
+							"name": "Cake Biscuits",
+							"subType": "Warrior"
 						},
 						{
 							"id": 215,
-							"name": ""
+							"name": "",
+							"subType": "Unknown"
 						},
 						{
 							"id": 216,
-							"name": "E'lias Doomclaw"
+							"name": "E'lias Doomclaw",
+							"subType": "Machinist"
 						},
 						{
 							"id": 217,
-							"name": "Elyse Silvermoon"
+							"name": "Elyse Silvermoon",
+							"subType": "Dancer"
 						},
 						{
 							"id": 218,
-							"name": "Alyce Hunter"
+							"name": "Alyce Hunter",
+							"subType": "Reaper"
 						},
 						{
 							"id": 219,
-							"name": "Trash Kiriguya"
+							"name": "Trash Kiriguya",
+							"subType": "Summoner"
 						},
 						{
 							"id": 220,
-							"name": "Zephyr Daze"
+							"name": "Zephyr Daze",
+							"subType": "Astrologian"
 						},
 						{
 							"id": 221,
-							"name": "Ryllia Lyehga"
+							"name": "Ryllia Lyehga",
+							"subType": "Scholar"
 						},
 						{
 							"id": 222,
-							"name": "Genevieve Austori"
+							"name": "Genevieve Austori",
+							"subType": "Dragoon"
 						},
 						{
 							"id": 223,
-							"name": "Lil' Feet"
+							"name": "Lil' Feet",
+							"subType": "WhiteMage"
 						},
 						{
 							"id": 224,
-							"name": "Arun Sylbalar"
+							"name": "Arun Sylbalar",
+							"subType": "Reaper"
 						},
 						{
 							"id": 225,
-							"name": "Trenchcoat Raccoons"
+							"name": "Trenchcoat Raccoons",
+							"subType": "Machinist"
 						},
 						{
 							"id": 226,
-							"name": "Sverna Moritik"
+							"name": "Sverna Moritik",
+							"subType": "Unknown"
 						},
 						{
 							"id": 227,
-							"name": "Red Strider"
+							"name": "Red Strider",
+							"subType": "Monk"
 						},
 						{
 							"id": 228,
-							"name": "Lokk Miura"
+							"name": "Lokk Miura",
+							"subType": "DarkKnight"
 						},
 						{
 							"id": 229,
-							"name": "Valerie Corvus"
+							"name": "Valerie Corvus",
+							"subType": "WhiteMage"
 						},
 						{
 							"id": 230,
-							"name": "Revani Pavlova"
+							"name": "Revani Pavlova",
+							"subType": "Sage"
 						},
 						{
 							"id": 231,
-							"name": "Hulk Anator"
+							"name": "Hulk Anator",
+							"subType": "Reaper"
 						},
 						{
 							"id": 232,
-							"name": "Nay Min"
+							"name": "Nay Min",
+							"subType": "Scholar"
 						},
 						{
 							"id": 233,
-							"name": "Penelope Illuma"
+							"name": "Penelope Illuma",
+							"subType": "Summoner"
 						},
 						{
 							"id": 234,
-							"name": "Rin Hozuki"
+							"name": "Rin Hozuki",
+							"subType": "Warrior"
 						},
 						{
 							"id": 235,
-							"name": "Aliria Lillian"
+							"name": "Aliria Lillian",
+							"subType": "Dancer"
 						},
 						{
 							"id": 236,
-							"name": "Pitelski Highwind"
+							"name": "Pitelski Highwind",
+							"subType": "DarkKnight"
 						},
 						{
 							"id": 237,
-							"name": "Lucilius Knight"
+							"name": "Lucilius Knight",
+							"subType": "DarkKnight"
 						},
 						{
 							"id": 238,
-							"name": "Krile Baldesion"
+							"name": "Krile Baldesion",
+							"subType": "WhiteMage"
 						},
 						{
 							"id": 239,
-							"name": "Billos Billos"
+							"name": "Billos Billos",
+							"subType": "Warrior"
 						},
 						{
 							"id": 240,
-							"name": "Moon Dawn"
+							"name": "Moon Dawn",
+							"subType": "Machinist"
 						},
 						{
 							"id": 241,
-							"name": "Quantum Argentum"
+							"name": "Quantum Argentum",
+							"subType": "Machinist"
 						},
 						{
 							"id": 242,
-							"name": "Ruby Primrose"
+							"name": "Ruby Primrose",
+							"subType": "Paladin"
 						},
 						{
 							"id": 243,
-							"name": "Izlude Amaterasu"
+							"name": "Izlude Amaterasu",
+							"subType": "WhiteMage"
 						},
 						{
 							"id": 244,
-							"name": "Tabu Rasa"
+							"name": "Tabu Rasa",
+							"subType": "Gunbreaker"
 						},
 						{
 							"id": 245,
-							"name": "Curtis White"
+							"name": "Curtis White",
+							"subType": "RedMage"
 						},
 						{
 							"id": 246,
-							"name": "Shinobu Hoshizaki"
+							"name": "Shinobu Hoshizaki",
+							"subType": "Dragoon"
 						},
 						{
 							"id": 247,
-							"name": "Automaton Queen"
+							"name": "Automaton Queen",
+							"subType": "Pet"
 						},
 						{
 							"id": 248,
-							"name": "liturgic bell"
+							"name": "liturgic bell",
+							"subType": "Pet"
 						},
 						{
 							"id": 249,
-							"name": "Sikera Usum"
+							"name": "Sikera Usum",
+							"subType": "Paladin"
 						},
 						{
 							"id": 250,
-							"name": "Odra Drage"
+							"name": "Odra Drage",
+							"subType": "BlackMage"
 						},
 						{
 							"id": 251,
-							"name": "Rividelia Shenwood"
+							"name": "Rividelia Shenwood",
+							"subType": "Unknown"
 						},
 						{
 							"id": 252,
-							"name": "Altara Ghealdan"
+							"name": "Altara Ghealdan",
+							"subType": "RedMage"
 						},
 						{
 							"id": 253,
-							"name": "Ranmae Valere"
+							"name": "Ranmae Valere",
+							"subType": "Ninja"
 						},
 						{
 							"id": 254,
-							"name": "Aru Starr"
+							"name": "Aru Starr",
+							"subType": "Dancer"
 						},
 						{
 							"id": 255,
-							"name": "F'reya Highwind"
+							"name": "F'reya Highwind",
+							"subType": "Dancer"
 						},
 						{
 							"id": 256,
-							"name": "Koya Kasumi"
+							"name": "Koya Kasumi",
+							"subType": "Unknown"
 						},
 						{
 							"id": 257,
-							"name": "Ren Lunyasch"
+							"name": "Ren Lunyasch",
+							"subType": "Bard"
 						},
 						{
 							"id": 258,
-							"name": "Strawberry Jelly"
+							"name": "Strawberry Jelly",
+							"subType": "Reaper"
 						},
 						{
 							"id": 259,
-							"name": "Wawa Bee"
+							"name": "Wawa Bee",
+							"subType": "Scholar"
 						},
 						{
 							"id": 260,
-							"name": "Madusha Silva"
+							"name": "Madusha Silva",
+							"subType": "Unknown"
 						},
 						{
 							"id": 261,
-							"name": "K'ai Sansen"
+							"name": "K'ai Sansen",
+							"subType": "RedMage"
 						},
 						{
 							"id": 262,
-							"name": "Lunatique Chase"
+							"name": "Lunatique Chase",
+							"subType": "DarkKnight"
 						},
 						{
 							"id": 263,
-							"name": "Jassu Jirome"
+							"name": "Jassu Jirome",
+							"subType": "Astrologian"
 						},
 						{
 							"id": 264,
-							"name": "Sir Alexandr"
+							"name": "Sir Alexandr",
+							"subType": "Paladin"
 						},
 						{
 							"id": 265,
-							"name": "K'ai Sansen"
+							"name": "K'ai Sansen",
+							"subType": "Summoner"
 						},
 						{
 							"id": 266,
-							"name": "Efren Gharl"
+							"name": "Efren Gharl",
+							"subType": "Warrior"
 						},
 						{
 							"id": 267,
-							"name": "Loona Dreamcatcher"
+							"name": "Loona Dreamcatcher",
+							"subType": "Warrior"
 						},
 						{
 							"id": 268,
-							"name": "Madusha Silva"
+							"name": "Madusha Silva",
+							"subType": "Unknown"
 						},
 						{
 							"id": 269,
-							"name": "K'ai Sansen"
+							"name": "K'ai Sansen",
+							"subType": "BlackMage"
 						},
 						{
 							"id": 270,
-							"name": "Kali Amony"
+							"name": "Kali Amony",
+							"subType": "Gunbreaker"
 						},
 						{
 							"id": 271,
-							"name": "Kat Tatiana"
+							"name": "Kat Tatiana",
+							"subType": "Sage"
 						},
 						{
 							"id": 272,
-							"name": "Tabu Rasa"
+							"name": "Tabu Rasa",
+							"subType": "Paladin"
 						},
 						{
 							"id": 273,
-							"name": "Torch Qt"
+							"name": "Torch Qt",
+							"subType": "Samurai"
 						},
 						{
 							"id": 274,
-							"name": "Esteem"
+							"name": "Esteem",
+							"subType": "Pet"
 						},
 						{
 							"id": 275,
-							"name": "M'aique Delieur"
+							"name": "M'aique Delieur",
+							"subType": "Ninja"
 						},
 						{
 							"id": 276,
-							"name": "Kather Laqi"
+							"name": "Kather Laqi",
+							"subType": "Dragoon"
 						},
 						{
 							"id": 277,
-							"name": "Altara Ghealdan"
+							"name": "Altara Ghealdan",
+							"subType": "Arcanist"
 						},
 						{
 							"id": 278,
-							"name": "Altara Ghealdan"
+							"name": "Altara Ghealdan",
+							"subType": "Sage"
 						},
 						{
 							"id": 279,
-							"name": "Altara Ghealdan"
+							"name": "Altara Ghealdan",
+							"subType": "Scholar"
 						},
 						{
 							"id": 280,
-							"name": "Aaz Galliarch"
+							"name": "Aaz Galliarch",
+							"subType": "Unknown"
 						},
 						{
 							"id": 281,
-							"name": "Aaz Galliarch"
+							"name": "Aaz Galliarch",
+							"subType": "Unknown"
 						},
 						{
 							"id": 282,
-							"name": "Aaz Galliarch"
+							"name": "Aaz Galliarch",
+							"subType": "Unknown"
 						},
 						{
 							"id": 283,
-							"name": "Solaire Arkwright"
+							"name": "Solaire Arkwright",
+							"subType": "Warrior"
 						},
 						{
 							"id": 284,
-							"name": "Curtis White"
+							"name": "Curtis White",
+							"subType": "Warrior"
 						},
 						{
 							"id": 285,
-							"name": "Ka Rate"
+							"name": "Ka Rate",
+							"subType": "Summoner"
 						},
 						{
 							"id": 286,
-							"name": "Carbuncle"
+							"name": "Carbuncle",
+							"subType": "Pet"
 						},
 						{
 							"id": 287,
-							"name": "Demi-Bahamut"
+							"name": "Demi-Bahamut",
+							"subType": "Pet"
 						},
 						{
 							"id": 288,
-							"name": "Topaz Titan"
+							"name": "Topaz Titan",
+							"subType": "Pet"
 						},
 						{
 							"id": 289,
-							"name": "Emerald Garuda"
+							"name": "Emerald Garuda",
+							"subType": "Pet"
 						},
 						{
 							"id": 290,
-							"name": "Ruby Ifrit"
+							"name": "Ruby Ifrit",
+							"subType": "Pet"
 						},
 						{
 							"id": 291,
-							"name": "Demi-Phoenix"
+							"name": "Demi-Phoenix",
+							"subType": "Pet"
 						},
 						{
 							"id": 292,
-							"name": "N'irnaen Ives"
+							"name": "N'irnaen Ives",
+							"subType": "Astrologian"
 						},
 						{
 							"id": 293,
-							"name": "Raikhal Elysium"
+							"name": "Raikhal Elysium",
+							"subType": "Reaper"
 						},
 						{
 							"id": 294,
-							"name": "Skorpion Scorpio"
+							"name": "Skorpion Scorpio",
+							"subType": "Sage"
 						},
 						{
 							"id": 295,
-							"name": "Anubis Constantine"
+							"name": "Anubis Constantine",
+							"subType": "Ninja"
 						},
 						{
 							"id": 296,
-							"name": "Silvie Bloodmoon"
+							"name": "Silvie Bloodmoon",
+							"subType": "Paladin"
 						},
 						{
 							"id": 297,
-							"name": "Logan Cooper"
+							"name": "Logan Cooper",
+							"subType": "Warrior"
 						},
 						{
 							"id": 298,
-							"name": "Mocha Caramel"
+							"name": "Mocha Caramel",
+							"subType": "Dancer"
 						},
 						{
 							"id": 299,
-							"name": "Puru Xiv"
+							"name": "Puru Xiv",
+							"subType": "Samurai"
 						},
 						{
 							"id": 300,
-							"name": "Kaia Teneiv"
+							"name": "Kaia Teneiv",
+							"subType": "Dragoon"
 						}
 					]
 				},

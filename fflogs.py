@@ -18,6 +18,7 @@ class FFLogsSession:
           actors{
             id
             name
+            subType
           }
         }
         
