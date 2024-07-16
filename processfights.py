@@ -1,5 +1,5 @@
 from typing import Callable, Tuple, NamedTuple, Dict, List
-from enum import Enum
+from enum import Enum, IntEnum
 
 import os, json
 
@@ -15,42 +15,90 @@ class RankingSummary(NamedTuple):
   parse: int
   job: str
 
-class EncounterSummary(NamedTuple):
-  name: str
-  pullCount: int
-  clearPulls: list
-  bestPull: dict #fights from report data
-  fightTier: int
-  bestRanking: RankingSummary
+class RankingFunctions(NamedTuple):
+  difficulty: Callable[[dict], int]
+  compareFights: Callable[[dict, dict], dict]
+  bestParse: Callable[[int], int]
+
+class ClearPull(NamedTuple):
+  fightID: int
+  bestParse: int
 
 class ReportSummary(NamedTuple):
   owner: str
   startTime: int
-  fightSummaries: Dict[int, EncounterSummary]
+  fightSummaries: Dict[int, dict]
 
-class FightTier(Enum):
+class FightTier(IntEnum):
   UNRANKED = 0
   EXTREME = 1
   SAVAGE = 2
   ULTIMATE = 3
 
+# Clear values for the purpose of comparing fights.
+# Makes a clear of any fight with a rating higher than a pull off any fight.
+CLEAR_RATING_BONUS = 3
+CLEAR_THRESHOLD = 4
+
+class PullState(Enum):
+  WIPE = 0
+  KILL = 1
+  GRAY = 2
+  GREEN = 3
+  BLUE = 4
+  PURPLE = 5
+  ORANGE = 6
+  PINK = 7
+  GOLD = 8
 # Aim: report Data -> ReportFields ->Dict[fightID, EncounterSummary]->ReportSummary
 #                                 \->       RankingSummary        -/
 class ReportDataError(Exception):
   """The received reportData is not correctly formatted or missing."""
 
-def makeTierEvaluator(rankingSummaryDict: Dict[int, RankingSummary]) -> Callable[[dict], int]:
+def getFightDuration(fight: dict) -> int:
+  return fight["endTime"] - fight["startTime"]
+
+def makeRankingFunctions(fightRankings: Dict[int, RankingSummary]) -> RankingFunctions:
   """Return a function that returns the tier of a fight."""
   def evaluateDifficulty(fight: dict) -> int:
     if fight["lastPhase"] > 0: return FightTier.ULTIMATE
     if fight["difficulty"] == 101: return FightTier.SAVAGE
-    if fight["id"] in rankingSummaryDict.keys(): return FightTier.EXTREME
+    if fight["id"] in fightRankings.keys(): return FightTier.EXTREME
     return FightTier.UNRANKED
   
-  return evaluateDifficulty
+  def bestRanking(fightID: int) -> int:
+    """Return the best parse for a fight, or -1 if the fight has no rankings."""
+    if not fightID in fightRankings.keys(): return -1
+    return max(map(lambda ranking: ranking.parse, fightRankings[fightID]))
 
-def bestRanking(fightID: int) -> ReportSummary:
-  pass
+  def compareFights(fightOne: dict, fightTwo: dict) -> dict:
+    """
+    Return the more salient of the two fights.
+
+    Priority is, in order: clear (if above tier 0), fight difficulty, fight duration.
+    For right now, fights with different names in the same tier will prioritize longer fights.
+    """
+
+    fightOneRating = evaluateDifficulty(fightOne)
+    fightTwoRating = evaluateDifficulty(fightTwo)
+
+    if fightOneRating and fightOne["kill"]: fightOneRating += CLEAR_RATING_BONUS
+    if fightTwoRating and fightTwo["kill"]: fightTwoRating += CLEAR_RATING_BONUS
+
+    if fightOneRating != fightTwoRating: 
+      return fightOne if fightOneRating > fightTwoRating else fightTwo
+    
+    if fightOneRating < CLEAR_THRESHOLD:
+      return fightOne if fightOne["fightPercentage"] < fightTwo["fightPercentage"] else fightTwo
+
+    isFightOneShorter = getFightDuration(fightOne) < getFightDuration(fightTwo)
+
+    if fightOne["name"] == fightTwo["name"]:
+      return fightOne if isFightOneShorter else fightTwo
+    else:
+      return fightTwo if isFightOneShorter else fightOne
+ 
+  return RankingFunctions(evaluateDifficulty, compareFights, bestRanking)
 
 def generateFightRankingTuples(ranking: dict) -> Tuple[int, RankingSummary]:
   """Convert a ranking object into a tuple with fightIDs and list of player parses."""
@@ -85,15 +133,46 @@ def extractReportFields(reportData: dict) -> Tuple[str, List[object], int, List[
 
   return ReportFields(owner, actorList, startTime, fightsList, rankingsList)
 
+def generateEncounters(fights: dict, rankingFunctions: RankingFunctions) -> dict:
+  """Converts list of fight objects into a dict of unique fights with aggregate data."""
+  encounters = {}
+  for fight in fights:
+    encounterID = fight["encounterID"]
+
+    if not encounterID in encounters.keys():
+      encounters[encounterID] = {
+         "name": fight["name"],
+         "pullCount": 0,
+         "clearPulls": [],
+         "bestPull": fight,
+         "fightTier": rankingFunctions.difficulty(fight)
+      }
+
+    fightEncounter = encounters[encounterID]
+    fightEncounter["pullCount"] += 1
+    
+    if fight['kill']: 
+      fightEncounter["clearPulls"].append(
+        ClearPull(fight["id"], rankingFunctions.bestParse(fight["id"]))
+      )
+      fightEncounter["fightTier"] = rankingFunctions.difficulty(fight)
+    
+    fightEncounter["bestPull"] = rankingFunctions.compareFights(fight, fightEncounter["bestPull"])
+  return encounters
+
 def processFights(reportData: dict) -> dict:
   """Returns a dict of fights, mapping fightIDs to fight data."""
   if "errors" in reportData:
     raise ReportDataError("The received report data is not correctly formatted or missing.")
   
-  report = extractReportFields(reportData)
+  report: ReportFields = extractReportFields(reportData)
   # print(report.rankings)
-  fightRankings = dict(map(generateFightRankingTuples, report.rankings))
-  print(fightRankings)
+  fightRankings: Dict[int, RankingSummary] = dict(map(generateFightRankingTuples, report.rankings))
+  hydratedFunctions = makeRankingFunctions(fightRankings)
+  encounters = generateEncounters(report.fights, hydratedFunctions)
+  print(encounters)
+  #TODO: Hydrate actors for best pull
+
   return ReportSummary(report.owner, report.startTime)
   
 if __name__ == "__main__":
