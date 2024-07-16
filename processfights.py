@@ -45,8 +45,38 @@ CLEAR_THRESHOLD = 4
 class ReportDataError(Exception):
   """The received reportData is not correctly formatted or missing."""
 
-def getFightDuration(fight: dict) -> int:
-  return fight["endTime"] - fight["startTime"]
+def extractReportFields(reportData: dict) -> Tuple[str, List[object], int, List[object], List[object]]:
+  """
+  Extracts the list of actors, date, and list of fights from a report.
+   
+   Args:
+    `reportData`: A dict representing a json object containing reportData.
+
+  Returns:
+    A tuple containing the list of actor objects, the date of the report in 
+    "Month Day, Year" format, a list of fights, and a possibly empty list of 
+    rankings.
+  """
+  flattenedReport = reportData["data"]["reportData"]["report"]
+  owner = flattenedReport["owner"]["name"]
+  actorList = flattenedReport["masterData"]["actors"]
+  startTime = flattenedReport["startTime"]  // 1000 # millisecond precision
+  fightsList = flattenedReport["fights"]
+  rankingsList = flattenedReport["rankings"]["data"]
+
+  return ReportFields(owner, actorList, startTime, fightsList, rankingsList)
+
+def generateFightRankingTuples(ranking: dict) -> Tuple[int, RankingSummary]:
+  """Convert a ranking object into a tuple with fightIDs and list of player parses."""
+  rankingSummaryList = []
+  for role in ranking["roles"].values():
+     for player in role["characters"]:
+        # Tanks and healers have a combined player field - this prunes that 
+        if "name_2" in player: continue
+        rankingSummaryList.append(RankingSummary(player["name"], 
+                                                 player["rankPercent"], 
+                                                 player["class"]))
+  return (ranking.get("fightID"), rankingSummaryList)
 
 def makeRankingFunctions(fightRankings: Dict[int, RankingSummary]) -> RankingFunctions:
   """Return a function that returns the tier of a fight."""
@@ -68,7 +98,9 @@ def makeRankingFunctions(fightRankings: Dict[int, RankingSummary]) -> RankingFun
     Priority is, in order: clear (if above tier 0), fight difficulty, fight duration.
     For right now, fights with different names in the same tier will prioritize longer fights.
     """
-
+    def getFightDuration(fight: dict) -> int:
+      return fight["endTime"] - fight["startTime"]
+    
     fightOneRating = evaluateDifficulty(fightOne)
     fightTwoRating = evaluateDifficulty(fightTwo)
 
@@ -89,39 +121,6 @@ def makeRankingFunctions(fightRankings: Dict[int, RankingSummary]) -> RankingFun
       return fightTwo if isFightOneShorter else fightOne
  
   return RankingFunctions(evaluateDifficulty, compareFights, bestRanking)
-
-def generateFightRankingTuples(ranking: dict) -> Tuple[int, RankingSummary]:
-  """Convert a ranking object into a tuple with fightIDs and list of player parses."""
-  rankingSummaryList = []
-  for role in ranking["roles"].values():
-     for player in role["characters"]:
-        # Tanks and healers have a combined player field - this prunes that 
-        if "name_2" in player: continue
-        rankingSummaryList.append(RankingSummary(player["name"], 
-                                                 player["rankPercent"], 
-                                                 player["class"]))
-  return (ranking.get("fightID"), rankingSummaryList)
-
-def extractReportFields(reportData: dict) -> Tuple[str, List[object], int, List[object], List[object]]:
-  """
-  Extracts the list of actors, date, and list of fights from a report.
-   
-   Args:
-    `reportData`: A dict representing a json object containing reportData.
-
-  Returns:
-    A tuple containing the list of actor objects, the date of the report in 
-    "Month Day, Year" format, a list of fights, and a possibly empty list of 
-    rankings.
-  """
-  flattenedReport = reportData["data"]["reportData"]["report"]
-  owner = flattenedReport["owner"]["name"]
-  actorList = flattenedReport["masterData"]["actors"]
-  startTime = flattenedReport["startTime"]  // 1000 # millisecond precision
-  fightsList = flattenedReport["fights"]
-  rankingsList = flattenedReport["rankings"]["data"]
-
-  return ReportFields(owner, actorList, startTime, fightsList, rankingsList)
 
 def generateEncounters(fights: dict, rankingFunctions: RankingFunctions) -> list:
   """Converts list of fight objects into a dict of unique fights with aggregate data."""
