@@ -4,6 +4,7 @@ from collections import namedtuple
 from enum import IntEnum
 from urllib.parse import urlparse
 
+from datetime import datetime
 import processfights as pf
 import json, os, math, re
 
@@ -169,15 +170,29 @@ def generateEmbed(reportData: dict, link:str, desc:str = "") -> Embed:
   parsedLink = urlparse(link)
   specificFight = None
   if parsedLink.fragment:
-    try:
-      specificFight = int(re.search("(?<=fight=).*(?=&)", parsedLink.fragment).group())
-    except Exception:
-      pass
+    specificFight = re.search(r"(?<=fight=)\d*", parsedLink.fragment)
+    if specificFight: specificFight = int(specificFight.group(0))
   processedFight = pf.processFights(reportData, specificFight)
+  print(processedFight)
+  print(specificFight)
 
-  # if specificFight: return generateSingleFightEmbed()
-  # if len(processedFight.fightSummaries) == 1: return generateMultiFightEmbed()
-  # return generateCompilationEmbed()
+  embedDict = {
+    "title": "Test",
+    "url": link,
+    "description": desc,
+    "author": {
+      "name": f"Uploaded by {processedFight.owner}"
+    }
+  }
+
+  if len(processedFight.fightSummaries) == 1:
+    if specificFight or processedFight.fightSummaries[0]["pullCount"] == 1:
+      print("single fight")
+    else: print("multifight")
+  else: 
+    print("compilation fight")
+
+  return Embed.from_dict(embedDict)
 
 if __name__ == "__main__":
   testLinkUltNoFragment = """
