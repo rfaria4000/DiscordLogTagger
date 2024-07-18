@@ -3,6 +3,7 @@ from typing import Tuple, List, NamedTuple
 from collections import namedtuple
 from enum import IntEnum
 from urllib.parse import urlparse
+import functools
 
 from datetime import datetime
 import processfights as pf
@@ -66,10 +67,6 @@ def generateClearEmoji(fightID: dict, rankings:dict) -> str:
     bestParse = max(bestParse, ranking.parse) 
 
   return PARSE_EMOJIS[generateRankingColorIndex(bestParse)]
-
-def generateImageURL(encounterID: dict) -> str:
-  """Generate a URL to a thumbnail based on the fight."""
-  return f"https://assets.rpglogs.com/img/ff/bosses/{encounterID}-icon.jpg"
 
 def extractSimplifiedFight(simplifiedFights:dict) -> Tuple[int, str]:
   """Return the encounterID and simplified fight data as a tuple."""
@@ -166,6 +163,29 @@ def generateEmbedFromReport(reportData: dict, link: str, description: str = "") 
   returnEmbed.description = description
   return returnEmbed
 
+def isSingleFight(report:pf.ReportSummary) -> bool:
+  return report.fightSummaries[0]["pullCount"] == 1
+
+def isCompliation(report:pf.ReportSummary) -> bool:
+  return len(report.fightSummaries) > 1
+
+def generateTitle(report: pf.ReportSummary) -> str:
+  if isCompliation(report): return "Multiple Fights"
+  else: return report.fightSummaries[0]["name"]
+
+@functools.cache
+def compilationHighlightFight(report: pf.ReportSummary) -> dict:
+  pass
+
+def generateImageURL(report: dict) -> str:
+  """Generate a URL to a thumbnail based on the fight."""
+  encounterID = None
+  if not isCompliation(report):
+    encounterID = report.fightSummaries[0]["highlightPull"]["encounterID"]
+  else:
+    encounterID = compilationHighlightFight(report)["encounterID"]
+  return f"https://assets.rpglogs.com/img/ff/bosses/{encounterID}-icon.jpg"
+
 def generateEmbed(reportData: dict, link:str, desc:str = "") -> Embed:
   parsedLink = urlparse(link)
   specificFight = None
@@ -173,26 +193,32 @@ def generateEmbed(reportData: dict, link:str, desc:str = "") -> Embed:
     specificFight = re.search(r"(?<=fight=)\d*", parsedLink.fragment)
     if specificFight: specificFight = int(specificFight.group(0))
   processedFight = pf.processFights(reportData, specificFight)
-  print(processedFight)
-  print(specificFight)
 
-  embedDict = {
-    "title": "Test",
+  reportEmbed = {
+    "title": f"{generateTitle(processedFight)} - <t:{processedFight.startTime}:D>",
     "url": link,
     "description": desc,
     "author": {
       "name": f"Uploaded by {processedFight.owner}"
+    },
+    "thumbnail": {
+      "url": generateImageURL(processedFight)
     }
   }
 
-  if len(processedFight.fightSummaries) == 1:
-    if specificFight or processedFight.fightSummaries[0]["pullCount"] == 1:
-      print("single fight")
-    else: print("multifight")
-  else: 
-    print("compilation fight")
-
-  return Embed.from_dict(embedDict)
+  # if len(processedFight.fightSummaries) == 1:
+  #   if specificFight or processedFight.fightSummaries[0]["pullCount"] == 1:
+  #     print("single fight")
+  #     # reportEmbed = singleFightEmbed(embedSkeleton, processedFight)
+  #   else: 
+  #     print("multifight")
+  #     # reportEmbed = multiFightEmbed(embedSkeleton, processedFight)
+  # else: 
+  #   print("compilation fight")
+  #   # reportEmbed = compilationEmbed(embedSkeleton, processedFight)
+  
+  print(reportEmbed)
+  return Embed.from_dict(reportEmbed)
 
 if __name__ == "__main__":
   testLinkUltNoFragment = """

@@ -164,7 +164,7 @@ def populateActors(encounters: list, actors: Dict[int, str], rankings):
   
   return encountersCopy
 
-def processFights(reportData: dict, specifiedFight: int = None) -> dict:
+def processFights(reportData: dict, specifiedFight: int = None) -> ReportSummary:
   # TODO: Update docstrings for entire file
   """."""
   if "errors" in reportData:
