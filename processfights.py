@@ -1,6 +1,7 @@
 from typing import Callable, Tuple, NamedTuple, Dict, List
 from enum import IntEnum
 from copy import deepcopy
+from functools import reduce
 import os, json
 
 class ReportFields(NamedTuple):
@@ -28,6 +29,7 @@ class ReportSummary(NamedTuple):
   owner: str
   startTime: int
   fightSummaries: list
+  highlightEncounter: dict
 
 class FightTier(IntEnum):
   UNRANKED = 0
@@ -183,7 +185,13 @@ def processFights(reportData: dict, specifiedFight: int = None) -> ReportSummary
     encounters = generateEncounters(report.fights, hydratedFunctions)
   
   populatedEncounters = populateActors(encounters, actors, fightRankings)
-  return ReportSummary(report.owner, report.startTime, populatedEncounters)
+
+  def compareEncounters(x, y):
+    xHighlight, yHighlight = x["highlightPull"], y["highlightPull"]
+    return x if hydratedFunctions.compareFights(xHighlight, yHighlight) == xHighlight else y
+  highlightEncounter = reduce(compareEncounters, populatedEncounters)
+
+  return ReportSummary(report.owner, report.startTime, populatedEncounters, highlightEncounter)
   
 if __name__ == "__main__":
   dir = os.path.dirname(__file__)
@@ -194,4 +202,4 @@ if __name__ == "__main__":
     mockExtremeReport = json.load(f)
   with open(os.path.join(dir, "test_data/compilation.json"), "r") as f:
      mockCompilationReport = json.load(f)
-  print(processFights(mockExtremeReport))
+  print(processFights(mockCompilationReport))

@@ -9,16 +9,14 @@ from datetime import datetime
 import processfights as pf
 import json, os, math, re
 
-class PullState(IntEnum):
-  WIPE = 0
-  KILL = 1
-  GRAY = 2
-  GREEN = 3
-  BLUE = 4
-  PURPLE = 5
-  ORANGE = 6
-  PINK = 7
-  GOLD = 8
+class Parse(IntEnum):
+  GRAY = 0
+  GREEN = 1
+  BLUE = 2
+  PURPLE = 3
+  ORANGE = 4
+  PINK = 5
+  GOLD = 6
 
 #TODO: Make a config file that will pull custom emojis for the bot
 
@@ -31,32 +29,6 @@ UNRANKED_CLEAR_EMOJI = "✅"
 PARSE_EMOJIS = ["🩶", "💚", "💙", "💜", "🧡", "🩷", "💛"]
 
 Ranking = namedtuple("Ranking", ["character", "parse", "job"])
-
-def generateRankingColorIndex(parse: int) -> int:
-  """Return an index 0-6 for a list of possible outputs based on a parse."""
-  # Ranges can be found here: 
-  # https://www.archon.gg/ffxiv/articles/help/rankings-and-parses
-  if parse < 25: return 0
-  elif parse < 50: return 1
-  elif parse < 75: return 2
-  elif parse < 95: return 3
-  elif parse < 99: return 4
-  elif parse == 99: return 5
-  else: return 6
-
-# TODO: Think about multiFight embed colors 
-def generateEmbedColor(fight: dict, rankings: dict):
-  print(rankings)
-  """Generate a hex code for an Embed based on a fight."""
-  if not fight["kill"]: return WIPE_HEXCODE #red
-
-  bestParse = 0
-  if fight["id"] in rankings:
-    for ranking in rankings[fight["id"]]:
-      bestParse = max(bestParse, ranking.parse) 
-  else: return UNRANKED_CLEAR_HEXCODE #mint green
-  
-  return PARSE_HEXCODES[generateRankingColorIndex(bestParse)]
 
 def generateClearEmoji(fightID: dict, rankings:dict) -> str:
   """Generate an emoji based on a cleared fights."""
@@ -173,18 +145,43 @@ def generateTitle(report: pf.ReportSummary) -> str:
   if isCompliation(report): return "Multiple Fights"
   else: return report.fightSummaries[0]["name"]
 
-@functools.cache
-def compilationHighlightFight(report: pf.ReportSummary) -> dict:
-  pass
-
 def generateImageURL(report: dict) -> str:
   """Generate a URL to a thumbnail based on the fight."""
   encounterID = None
   if not isCompliation(report):
     encounterID = report.fightSummaries[0]["highlightPull"]["encounterID"]
   else:
-    encounterID = compilationHighlightFight(report)["encounterID"]
+    encounterID = report.highlightEncounter["highlightPull"]["encounterID"]
   return f"https://assets.rpglogs.com/img/ff/bosses/{encounterID}-icon.jpg"
+
+def generateRankingColorIndex(parse: int) -> int:
+  """Return an index 0-6 for a list of possible outputs based on a parse."""
+  # Ranges can be found here: 
+  # https://www.archon.gg/ffxiv/articles/help/rankings-and-parses
+  if parse < 25: return Parse.GRAY
+  elif parse < 50: return Parse.GREEN
+  elif parse < 75: return Parse.BLUE
+  elif parse < 95: return Parse.PURPLE
+  elif parse < 99: return Parse.ORANGE
+  elif parse == 99: return Parse.PINK
+  else: return Parse.GOLD
+
+def generateEmbedColor(report:dict) -> int:
+  """Generate a hex code for an Embed based on a fight."""
+  print(report)
+  highlightEncounter = report.highlightEncounter
+  if len(highlightEncounter["clearPulls"]) == 0: return WIPE_HEXCODE
+  
+  return UNRANKED_CLEAR_HEXCODE
+  # if not fight["kill"]: return WIPE_HEXCODE #red
+
+  # bestParse = 0
+  # if fight["id"] in rankings:
+  #   for ranking in rankings[fight["id"]]:
+  #     bestParse = max(bestParse, ranking.parse) 
+  # else: return UNRANKED_CLEAR_HEXCODE #mint green
+  
+  # return PARSE_HEXCODES[generateRankingColorIndex(bestParse)]
 
 def generateEmbed(reportData: dict, link:str, desc:str = "") -> Embed:
   parsedLink = urlparse(link)
@@ -203,19 +200,9 @@ def generateEmbed(reportData: dict, link:str, desc:str = "") -> Embed:
     },
     "thumbnail": {
       "url": generateImageURL(processedFight)
-    }
+    },
+    "color": generateEmbedColor(processedFight)
   }
-
-  # if len(processedFight.fightSummaries) == 1:
-  #   if specificFight or processedFight.fightSummaries[0]["pullCount"] == 1:
-  #     print("single fight")
-  #     # reportEmbed = singleFightEmbed(embedSkeleton, processedFight)
-  #   else: 
-  #     print("multifight")
-  #     # reportEmbed = multiFightEmbed(embedSkeleton, processedFight)
-  # else: 
-  #   print("compilation fight")
-  #   # reportEmbed = compilationEmbed(embedSkeleton, processedFight)
   
   print(reportEmbed)
   return Embed.from_dict(reportEmbed)
@@ -224,11 +211,18 @@ if __name__ == "__main__":
   testLinkUltNoFragment = """
     https://www.fflogs.com/reports/7Myb4A6dDq1HnWvc
   """
+  testCompliationLink = """
+    https://www.fflogs.com/reports/CRh38LcT7BzAdHyr
+  """
   dir = os.path.dirname(__file__)
   mockUltReport, mockExtremeReport, mockCompilationReport = None, None, None
   with open(os.path.join(dir, "test_data/ultimate.json"), "r") as f:
     mockUltReport = json.load(f)
-  generateEmbed(mockUltReport, testLinkUltNoFragment)
+  with open(os.path.join(dir, "test_data/compilation.json"), "r") as f:
+    mockCompilationReport = json.load(f)
+  generateEmbed(mockUltReport, testLinkUltNoFragment)  
+  generateEmbed(mockCompilationReport, testCompliationLink)
+
   # with open(os.path.join(dir, "test_data/extreme.json"), "r") as f:
   #   mockExtremeReport = json.load(f)
   # with open(os.path.join(dir, "test_data/compilation.json"), "r") as f:
