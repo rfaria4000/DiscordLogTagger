@@ -3,30 +3,26 @@ from typing import Tuple, List, NamedTuple
 from collections import namedtuple
 from enum import IntEnum
 from urllib.parse import urlparse
-import functools
+from functools import reduce
 
 from datetime import datetime
 import processfights as pf
 import json, os, math, re
 
-class Parse(IntEnum):
-  GRAY = 0
-  GREEN = 1
-  BLUE = 2
-  PURPLE = 3
-  ORANGE = 4
-  PINK = 5
-  GOLD = 6
+class Pull(IntEnum):
+  WIPE = 0
+  CLEAR = 1
+  GRAY = 2
+  GREEN = 3
+  BLUE = 4
+  PURPLE = 5
+  ORANGE = 6
+  PINK = 7
+  GOLD = 8
 
 #TODO: Make a config file that will pull custom emojis for the bot
-
-WIPE_HEXCODE = 0xff0000
-UNRANKED_CLEAR_HEXCODE = 0xabebc6
-PARSE_HEXCODES = [0x666666, 0x1eff00, 0x0070ff, 0xa335ee, 0xff8000, 0xe268a8, 0xe5cc80]
-
-NO_CLEARS_EMOJI = "❌"
-UNRANKED_CLEAR_EMOJI = "✅"
-PARSE_EMOJIS = ["🩶", "💚", "💙", "💜", "🧡", "🩷", "💛"]
+PULL_HEXCODES = [0xff0000, 0xabebc6, 0x666666, 0x1eff00, 0x0070ff, 0xa335ee, 0xff8000, 0xe268a8, 0xe5cc80]
+PULL_EMOJIS = ["❌", "✅", "🩶", "💚", "💙", "💜", "🧡", "🩷", "💛"]
 
 Ranking = namedtuple("Ranking", ["character", "parse", "job"])
 
@@ -86,7 +82,7 @@ def generateMultiFightEmbed(simplifiedFights: dict, dateStart: str, link: str, r
                             value=f'[{bestPullString}]({fightURLPrefix}#fight={bestPullID})',
                             inline=False)
 
-  multiFightEmbed.add_field(name="Best Parse", value="[Ybolgblaet Lammstymm - On track to a 100 on Machinist](https://www.google.com)",
+  multiFightEmbed.add_field(name="Best Pull", value="[Ybolgblaet Lammstymm - On track to a 100 on Machinist](https://www.google.com)",
                             inline=False)
   # TODO: ADD BEST PARSE FIELD WITH LINK TO FIGHT WITH THAT PARSE
 
@@ -154,34 +150,30 @@ def generateImageURL(report: dict) -> str:
     encounterID = report.highlightEncounter["highlightPull"]["encounterID"]
   return f"https://assets.rpglogs.com/img/ff/bosses/{encounterID}-icon.jpg"
 
-def generateRankingColorIndex(parse: int) -> int:
+def parseToIndex(parse: int) -> int:
   """Return an index 0-6 for a list of possible outputs based on a parse."""
   # Ranges can be found here: 
   # https://www.archon.gg/ffxiv/articles/help/rankings-and-parses
-  if parse < 25: return Parse.GRAY
-  elif parse < 50: return Parse.GREEN
-  elif parse < 75: return Parse.BLUE
-  elif parse < 95: return Parse.PURPLE
-  elif parse < 99: return Parse.ORANGE
-  elif parse == 99: return Parse.PINK
-  else: return Parse.GOLD
+  if parse == -1: return Pull.CLEAR
+  elif parse < 25: return Pull.GRAY
+  elif parse < 50: return Pull.GREEN
+  elif parse < 75: return Pull.BLUE
+  elif parse < 95: return Pull.PURPLE
+  elif parse < 99: return Pull.ORANGE
+  elif parse == 99: return Pull.PINK
+  else: return Pull.GOLD
+
+def compareClearParses(clearOne: pf.ClearPull, clearTwo: pf.ClearPull) -> pf.ClearPull:
+  return clearOne if clearOne.bestParse > clearTwo.bestParse else clearTwo
 
 def generateEmbedColor(report:dict) -> int:
   """Generate a hex code for an Embed based on a fight."""
   print(report)
   highlightEncounter = report.highlightEncounter
-  if len(highlightEncounter["clearPulls"]) == 0: return WIPE_HEXCODE
+  if len(highlightEncounter["clearPulls"]) == 0: return PULL_HEXCODES[Pull.WIPE]
   
-  return UNRANKED_CLEAR_HEXCODE
-  # if not fight["kill"]: return WIPE_HEXCODE #red
-
-  # bestParse = 0
-  # if fight["id"] in rankings:
-  #   for ranking in rankings[fight["id"]]:
-  #     bestParse = max(bestParse, ranking.parse) 
-  # else: return UNRANKED_CLEAR_HEXCODE #mint green
-  
-  # return PARSE_HEXCODES[generateRankingColorIndex(bestParse)]
+  bestClear = reduce(compareClearParses, highlightEncounter["clearPulls"])
+  return PULL_HEXCODES[parseToIndex(bestClear.bestParse)]
 
 def generateEmbed(reportData: dict, link:str, desc:str = "") -> Embed:
   parsedLink = urlparse(link)
