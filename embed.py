@@ -166,7 +166,7 @@ def generateEmbedColor(report:pf.ReportSummary) -> int:
 def addField(fields: List[Dict[str, str]], 
              name: str, 
              value: str, 
-             inline=bool) -> None:
+             inline:bool = False) -> None:
   fields.append(
     {
       "name": name,
@@ -183,29 +183,35 @@ def makeLinkGenerator(parsedLink: ParseResult) -> Callable[[str, int], str]:
 
   return addLinkToFight
 
-def bestPullSummary(encounter: dict) -> str:
+def bestPullSummary(encounter: dict) -> Tuple[str, int]:
   """Generates string to describe the best pull of a fight."""
+  summary = ""
   highlightPull, fightTier = encounter["highlightPull"], encounter["fightTier"]
   startTime, endTime = highlightPull["startTime"],  highlightPull["endTime"]
   timeElapsed = math.floor((endTime - startTime) / 1000)
   minutes, seconds = timeElapsed//60, timeElapsed%60
   if highlightPull["kill"]:
-    return f"Clear in {minutes}:{seconds}"
+    summary =  f"Clear in {minutes}:{seconds}"
   else:
-    if highlightPull["fightTier"] == pf.FightTier.ULTIMATE:
-      return f'Phase {highlightPull["lastPhase"]} - {highlightPull["bossPercentage"]}% remaining'
+    if fightTier == pf.FightTier.ULTIMATE:
+      summary = f'Phase {highlightPull["lastPhase"]} - {highlightPull["bossPercentage"]}% remaining'
     else:
-      return f'{highlightPull["fightPercentage"]}% remaining'
+      summary = f'{highlightPull["fightPercentage"]}% remaining'
+  return (summary, highlightPull["id"])
 
+#TODO: Make adding a link not a nightmare
 def generateFields(report:pf.ReportSummary, parsedLink:ParseResult) -> List[Dict[str, str]]:
   fields = []
   addLink = makeLinkGenerator(parsedLink)
-  if isSingleFight(report):
-    addField(fields, "Fight Type", "Single", False)
-  elif isCompliation(report):
+  if isCompliation(report):
     addField(fields, "Fight Type", "Compilation", False)
   else:
-    addField(fields, "Fight Type", "Multi", False)
+    bestPull = bestPullSummary(report.fightSummaries[0])
+    addField(fields, "Best Pull", addLink(*bestPull), True)
+    if isSingleFight(report):
+      addField(fields, "Fight Type", "Single", False)
+    elif isCompliation(report):
+      addField(fields, "Fight Type", "Multi", False)
   return fields
 
 def generateEmbed(reportData: dict, link:str, desc:str = "") -> Embed:
