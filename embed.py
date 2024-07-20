@@ -199,7 +199,6 @@ def bestPullSummary(encounter: dict) -> Tuple[str, int]:
       summary = f'{highlightPull["fightPercentage"]}% remaining'
   return (summary, highlightPull["id"])
 
-#TODO: Make adding a link not a nightmare
 def generateFields(report:pf.ReportSummary, parsedLink:ParseResult) -> List[Dict[str, str]]:
   fields = []
   addLink = makeLinkGenerator(parsedLink)
@@ -210,7 +209,7 @@ def generateFields(report:pf.ReportSummary, parsedLink:ParseResult) -> List[Dict
     addField(fields, "Best Pull", addLink(*bestPull), True)
     if isSingleFight(report):
       addField(fields, "Fight Type", "Single", False)
-    elif isCompliation(report):
+    else:
       addField(fields, "Fight Type", "Multi", False)
   return fields
 
