@@ -1,8 +1,8 @@
 from discord import Embed
-from typing import Tuple, List, NamedTuple, Dict
+from typing import Tuple, List, NamedTuple, Dict, Callable
 from collections import namedtuple
 from enum import IntEnum
-from urllib.parse import urlparse
+from urllib.parse import urlparse, urlunparse, ParseResult
 from functools import reduce
 
 from datetime import datetime
@@ -39,20 +39,6 @@ def generateClearEmoji(fightID: dict, rankings:dict) -> str:
 def extractSimplifiedFight(simplifiedFights:dict) -> Tuple[int, str]:
   """Return the encounterID and simplified fight data as a tuple."""
   return (list(simplifiedFights.items())[0])
-
-def generateBestPullString(fight: dict) -> str:
-  """Generates string to describe the best pull of a fight."""
-  bestPull, fightTier = fight["bestPull"], fight["fightTier"]
-  startTime, endTime = bestPull["startTime"],  bestPull["endTime"]
-  timeElapsed = math.floor((endTime - startTime) / 1000)
-  minutes, seconds = timeElapsed//60, timeElapsed%60
-  if bestPull["kill"]:
-    return f"Clear in {minutes}:{seconds}"
-  else:
-    if fight["fightTier"] == 3:
-      return f'Phase {bestPull["lastPhase"]} - {bestPull["bossPercentage"]}% remaining'
-    else:
-      return f'{bestPull["fightPercentage"]}% remaining'
 
 def generateSingleFightEmbed():
   """Generate Embed for a report featuring a specific fight."""
@@ -189,8 +175,31 @@ def addField(fields: List[Dict[str, str]],
     }
   )
 
-def generateFields(report:pf.ReportSummary) -> List[Dict[str, str]]:
+def makeLinkGenerator(parsedLink: ParseResult) -> Callable[[str, int], str]:
+  def addLinkToFight(text: str, fightId: int) -> str:
+    """Turn text into a Markdown link to a specific fight."""
+    fflogsPrefix = f"{parsedLink.scheme}://{parsedLink.netloc}{parsedLink.path}"
+    return f"[{text}]({fflogsPrefix}/#fight={fightId})"
+
+  return addLinkToFight
+
+def bestPullSummary(encounter: dict) -> str:
+  """Generates string to describe the best pull of a fight."""
+  highlightPull, fightTier = encounter["highlightPull"], encounter["fightTier"]
+  startTime, endTime = highlightPull["startTime"],  highlightPull["endTime"]
+  timeElapsed = math.floor((endTime - startTime) / 1000)
+  minutes, seconds = timeElapsed//60, timeElapsed%60
+  if highlightPull["kill"]:
+    return f"Clear in {minutes}:{seconds}"
+  else:
+    if highlightPull["fightTier"] == pf.FightTier.ULTIMATE:
+      return f'Phase {highlightPull["lastPhase"]} - {highlightPull["bossPercentage"]}% remaining'
+    else:
+      return f'{highlightPull["fightPercentage"]}% remaining'
+
+def generateFields(report:pf.ReportSummary, parsedLink:ParseResult) -> List[Dict[str, str]]:
   fields = []
+  addLink = makeLinkGenerator(parsedLink)
   if isSingleFight(report):
     addField(fields, "Fight Type", "Single", False)
   elif isCompliation(report):
@@ -200,16 +209,17 @@ def generateFields(report:pf.ReportSummary) -> List[Dict[str, str]]:
   return fields
 
 def generateEmbed(reportData: dict, link:str, desc:str = "") -> Embed:
-  parsedLink = urlparse(link)
+  parsedLink = urlparse(link.replace("\n", "").strip())
   specificFight = None
   if parsedLink.fragment:
     specificFight = re.search(r"(?<=fight=)\d*", parsedLink.fragment)
     if specificFight: specificFight = int(specificFight.group(0))
   processedFight = pf.processFights(reportData, specificFight)
+  print(parsedLink)
 
   reportEmbed = {
     "title": f"{generateTitle(processedFight)} - <t:{processedFight.startTime}:D>",
-    "url": link,
+    "url": urlunparse(parsedLink),
     "description": desc,
     "author": {
       "name": f"Uploaded by {processedFight.owner}"
@@ -218,7 +228,7 @@ def generateEmbed(reportData: dict, link:str, desc:str = "") -> Embed:
       "url": generateImageURL(processedFight)
     },
     "color": generateEmbedColor(processedFight),
-    "fields": generateFields(processedFight)
+    "fields": generateFields(processedFight, parsedLink)
   }
   
   print(reportEmbed)
