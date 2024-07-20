@@ -115,6 +115,9 @@ def makeRankingFunctions(fightRankings: Dict[int, RankingSummary]) -> RankingFun
     if fightOneRating < CLEAR_THRESHOLD:
       return fightOne if fightOne["fightPercentage"] < fightTwo["fightPercentage"] else fightTwo
 
+    if fightOne["difficulty"] > fightTwo["difficulty"]: return fightOne
+    if fightTwo["difficulty"] > fightOne["difficulty"]: return fightTwo
+
     isFightOneShorter = getFightDuration(fightOne) < getFightDuration(fightTwo)
 
     if fightOne["name"] == fightTwo["name"]:

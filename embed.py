@@ -1,5 +1,5 @@
 from discord import Embed
-from typing import Tuple, List, NamedTuple
+from typing import Tuple, List, NamedTuple, Dict
 from collections import namedtuple
 from enum import IntEnum
 from urllib.parse import urlparse
@@ -132,7 +132,8 @@ def generateEmbedFromReport(reportData: dict, link: str, description: str = "") 
   return returnEmbed
 
 def isSingleFight(report:pf.ReportSummary) -> bool:
-  return report.fightSummaries[0]["pullCount"] == 1
+  return (len(report.fightSummaries) == 1
+          and report.fightSummaries[0]["pullCount"] == 1)
 
 def isCompliation(report:pf.ReportSummary) -> bool:
   return len(report.fightSummaries) > 1
@@ -143,11 +144,12 @@ def generateTitle(report: pf.ReportSummary) -> str:
 
 def generateImageURL(report: dict) -> str:
   """Generate a URL to a thumbnail based on the fight."""
-  encounterID = None
+  encounterID = 0
   if not isCompliation(report):
     encounterID = report.fightSummaries[0]["highlightPull"]["encounterID"]
-  else:
-    encounterID = report.highlightEncounter["highlightPull"]["encounterID"]
+  elif report.highlightEncounter["highlightPull"]["difficulty"] >= 100:
+      encounterID = report.highlightEncounter["highlightPull"]["encounterID"]
+  
   return f"https://assets.rpglogs.com/img/ff/bosses/{encounterID}-icon.jpg"
 
 def parseToIndex(parse: int) -> int:
@@ -163,17 +165,39 @@ def parseToIndex(parse: int) -> int:
   elif parse == 99: return Pull.PINK
   else: return Pull.GOLD
 
-def compareClearParses(clearOne: pf.ClearPull, clearTwo: pf.ClearPull) -> pf.ClearPull:
+def compareClearParses(clearOne: pf.ClearPull, 
+                       clearTwo: pf.ClearPull) -> pf.ClearPull:
   return clearOne if clearOne.bestParse > clearTwo.bestParse else clearTwo
 
-def generateEmbedColor(report:dict) -> int:
+def generateEmbedColor(report:pf.ReportSummary) -> int:
   """Generate a hex code for an Embed based on a fight."""
-  print(report)
   highlightEncounter = report.highlightEncounter
   if len(highlightEncounter["clearPulls"]) == 0: return PULL_HEXCODES[Pull.WIPE]
   
   bestClear = reduce(compareClearParses, highlightEncounter["clearPulls"])
   return PULL_HEXCODES[parseToIndex(bestClear.bestParse)]
+
+def addField(fields: List[Dict[str, str]], 
+             name: str, 
+             value: str, 
+             inline=bool) -> None:
+  fields.append(
+    {
+      "name": name,
+      "value": value,
+      "inline": inline
+    }
+  )
+
+def generateFields(report:pf.ReportSummary) -> List[Dict[str, str]]:
+  fields = []
+  if isSingleFight(report):
+    addField(fields, "Fight Type", "Single", False)
+  elif isCompliation(report):
+    addField(fields, "Fight Type", "Compilation", False)
+  else:
+    addField(fields, "Fight Type", "Multi", False)
+  return fields
 
 def generateEmbed(reportData: dict, link:str, desc:str = "") -> Embed:
   parsedLink = urlparse(link)
@@ -193,7 +217,8 @@ def generateEmbed(reportData: dict, link:str, desc:str = "") -> Embed:
     "thumbnail": {
       "url": generateImageURL(processedFight)
     },
-    "color": generateEmbedColor(processedFight)
+    "color": generateEmbedColor(processedFight),
+    "fields": generateFields(processedFight)
   }
   
   print(reportEmbed)
