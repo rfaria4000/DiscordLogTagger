@@ -163,17 +163,17 @@ def generateEmbedColor(report:pf.ReportSummary) -> int:
   bestClear = reduce(compareClearParses, highlightEncounter["clearPulls"])
   return PULL_HEXCODES[parseToIndex(bestClear.bestParse)]
 
-def addField(fields: List[Dict[str, str]], 
-             name: str, 
-             value: str, 
-             inline:bool = False) -> None:
-  fields.append(
-    {
-      "name": name,
-      "value": value,
-      "inline": inline
-    }
-  )
+def makeFieldsAdder(fields: List[Dict[str, str]]) -> Callable[[str, str, bool], None]:
+  def addField(name: str, value: str, inline:bool = False) -> None:
+    fields.append(
+      {
+        "name": name,
+        "value": value,
+        "inline": inline
+      }
+    )
+  
+  return addField
 
 def makeLinkGenerator(parsedLink: ParseResult) -> Callable[[str, int], str]:
   def addLinkToFight(text: str, fightId: int) -> str:
@@ -199,18 +199,30 @@ def bestPullSummary(encounter: dict) -> Tuple[str, int]:
       summary = f'{highlightPull["fightPercentage"]}% remaining'
   return (summary, highlightPull["id"])
 
+def generateClearEmojis(encounter: dict, 
+                        addLink: Callable[[str, int], int]) -> str:
+  clears = encounter["clearPulls"]
+  if not clears: return PULL_EMOJIS[Pull.WIPE]
+  
+  emojiList = list(map(lambda pull: (PULL_EMOJIS[parseToIndex(pull.bestParse)], pull.fightID), clears))
+  return str(reduce(lambda x, y: x + (addLink(*y)), emojiList, ""))
+
 def generateFields(report:pf.ReportSummary, parsedLink:ParseResult) -> List[Dict[str, str]]:
   fields = []
   addLink = makeLinkGenerator(parsedLink)
+  addField = makeFieldsAdder(fields)
+  # print(report)
   if isCompliation(report):
-    addField(fields, "Fight Type", "Compilation", False)
+    addField("Fight Type", "Compilation", False)
   else:
-    bestPull = bestPullSummary(report.fightSummaries[0])
-    addField(fields, "Best Pull", addLink(*bestPull), True)
+    bestPullInfo = bestPullSummary(report.fightSummaries[0])
+    # print(bestPullInfo)
+    addField("Best Pull", addLink(*bestPullInfo), True)
     if isSingleFight(report):
-      addField(fields, "Fight Type", "Single", False)
+      addField("Fight Type", "Single", False)
     else:
-      addField(fields, "Fight Type", "Multi", False)
+      addField("Fight Type", "Multi", False)
+      addField("Clears?", generateClearEmojis(report.fightSummaries[0], addLink), False)
   return fields
 
 def generateEmbed(reportData: dict, link:str, desc:str = "") -> Embed:
