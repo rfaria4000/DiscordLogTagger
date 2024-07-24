@@ -6,6 +6,8 @@ from urllib.parse import urlparse, urlunparse, ParseResult
 from functools import reduce
 
 from datetime import datetime
+from emoji import emojiDict
+from copy import deepcopy
 import processfights as pf
 import json, os, math, re
 
@@ -21,10 +23,11 @@ class Pull(IntEnum):
   GOLD = 8
 
 #TODO: Make a config file that will pull custom emojis for the bot
-PULL_HEXCODES = [0xff0000, 0xabebc6, 0x666666, 0x1eff00, 0x0070ff, 0xa335ee, 0xff8000, 0xe268a8, 0xe5cc80]
+PULL_HEXCODES = [0xff0000, 0xabebc6, 0x666666, 0x1eff00, 0x0070ff, 
+                 0xa335ee, 0xff8000, 0xe268a8, 0xe5cc80]
 PULL_EMOJIS = ["❌", "✅", "🩶", "💚", "💙", "💜", "🧡", "🩷", "💛"]
 
-Ranking = namedtuple("Ranking", ["character", "parse", "job"])
+# Ranking = namedtuple("Ranking", ["character", "parse", "job"])
 
 def generateClearEmoji(fightID: dict, rankings:dict) -> str:
   """Generate an emoji based on a cleared fights."""
@@ -121,17 +124,17 @@ def isSingleFight(report:pf.ReportSummary) -> bool:
   return (len(report.fightSummaries) == 1
           and report.fightSummaries[0]["pullCount"] == 1)
 
-def isCompliation(report:pf.ReportSummary) -> bool:
+def isCompilation(report:pf.ReportSummary) -> bool:
   return len(report.fightSummaries) > 1
 
 def generateTitle(report: pf.ReportSummary) -> str:
-  if isCompliation(report): return "Multiple Fights"
+  if isCompilation(report): return "Multiple Fights"
   else: return report.fightSummaries[0]["name"]
 
 def generateImageURL(report: dict) -> str:
   """Generate a URL to a thumbnail based on the fight."""
   encounterID = 0
-  if not isCompliation(report):
+  if not isCompilation(report):
     encounterID = report.fightSummaries[0]["highlightPull"]["encounterID"]
   elif report.highlightEncounter["highlightPull"]["difficulty"] >= 100:
       encounterID = report.highlightEncounter["highlightPull"]["encounterID"]
@@ -204,24 +207,47 @@ def generateClearEmojis(encounter: dict,
   clears = encounter["clearPulls"]
   if not clears: return PULL_EMOJIS[Pull.WIPE]
   
-  emojiList = list(map(lambda pull: (PULL_EMOJIS[parseToIndex(pull.bestParse)], pull.fightID), clears))
+  emojiList = list(map(lambda pull: (PULL_EMOJIS[parseToIndex(pull.bestParse)], 
+                                     pull.fightID), clears))
   return str(reduce(lambda x, y: x + (addLink(*y)), emojiList, ""))
 
-def generateFields(report:pf.ReportSummary, parsedLink:ParseResult) -> List[Dict[str, str]]:
+def singleFightPlayerInfo(encounter: dict) -> Tuple[str, str]:
+  rankings = deepcopy(encounter["highlightPull"]["friendlyPlayers"])
+  sortedPlayerRankings = sorted(rankings, 
+                                key=lambda player: emojiDict[player.job][1])
+  print(sortedPlayerRankings)
+  playerEmojiMap = lambda ranking: emojiDict[ranking.job][0] + ranking.character
+  playerString = "\n".join(map(playerEmojiMap, sortedPlayerRankings))
+  print(playerString)
+
+  playerFilteredRankings = filter(lambda ranking: ranking.parse >= 0, 
+                                  sortedPlayerRankings)
+  if not playerFilteredRankings: return (playerString, "") 
+  parseEmojiMap = lambda ranking: emojiDict[ranking.job][0] + PULL_EMOJIS[parseToIndex(ranking.parse)] + " " + str(ranking.parse)
+  parseString = "\n".join(map(parseEmojiMap, playerFilteredRankings))
+  print(parseString)
+  return(playerString, parseString)
+
+def generateFields(report:pf.ReportSummary, 
+                   parsedLink:ParseResult) -> List[Dict[str, str]]:
   fields = []
   addLink = makeLinkGenerator(parsedLink)
   addField = makeFieldsAdder(fields)
   # print(report)
-  if isCompliation(report):
+  if isCompilation(report):
     addField("Fight Type", "Compilation", False)
   else:
     bestPullInfo = bestPullSummary(report.fightSummaries[0])
     # print(bestPullInfo)
-    addField("Best Pull", addLink(*bestPullInfo), True)
     if isSingleFight(report):
+      playerInfo = singleFightPlayerInfo(report.fightSummaries[0])
       addField("Fight Type", "Single", False)
+      addField("Status", bestPullInfo[0], False)
+      addField("Party", playerInfo[0], True)
+      if playerInfo[1]: addField("Parses", playerInfo[1], True)
     else:
       addField("Fight Type", "Multi", False)
+      addField("Best Pull", addLink(*bestPullInfo), True)
       addField("Clears?", generateClearEmojis(report.fightSummaries[0], addLink), False)
   return fields
 
@@ -253,7 +279,7 @@ def generateEmbed(reportData: dict, link:str, desc:str = "") -> Embed:
 
 if __name__ == "__main__":
   testLinkUltNoFragment = """
-    https://www.fflogs.com/reports/7Myb4A6dDq1HnWvc
+    https://www.fflogs.com/reports/7Myb4A6dDq1HnWvc#fight=3
   """
   testCompliationLink = """
     https://www.fflogs.com/reports/CRh38LcT7BzAdHyr
