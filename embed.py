@@ -213,19 +213,20 @@ def generateClearEmojis(encounter: dict,
 
 def singleFightPlayerInfo(encounter: dict) -> Tuple[str, str]:
   rankings = deepcopy(encounter["highlightPull"]["friendlyPlayers"])
+  
   sortedPlayerRankings = sorted(rankings, 
                                 key=lambda player: emojiDict[player.job][1])
-  print(sortedPlayerRankings)
   playerEmojiMap = lambda ranking: emojiDict[ranking.job][0] + ranking.character
   playerString = "\n".join(map(playerEmojiMap, sortedPlayerRankings))
-  print(playerString)
 
   playerFilteredRankings = filter(lambda ranking: ranking.parse >= 0, 
                                   sortedPlayerRankings)
-  if not playerFilteredRankings: return (playerString, "") 
-  parseEmojiMap = lambda ranking: emojiDict[ranking.job][0] + PULL_EMOJIS[parseToIndex(ranking.parse)] + " " + str(ranking.parse)
+  if not playerFilteredRankings: return (playerString, "")
+  parseEmojiMap = lambda ranking: str(emojiDict[ranking.job][0] + 
+                                      PULL_EMOJIS[parseToIndex(ranking.parse)] + 
+                                      " " + str(ranking.parse))
   parseString = "\n".join(map(parseEmojiMap, playerFilteredRankings))
-  print(parseString)
+
   return(playerString, parseString)
 
 def generateFields(report:pf.ReportSummary, 
