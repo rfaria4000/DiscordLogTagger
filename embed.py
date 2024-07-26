@@ -158,6 +158,7 @@ def compareClearParses(clearOne: pf.ClearPull,
                        clearTwo: pf.ClearPull) -> pf.ClearPull:
   return clearOne if clearOne.bestParse > clearTwo.bestParse else clearTwo
 
+#TODO: IF ENCOUNTERS SORTED, DON'T NEED HIGHLIGHT FIGHT ANYMORE, NO?
 def generateEmbedColor(report:pf.ReportSummary) -> int:
   """Generate a hex code for an Embed based on a fight."""
   highlightEncounter = report.highlightEncounter
@@ -229,13 +230,27 @@ def singleFightPlayerInfo(encounter: dict) -> Tuple[str, str]:
 
   return(playerString, parseString)
 
+# Used to populate the overview - add up fights in order until string limit
+# for field reached? 
+def compilationFightsToString(list: List[Dict]) -> str:
+  pass 
+
+# Select up to max 5 fights to highlights 
+# (order the list then pick out the top 5?)
+#TODO: Hammer down the type for the list return - return tuple of 3 strings?
+#name, pulls, clears?
+def compilationHighlightFights(list: List[Dict]) -> List[Tuple[str, str, str]]:
+  # grab the encounters, order them by compareFight? might have to do that in 
+  # process fights
+  pass
+
 def generateFields(report:pf.ReportSummary, 
                    parsedLink:ParseResult) -> List[Dict[str, str]]:
   fields = []
   addLink = makeLinkGenerator(parsedLink)
   addField = makeFieldsAdder(fields)
-  # print(report)
   if isCompilation(report):
+    print(report)
     addField("Fight Type", "Compilation", False)
   else:
     bestPullInfo = bestPullSummary(report.fightSummaries[0])

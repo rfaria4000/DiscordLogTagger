@@ -33,7 +33,7 @@ class ReportSummary(NamedTuple):
 
 class FightTier(IntEnum):
   UNRANKED = 0
-  EXTREME = 1
+  RANKED = 1 #Extremes and Normal Raids
   SAVAGE = 2
   ULTIMATE = 3
 
@@ -85,7 +85,7 @@ def makeRankingFunctions(fightRankings: Dict[int, RankingSummary]) -> RankingFun
   def evaluateDifficulty(fight: dict) -> int:
     if fight["lastPhase"] > 0: return FightTier.ULTIMATE
     if fight["difficulty"] == 101: return FightTier.SAVAGE
-    if fight["id"] in fightRankings.keys(): return FightTier.EXTREME
+    if fight["id"] in fightRankings.keys(): return FightTier.RANKED
     return FightTier.UNRANKED
   
   def bestRanking(fightID: int) -> int:
@@ -194,7 +194,11 @@ def processFights(reportData: dict, specifiedFight: int = None) -> ReportSummary
     return x if hydratedFunctions.compareFights(xHighlight, yHighlight) == xHighlight else y
   highlightEncounter = reduce(compareEncounters, populatedEncounters)
 
-  return ReportSummary(report.owner, report.startTime, populatedEncounters, highlightEncounter)
+  sortedEncounters = sorted(populatedEncounters, 
+                            key=lambda encounter: encounter["fightTier"],
+                            reverse=True)
+  
+  return ReportSummary(report.owner, report.startTime, sortedEncounters, highlightEncounter)
   
 if __name__ == "__main__":
   dir = os.path.dirname(__file__)
