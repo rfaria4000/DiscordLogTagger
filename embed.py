@@ -22,12 +22,12 @@ class Pull(IntEnum):
   PINK = 7
   GOLD = 8
 
-#TODO: Make a config file that will pull custom emojis for the bot
 PULL_HEXCODES = [0xff0000, 0xabebc6, 0x666666, 0x1eff00, 0x0070ff, 
                  0xa335ee, 0xff8000, 0xe268a8, 0xe5cc80]
 PULL_EMOJIS = ["❌", "✅", "🩶", "💚", "💙", "💜", "🧡", "🩷", "💛"]
 
-# Ranking = namedtuple("Ranking", ["character", "parse", "job"])
+FIELD_VALUE_LIMIT = 1024
+FIELD_VALUE_TRUNCATE = 1021
 
 def generateClearEmoji(fightID: dict, rankings:dict) -> str:
   """Generate an emoji based on a cleared fights."""
@@ -232,14 +232,20 @@ def singleFightPlayerInfo(encounter: dict) -> Tuple[str, str]:
 
 # Used to populate the overview - add up fights in order until string limit
 # for field reached? 
-def compilationFightsToString(list: List[Dict]) -> str:
-  pass 
+def compilationFightsToString(encounters: List[Dict]) -> str:
+  filterUnranked = lambda encounter: encounter["fightTier"] > pf.FightTier.UNRANKED
+  filteredEncounters = list(filter(filterUnranked, encounters))
+  if not filteredEncounters: filteredEncounters = encounters
+  encountersString = ", ".join(encounter["name"] for encounter in filteredEncounters)
+  if len(encountersString) > FIELD_VALUE_LIMIT: 
+    return (encountersString[FIELD_VALUE_TRUNCATE:] + "...") 
+  return encountersString
 
 # Select up to max 5 fights to highlights 
 # (order the list then pick out the top 5?)
 #TODO: Hammer down the type for the list return - return tuple of 3 strings?
 #name, pulls, clears?
-def compilationHighlightFights(list: List[Dict]) -> List[Tuple[str, str, str]]:
+def compilationHighlightFights(encounters: List[Dict]) -> List[Tuple[str, str, str]]:
   # grab the encounters, order them by compareFight? might have to do that in 
   # process fights
   pass
@@ -250,8 +256,9 @@ def generateFields(report:pf.ReportSummary,
   addLink = makeLinkGenerator(parsedLink)
   addField = makeFieldsAdder(fields)
   if isCompilation(report):
-    print(report)
     addField("Fight Type", "Compilation", False)
+    addField("Notable Fights", compilationFightsToString(report.fightSummaries), 
+             False)
   else:
     bestPullInfo = bestPullSummary(report.fightSummaries[0])
     # print(bestPullInfo)
