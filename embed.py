@@ -1,6 +1,5 @@
 from discord import Embed
 from typing import Tuple, List, NamedTuple, Dict, Callable
-from collections import namedtuple
 from enum import IntEnum
 from urllib.parse import urlparse, urlunparse, ParseResult
 from functools import reduce
@@ -28,6 +27,19 @@ PULL_EMOJIS = ["❌", "✅", "🩶", "💚", "💙", "💜", "🧡", "🩷", "�
 
 FIELD_VALUE_LIMIT = 1024
 FIELD_VALUE_TRUNCATE = 1021
+
+class BestPullPreview(NamedTuple):
+  description: str
+  fightID: int
+
+class SingleFightInfo(NamedTuple):
+  playersString: str
+  parseString: str
+
+class NotableFightOverview(NamedTuple):
+  name: str
+  pulls: int
+  clears: str
 
 def generateClearEmoji(fightID: dict, rankings:dict) -> str:
   """Generate an emoji based on a cleared fights."""
@@ -187,7 +199,7 @@ def makeLinkGenerator(parsedLink: ParseResult) -> Callable[[str, int], str]:
 
   return addLinkToFight
 
-def bestPullSummary(encounter: dict) -> Tuple[str, int]:
+def bestPullSummary(encounter: dict) -> BestPullPreview:
   """Generates string to describe the best pull of a fight."""
   summary = ""
   highlightPull, fightTier = encounter["highlightPull"], encounter["fightTier"]
@@ -201,7 +213,7 @@ def bestPullSummary(encounter: dict) -> Tuple[str, int]:
       summary = f'Phase {highlightPull["lastPhase"]} - {highlightPull["bossPercentage"]}% remaining'
     else:
       summary = f'{highlightPull["fightPercentage"]}% remaining'
-  return (summary, highlightPull["id"])
+  return BestPullPreview(summary, highlightPull["id"])
 
 def generateClearEmojis(encounter: dict, 
                         addLink: Callable[[str, int], int]) -> str:
@@ -212,7 +224,7 @@ def generateClearEmojis(encounter: dict,
                                      pull.fightID), clears))
   return str(reduce(lambda x, y: x + (addLink(*y)), emojiList, ""))
 
-def singleFightPlayerInfo(encounter: dict) -> Tuple[str, str]:
+def singleFightPlayersInfo(encounter: dict) -> SingleFightInfo:
   rankings = deepcopy(encounter["highlightPull"]["friendlyPlayers"])
   
   sortedPlayerRankings = sorted(rankings, 
@@ -228,15 +240,18 @@ def singleFightPlayerInfo(encounter: dict) -> Tuple[str, str]:
                                       " " + str(ranking.parse))
   parseString = "\n".join(map(parseEmojiMap, playerFilteredRankings))
 
-  return(playerString, parseString)
+  return SingleFightInfo(playerString, parseString)
+
+def filterEncounters(encounters: List[Dict]) -> List[Dict]:
+  filterUnranked = lambda encounter: encounter["fightTier"] > pf.FightTier.UNRANKED
+  filteredEncounters = list(filter(filterUnranked, encounters))
+  if not filteredEncounters: filteredEncounters = encounters
+  return filteredEncounters
 
 # Used to populate the overview - add up fights in order until string limit
 # for field reached? 
 def compilationFightsToString(encounters: List[Dict]) -> str:
-  filterUnranked = lambda encounter: encounter["fightTier"] > pf.FightTier.UNRANKED
-  filteredEncounters = list(filter(filterUnranked, encounters))
-  if not filteredEncounters: filteredEncounters = encounters
-  encountersString = ", ".join(encounter["name"] for encounter in filteredEncounters)
+  encountersString = ", ".join(encounter["name"] for encounter in filterEncounters(encounters))
   if len(encountersString) > FIELD_VALUE_LIMIT: 
     return (encountersString[FIELD_VALUE_TRUNCATE:] + "...") 
   return encountersString
@@ -245,10 +260,18 @@ def compilationFightsToString(encounters: List[Dict]) -> str:
 # (order the list then pick out the top 5?)
 #TODO: Hammer down the type for the list return - return tuple of 3 strings?
 #name, pulls, clears?
-def compilationHighlightFights(encounters: List[Dict]) -> List[Tuple[str, str, str]]:
+def compilationHighlightFights(encounters: List[Dict], 
+                               addLink: Callable[[str, int], int]) -> List[NotableFightOverview]:
   # grab the encounters, order them by compareFight? might have to do that in 
   # process fights
-  pass
+  notableEncounters = filterEncounters(encounters)
+  fightOverviews = []
+  for encounter in notableEncounters:
+    fightOverviews.append(NotableFightOverview(encounter["name"], 
+                                               str(encounter["pullCount"]), 
+                                               generateClearEmojis(encounter, 
+                                                                   addLink)))
+  return fightOverviews
 
 def generateFields(report:pf.ReportSummary, 
                    parsedLink:ParseResult) -> List[Dict[str, str]]:
@@ -259,18 +282,22 @@ def generateFields(report:pf.ReportSummary,
     addField("Fight Type", "Compilation", False)
     addField("Notable Fights", compilationFightsToString(report.fightSummaries), 
              False)
+    for highlight in compilationHighlightFights(report.fightSummaries, addLink):
+      addField(f"{highlight.name} - {highlight.pulls} pull(s)", 
+               f"Clears: {highlight.clears}", False)
   else:
     bestPullInfo = bestPullSummary(report.fightSummaries[0])
     # print(bestPullInfo)
     if isSingleFight(report):
-      playerInfo = singleFightPlayerInfo(report.fightSummaries[0])
+      playerInfo = singleFightPlayersInfo(report.fightSummaries[0])
       addField("Fight Type", "Single", False)
-      addField("Status", bestPullInfo[0], False)
-      addField("Party", playerInfo[0], True)
-      if playerInfo[1]: addField("Parses", playerInfo[1], True)
+      addField("Status", bestPullInfo.description, False)
+      addField("Party", playerInfo.playersString, True)
+      if playerInfo[1]: addField("Parses", playerInfo.parseString, True)
     else:
       addField("Fight Type", "Multi", False)
-      addField("Best Pull", addLink(*bestPullInfo), True)
+      addField("Pulls", str(report.fightSummaries[0]["pullCount"]), False)
+      addField("Best Pull", addLink(*bestPullInfo), False)
       addField("Clears?", generateClearEmojis(report.fightSummaries[0], addLink), False)
   return fields
 
