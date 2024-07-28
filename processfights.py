@@ -184,8 +184,7 @@ def processFights(reportData: dict, specifiedFight: int = 0) -> ReportSummary:
   if specifiedFight:
     if specifiedFight == -1: fight = [deepcopy(report.fights[-1])]
     else:
-      fight = list(filter((lambda fight: fight["id"] == specifiedFight), 
-                          report.fights))
+      fight = list(filter((lambda fight: fight["id"] == specifiedFight), report.fights))
     encounters = generateEncounters(fight, hydratedFunctions)
   else:
     encounters = generateEncounters(report.fights, hydratedFunctions)

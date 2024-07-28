@@ -303,17 +303,19 @@ def generateFields(report:pf.ReportSummary,
 
 def getChosenFight(linkObject: ParseResult) -> int:
   if linkObject.fragment:
-    searchResults = re.search(r"(?<=fight=).*(?=&)", linkObject.fragment)
+    searchResults = re.search(r"(?<=fight=).*(?=(?=&|$))", linkObject.fragment)
     if searchResults: 
       searchResults = searchResults.group(0)
+      print(searchResults)
       if searchResults == "last": return -1
       if searchResults.isnumeric(): return int(searchResults)
   return 0
 
 def generateEmbed(reportData: dict, link:str, desc:str = "") -> Embed:
   parsedLink = urlparse(link.replace("\n", "").strip())
+  print(getChosenFight(parsedLink))
   processedFight = pf.processFights(reportData, getChosenFight(parsedLink))
-  print(parsedLink)
+  print(processedFight)
 
   reportEmbed = {
     "title": f"{generateTitle(processedFight)} - <t:{processedFight.startTime}:D>",
