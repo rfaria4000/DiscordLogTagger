@@ -207,7 +207,7 @@ def bestPullSummary(encounter: dict) -> BestPullPreview:
   timeElapsed = math.floor((endTime - startTime) / 1000)
   minutes, seconds = timeElapsed//60, timeElapsed%60
   if highlightPull["kill"]:
-    summary =  f"Clear in {minutes}:{seconds}"
+    summary =  f"Clear in {minutes}:{seconds:02d}"
   else:
     if fightTier == pf.FightTier.ULTIMATE:
       summary = f'Phase {highlightPull["lastPhase"]} - {highlightPull["bossPercentage"]}% remaining'
