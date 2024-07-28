@@ -301,13 +301,18 @@ def generateFields(report:pf.ReportSummary,
       addField("Clears?", generateClearEmojis(report.fightSummaries[0], addLink), False)
   return fields
 
+def getChosenFight(linkObject: ParseResult) -> int:
+  if linkObject.fragment:
+    searchResults = re.search(r"(?<=fight=).*(?=&)", linkObject.fragment)
+    if searchResults: 
+      searchResults = searchResults.group(0)
+      if searchResults == "last": return -1
+      if searchResults.isnumeric(): return int(searchResults)
+  return 0
+
 def generateEmbed(reportData: dict, link:str, desc:str = "") -> Embed:
   parsedLink = urlparse(link.replace("\n", "").strip())
-  specificFight = None
-  if parsedLink.fragment:
-    specificFight = re.search(r"(?<=fight=)\d*", parsedLink.fragment)
-    if specificFight: specificFight = int(specificFight.group(0))
-  processedFight = pf.processFights(reportData, specificFight)
+  processedFight = pf.processFights(reportData, getChosenFight(parsedLink))
   print(parsedLink)
 
   reportEmbed = {
@@ -342,6 +347,9 @@ if __name__ == "__main__":
     mockCompilationReport = json.load(f)
   generateEmbed(mockUltReport, testLinkUltNoFragment)  
   generateEmbed(mockCompilationReport, testCompliationLink)
+  # link = "https://www.fflogs.com/reports/gnNm23A8DHp9Kch7#fight=last&type=damage-done"
+  # testLinkObject = urlparse(link.replace("\n", "").strip())
+  # print(getChosenFight(testLinkObject))
 
   # with open(os.path.join(dir, "test_data/extreme.json"), "r") as f:
   #   mockExtremeReport = json.load(f)

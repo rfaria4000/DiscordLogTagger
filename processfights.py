@@ -169,7 +169,7 @@ def populateActors(encounters: list, actors: Dict[int, str], rankings):
   
   return encountersCopy
 
-def processFights(reportData: dict, specifiedFight: int = None) -> ReportSummary:
+def processFights(reportData: dict, specifiedFight: int = 0) -> ReportSummary:
   # TODO: Update docstrings for entire file
   """."""
   if "errors" in reportData:
@@ -182,7 +182,10 @@ def processFights(reportData: dict, specifiedFight: int = None) -> ReportSummary
   encounters = None
   
   if specifiedFight:
-    fight = list(filter((lambda fight: fight["id"] == specifiedFight), report.fights))
+    if specifiedFight == -1: fight = [deepcopy(report.fights[-1])]
+    else:
+      fight = list(filter((lambda fight: fight["id"] == specifiedFight), 
+                          report.fights))
     encounters = generateEncounters(fight, hydratedFunctions)
   else:
     encounters = generateEncounters(report.fights, hydratedFunctions)
@@ -192,6 +195,7 @@ def processFights(reportData: dict, specifiedFight: int = None) -> ReportSummary
   def compareEncounters(x, y):
     xHighlight, yHighlight = x["highlightPull"], y["highlightPull"]
     return x if hydratedFunctions.compareFights(xHighlight, yHighlight) == xHighlight else y
+  
   highlightEncounter = reduce(compareEncounters, populatedEncounters)
 
   sortedEncounters = sorted(populatedEncounters, 
@@ -209,4 +213,4 @@ if __name__ == "__main__":
     mockExtremeReport = json.load(f)
   with open(os.path.join(dir, "test_data/compilation.json"), "r") as f:
      mockCompilationReport = json.load(f)
-  print(processFights(mockCompilationReport))
+  print(processFights(mockCompilationReport, -1))
