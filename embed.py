@@ -303,10 +303,9 @@ def generateFields(report:pf.ReportSummary,
 
 def getChosenFight(linkObject: ParseResult) -> int:
   if linkObject.fragment:
-    searchResults = re.search(r"(?<=fight=).*(?=(?=&|$))", linkObject.fragment)
-    if searchResults: 
-      searchResults = searchResults.group(0)
-      print(searchResults)
+    searchResults = re.search(r"(?<=fight=).*", linkObject.fragment)
+    if searchResults:
+      searchResults = searchResults.group(0).split("&")[0]
       if searchResults == "last": return -1
       if searchResults.isnumeric(): return int(searchResults)
   return 0
