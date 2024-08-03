@@ -13,11 +13,11 @@ class FFLogsReportError(Exception):
     """Raise an exception upon receiving invalid report link."""
 
 load_dotenv(".env")
-DISCORD_TOKEN = os.environ.get("ENV_DISCORD_TOKEN")
-DISCORD_GUILD_NAME = os.environ.get("ENV_DISCORD_GUILD_NAME")
-DISCORD_GUILD_ID = os.environ.get("ENV_DISCORD_GUILD_ID")
-FFLOGS_CLIENT_ID = os.environ.get("ENV_FFLOGS_CLIENT_ID")
-FFLOGS_CLIENT_SECRET = os.environ.get("ENV_FFLOGS_CLIENT_SECRET")
+DISCORD_TOKEN = os.environ.get("DISCORD_TOKEN")
+DISCORD_GUILD_NAME = os.environ.get("DISCORD_GUILD_NAME")
+DISCORD_GUILD_ID = os.environ.get("DISCORD_GUILD_ID")
+FFLOGS_CLIENT_ID = os.environ.get("FFLOGS_CLIENT_ID")
+FFLOGS_CLIENT_SECRET = os.environ.get("FFLOGS_CLIENT_SECRET")
 
 intents = discord.Intents.default()
 intents.message_content = True
@@ -70,7 +70,6 @@ async def on_ready():
   await tree.sync(guild=discord.Object(id=guild.id))
   
 
-class DiscordBot()
 
 if __name__ == "__main__":
   client.run(DISCORD_TOKEN)
