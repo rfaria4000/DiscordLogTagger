@@ -20,7 +20,7 @@ class DiscordBot(commands.Bot):
     await self.load_extension(f"cogs.test")
     await self.load_extension(f"cogs.sync")
     await bot.tree.sync(guild=discord.Object(os.getenv("DISCORD_GUILD_ID")))
-    await bot.tree.sync()
+    # await bot.tree.sync()
 
   async def on_ready(self):
     print(f'{self.user} has connected to Discord!')
