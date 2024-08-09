@@ -17,10 +17,13 @@ class DiscordBot(commands.Bot):
     pass
   
   async def setup_hook(self):
-    await self.load_extension(f"cogs.test")
-    await self.load_extension(f"cogs.sync")
-    await bot.tree.sync(guild=discord.Object(os.getenv("DISCORD_GUILD_ID")))
-    # await bot.tree.sync()
+    for f in os.listdir('./cogs'):
+      if f.endswith(".py"):
+        try:
+          await self.load_extension(f"cogs.{f[:-3]}")
+          print(f"Successfully loaded {f}")
+        except Exception as e:
+          print(f"Failed to load {f}")
 
   async def on_ready(self):
     print(f'{self.user} has connected to Discord!')
