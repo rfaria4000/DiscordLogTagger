@@ -1,10 +1,6 @@
-import discord, os
+import discord
 from discord.ext import commands
 from discord.ext.commands import Context
-from dotenv import load_dotenv
-
-load_dotenv(".env")
-MY_GUILD_ID = discord.Object(os.getenv("DISCORD_GUILD_ID"))
 
 class sync(commands.Cog):
   def __init__(self, bot: commands.Bot) -> None:
