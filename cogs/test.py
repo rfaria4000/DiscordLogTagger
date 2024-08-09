@@ -1,5 +1,6 @@
 import discord
 from discord import app_commands
+from discord.ui import Select, View
 from discord.ext import commands
 
 class test(commands.Cog):
@@ -11,7 +12,18 @@ class test(commands.Cog):
       description="Testing function"
   )
   async def test(self, interaction: discord.Interaction) -> None:
-    await interaction.response.send_message("Successfully created")
+    select = Select(
+      placeholder="Select a report type to preview:",
+      options=[
+        discord.SelectOption(label="Single Fight", emoji="🔸", description="A single pull."),
+        discord.SelectOption(label="Multifight", emoji="🔷", description="Multiple pulls of the same encounter."),
+        discord.SelectOption(label="Compilation", emoji="💠", description="Multiple encounters.")
+      ]
+    )
+
+    view = View()
+    view.add_item(select)
+    await interaction.response.send_message(view=view)
 
 async def setup(bot: commands.Bot) -> None:
   await bot.add_cog(test(bot))
