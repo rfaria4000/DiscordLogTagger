@@ -1,7 +1,36 @@
+from typing import Any
 import discord
 from discord import app_commands
 from discord.ui import Select, View
 from discord.ext import commands
+
+class PreviewSelect(Select):
+  def __init__(self) -> None:
+    options=[
+      discord.SelectOption(
+        label="Single Fight", 
+        emoji="🔸", 
+        description="A single pull."
+      ),
+      discord.SelectOption(
+        label="Multifight", 
+        emoji="🔷", 
+        description="Multiple pulls of the same encounter."
+      ),
+      discord.SelectOption(
+        label="Compilation", 
+        emoji="💠", 
+        description="Multiple encounters."
+      ),
+    ]
+    super().__init__(
+      placeholder="Select a report type to preview:",
+      options=options
+    )
+
+  async def callback(self, interaction: discord.Interaction) -> None:
+    print(self.values)
+    await interaction.response.edit_message(content=f"You chose {self.values[0]}", view=None)
 
 class test(commands.Cog):
   def __init__(self, bot: commands.Bot) -> None:
@@ -12,17 +41,8 @@ class test(commands.Cog):
       description="Testing function"
   )
   async def test(self, interaction: discord.Interaction) -> None:
-    select = Select(
-      placeholder="Select a report type to preview:",
-      options=[
-        discord.SelectOption(label="Single Fight", emoji="🔸", description="A single pull."),
-        discord.SelectOption(label="Multifight", emoji="🔷", description="Multiple pulls of the same encounter."),
-        discord.SelectOption(label="Compilation", emoji="💠", description="Multiple encounters.")
-      ]
-    )
-
     view = View()
-    view.add_item(select)
+    view.add_item(PreviewSelect())
     await interaction.response.send_message(view=view)
 
 async def setup(bot: commands.Bot) -> None:
