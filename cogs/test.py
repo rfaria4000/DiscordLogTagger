@@ -1,11 +1,16 @@
-from typing import Any
 import discord, sys, os
 from discord import app_commands
 from discord.ui import Select, View
 from discord.ext import commands
+from typing import NamedTuple
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from emoji import emojiDict as emoji
+import emoji
+
+class PartyMember(NamedTuple):
+  name: str
+  job: str
+  parse: str
 
 class PreviewSelect(Select):
   def __init__(self) -> None:
@@ -46,24 +51,24 @@ class PreviewSelect(Select):
         inline=False
       )
       partyMembers = [
-        ["Laarion Stormwind", "Paladin", "💜 92"],
-        ["Fama Red", "DarkKnight", "💜 82"],
-        ["Yunalesca Strife", "WhiteMage", "💙 67"],
-        ["Ahrih Valencia", "Scholar", "🩶 3"],
-        ["Shalis Addock", "Monk", "💜 77"],
-        ["Bruce Elegance", "Samurai", "💜 84"],
-        ["Sleepy Eldwin", "Machinist", "💛 100"],
-        ["Araiah Scythe", "Summoner", "💚 28"],
+        PartyMember("Laarion Stormwind", "Paladin", "💜 92"),
+        PartyMember("Fama Red", "DarkKnight", "💜 82"),
+        PartyMember("Yunalesca Strife", "WhiteMage", "💙 67"),
+        PartyMember("Ahrih Valencia", "Scholar", "🩶 3"),
+        PartyMember("Shalis Addock", "Monk", "💜 77"),
+        PartyMember("Bruce Elegance", "Samurai", "💜 84"),
+        PartyMember("Sleepy Eldwin", "Machinist", "💛 100"),
+        PartyMember("Araiah Scythe", "Summoner", "💚 28"),
       ]
       embed.add_field(
         name="Party", 
-        value="\n".join(f"{emoji[member[1]][0]} {member[0]}" 
+        value="\n".join(f"{emoji.emojiDict[member.job].emoji} {member.name}" 
                         for member in partyMembers), 
         inline=True
       )
       embed.add_field(
         name="Parses", 
-        value="\n".join(f"{emoji[member[1]][0]} {member[2]}" 
+        value="\n".join(f"{emoji.emojiDict[member.job].emoji} {member.name}" 
                         for member in partyMembers), 
         inline=True
       )
