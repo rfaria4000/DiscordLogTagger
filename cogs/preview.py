@@ -42,9 +42,13 @@ class PreviewSelect(Select):
     if selection == "Single Fight":
       embed.title = "🔸 Hydaelyn - <t:1720845660:D>"
       embed.url = "https://www.fflogs.com/reports/9mT1qQCXvtFnWpNJ#fight=3"
-      embed.set_thumbnail(url="https://assets.rpglogs.com/img/ff/bosses/1059-icon.jpg")
+      embed.set_thumbnail(
+        url="https://assets.rpglogs.com/img/ff/bosses/1059-icon.jpg",
+      )
       embed.color = 0xe5cc80
-      embed.set_author(name="Uploaded by Eldwin Moonfire")
+      embed.set_author(
+        name="Uploaded by Eldwin Moonfire",
+      )
       embed.add_field(
         name="Status", 
         value="Clear in 8:23", 
@@ -75,9 +79,13 @@ class PreviewSelect(Select):
     elif selection == "Multifight":
       embed.title = "🔷 Zeromus - <t:1696566152:D>"
       embed.url = "https://www.fflogs.com/reports/rT4xKXkcLgbAqa1d"
-      embed.set_thumbnail(url="https://assets.rpglogs.com/img/ff/bosses/1070-icon.jpg")
+      embed.set_thumbnail(
+        url="https://assets.rpglogs.com/img/ff/bosses/1070-icon.jpg",
+      )
       embed.color = 0xa335ee #Purple
-      embed.set_author(name="Uploaded by dapc")
+      embed.set_author(
+        name="Uploaded by dapc",
+      )
       embed.add_field(
         name="Pulls", 
         value="18", 
@@ -96,9 +104,13 @@ class PreviewSelect(Select):
     else:
       embed.title = "💠 Multiple Fights - <t:1716689181:D>"
       embed.url = "https://www.fflogs.com/reports/CRh38LcT7BzAdHyr"
-      embed.set_thumbnail(url="https://assets.rpglogs.com/img/ff/bosses/1065-icon.jpg")
+      embed.set_thumbnail(
+        url="https://assets.rpglogs.com/img/ff/bosses/1065-icon.jpg",
+      )
       embed.color = 0x0070ff #Blue
-      embed.set_author(name="Uploaded by DSXXI")
+      embed.set_author(
+        name="Uploaded by DSXXI",
+      )
       embed.add_field(
         name="Notable Fights",
         value="Dragonsong's Reprise",
@@ -119,7 +131,11 @@ class PreviewSelect(Select):
         value="💙",
         inline=True
       )
-    await interaction.response.edit_message(embed=embed, view=None)
+    
+    await interaction.response.edit_message(
+      embed=embed, 
+      view=None,
+    )
 
 class PreviewView(View):
   def __init__(self):
