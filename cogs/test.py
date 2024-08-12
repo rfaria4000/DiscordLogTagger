@@ -1,8 +1,11 @@
 from typing import Any
-import discord
+import discord, sys, os
 from discord import app_commands
 from discord.ui import Select, View
 from discord.ext import commands
+
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from emoji import emojiDict as emoji
 
 class PreviewSelect(Select):
   def __init__(self) -> None:
@@ -29,8 +32,70 @@ class PreviewSelect(Select):
     )
 
   async def callback(self, interaction: discord.Interaction) -> None:
-    print(self.values)
-    await interaction.response.edit_message(content=f"You chose {self.values[0]}", view=None)
+    selection = self.values[0]
+    embed = discord.Embed()
+    if selection == "Single Fight":
+      embed.title = "🔸 Hydaelyn - <t:1720845660:D>"
+      embed.url = "https://www.fflogs.com/reports/9mT1qQCXvtFnWpNJ#fight=3"
+      embed.set_thumbnail(url="https://assets.rpglogs.com/img/ff/bosses/1059-icon.jpg")
+      embed.color = 0xe5cc80
+      embed.set_author(name="Uploaded by Eldwin Moonfire")
+      embed.add_field(
+        name="Status", 
+        value="Clear in 8:23", 
+        inline=False
+      )
+      partyMembers = [
+        ["Laarion Stormwind", "Paladin", "💜 92"],
+        ["Fama Red", "DarkKnight", "💜 82"],
+        ["Yunalesca Strife", "WhiteMage", "💙 67"],
+        ["Ahrih Valencia", "Scholar", "🩶 3"],
+        ["Shalis Addock", "Monk", "💜 77"],
+        ["Bruce Elegance", "Samurai", "💜 84"],
+        ["Sleepy Eldwin", "Machinist", "💛 100"],
+        ["Araiah Scythe", "Summoner", "💚 28"],
+      ]
+      embed.add_field(
+        name="Party", 
+        value="\n".join(f"{emoji[member[1]][0]} {member[0]}" 
+                        for member in partyMembers), 
+        inline=True
+      )
+      embed.add_field(
+        name="Parses", 
+        value="\n".join(f"{emoji[member[1]][0]} {member[2]}" 
+                        for member in partyMembers), 
+        inline=True
+      )
+    elif selection == "Multifight":
+      embed.title = "🔷 Zeromus - <t:1696566152:D>"
+      embed.url = "https://www.fflogs.com/reports/rT4xKXkcLgbAqa1d"
+      embed.set_thumbnail(url="https://assets.rpglogs.com/img/ff/bosses/1070-icon.jpg")
+      embed.color = 0xa335ee #Purple
+      embed.set_author(name="Uploaded by dapc")
+      embed.add_field(
+        name="Pulls", 
+        value="18", 
+        inline=False
+      )
+      embed.add_field(
+        name="Best Pull", 
+        value=f"[Clear in 8:32]({embed.url}#fight=18)", 
+        inline=False
+      )
+      embed.add_field(
+        name="Clear Pulls?", 
+        value="💜 🧡 🧡 🧡 🧡",
+        inline=False
+      )
+    else:
+      embed.title = "Under construction"
+    await interaction.response.edit_message(embed=embed, view=None)
+
+class PreviewView(View):
+  def __init__(self):
+    super().__init__()
+    self.add_item(PreviewSelect())
 
 class test(commands.Cog):
   def __init__(self, bot: commands.Bot) -> None:
@@ -41,8 +106,7 @@ class test(commands.Cog):
       description="Testing function"
   )
   async def test(self, interaction: discord.Interaction) -> None:
-    view = View()
-    view.add_item(PreviewSelect())
+    view = PreviewView()
     await interaction.response.send_message(view=view)
 
 async def setup(bot: commands.Bot) -> None:
