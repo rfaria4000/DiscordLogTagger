@@ -169,6 +169,7 @@ def populateActors(encounters: list, actors: Dict[int, str], rankings):
   
   return encountersCopy
 
+#TODO: modify specify fight into a generic filter function?
 def processFights(reportData: dict, specifiedFight: int = 0) -> ReportSummary:
   # TODO: Update docstrings for entire file
   """."""
