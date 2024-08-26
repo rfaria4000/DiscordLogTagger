@@ -38,7 +38,7 @@ class FightTier(IntEnum):
   ULTIMATE = 3
 
 # Clear values for the purpose of comparing fights.
-# Makes a clear of any fight with a rating higher than a pull off any fight.
+# Makes a clear of any fight with a rating higher than a pull of any fight.
 CLEAR_RATING_BONUS = 3
 CLEAR_THRESHOLD = 4
 

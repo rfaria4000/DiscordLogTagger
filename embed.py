@@ -41,96 +41,96 @@ class NotableFightOverview(NamedTuple):
   pulls: int
   clears: str
 
-def generateClearEmoji(fightID: dict, rankings:dict) -> str:
-  """Generate an emoji based on a cleared fights."""
-  if not fightID in rankings: return UNRANKED_CLEAR_EMOJI
+# def generateClearEmoji(fightID: dict, rankings:dict) -> str:
+#   """Generate an emoji based on a cleared fights."""
+#   if not fightID in rankings: return UNRANKED_CLEAR_EMOJI
 
-  bestParse = 0
-  for ranking in rankings[fightID]:
-    bestParse = max(bestParse, ranking.parse) 
+#   bestParse = 0
+#   for ranking in rankings[fightID]:
+#     bestParse = max(bestParse, ranking.parse) 
 
-  return PARSE_EMOJIS[generateRankingColorIndex(bestParse)]
+#   return PARSE_EMOJIS[generateRankingColorIndex(bestParse)]
 
-def extractSimplifiedFight(simplifiedFights:dict) -> Tuple[int, str]:
-  """Return the encounterID and simplified fight data as a tuple."""
-  return (list(simplifiedFights.items())[0])
+# def extractSimplifiedFight(simplifiedFights:dict) -> Tuple[int, str]:
+#   """Return the encounterID and simplified fight data as a tuple."""
+#   return (list(simplifiedFights.items())[0])
 
-def generateSingleFightEmbed():
-  """Generate Embed for a report featuring a specific fight."""
-  print("single fight")
+# def generateSingleFightEmbed():
+#   """Generate Embed for a report featuring a specific fight."""
+#   print("single fight")
 
-def generateMultiFightEmbed(simplifiedFights: dict, dateStart: str, link: str, rankings: dict) -> Embed:
-  """Generate Embed for a report featuring multiple fights of the same encounter."""
-  print(rankings)
-  encounterID, fight = extractSimplifiedFight(simplifiedFights)
-  linkObject = urlparse(link)
-  fightURLPrefix = f"{linkObject.scheme}://{linkObject.netloc + linkObject.path}"
-  print(encounterID, fight)
-  multiFightEmbed = Embed(title=f'{fight["name"]} - <t:{dateStart}:D>')
-  multiFightEmbed.set_thumbnail(url=generateImageURL(encounterID))
-  multiFightEmbed.add_field(name="Pulls", value=fight["pullCount"], inline=False)
-  clearPulls = ""
-  if not fight["clearPulls"]: 
-    clearPulls += "❌"
-  else:
-    for fightID in fight["clearPulls"]:
-      clearPulls += f"[{generateClearEmoji(fightID, rankings)}]({fightURLPrefix}#fight={fightID}) "
-  multiFightEmbed.add_field(name="Clear Pulls?", value=clearPulls, inline=False)
-  bestPullString = generateBestPullString(fight)
-  bestPullID = fight["bestPull"]["id"]
-  # TODO: CHANGE BEST PULL TO FASTEST PARSE
-  multiFightEmbed.add_field(name="Best Pull", 
-                            value=f'[{bestPullString}]({fightURLPrefix}#fight={bestPullID})',
-                            inline=False)
+# def generateMultiFightEmbed(simplifiedFights: dict, dateStart: str, link: str, rankings: dict) -> Embed:
+#   """Generate Embed for a report featuring multiple fights of the same encounter."""
+#   print(rankings)
+#   encounterID, fight = extractSimplifiedFight(simplifiedFights)
+#   linkObject = urlparse(link)
+#   fightURLPrefix = f"{linkObject.scheme}://{linkObject.netloc + linkObject.path}"
+#   print(encounterID, fight)
+#   multiFightEmbed = Embed(title=f'{fight["name"]} - <t:{dateStart}:D>')
+#   multiFightEmbed.set_thumbnail(url=generateImageURL(encounterID))
+#   multiFightEmbed.add_field(name="Pulls", value=fight["pullCount"], inline=False)
+#   clearPulls = ""
+#   if not fight["clearPulls"]: 
+#     clearPulls += "❌"
+#   else:
+#     for fightID in fight["clearPulls"]:
+#       clearPulls += f"[{generateClearEmoji(fightID, rankings)}]({fightURLPrefix}#fight={fightID}) "
+#   multiFightEmbed.add_field(name="Clear Pulls?", value=clearPulls, inline=False)
+#   bestPullString = generateBestPullString(fight)
+#   bestPullID = fight["bestPull"]["id"]
+#   # TODO: CHANGE BEST PULL TO FASTEST PARSE
+#   multiFightEmbed.add_field(name="Best Pull", 
+#                             value=f'[{bestPullString}]({fightURLPrefix}#fight={bestPullID})',
+#                             inline=False)
 
-  multiFightEmbed.add_field(name="Best Pull", value="[Ybolgblaet Lammstymm - On track to a 100 on Machinist](https://www.google.com)",
-                            inline=False)
-  # TODO: ADD BEST PARSE FIELD WITH LINK TO FIGHT WITH THAT PARSE
+#   multiFightEmbed.add_field(name="Best Pull", value="[Ybolgblaet Lammstymm - On track to a 100 on Machinist](https://www.google.com)",
+#                             inline=False)
+#   # TODO: ADD BEST PARSE FIELD WITH LINK TO FIGHT WITH THAT PARSE
 
-  # generateEmbedColor(fight["bestPull"], rankings)
-  multiFightEmbed.color = generateEmbedColor(fight["bestPull"], rankings)
-  return multiFightEmbed
+#   # generateEmbedColor(fight["bestPull"], rankings)
+#   multiFightEmbed.color = generateEmbedColor(fight["bestPull"], rankings)
+#   return multiFightEmbed
 
-def generateCompilationEmbed():
-  """Generate Embed for a report featuring multiple encounters."""
-  print("multiple encounters")
+# def generateCompilationEmbed():
+#   """Generate Embed for a report featuring multiple encounters."""
+#   print("multiple encounters")
 
-def generateEmbedFromReport(reportData: dict, link: str, description: str = "") -> Embed:
-  """
-  Generates a Discord Embed from report data acquired from an FFLogs query.
+# def generateEmbedFromReport(reportData: dict, link: str, description: str = "") -> Embed:
+#   """
+#   Generates a Discord Embed from report data acquired from an FFLogs query.
   
-  Args:
-    `reportData`: A dict representing a json object containing reportData.
+#   Args:
+#     `reportData`: A dict representing a json object containing reportData.
 
-  Returns:
-    A Discord Embed featuring relevant infomation such as the name of the fight,
-    date, number of pulls, whether the fight was cleared, etc.
+#   Returns:
+#     A Discord Embed featuring relevant infomation such as the name of the fight,
+#     date, number of pulls, whether the fight was cleared, etc.
   
-  Raises:
-    `ReportDataError`: the reportData is not correctly formatted or missing.
-  """
-  # print(reportData)
-  if "errors" in reportData:
-     raise ReportDataError("The received report data is not correctly formatted or missing.")
-  # print(reportData.get("data").get("reportData"))
-  actors, dateStart, fights, rankings = extractReportFields(reportData)
+#   Raises:
+#     `ReportDataError`: the reportData is not correctly formatted or missing.
+#   """
+#   # print(reportData)
+#   if "errors" in reportData:
+#      raise ReportDataError("The received report data is not correctly formatted or missing.")
+#   # print(reportData.get("data").get("reportData"))
+#   actors, dateStart, fights, rankings = extractReportFields(reportData)
 
-  #The keys to both dicts are numbers.
-  simplifiedRankings = dict(map(simplifyRanking, rankings))
-  simplifiedActors = dict(map(simplifyActor, actors))
-  simplifiedFights = reduceFights(fights, simplifiedRankings)
+#   #The keys to both dicts are numbers.
+#   simplifiedRankings = dict(map(simplifyRanking, rankings))
+#   simplifiedActors = dict(map(simplifyActor, actors))
+#   simplifiedFights = reduceFights(fights, simplifiedRankings)
 
-  print(simplifiedFights)
-  returnEmbed = None
+#   print(simplifiedFights)
+#   returnEmbed = None
 
-  if len(simplifiedFights) == 1:
-    returnEmbed = generateMultiFightEmbed(simplifiedFights, dateStart, link, simplifiedRankings)
-  else:
-    returnEmbed = generateCompilationEmbed()
-  # print(simplifiedActors)
-  returnEmbed.url = link
-  returnEmbed.description = description
-  return returnEmbed
+#   if len(simplifiedFights) == 1:
+#     returnEmbed = generateMultiFightEmbed(simplifiedFights, dateStart, link, simplifiedRankings)
+#   else:
+#     returnEmbed = generateCompilationEmbed()
+#   # print(simplifiedActors)
+#   returnEmbed.url = link
+#   returnEmbed.description = description
+#   return returnEmbed
 
 def isSingleFight(report:pf.ReportSummary) -> bool:
   return (len(report.fightSummaries) == 1
