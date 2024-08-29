@@ -17,13 +17,13 @@ class DiscordBot(commands.Bot):
     pass
   
   async def setup_hook(self):
-    for f in os.listdir('./cogs'):
-      if f.endswith(".py"):
+    for file in os.listdir('./cogs'):
+      if file.endswith(".py"):
         try:
-          await self.load_extension(f"cogs.{f[:-3]}")
-          print(f"Successfully loaded {f}")
+          await self.load_extension(f"cogs.{file[:-3]}")
+          print(f"Successfully loaded {file}")
         except Exception as e:
-          print(f"Failed to load {f}")
+          print(f"Failed to load {file}")
 
   async def on_ready(self):
     print(f'{self.user} has connected to Discord!')

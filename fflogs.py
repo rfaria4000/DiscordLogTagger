@@ -26,6 +26,6 @@ class FFLogsSession:
 
     response = requests.post(self.publicEndpoint, 
                            headers=self.authHeader,
-                           json={"query": self.fightQuery, "variables": variables}
+                           json={"query": fightQuery, "variables": variables}
                            ).json()
     return response

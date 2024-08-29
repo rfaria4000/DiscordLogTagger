@@ -140,8 +140,9 @@ def isCompilation(report:pf.ReportSummary) -> bool:
   return len(report.fightSummaries) > 1
 
 def generateTitle(report: pf.ReportSummary) -> str:
-  if isCompilation(report): return "Multiple Fights"
-  else: return report.fightSummaries[0]["name"]
+  if isCompilation(report): return "💠 Multiple Fights"
+  else: return (("🔸 " if isSingleFight(report) else "🔷 ") +
+    report.fightSummaries[0]["name"])
 
 def generateImageURL(report: dict) -> str:
   """Generate a URL to a thumbnail based on the fight."""
@@ -230,13 +231,14 @@ def singleFightPlayersInfo(encounter: dict) -> SingleFightInfo:
   sortedPlayerRankings = sorted(rankings, key=lambda player: 
                                   emojiDict[player.job].priority
                                )
-  playerEmojiMap = lambda ranking: emojiDict[ranking.job].emoji + ranking.character
+  playerEmojiMap = lambda ranking: (emojiDict[ranking.job].emoji + " "  
+                                      + ranking.character)
   playerString = "\n".join(map(playerEmojiMap, sortedPlayerRankings))
 
   playerFilteredRankings = filter(lambda ranking: ranking.parse >= 0, 
                                   sortedPlayerRankings)
   if not playerFilteredRankings: return (playerString, "")
-  parseEmojiMap = lambda ranking: str(emojiDict[ranking.job].emoji + 
+  parseEmojiMap = lambda ranking: str(emojiDict[ranking.job].emoji + " " +
                                       PULL_EMOJIS[parseToIndex(ranking.parse)] + 
                                       " " + str(ranking.parse))
   parseString = "\n".join(map(parseEmojiMap, playerFilteredRankings))
