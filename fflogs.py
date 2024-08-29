@@ -1,4 +1,5 @@
 import requests
+from data.query import fightQuery
 
 class FFLogsSession:
   publicEndpoint = "https://www.fflogs.com/api/v2/client"
@@ -9,42 +10,6 @@ class FFLogsSession:
   data = {
     'grant_type': 'client_credentials',
   }
-
-  fightQuery = """
-  query getReport($fightCode: String){
-    reportData{
-      report(code: $fightCode){
-        masterData{
-          actors{
-            id
-            name
-            subType
-          }
-        }
-        
-        owner{
-          name
-        }
-        startTime
-        rankings
-        
-        fights(killType: Encounters){
-          name
-          id
-          kill
-          lastPhase
-          bossPercentage
-          fightPercentage
-          startTime
-          endTime
-          difficulty
-          friendlyPlayers
-          encounterID
-        }
-      }
-    }
-  }
-  """
 
   def __init__(self, client_id, client_secret) -> None:
     """Fetches an authentication token given a client ID and secret."""

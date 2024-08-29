@@ -5,7 +5,7 @@ from urllib.parse import urlparse, urlunparse, ParseResult
 from functools import reduce
 
 from datetime import datetime
-from emoji import emojiDict
+from data.emoji import emojiDict
 from copy import deepcopy
 import processfights as pf
 import json, os, math, re
