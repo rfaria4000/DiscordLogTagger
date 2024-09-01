@@ -10,6 +10,7 @@ fightQuery = """
           }
         }
         
+        code
         owner{
           name
         }

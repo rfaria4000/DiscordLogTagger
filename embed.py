@@ -191,7 +191,7 @@ def generateFields(report:pf.ReportSummary,
   addLink = makeLinkGenerator(parsedLink)
   addField = makeFieldsAdder(fields)
   if isCompilation(report):
-    addField("Fight Type", "Compilation", False)
+    # addField("Fight Type", "Compilation", False)
     addField("Notable Fights", compilationFightsToString(report.fightSummaries), 
              False)
     for highlight in compilationHighlightFights(report.fightSummaries, addLink):
@@ -202,12 +202,12 @@ def generateFields(report:pf.ReportSummary,
     # print(bestPullInfo)
     if isSingleFight(report):
       playerInfo = singleFightPlayersInfo(report.fightSummaries[0])
-      addField("Fight Type", "Single", False)
+      # addField("Fight Type", "Single", False)
       addField("Status", bestPullInfo.description, False)
       addField("Party", playerInfo.playersString, True)
       if playerInfo[1]: addField("Parses", playerInfo.parseString, True)
     else:
-      addField("Fight Type", "Multi", False)
+      # addField("Fight Type", "Multi", False)
       addField("Pulls", str(report.fightSummaries[0]["pullCount"]), False)
       addField("Best Pull", addLink(*bestPullInfo), False)
       addField("Clears?", generateClearEmojis(report.fightSummaries[0], addLink), False)
