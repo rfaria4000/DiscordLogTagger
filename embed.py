@@ -224,9 +224,9 @@ def getChosenFight(linkObject: ParseResult) -> int:
 
 def generateEmbed(reportData: dict, link:str, desc:str = "") -> Embed:
   parsedLink = urlparse(link.replace("\n", "").strip())
-  print(getChosenFight(parsedLink))
+  # print(getChosenFight(parsedLink))
   processedFight = pf.processFights(reportData, getChosenFight(parsedLink))
-  print(processedFight)
+  # print(processedFight)
 
   reportEmbed = {
     "title": f"{generateTitle(processedFight)} - <t:{processedFight.startTime}:D>",

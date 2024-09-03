@@ -1,13 +1,8 @@
 import pytest
 import os, json
 import embed
-
-# def inc(x: int) -> int:
-#   return x + 1
-
-# @pytest.mark.parametrize("number, expected_sum", [(1, 2), (2, 3), (-1, 0)])
-# def test_inc(number, expected_sum):
-#   assert inc(number) == expected_sum
+import re
+from functools import reduce
 
 class TestCompilation:
   def setup_method(self, method):
@@ -25,7 +20,6 @@ class TestCompilation:
     del self.embed
 
   def test_compilation_name(self):
-    # compilationEmbed = embed.generateEmbed(compilation_report, compilation_link)
     assert self.embed.title.startswith("💠 Multiple Fights - ")
 
   def test_compilation_author(self):
@@ -39,12 +33,25 @@ class TestCompilation:
     reportTime = self.report["data"]["reportData"]["report"]["startTime"]//1000
     assert (str(reportTime) in self.embed.title)
 
-  def test_compilation_fields(self):
+  def test_compilation_field_names(self):
     assert "Notable Fights" == self.embed.fields[0].name
     notableFightNames = self.embed.fields[0].value.split(",")
     for i in range(1, len(self.embed.fields)):
-      assert self.embed.fields[i].name.startswith(notableFightNames[i-1])
+      fightName = notableFightNames[i-1]
+      assert self.embed.fields[i].name.startswith(fightName)
+  
+  def test_compilation_field_pull_counts(self):
+    notableFightNames = self.embed.fields[0].value.split(",")
+    fightList = self.report["data"]["reportData"]["report"]["fights"]
+    for i in range(1, len(self.embed.fields)):
+      fightName = notableFightNames[i-1]
+      fightCount = len([fight for fight in fightList 
+                        if fight["name"] == fightName])
+      assert str(fightCount) in self.embed.fields[i].name
 
-  #TODO: Figure out how to test color and parametrize compilation test
-
-# Look into mocking for a variety of test datas - need all three types
+  def test_compilation_color(self):
+    for emoji in reversed(embed.PULL_EMOJIS):
+      if emoji in self.embed.fields[1].value:
+        emojiIndex = embed.PULL_EMOJIS.index(emoji)
+        assert self.embed.color.value == embed.PULL_HEXCODES[emojiIndex]
+        break
