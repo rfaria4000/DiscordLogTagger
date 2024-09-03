@@ -1,8 +1,6 @@
 import pytest
 import os, json
 import embed
-import re
-from functools import reduce
 
 class TestCompilation:
   def setup_method(self, method):
