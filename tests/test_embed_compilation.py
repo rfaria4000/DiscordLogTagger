@@ -52,3 +52,7 @@ class TestCompilation:
         emojiIndex = embed.PULL_EMOJIS.index(emoji)
         assert self.embed.color.value == embed.PULL_HEXCODES[emojiIndex]
         break
+
+  #TODO
+  def test_compilation_thumbnail(self):
+    pass
