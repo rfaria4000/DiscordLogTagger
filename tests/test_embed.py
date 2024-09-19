@@ -6,15 +6,12 @@ import embed
 def get_test_data():
   test_data = []
   dir = os.path.dirname(__file__)
-  # for file in os.listdir():
   with os.scandir(os.path.join(dir, 'test_data/')) as test_folder_iterator:
     for test_entry in test_folder_iterator:
       with open(test_entry.path) as test:
         test_data.append(json.load(test))
   
   return test_data
-
-print(get_test_data())
 
 @pytest.mark.parametrize("test_data", get_test_data())
 class TestEmbed:  
@@ -31,16 +28,15 @@ class TestEmbed:
     print("teardown")
     del self.report, self.code, self.link, self.embed
 
-  #TODO: Extract methods from test_embed_compilation
   def test_embed_author(self, test_data):
     print("inside test")
     reportOwner = self.report["data"]["reportData"]["report"]["owner"]["name"]
     assert self.embed.author.name == f"Uploaded by {reportOwner}"
 
-  # def test_embed_link(self):
-  #   assert()
+  def test_embed_link(self):
+    assert self.embed.url == self.link
 
-  # def test_embed_time(self):
-  #   assert()
-
+  def test_embed_time(self):
+    reportTime = self.report["data"]["reportData"]["report"]["startTime"]//1000
+    assert (str(reportTime) in self.embed.title)
   

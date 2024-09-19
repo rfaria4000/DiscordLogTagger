@@ -19,17 +19,6 @@ class TestCompilation:
   def test_compilation_name(self):
     assert self.embed.title.startswith("💠 Multiple Fights - ")
 
-  def test_compilation_author(self):
-    reportOwner = self.report["data"]["reportData"]["report"]["owner"]["name"]
-    assert self.embed.author.name == f"Uploaded by {reportOwner}"
-
-  def test_compilation_link(self):
-    assert self.embed.url == self.link
-
-  def test_compilation_time(self):
-    reportTime = self.report["data"]["reportData"]["report"]["startTime"]//1000
-    assert (str(reportTime) in self.embed.title)
-
   def test_compilation_field_names(self):
     assert "Notable Fights" == self.embed.fields[0].name
     notableFightNames = self.embed.fields[0].value.split(",")
