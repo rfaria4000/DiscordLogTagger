@@ -3,17 +3,18 @@ import json
 import pytest
 import embed
 
-def get_test_data():
+def get_test_data(filter) -> list:
   test_data = []
   dir = os.path.dirname(__file__)
   with os.scandir(os.path.join(dir, 'test_data/')) as test_folder_iterator:
     for test_entry in test_folder_iterator:
-      with open(test_entry.path) as test:
-        test_data.append(json.load(test))
+      if filter(test_entry.name):
+        with open(test_entry.path) as test:
+          test_data.append(json.load(test))
   
   return test_data
 
-@pytest.mark.parametrize("test_data", get_test_data())
+@pytest.mark.parametrize("test_data", get_test_data(lambda test: True))
 class TestEmbed:  
   @pytest.fixture(scope="function", autouse=True)
   def setup_and_teardown(self, test_data):

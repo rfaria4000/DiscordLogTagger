@@ -1,20 +1,33 @@
-import os, json
+import pytest
 import embed
+from .test_embed import get_test_data
 
+test_data = get_test_data(lambda test: True)
+
+def get_report_fight_ids(test_data):
+  fight_count = []
+  for report in test_data:
+    fights = report["data"]["reportData"]["report"]["fights"]
+    fight_count.append(list(map(lambda fight: fight["id"], fights)))
+  
+  return fight_count
+
+print(get_report_fight_ids(test_data))
+
+@pytest.mark.parametrize("test_data", test_data)
 class TestSingle:
-  def setup_method(self, method):
-    print(f"Setting up {method}")
-    dir = os.path.dirname(__file__)
-    with open(os.path.join(dir,"test_data/extreme.json")) as f:
-      self.report = json.load(f)
-    self.link = "https://www.fflogs.com/reports/rT4xKXkcLgbAqa1d#fight=15"
+  @pytest.fixture(scope="function", autouse=True)
+  def setup_and_teardown(self, test_data):
+    # print("setup")
+    self.report = test_data
+    self.code = self.report["data"]["reportData"]["report"]["code"]
+    self.link = f"https://www.fflogs.com/reports/{self.code}#fight=1"
     self.embed = embed.generateEmbed(self.report, self.link)
-
-  def teardown_method(self, method):
-    print(f"Tearing down {method}")
-    del self.report
-    del self.link
-    del self.embed
+    
+    yield
+    
+    # print("teardown")
+    del self.report, self.code, self.link, self.embed
 
   def test_single_name(self):
     pass
