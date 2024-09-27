@@ -14,13 +14,16 @@ def get_test_data(filter) -> list:
   
   return test_data
 
+def get_report_code(report) -> str:
+  return report["data"]["reportData"]["report"]["code"]
+
 @pytest.mark.parametrize("test_data", get_test_data(lambda test: True))
 class TestEmbed:  
   @pytest.fixture(scope="function", autouse=True)
   def setup_and_teardown(self, test_data):
     print("setup")
     self.report = test_data
-    self.code = self.report["data"]["reportData"]["report"]["code"]
+    self.code = get_report_code(self.report)
     self.link = f"https://www.fflogs.com/reports/{self.code}"
     self.embed = embed.generateEmbed(self.report, self.link)
     
