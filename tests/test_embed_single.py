@@ -25,6 +25,14 @@ def zip_test_data_fights(test_data):
   
   return test_cases
 
+def get_fight(report: list, id: int) -> dict:
+  fights = report["data"]["reportData"]["report"]["fights"]
+  for fight in fights:
+    if fight["id"] == id:
+      return fight
+  
+  return None
+
 report_fights = get_report_fight_ids_dict(test_data)
 data_with_fights = zip_test_data_fights(test_data)
 
@@ -33,17 +41,18 @@ class TestSingleAll:
   @pytest.fixture(scope="function", autouse=True)
   def setup_and_teardown(self, test_data, fight_number):
     self.report = test_data
+    self.fightID = fight_number
+    self.fight = get_fight(self.report, self.fightID)
     self.code = get_report_code(self.report)
-    self.link = FFLOGS_TEMPLATE.format(self.code, fight_number)
+    self.link = FFLOGS_TEMPLATE.format(self.code, self.fightID)
     self.embed = embed.generateEmbed(self.report, self.link)
     
     yield
     
-    del self.report, self.code, self.link, self.embed
+    del self.report, self.fightID, self.fight, self.code, self.link, self.embed
 
-  # @pytest.mark.parametrize("fight_number", report_fights[get_report_code(self.report)])
   def test_single_name(self):
-    pass
+    assert self.embed.title.startswith(f"🔸 {self.fight['name']}")
   
   def test_single_field_names(self):
     pass
