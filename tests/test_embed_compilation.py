@@ -42,6 +42,9 @@ class TestCompilation:
         assert self.embed.color.value == embed.PULL_HEXCODES[emojiIndex]
         break
 
-  #TODO
   def test_compilation_thumbnail(self):
-    pass
+    fightList = self.report["data"]["reportData"]["report"]["fights"]
+    highlightFight = self.embed.fields[0].value.split(",")[0]
+    fightEncounterID = next(fight for fight in fightList 
+                            if fight["name"] == highlightFight)["encounterID"]
+    assert str(fightEncounterID) in self.embed.thumbnail.url
