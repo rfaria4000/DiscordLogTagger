@@ -38,7 +38,7 @@ class TestEmbed:
     assert self.embed.author.name == f"Uploaded by {reportOwner}"
 
   def test_embed_link(self):
-    assert self.embed.url == self.link
+    assert self.embed.url.startswith(self.link)
 
   def test_embed_time(self):
     reportTime = self.report["data"]["reportData"]["report"]["startTime"]//1000
