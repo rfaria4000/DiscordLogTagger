@@ -9,12 +9,14 @@ class TestCompilation:
       self.report = json.load(f)
     self.link = "https://www.fflogs.com/reports/CRh38LcT7BzAdHyr"
     self.embed = embed.generateEmbed(self.report, self.link)
+    self.fightList = self.report["data"]["reportData"]["report"]["fights"]
 
   def teardown_method(self, method):
     print(f"Tearing down {method}")
     del self.report
     del self.link
     del self.embed
+    del self.fightList
 
   def test_compilation_name(self):
     assert self.embed.title.startswith("💠 Multiple Fights - ")
@@ -28,10 +30,9 @@ class TestCompilation:
   
   def test_compilation_field_pull_counts(self):
     notableFightNames = self.embed.fields[0].value.split(",")
-    fightList = self.report["data"]["reportData"]["report"]["fights"]
     for i in range(1, len(self.embed.fields)):
       fightName = notableFightNames[i-1]
-      fightCount = len([fight for fight in fightList 
+      fightCount = len([fight for fight in self.fightList 
                         if fight["name"] == fightName])
       assert str(fightCount) in self.embed.fields[i].name
 
@@ -43,8 +44,7 @@ class TestCompilation:
         break
 
   def test_compilation_thumbnail(self):
-    fightList = self.report["data"]["reportData"]["report"]["fights"]
     highlightFight = self.embed.fields[0].value.split(",")[0]
-    fightEncounterID = next(fight for fight in fightList 
+    fightEncounterID = next(fight for fight in self.fightList 
                             if fight["name"] == highlightFight)["encounterID"]
     assert str(fightEncounterID) in self.embed.thumbnail.url
