@@ -20,12 +20,17 @@ class TestMulti:
 
   def test_multi_name(self):
     firstFightName = self.fightList[0]["name"]
-    print(firstFightName)
     assert(all(firstFightName == x["name"] for x in self.fightList)
            and self.embed.title.startswith("🔷 " + firstFightName))
   
-  def test_multi_field_names(self):
-    pass
+  def test_multi_field_name_pulls(self):
+    assert(self.embed.fields[0].name == "Pulls")
+
+  def test_multi_field_name_best_pull(self):
+    assert(self.embed.fields[1].name == "Best Pull")
+
+  def test_multi_field_name_clear_pulls(self):
+    assert(self.embed.fields[2].name == "Clear Pulls?")
 
   def test_multi_pull_count(self):
     pass
