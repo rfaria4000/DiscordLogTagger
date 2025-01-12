@@ -17,6 +17,9 @@ def get_test_data(filter) -> list:
 def get_report_code(report) -> str:
   return report["data"]["reportData"]["report"]["code"]
 
+def get_actor_list(report) -> list:
+  return report["data"]["reportData"]["report"]["masterData"]["actors"]
+
 @pytest.mark.parametrize("test_data", get_test_data(lambda test: True))
 class TestEmbed:  
   @pytest.fixture(scope="function", autouse=True)

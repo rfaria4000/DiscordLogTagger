@@ -42,9 +42,9 @@ class TestMulti:
     for emoji in reversed(embed.PULL_EMOJIS):
       if emoji in self.embed.fields[2].value:
         emojiIndex = embed.PULL_EMOJIS.index(emoji)
-        assert self.embed.color.value == embed.PULL_HEXCODES[emojiIndex]
+        assert(self.embed.color.value == embed.PULL_HEXCODES[emojiIndex])
         break
 
   def test_multi_thumbnail(self):
     firstFightID = self.fightList[0]["encounterID"]
-    assert str(firstFightID) in self.embed.thumbnail.url
+    assert(str(firstFightID) in self.embed.thumbnail.url)
