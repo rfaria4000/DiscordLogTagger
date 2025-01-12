@@ -1,17 +1,17 @@
 import pytest
 import embed
-import test_embed as tests
+from .test_embed import get_test_data, get_report_code, get_actor_list
 
 FFLOGS_TEMPLATE = "https://www.fflogs.com/reports/{0}#fight={1}"
 
-test_data = tests.get_test_data(lambda test: True)
+test_data = get_test_data(lambda test: True)
 
 def get_report_fight_ids_dict(test_data):
   report_fights = {}
   for report in test_data:
     fights = report["data"]["reportData"]["report"]["fights"]
     fight_ids = (list(map(lambda fight: fight["id"], fights)))
-    report_fights[tests.get_report_code(report)] = fight_ids
+    report_fights[get_report_code(report)] = fight_ids
   
   return report_fights
 
@@ -43,7 +43,7 @@ class TestSingleAll:
     self.report = test_data
     self.fightID = fight_number
     self.fight = get_fight(self.report, self.fightID)
-    self.code = tests.get_report_code(self.report)
+    self.code = get_report_code(self.report)
     self.link = FFLOGS_TEMPLATE.format(self.code, self.fightID)
     self.embed = embed.generateEmbed(self.report, self.link)
     
@@ -65,8 +65,12 @@ class TestSingleAll:
       assert(self.embed.fields[2].name == "Parses")
 
   def test_single_party_members(self):
-    actorList = tests.get_actor_list(self.report)
-    pass
+    actorList = get_actor_list(self.report)
+    for playerID in self.fight["friendlyPlayers"]:
+      matchingPlayer = next(actor for actor in actorList 
+                            if actor["id"] == playerID)
+      if matchingPlayer["name"] in ["Multiple Players", "Limit Break"]: continue
+      assert(matchingPlayer["name"] in self.embed.fields[1].value)
 
   def test_single_parses(self):
     pass
@@ -81,7 +85,7 @@ class TestSingleAll:
 class TestSingleLast:
   @pytest.fixture(scope="function", autouse=True)
   def setup_and_teardown(self, test_data):
-    report_code = tests.get_report_code(test_data)
+    report_code = get_report_code(test_data)
     link_fight_last = FFLOGS_TEMPLATE.format(report_code, "last")
     link_last_id = FFLOGS_TEMPLATE.format(report_code, 
                                           report_fights[report_code][-1])
@@ -91,15 +95,8 @@ class TestSingleLast:
   def test_last_title(self, test_data):
     assert(self.embed_fight_last.title == self.embed_last_id.title)
 
-  def test_last_field_names(self):
-    assert self.embed_fight_last.fields == self.embed_last_id.fields
-    pass
-
-  def test_last_party_members(self):
-    pass
-
-  def test_last_parses(self):
-    pass
+  def test_last_fields(self):
+    assert(self.embed_fight_last.fields == self.embed_last_id.fields)
 
   def test_last_color(self):
     pass
