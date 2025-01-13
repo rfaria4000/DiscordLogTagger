@@ -1,5 +1,6 @@
 import os, json
 import embed
+import data.parses as parses
 
 FIELD_NOTABLE_FIGHTS = 0
 FIELD_OFFSET_NOTABLES = 1
@@ -41,10 +42,10 @@ class TestCompilation:
       assert str(fightCount) in self.embed.fields[i].name
 
   def test_compilation_color(self):
-    for emoji in reversed(embed.PULL_EMOJIS):
+    for emoji in reversed(parses.PULL_EMOJIS):
       if emoji in self.embed.fields[FIELD_HIGHLIGHT_FIGHT].value:
-        emojiIndex = embed.PULL_EMOJIS.index(emoji)
-        assert self.embed.color.value == embed.PULL_HEXCODES[emojiIndex]
+        emojiIndex = parses.PULL_EMOJIS.index(emoji)
+        assert self.embed.color.value == parses.PULL_HEXCODES[emojiIndex]
         break
 
   def test_compilation_thumbnail(self):

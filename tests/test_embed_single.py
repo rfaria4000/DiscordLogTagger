@@ -1,6 +1,7 @@
 import pytest
 import embed
-import data.emoji
+import data.jobinfo
+import data.parses as parses
 from .test_embed import get_test_data, get_report_code, get_actors, get_rankings
 
 FFLOGS_TEMPLATE = "https://www.fflogs.com/reports/{0}#fight={1}"
@@ -94,7 +95,8 @@ class TestSingleAll:
       characterParses.extend(fightRankings["roles"][role]["characters"])
     
     filteredParses = list(filter(filterCombinedParses, characterParses))
-    filteredParses.sort(key=lambda x: data.emoji.emojiDict[x["class"]].priority)
+    sortParses = lambda x: data.jobinfo.emojiDict[x["class"]].priority
+    filteredParses.sort(key=sortParses)
     displayedParses = self.embed.fields[FIELD_PARSES].value.split("\n")
     
     for i in range(len(displayedParses)):
@@ -103,14 +105,16 @@ class TestSingleAll:
   def test_single_color(self):
     if len(self.embed.fields) < SIZE_OF_EMBED_WITH_PARSE_DATA:
       if "Clear" in self.embed.fields[FIELD_STATUS].value:
-        assert(self.embed.color.value == embed.PULL_HEXCODES[embed.Pull.CLEAR])
+        assert(self.embed.color.value 
+               == parses.PULL_HEXCODES[parses.Pull.CLEAR])
       else:
-        assert(self.embed.color.value == embed.PULL_HEXCODES[embed.Pull.WIPE])
+        assert(self.embed.color.value 
+               == parses.PULL_HEXCODES[parses.Pull.WIPE])
     else: 
-      for emoji in reversed(embed.PULL_EMOJIS):
+      for emoji in reversed(parses.PULL_EMOJIS):
         if emoji in self.embed.fields[FIELD_PARSES].value:
-          emojiIndex = embed.PULL_EMOJIS.index(emoji)
-          assert self.embed.color.value == embed.PULL_HEXCODES[emojiIndex]
+          emojiIndex = parses.PULL_EMOJIS.index(emoji)
+          assert self.embed.color.value == parses.PULL_HEXCODES[emojiIndex]
           break
 
   def test_single_thumbnail(self):
