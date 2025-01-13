@@ -207,10 +207,10 @@ def processFights(reportData: dict, specifiedFight: int = 0) -> ReportSummary:
 if __name__ == "__main__":
   dir = os.path.dirname(__file__)
   mockUltReport, mockExtremeReport, mockCompilationReport = None, None, None
-  with open(os.path.join(dir, "test_data/ultimate.json"), "r") as f:
+  with open(os.path.join(dir, "tests/test_data/ultimate.json"), "r") as f:
     mockUltReport = json.load(f)
-  with open(os.path.join(dir, "test_data/extreme.json"), "r") as f:
+  with open(os.path.join(dir, "tests/test_data/extreme.json"), "r") as f:
     mockExtremeReport = json.load(f)
-  with open(os.path.join(dir, "test_data/compilation.json"), "r") as f:
+  with open(os.path.join(dir, "tests/test_data/compilation.json"), "r") as f:
      mockCompilationReport = json.load(f)
   print(processFights(mockCompilationReport, -1))

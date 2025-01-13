@@ -191,7 +191,7 @@ def generateFields(report:pf.ReportSummary,
   addLink = makeLinkGenerator(parsedLink)
   addField = makeFieldsAdder(fields)
   if isCompilation(report):
-    addField("Fight Type", "Compilation", False)
+    # addField("Fight Type", "Compilation", False)
     addField("Notable Fights", compilationFightsToString(report.fightSummaries), 
              False)
     for highlight in compilationHighlightFights(report.fightSummaries, addLink):
@@ -202,12 +202,12 @@ def generateFields(report:pf.ReportSummary,
     # print(bestPullInfo)
     if isSingleFight(report):
       playerInfo = singleFightPlayersInfo(report.fightSummaries[0])
-      addField("Fight Type", "Single", False)
+      # addField("Fight Type", "Single", False)
       addField("Status", bestPullInfo.description, False)
       addField("Party", playerInfo.playersString, True)
       if playerInfo[1]: addField("Parses", playerInfo.parseString, True)
     else:
-      addField("Fight Type", "Multi", False)
+      # addField("Fight Type", "Multi", False)
       addField("Pulls", str(report.fightSummaries[0]["pullCount"]), False)
       addField("Best Pull", addLink(*bestPullInfo), False)
       addField("Clears?", generateClearEmojis(report.fightSummaries[0], addLink), False)
@@ -224,9 +224,9 @@ def getChosenFight(linkObject: ParseResult) -> int:
 
 def generateEmbed(reportData: dict, link:str, desc:str = "") -> Embed:
   parsedLink = urlparse(link.replace("\n", "").strip())
-  print(getChosenFight(parsedLink))
+  # print(getChosenFight(parsedLink))
   processedFight = pf.processFights(reportData, getChosenFight(parsedLink))
-  print(processedFight)
+  # print(processedFight)
 
   reportEmbed = {
     "title": f"{generateTitle(processedFight)} - <t:{processedFight.startTime}:D>",
@@ -254,9 +254,9 @@ if __name__ == "__main__":
   """
   dir = os.path.dirname(__file__)
   mockUltReport, mockExtremeReport, mockCompilationReport = None, None, None
-  with open(os.path.join(dir, "test_data/ultimate.json"), "r") as f:
+  with open(os.path.join(dir, "tests/test_data/ultimate.json"), "r") as f:
     mockUltReport = json.load(f)
-  with open(os.path.join(dir, "test_data/compilation.json"), "r") as f:
+  with open(os.path.join(dir, "tests/test_data/compilation.json"), "r") as f:
     mockCompilationReport = json.load(f)
   generateEmbed(mockUltReport, testLinkUltNoFragment)  
   generateEmbed(mockCompilationReport, testCompliationLink)

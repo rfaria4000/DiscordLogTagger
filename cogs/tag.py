@@ -27,7 +27,8 @@ class tag(commands.Cog):
 
   def getFFLogReportCode(self, link:str) -> str:
     """Extracts url path for FFLogs Report code."""
-    if not self.isValidFFLogsPrefix(link): raise FFLogsReportError("Not a valid FFLogs report.")
+    if not self.isValidFFLogsPrefix(link): 
+      raise FFLogsReportError("Not a valid FFLogs report.")
     parsedLink = urlparse(link)
     print(parsedLink)
     return parsedLink.path.split("/")[2]
