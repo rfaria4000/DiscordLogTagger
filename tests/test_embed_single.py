@@ -1,8 +1,13 @@
 import pytest
 import embed
-from .test_embed import get_test_data, get_report_code, get_actor_list
+import data.emoji
+from .test_embed import get_test_data, get_report_code, get_actors, get_rankings
 
 FFLOGS_TEMPLATE = "https://www.fflogs.com/reports/{0}#fight={1}"
+FIELD_STATUS = 0
+FIELD_PARTY = 1
+FIELD_PARSES = 2
+SIZE_OF_EMBED_WITH_PARSE_DATA = 3
 
 test_data = get_test_data(lambda test: True)
 
@@ -33,6 +38,9 @@ def get_fight(report: list, id: int) -> dict:
   
   return None
 
+def filterCombinedParses(characterParse: dict) -> bool:
+  return "id_2" not in characterParse
+
 report_fights = get_report_fight_ids_dict(test_data)
 data_with_fights = zip_test_data_fights(test_data)
 
@@ -55,25 +63,42 @@ class TestSingleAll:
     assert(self.embed.title.startswith(f"🔸 {self.fight['name']}"))
   
   def test_single_field_name_status(self):
-    assert(self.embed.fields[0].name == "Status")
+    assert(self.embed.fields[FIELD_STATUS].name == "Status")
 
   def test_single_field_name_party(self):
-    assert(self.embed.fields[1].name == "Party")
+    assert(self.embed.fields[FIELD_PARTY].name == "Party")
 
   def test_single_field_name_parses(self):
-    if len(self.embed.fields) > 2:
-      assert(self.embed.fields[2].name == "Parses")
+    if len(self.embed.fields) == SIZE_OF_EMBED_WITH_PARSE_DATA:
+      assert(self.embed.fields[FIELD_PARSES].name == "Parses")
 
   def test_single_party_members(self):
-    actorList = get_actor_list(self.report)
+    actorList = get_actors(self.report)
     for playerID in self.fight["friendlyPlayers"]:
       matchingPlayer = next(actor for actor in actorList 
                             if actor["id"] == playerID)
-      if matchingPlayer["name"] in ["Multiple Players", "Limit Break"]: continue
-      assert(matchingPlayer["name"] in self.embed.fields[1].value)
+      if matchingPlayer["name"] in ["Multiple Players", "Limit Break"]: 
+        continue
+      assert(matchingPlayer["name"] in self.embed.fields[FIELD_PARTY].value)
 
   def test_single_parses(self):
-    pass
+    if len(self.embed.fields) < SIZE_OF_EMBED_WITH_PARSE_DATA: 
+      pytest.skip("No parses displayed.")
+    
+    rankingList = get_rankings(self.report)
+    fightRankings = next(parse for parse in rankingList 
+                          if parse["fightID"] == self.fightID)
+    
+    characterParses = []
+    for role in ["tanks","healers", "dps"]:
+      characterParses.extend(fightRankings["roles"][role]["characters"])
+    
+    filteredParses = list(filter(filterCombinedParses, characterParses))
+    filteredParses.sort(key=lambda x: data.emoji.emojiDict[x["class"]].priority)
+    displayedParses = self.embed.fields[FIELD_PARSES].value.split("\n")
+    
+    for i in range(len(displayedParses)):
+      assert str(filteredParses[i]["rankPercent"]) in displayedParses[i]
 
   def test_single_color(self):
     pass
