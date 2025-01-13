@@ -124,7 +124,7 @@ class TestSingleLast:
     assert(self.embed_fight_last.fields == self.embed_last_id.fields)
 
   def test_last_color(self):
-    pass
+    assert(self.embed_fight_last.color == self.embed_last_id.color)
 
   def test_last_thumbnail(self):
     assert(self.embed_fight_last.thumbnail.url 

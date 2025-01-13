@@ -1,6 +1,10 @@
 import os, json
 import embed
 
+FIELD_PULLS = 0
+FIELD_BEST_PULL = 1
+FIELD_CLEAR_PULLS = 2
+
 class TestMulti:
   def setup_method(self, method):
     print(f"Setting up {method}")
@@ -24,23 +28,23 @@ class TestMulti:
            and self.embed.title.startswith("🔷 " + firstFightName))
   
   def test_multi_field_name_pulls(self):
-    assert(self.embed.fields[0].name == "Pulls")
+    assert(self.embed.fields[FIELD_PULLS].name == "Pulls")
 
   def test_multi_field_name_best_pull(self):
-    assert(self.embed.fields[1].name == "Best Pull")
+    assert(self.embed.fields[FIELD_BEST_PULL].name == "Best Pull")
 
   def test_multi_field_name_clear_pulls(self):
-    assert(self.embed.fields[2].name == "Clear Pulls?")
+    assert(self.embed.fields[FIELD_CLEAR_PULLS].name == "Clear Pulls?")
 
   def test_multi_pull_count(self):
     firstFightName = self.fightList[0]["name"]
     pullCount = len(list(filter(lambda x: x["name"] == firstFightName, 
                                 self.fightList)))
-    assert(int(self.embed.fields[0].value) == pullCount)
+    assert(int(self.embed.fields[FIELD_PULLS].value) == pullCount)
 
   def test_multi_color(self):
     for emoji in reversed(embed.PULL_EMOJIS):
-      if emoji in self.embed.fields[2].value:
+      if emoji in self.embed.fields[FIELD_CLEAR_PULLS].value:
         emojiIndex = embed.PULL_EMOJIS.index(emoji)
         assert(self.embed.color.value == embed.PULL_HEXCODES[emojiIndex])
         break
