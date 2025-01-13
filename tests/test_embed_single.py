@@ -101,7 +101,17 @@ class TestSingleAll:
       assert str(filteredParses[i]["rankPercent"]) in displayedParses[i]
 
   def test_single_color(self):
-    pass
+    if len(self.embed.fields) < SIZE_OF_EMBED_WITH_PARSE_DATA:
+      if "Clear" in self.embed.fields[FIELD_STATUS].value:
+        assert(self.embed.color.value == embed.PULL_HEXCODES[embed.Pull.CLEAR])
+      else:
+        assert(self.embed.color.value == embed.PULL_HEXCODES[embed.Pull.WIPE])
+    else: 
+      for emoji in reversed(embed.PULL_EMOJIS):
+        if emoji in self.embed.fields[FIELD_PARSES].value:
+          emojiIndex = embed.PULL_EMOJIS.index(emoji)
+          assert self.embed.color.value == embed.PULL_HEXCODES[emojiIndex]
+          break
 
   def test_single_thumbnail(self):
     assert(str(self.fight["encounterID"]) in self.embed.thumbnail.url) 
