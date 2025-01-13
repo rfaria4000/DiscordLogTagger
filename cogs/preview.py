@@ -5,7 +5,7 @@ from discord.ext import commands
 from typing import NamedTuple
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-import data.emoji as emoji
+import data.jobinfo as jobs
 
 class PartyMember(NamedTuple):
   name: str
@@ -66,13 +66,13 @@ class PreviewSelect(Select):
       ]
       embed.add_field(
         name="Party", 
-        value="\n".join(f"{emoji.emojiDict[member.job].emoji} {member.name}" 
+        value="\n".join(f"{jobs.emojiDict[member.job].emoji} {member.name}" 
                         for member in partyMembers), 
         inline=True
       )
       embed.add_field(
         name="Parses", 
-        value="\n".join(f"{emoji.emojiDict[member.job].emoji} {member.parse}" 
+        value="\n".join(f"{jobs.emojiDict[member.job].emoji} {member.parse}" 
                         for member in partyMembers), 
         inline=True
       )
