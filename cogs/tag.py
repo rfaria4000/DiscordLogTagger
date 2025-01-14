@@ -47,10 +47,10 @@ class tag(commands.Cog):
   ) -> None:
     await interaction.response.defer()
     try:
-      self.ffLogsSession = FFLogsSession(self.FFLOGS_CLIENT_ID, 
+      self.FFLogsSession = FFLogsSession(self.FFLOGS_CLIENT_ID, 
                                          self.FFLOGS_CLIENT_SECRET)
       self.logReportCode = self.getFFLogReportCode(link)
-      self.reportData = self.ffLogsSession.getReportData(self.logReportCode)
+      self.reportData = self.FFLogsSession.getReportData(self.logReportCode)
       self.reportEmbed = embed.generateEmbed(self.reportData, link, description)
       await interaction.followup.send(embed = self.reportEmbed)
     except Exception as exc:
