@@ -1,4 +1,6 @@
 import functools
+import discord
+from typing import Optional
 
 @functools.total_ordering
 class Fight:
@@ -25,7 +27,6 @@ class Fight:
   def __gt__(self, other):
     pass
 
-
-
-  # I'm going to need a fight to embed function
-  # a comparison function for ordering purposes
+  def to_embed(self, partialEmbed: Optional[discord.Embed]) -> discord.Embed:
+    returnEmbed = partialEmbed if partialEmbed else discord.Embed()
+    pass
