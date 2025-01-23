@@ -3,12 +3,19 @@ import discord
 import math
 from typing import Optional, Union
 from enum import IntEnum
+from dataclasses import dataclass
 
 class FightTier(IntEnum):
   UNRANKED = 0
   RANKED = 1 #Extremes and Normal Raids
   SAVAGE = 2
   ULTIMATE = 3
+
+@dataclass
+class PartyMember():
+  name: str
+  job: str
+  parse: int = None
 
 @functools.total_ordering
 class Fight:
@@ -22,6 +29,7 @@ class Fight:
     self.fightData: dict = fightData
     self.actorData: list = actorData
     self.rankingData: dict = rankingData
+    self.partyMembers = None
     for key, value in self.fightData.items():
       setattr(self, key, value)
 
@@ -82,6 +90,12 @@ class Fight:
   def toColor(self):
     pass
 
+  def unpackPartyMembers(self) -> None:
+    """
+     Populates self.partyMembers with a list of PartyMembers and their data.
+    """
+    
+
   def displayPartyMembers(self) -> str:
     pass
 
@@ -98,7 +112,16 @@ class Fight:
     fightEmbed.title = f"🔸 {self.name}"
     fightEmbed.set_thumbnail(url=self.thumbnailURL())
     fightEmbed.color = self.toColor()
-    fightEmbed.add_field(name="Status", value=self.completionStatus())
+    fightEmbed.add_field(name="Status", 
+                         value=self.completionStatus(), 
+                         inline=False)
+    fightEmbed.add_field(name="Party", 
+                         value=self.displayPartyMembers(),
+                         inline=True)
+    if self.rankingData is not None:
+      fightEmbed.add_field(name="Parses", 
+                           value=self.displayPartyParses(),
+                           inline=True)
     return fightEmbed
 
 if __name__ == "__main__":
@@ -113,4 +136,4 @@ if __name__ == "__main__":
   mockActorData = mockReportData["data"]["reportData"]["report"]["masterData"]["actors"]
   mockRankingData = mockReportData["data"]["reportData"]["report"]["rankings"]["data"][0] #fight id 10
   fightTen = Fight(mockFightData, mockActorData, mockRankingData)
-  print(fightTen.toEmbed())
+  print(fightTen.toEmbed().fields)
