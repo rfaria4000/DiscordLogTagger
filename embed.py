@@ -268,6 +268,6 @@ if __name__ == "__main__":
   #   mockExtremeReport = json.load(f)
   # with open(os.path.join(dir, "test_data/compilation.json"), "r") as f:
   #    mockCompilationReport = json.load(f)
-  # print(generateEmbedFromReport(mockExtremeReport, "lol").to_dict())
+  # print(generateEmbedFromReport(mockExtremeReport, "test").to_dict())
   # generateEmbedFromReport(mockUltReport, "nope")
-  # generateEmbedFromReport(mockCompilationReport, "big boy")
+  # generateEmbedFromReport(mockCompilationReport, "test 2")
