@@ -25,7 +25,7 @@ class Fight:
     for key, value in self.fightData.items():
       setattr(self, key, value)
 
-  def evaluateFightTier(self) -> int:
+  def fightTier(self) -> int:
     """
     Returns an int (enum) corresponding to the tier of a fight.\n
     0 - Unranked | 1 - Ranked | 2 - Savage | 3 - Ultimate
@@ -53,10 +53,10 @@ class Fight:
     """
     return f"{self.secondsElapsed()//60}:{self.secondsElapsed()%60}"
 
-  def evaluateCompletionStatus(self) -> str:
+  def completionStatus(self) -> str:
     """Returns a string summarizing a pull's completion rate."""
     if self.kill: return f"Clear in {self.timeElapsed()}"
-    if self.evaluateFightTier() == FightTier.ULTIMATE:
+    if self.fightTier() == FightTier.ULTIMATE:
       return f"Phase {self.lastPhase} - {self.bossPercentage}% remaining"
     return f"{self.bossPercentage}% remaining"
 
@@ -64,8 +64,8 @@ class Fight:
     return (
       f"Overview for fight {self.id}:\n"
       f"  Name: {self.name}\n"
-      f"  Difficulty: {self.evaluateFightTier()}\n"
-      f"  Status: {self.evaluateCompletionStatus()}"
+      f"  Difficulty: {self.fightTier()}\n"
+      f"  Status: {self.completionStatus()}"
     )
 
   def __eq__(self, other):
@@ -76,10 +76,30 @@ class Fight:
   def __gt__(self, other):
     pass
 
-
-  def to_embed(self, partialEmbed: Optional[discord.Embed]) -> discord.Embed:
-    returnEmbed = partialEmbed if partialEmbed else discord.Embed()
+  def toEmoji(self):
     pass
+
+  def toColor(self):
+    pass
+
+  def displayPartyMembers(self) -> str:
+    pass
+
+  def displayPartyParses(self) -> str:
+    pass
+
+  def thumbnailURL(self) -> str:
+    """Returns a link to the image associated with the encounter."""
+    url = "https://assets.rpglogs.com/img/ff/bosses/{0}-icon.jpg"
+    return url.format(self.encounterID)
+
+  def toEmbed(self) -> discord.Embed:
+    fightEmbed = discord.Embed()
+    fightEmbed.title = f"🔸 {self.name}"
+    fightEmbed.set_thumbnail(url=self.thumbnailURL())
+    fightEmbed.color = self.toColor()
+    fightEmbed.add_field(name="Status", value=self.completionStatus())
+    return fightEmbed
 
 if __name__ == "__main__":
   import json, os
@@ -93,4 +113,4 @@ if __name__ == "__main__":
   mockActorData = mockReportData["data"]["reportData"]["report"]["masterData"]["actors"]
   mockRankingData = mockReportData["data"]["reportData"]["report"]["rankings"]["data"][0] #fight id 10
   fightTen = Fight(mockFightData, mockActorData, mockRankingData)
-  print(fightTen)
+  print(fightTen.toEmbed())
