@@ -4,7 +4,7 @@ import math
 from typing import Optional, Union
 from enum import IntEnum
 from dataclasses import dataclass
-from data import jobinfo
+from data import jobinfo, parses
 
 LIMIT_BREAK_NPC = "LimitBreak"
 FIELD_DENOTING_COMBINED_PARSE = "name_2"
@@ -38,63 +38,6 @@ class Fight:
       setattr(self, key, value)
     self._unpackPartyMembers()
 
-  def fightTier(self) -> int:
-    """
-    Returns an int (enum) corresponding to the tier of a fight.\n
-    0 - Unranked | 1 - Ranked | 2 - Savage | 3 - Ultimate
-    """
-    if self.lastPhase > 0: 
-      return FightTier.ULTIMATE
-    elif self.difficulty == 101:
-      return FightTier.SAVAGE
-    elif self.rankingData is not None: 
-      return FightTier.RANKED
-    else: 
-      return FightTier.UNRANKED
-    
-  def secondsElapsed(self) -> int:
-    """
-     Returns the fight duration in seconds. If a string representation is
-     needed, use `timeElapsed()` instead.
-    """
-    return math.floor((self.endTime - self.startTime) / 1000)
-
-  def timeElapsed(self) -> str:
-    """
-     Returns the fight duration as a string in 'XX:YY' format. If seconds are
-     needed for comparison purposes, use `secondsElapsed()` instead.
-    """
-    return f"{self.secondsElapsed()//60}:{self.secondsElapsed()%60}"
-
-  def completionStatus(self) -> str:
-    """Returns a string summarizing a pull's completion rate."""
-    if self.kill: return f"Clear in {self.timeElapsed()}"
-    if self.fightTier() == FightTier.ULTIMATE:
-      return f"Phase {self.lastPhase} - {self.bossPercentage}% remaining"
-    return f"{self.bossPercentage}% remaining"
-
-  def __str__(self):
-    return (
-      f"Overview for fight {self.id}:\n"
-      f"  Name: {self.name}\n"
-      f"  Difficulty: {self.fightTier()}\n"
-      f"  Status: {self.completionStatus()}"
-    )
-
-  def __eq__(self, other):
-    pass
-
-  # for fights within the same category of ult/savage etc, it seems
-  # bigger number for encounterID is more recent
-  def __gt__(self, other):
-    pass
-
-  def toEmoji(self):
-    pass
-
-  def toColor(self):
-    pass
-
   def _unpackPartyMembers(self) -> None:
     """
      Populates self.partyMembers with a list of PartyMembers sorted by job 
@@ -110,9 +53,7 @@ class Fight:
           playerParse = next((character for character in role["characters"] 
                              if character["name"] == player["name"]), 
                              None)
-          if playerParse is not None: 
-            if FIELD_DENOTING_COMBINED_PARSE in playerParse: break
-            parse = playerParse["rankPercent"]
+          if playerParse is not None: parse = playerParse["rankPercent"]
       
       self.partyMembers.append(PartyMember(player["name"],
                                            player["subType"],
@@ -121,24 +62,98 @@ class Fight:
     self.partyMembers.sort(key = lambda player: 
                            jobinfo.emojiDict[player.job].priority)
 
-  def displayPartyMembers(self) -> str:
+  def __str__(self):
+    return (
+      f"Overview for fight {self.id}:\n"
+      f"  Name: {self.name}\n"
+      f"  Difficulty: {self.fightTier}\n"
+      f"  Status: {self.completionStatus}"
+    )
+
+  def __eq__(self, other):
     pass
 
-  def displayPartyParses(self) -> str:
+  # for fights within the same category of ult/savage etc, it seems
+  # bigger number for encounterID is more recent
+  def __gt__(self, other):
     pass
 
+  @property
+  def fightTier(self) -> int:
+    """
+    Returns an int (enum) corresponding to the tier of a fight.\n
+    0 - Unranked | 1 - Ranked | 2 - Savage | 3 - Ultimate
+    """
+    if self.lastPhase > 0: 
+      return FightTier.ULTIMATE
+    elif self.difficulty == 101:
+      return FightTier.SAVAGE
+    elif self.rankingData is not None: 
+      return FightTier.RANKED
+    else: 
+      return FightTier.UNRANKED
+    
+  @property
+  def secondsElapsed(self) -> int:
+    """
+     Returns the fight duration in seconds. If a string representation is
+     needed, use `timeElapsed()` instead.
+    """
+    return math.floor((self.endTime - self.startTime) / 1000)
+
+  @property
+  def timeElapsed(self) -> str:
+    """
+     Returns the fight duration as a string in 'XX:YY' format. If seconds are
+     needed for comparison purposes, use `secondsElapsed()` instead.
+    """
+    return f"{self.secondsElapsed//60}:{self.secondsElapsed%60}"
+
+  @property
+  def completionStatus(self) -> str:
+    """Returns a string summarizing a pull's completion rate."""
+    if self.kill: return f"Clear in {self.timeElapsed}"
+    if self.fightTier() == FightTier.ULTIMATE:
+      return f"Phase {self.lastPhase} - {self.bossPercentage}% remaining"
+    return f"{self.bossPercentage}% remaining"
+
+  @property
+  def bestParse(self) -> int:
+    return max([character.parse for character in self.partyMembers])
+
+  @property
   def thumbnailURL(self) -> str:
     """Returns a link to the image associated with the encounter."""
     url = "https://assets.rpglogs.com/img/ff/bosses/{0}-icon.jpg"
     return url.format(self.encounterID)
 
+  @property
+  def pullEmoji(self):
+    return parses.PULL_EMOJIS[parses.parseToIndex(self.bestParse)]
+
+  @property
+  def pullColor(self):
+    return parses.PULL_HEXCODES[parses.parseToIndex(self.bestParse)]
+
+  def displayPartyMembers(self) -> str:
+    memberString = [f"{jobinfo.emojiDict[member.job].emoji} {member.name}" 
+                         for member in self.partyMembers]
+    return "\n".join(memberString)
+
+  def displayPartyParses(self) -> str:
+    emojiString = [(f"{jobinfo.emojiDict[member.job].emoji} "
+                    f"{parses.PULL_EMOJIS[parses.parseToIndex(member.parse)]} " 
+                    f"{member.parse}") 
+                    for member in self.partyMembers]
+    return "\n".join(emojiString)
+
   def toEmbed(self) -> discord.Embed:
     fightEmbed = discord.Embed()
     fightEmbed.title = f"🔸 {self.name}"
-    fightEmbed.set_thumbnail(url=self.thumbnailURL())
-    fightEmbed.color = self.toColor()
+    fightEmbed.set_thumbnail(url=self.thumbnailURL)
+    fightEmbed.color = self.pullColor
     fightEmbed.add_field(name="Status", 
-                         value=self.completionStatus(), 
+                         value=self.completionStatus, 
                          inline=False)
     fightEmbed.add_field(name="Party", 
                          value=self.displayPartyMembers(),
@@ -161,4 +176,4 @@ if __name__ == "__main__":
   mockActorData = mockReportData["data"]["reportData"]["report"]["masterData"]["actors"]
   mockRankingData = mockReportData["data"]["reportData"]["report"]["rankings"]["data"][0] #fight id 10
   fightTen = Fight(mockFightData, mockActorData, mockRankingData)
-  print(fightTen.partyMembers)
+  print(fightTen.toEmbed().color)
