@@ -130,11 +130,21 @@ class Fight:
 
   @property
   def emoji(self):
+    """
+    Returns an emoji representing the state of the fight. If the fight is
+    ranked, it will return an emoji whose color matches that of the best parse
+    of the players that participated in this pull.
+    """
     if not self.kill: return parses.PULL_EMOJIS[parses.Pull.WIPE]
     return parses.PULL_EMOJIS[parses.parseToIndex(self.bestParse)]
 
   @property
   def color(self):
+    """
+    Returns a hexcode representing the state of the fight. If the fight is
+    ranked, the color will indicate the best parse of any participating player.
+    Otherwise, it will be red for a wipe and mint green for a clear.
+    """
     if not self.kill: return parses.PULL_HEXCODES[parses.Pull.WIPE]
     return parses.PULL_HEXCODES[parses.parseToIndex(self.bestParse)]
 
@@ -145,11 +155,19 @@ class Fight:
     return url.format(self.encounterID)
 
   def displayPartyMembers(self) -> str:
+    """
+    Returns a string containing all party members and emojis representing their
+    respective jobs.
+    """
     memberString = [f"{jobinfo.emojiDict[member.job].emoji} {member.name}" 
                          for member in self.partyMembers]
     return "\n".join(memberString)
 
   def displayPartyParses(self) -> str:
+    """
+    Returns a string containing the emojis of each party member, an emoji
+    representing their parse, and their actual parse.
+    """
     emojiString = [(f"{jobinfo.emojiDict[member.job].emoji} "
                     f"{parses.PULL_EMOJIS[parses.parseToIndex(member.parse)]} " 
                     f"{member.parse}") 
@@ -157,6 +175,11 @@ class Fight:
     return "\n".join(emojiString)
 
   def toEmbed(self) -> discord.Embed:
+    """
+    Returns a Discord Embed representing the fight. It does not contain any meta
+    data such as the author of the report, a link to the report, or when
+    the fight occured.
+    """
     fightEmbed = discord.Embed()
     fightEmbed.title = f"🔸 {self.name}"
     fightEmbed.set_thumbnail(url=self.thumbnailURL)
