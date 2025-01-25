@@ -4,6 +4,7 @@ import math
 from typing import Optional, Union
 from enum import IntEnum
 from dataclasses import dataclass
+from data import jobinfo
 
 LIMIT_BREAK_NPC = "LimitBreak"
 FIELD_DENOTING_COMBINED_PARSE = "name_2"
@@ -32,7 +33,7 @@ class Fight:
     self.fightData: dict = fightData
     self.actorData: list = actorData
     self.rankingData: dict = rankingData
-    self.partyMembers = []
+    self.partyMembers: list[PartyMember] = []
     for key, value in self.fightData.items():
       setattr(self, key, value)
     self._unpackPartyMembers()
@@ -96,7 +97,8 @@ class Fight:
 
   def _unpackPartyMembers(self) -> None:
     """
-     Populates self.partyMembers with a list of PartyMembers and their data.
+     Populates self.partyMembers with a list of PartyMembers sorted by job 
+     priority.
     """
     for actorID in self.friendlyPlayers:
       player = next(actor for actor in self.actorData if actor["id"] == actorID)
@@ -115,6 +117,9 @@ class Fight:
       self.partyMembers.append(PartyMember(player["name"],
                                            player["subType"],
                                            parse))
+    
+    self.partyMembers.sort(key = lambda player: 
+                           jobinfo.emojiDict[player.job].priority)
 
   def displayPartyMembers(self) -> str:
     pass
