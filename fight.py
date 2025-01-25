@@ -118,22 +118,31 @@ class Fight:
     return f"{self.bossPercentage}% remaining"
 
   @property
-  def bestParse(self) -> int:
+  def bestParse(self) -> Optional[int]:
+    """
+    Returns the best parse out of any player on this fight. If there is no
+    ranking associated with this fight, returns -1. If the fight was not
+    cleared, returns None.
+    """
+    if not self.kill: return None
+    if self.rankingData is None: return -1
     return max([character.parse for character in self.partyMembers])
+
+  @property
+  def emoji(self):
+    if not self.kill: return parses.PULL_EMOJIS[parses.Pull.WIPE]
+    return parses.PULL_EMOJIS[parses.parseToIndex(self.bestParse)]
+
+  @property
+  def color(self):
+    if not self.kill: return parses.PULL_HEXCODES[parses.Pull.WIPE]
+    return parses.PULL_HEXCODES[parses.parseToIndex(self.bestParse)]
 
   @property
   def thumbnailURL(self) -> str:
     """Returns a link to the image associated with the encounter."""
     url = "https://assets.rpglogs.com/img/ff/bosses/{0}-icon.jpg"
     return url.format(self.encounterID)
-
-  @property
-  def pullEmoji(self):
-    return parses.PULL_EMOJIS[parses.parseToIndex(self.bestParse)]
-
-  @property
-  def pullColor(self):
-    return parses.PULL_HEXCODES[parses.parseToIndex(self.bestParse)]
 
   def displayPartyMembers(self) -> str:
     memberString = [f"{jobinfo.emojiDict[member.job].emoji} {member.name}" 
@@ -151,7 +160,7 @@ class Fight:
     fightEmbed = discord.Embed()
     fightEmbed.title = f"🔸 {self.name}"
     fightEmbed.set_thumbnail(url=self.thumbnailURL)
-    fightEmbed.color = self.pullColor
+    fightEmbed.color = self.color
     fightEmbed.add_field(name="Status", 
                          value=self.completionStatus, 
                          inline=False)
