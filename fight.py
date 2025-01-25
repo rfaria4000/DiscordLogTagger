@@ -5,6 +5,9 @@ from typing import Optional, Union
 from enum import IntEnum
 from dataclasses import dataclass
 
+LIMIT_BREAK_NPC = "LimitBreak"
+FIELD_DENOTING_COMBINED_PARSE = "name_2"
+
 class FightTier(IntEnum):
   UNRANKED = 0
   RANKED = 1 #Extremes and Normal Raids
@@ -29,9 +32,10 @@ class Fight:
     self.fightData: dict = fightData
     self.actorData: list = actorData
     self.rankingData: dict = rankingData
-    self.partyMembers = None
+    self.partyMembers = []
     for key, value in self.fightData.items():
       setattr(self, key, value)
+    self._unpackPartyMembers()
 
   def fightTier(self) -> int:
     """
@@ -90,11 +94,27 @@ class Fight:
   def toColor(self):
     pass
 
-  def unpackPartyMembers(self) -> None:
+  def _unpackPartyMembers(self) -> None:
     """
      Populates self.partyMembers with a list of PartyMembers and their data.
     """
-    
+    for actorID in self.friendlyPlayers:
+      player = next(actor for actor in self.actorData if actor["id"] == actorID)
+      if player["subType"] == LIMIT_BREAK_NPC: continue
+      
+      parse = None
+      if self.rankingData is not None:
+        for role in self.rankingData["roles"].values():
+          playerParse = next((character for character in role["characters"] 
+                             if character["name"] == player["name"]), 
+                             None)
+          if playerParse is not None: 
+            if FIELD_DENOTING_COMBINED_PARSE in playerParse: break
+            parse = playerParse["rankPercent"]
+      
+      self.partyMembers.append(PartyMember(player["name"],
+                                           player["subType"],
+                                           parse))
 
   def displayPartyMembers(self) -> str:
     pass
@@ -136,4 +156,4 @@ if __name__ == "__main__":
   mockActorData = mockReportData["data"]["reportData"]["report"]["masterData"]["actors"]
   mockRankingData = mockReportData["data"]["reportData"]["report"]["rankings"]["data"][0] #fight id 10
   fightTen = Fight(mockFightData, mockActorData, mockRankingData)
-  print(fightTen.toEmbed().fields)
+  print(fightTen.partyMembers)
