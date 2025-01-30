@@ -32,5 +32,13 @@ class Encounter:
     pass
 
   def toEmbed(self) -> discord.Embed:
+    bestFight: Fight = max(self.fightList)
+
     encounterEmbed = discord.Embed()
-    pass
+    encounterEmbed.title = f"🔷 {self.name}"
+    encounterEmbed.set_thumbnail(url=bestFight.thumbnailURL)
+    
+    encounterEmbed.add_field(name="Pulls",
+                             value=str(self.pulls),
+                             inline=False)
+    return encounterEmbed

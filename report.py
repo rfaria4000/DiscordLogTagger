@@ -1,12 +1,14 @@
+import discord
+
 class Report:
   """
   Represents a combat report on FFLogs.
   """
   def __init__(self, reportData: dict[str, dict]):
     self.reportData = reportData
-    self.unpack_data()
+    self.unpackData()
 
-  def unpack_data(self):
+  def unpackData(self):
     report = self.reportData["data"]["reportData"]["report"]
     self.code = report["code"]
     self.author = report["owner"]["name"]
@@ -14,6 +16,15 @@ class Report:
     self.fightData = report["fights"]
     self.startTime = report["startTime"] // 1000 #millisecond precision
 
+  def addReportDataToEmbed(self, embed: discord.Embed) -> None:
+    pass
+
+  def toEmbed(self) -> discord.Embed:
+    returnEmbed = None
+
+    self.addReportDataToEmbed(returnEmbed)
+    return returnEmbed
+  
   # I'm going to need some sort of filter function to grab specific things
 
 if __name__ == "__main__":

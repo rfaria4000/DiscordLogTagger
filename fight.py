@@ -184,6 +184,7 @@ class Fight:
     fightEmbed.title = f"🔸 {self.name}"
     fightEmbed.set_thumbnail(url=self.thumbnailURL)
     fightEmbed.color = self.color
+    
     fightEmbed.add_field(name="Status", 
                          value=self.completionStatus, 
                          inline=False)
