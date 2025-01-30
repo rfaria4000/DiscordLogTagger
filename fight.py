@@ -208,4 +208,4 @@ if __name__ == "__main__":
   mockActorData = mockReportData["data"]["reportData"]["report"]["masterData"]["actors"]
   mockRankingData = mockReportData["data"]["reportData"]["report"]["rankings"]["data"][0] #fight id 10
   fightTen = Fight(mockFightData, mockActorData, mockRankingData)
-  print(fightTen.toEmbed().color)
+  print(fightTen.toEmbed().to_dict())
