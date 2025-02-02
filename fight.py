@@ -80,7 +80,25 @@ class Fight:
   # for fights within the same category of ult/savage etc, it seems
   # bigger number for encounterID is more recent
   def __gt__(self, other):
-    pass
+    if not isinstance(other, Fight):
+      return NotImplemented
+    
+    if self.fightTier != other.fightTier:
+      return True if self.fightTier > other.fightTier else False
+    # From here on, same difficulty
+    if self.kill != other.kill: 
+      return True if self.kill else False
+    # from here on, same kill state
+    if self.encounterID != other.encounterID:
+      return self.encounterID > other.encounterID
+    # from here on, same encounter
+    if self.fightPercentage != other.fightPercentage:
+      return self.fightPercentage > other.fightPercentage
+    # from here on out, same percentage on fight
+    if self.rankingData and other.rankingData:
+      return True if self.bestParse > other.bestParse else False
+    
+    return True if self.timeElapsed < other.timeElapsed else False
 
   @property
   def fightTier(self) -> int:
