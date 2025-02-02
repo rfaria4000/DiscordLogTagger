@@ -34,15 +34,16 @@ class Report:
       self.encounterDict[pullEncounterID].addFight(fightObject)
 
   def addReportDataToEmbed(self, embed: discord.Embed) -> None:
-    pass
+    embed.set_author(name=f"Uploaded by {self.author}")
+    embed.title += f" - <t:{self.startTime}:D>"
+    # TODO: modify once filter function is in place
+    embed.url = f"https://www.fflogs.com/reports/{self.code}"
 
   def toEmbed(self) -> discord.Embed:
     returnEmbed = None
 
     self.addReportDataToEmbed(returnEmbed)
     return returnEmbed
-  
-  # I'm going to need some sort of filter function to grab specific things
 
 if __name__ == "__main__":
   import json, os
@@ -54,4 +55,4 @@ if __name__ == "__main__":
   testReport = Report(mockReportData)
   testReport.sortFights()
   for k, v in testReport.encounterDict.items():
-    print(f"Key: {k}\n{str(v)}")
+    print(f"Key: {k}\n{v.toEmbed().to_dict()}")

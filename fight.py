@@ -71,7 +71,11 @@ class Fight:
     )
 
   def __eq__(self, other):
-    pass
+    if isinstance(other, Fight):
+      return ((self.fightData == other.fightData) and 
+              (self.actorData == other.actorData) and 
+              (self. rankingData == other.rankingData))
+    return NotImplemented
 
   # for fights within the same category of ult/savage etc, it seems
   # bigger number for encounterID is more recent
