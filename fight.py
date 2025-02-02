@@ -29,10 +29,10 @@ class Fight:
   def __init__(self, 
                fightData: dict, 
                actorData: list, 
-               rankingData: dict = None):
+               rankingData: Optional[dict] = None):
     self.fightData: dict = fightData
     self.actorData: list = actorData
-    self.rankingData: dict = rankingData
+    self.rankingData: dict = rankingData if rankingData is not None else {}
     self.partyMembers: list[PartyMember] = []
     for key, value in self.fightData.items():
       setattr(self, key, value)
@@ -48,7 +48,7 @@ class Fight:
       if player["subType"] == LIMIT_BREAK_NPC: continue
       
       parse = None
-      if self.rankingData is not None:
+      if self.rankingData:
         for role in self.rankingData["roles"].values():
           playerParse = next((character for character in role["characters"] 
                              if character["name"] == player["name"]), 
@@ -88,7 +88,7 @@ class Fight:
       return FightTier.ULTIMATE
     elif self.difficulty == 101:
       return FightTier.SAVAGE
-    elif self.rankingData is not None: 
+    elif self.rankingData: 
       return FightTier.RANKED
     else: 
       return FightTier.UNRANKED
@@ -125,7 +125,7 @@ class Fight:
     cleared, returns None.
     """
     if not self.kill: return None
-    if self.rankingData is None: return -1
+    if not self.rankingData: return -1
     return max([character.parse for character in self.partyMembers])
 
   @property
@@ -191,7 +191,7 @@ class Fight:
     fightEmbed.add_field(name="Party", 
                          value=self.displayPartyMembers(),
                          inline=True)
-    if self.rankingData is not None:
+    if self.rankingData:
       fightEmbed.add_field(name="Parses", 
                            value=self.displayPartyParses(),
                            inline=True)
