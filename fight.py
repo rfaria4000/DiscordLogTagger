@@ -71,17 +71,16 @@ class Fight:
     )
 
   def __eq__(self, other):
-    if isinstance(other, Fight):
-      return ((self.fightData == other.fightData) and 
-              (self.actorData == other.actorData) and 
-              (self. rankingData == other.rankingData))
-    return NotImplemented
+    if not isinstance(other, Fight): return NotImplemented
+    
+    return ((self.fightData == other.fightData) and 
+            (self.actorData == other.actorData) and 
+            (self. rankingData == other.rankingData))
 
   # for fights within the same category of ult/savage etc, it seems
   # bigger number for encounterID is more recent
   def __gt__(self, other):
-    if not isinstance(other, Fight):
-      return NotImplemented
+    if not isinstance(other, Fight): return NotImplemented
     
     if self.fightTier != other.fightTier:
       return True if self.fightTier > other.fightTier else False

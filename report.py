@@ -11,6 +11,7 @@ class Report:
     self.reportData = reportData
     self.encounterDict: dict[Encounter] = {}
     self.unpackData()
+    self.sortFights()
 
   def unpackData(self):
     report: dict[str, dict] = self.reportData["data"]["reportData"]["report"]
@@ -33,28 +34,27 @@ class Report:
       fightObject = Fight(pull, self.actorData, pullRankings)
       self.encounterDict[pullEncounterID].addFight(fightObject)
 
-  def addReportDataToEmbed(self, embed: discord.Embed) -> None:
+  def addReportDataToEmbed(self, embed: discord.Embed) -> discord.Embed:
     embed.set_author(name=f"Uploaded by {self.author}")
     embed.title += f" - <t:{self.startTime}:D>"
     # TODO: modify once filter function is in place
     embed.url = f"https://www.fflogs.com/reports/{self.code}"
+    return embed
 
   def toEmbed(self, 
               link: str = None, 
               description: str = None) -> discord.Embed:
     returnEmbed = None
-    self.sortFights()
+    
     if len(self.encounterDict) == 1:
       soleEncounter: Encounter = next(iter(self.encounterDict.values()))
       # TODO: include filter here for specified fight
       returnEmbed = soleEncounter.toEmbed()
     else:
       returnEmbed = discord.Embed()
-      # Full report summary here
-      pass
+      returnEmbed.title = "💠 Multiple Fights"
 
-    self.addReportDataToEmbed(returnEmbed)
-    return returnEmbed
+    return self.addReportDataToEmbed(returnEmbed)
 
 if __name__ == "__main__":
   import json, os

@@ -1,7 +1,9 @@
 import discord
+import functools
 from typing import Optional
 from fight import Fight
 
+@functools.total_ordering
 class Encounter:
   def __init__(self,
                encounterID: int = -1,
@@ -20,6 +22,18 @@ class Encounter:
       f"  Name: {self.name}\n"
       f"  Pulls: {self.pulls}\n"
     )
+  
+  def __eq__(self, other):
+    if not isinstance(other, Encounter): return NotImplemented
+    
+    return ((self.encounterID == other.encounterID) and
+            (self.fightList == other.fightList) and
+            (self.url == other.url))
+
+  def __gt__(self, other):
+    if not isinstance(other, Encounter): return NotImplemented
+
+    return self.bestFight > other.bestFight
 
   @classmethod
   def fromFight(cls, fight: Fight, url: str = None):
@@ -33,6 +47,10 @@ class Encounter:
   def name(self) -> str:
     if not self.fightList: return "No fights added to encounter."
     return self.fightList[0].name
+  
+  @property
+  def bestFight(self) -> Fight:
+    return max(self.fightList)
 
   def addFight(self, fight: Fight) -> None:
     # verify encounterID matches
@@ -43,12 +61,10 @@ class Encounter:
 
   def toEmbed(self) -> discord.Embed:
     if self.pulls == 1: return self.fightList[0].toEmbed()
-    
-    bestFight: Fight = max(self.fightList)
 
     encounterEmbed = discord.Embed()
     encounterEmbed.title = f"🔷 {self.name}"
-    encounterEmbed.set_thumbnail(url=bestFight.thumbnailURL)
+    encounterEmbed.set_thumbnail(url=self.bestFight.thumbnailURL)
     
     encounterEmbed.add_field(name="Pulls",
                              value=str(self.pulls),
