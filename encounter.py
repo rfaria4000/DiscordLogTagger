@@ -50,6 +50,14 @@ class Encounter:
   def bestFight(self) -> Fight:
     return max(self.fightList)
 
+  def bestFightDescription(self, 
+                           link: str = None) -> str:
+    if link is None:
+      return f"{self.bestFight.completionStatus}"
+    else:
+      return (f"[{self.bestFight.completionStatus}]"
+                f"({link}?fight={self.bestFight.id})")
+
   def addFight(self, fight: Fight) -> None:
     # verify encounterID matches
     # add it to list
@@ -79,12 +87,7 @@ class Encounter:
     encounterEmbed.add_field(name = "Pulls",
                              value = str(self.pulls),
                              inline = False)
-    
-    bestPullValue = f"{self.bestFight.completionStatus}"
-    if link is not None:
-      bestPullValue = (f"[{bestPullValue}]"
-                       f"({link}?fight={self.bestFight.id})")
     encounterEmbed.add_field(name = "Best Pull",
-                              value = bestPullValue,
-                              inline = False)
+                             value = self.bestFightDescription(link),
+                             inline = False)
     return encounterEmbed
