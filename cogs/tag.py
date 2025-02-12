@@ -6,6 +6,7 @@ from dotenv import load_dotenv
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import embed
+from report import Report
 from fflogs import FFLogsSession
 
 load_dotenv(".env")
@@ -51,7 +52,9 @@ class tag(commands.Cog):
                                          self.FFLOGS_CLIENT_SECRET)
       self.logReportCode = self.getFFLogReportCode(link)
       self.reportData = self.FFLogsSession.getReportData(self.logReportCode)
-      self.reportEmbed = embed.generateEmbed(self.reportData, link, description)
+      self.report = Report(self.reportData)
+      self.reportEmbed = self.report.toEmbed(link, description)
+      # self.reportEmbed = embed.generateEmbed(self.reportData, link, description)
       await interaction.followup.send(embed = self.reportEmbed)
     except Exception as exc:
       await interaction.followup.send(exc, ephemeral=True)

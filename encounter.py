@@ -42,6 +42,8 @@ class Encounter:
     self.fightList.append(fight)
 
   def toEmbed(self) -> discord.Embed:
+    if self.pulls == 1: return self.fightList[0].toEmbed()
+    
     bestFight: Fight = max(self.fightList)
 
     encounterEmbed = discord.Embed()

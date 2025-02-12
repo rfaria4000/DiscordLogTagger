@@ -39,8 +39,19 @@ class Report:
     # TODO: modify once filter function is in place
     embed.url = f"https://www.fflogs.com/reports/{self.code}"
 
-  def toEmbed(self) -> discord.Embed:
+  def toEmbed(self, 
+              link: str = None, 
+              description: str = None) -> discord.Embed:
     returnEmbed = None
+    self.sortFights()
+    if len(self.encounterDict) == 1:
+      soleEncounter: Encounter = next(iter(self.encounterDict.values()))
+      # TODO: include filter here for specified fight
+      returnEmbed = soleEncounter.toEmbed()
+    else:
+      returnEmbed = discord.Embed()
+      # Full report summary here
+      pass
 
     self.addReportDataToEmbed(returnEmbed)
     return returnEmbed
