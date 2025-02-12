@@ -195,7 +195,8 @@ class Fight:
                     for member in self.partyMembers]
     return "\n".join(emojiString)
 
-  def toEmbed(self) -> discord.Embed:
+  def toEmbed(self,
+              description: str = None) -> discord.Embed:
     """
     Returns a Discord Embed representing the fight. It does not contain any meta
     data such as the author of the report, a link to the report, or when
@@ -205,6 +206,8 @@ class Fight:
     fightEmbed.title = f"🔸 {self.name}"
     fightEmbed.set_thumbnail(url=self.thumbnailURL)
     fightEmbed.color = self.color
+    if description is not None:
+      fightEmbed.description = description
     
     fightEmbed.add_field(name="Status", 
                          value=self.completionStatus, 

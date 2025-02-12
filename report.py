@@ -45,11 +45,11 @@ class Report:
               link: str = None, 
               description: str = None) -> discord.Embed:
     returnEmbed = None
-    
+    # TODO: Add link validation
     if len(self.encounterDict) == 1:
       soleEncounter: Encounter = next(iter(self.encounterDict.values()))
       # TODO: include filter here for specified fight
-      returnEmbed = soleEncounter.toEmbed()
+      returnEmbed = soleEncounter.toEmbed(link, description)
     else:
       returnEmbed = discord.Embed()
       returnEmbed.title = "💠 Multiple Fights"

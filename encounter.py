@@ -7,14 +7,12 @@ from fight import Fight
 class Encounter:
   def __init__(self,
                encounterID: int = -1,
-               fightList: Optional[list[Fight]] = None, 
-               url: str = ""):
+               fightList: Optional[list[Fight]] = None):
     self.encounterID = encounterID
     # http://docs.python.org/reference/compound_stmts.html#function-definitions
     # For future reference as to why the default parameter shouldn't be a 
     # mutable object (empty list in this case)
     self.fightList = fightList if fightList is not None else []
-    self.url = url
 
   def __str__(self):
     return (
@@ -59,14 +57,34 @@ class Encounter:
     if fight.encounterID != self.encounterID: raise Exception
     self.fightList.append(fight)
 
-  def toEmbed(self) -> discord.Embed:
-    if self.pulls == 1: return self.fightList[0].toEmbed()
+  def toEmbed(self, 
+              link: str = None,
+              description: str = None) -> discord.Embed:
+    """
+    Returns a Discord Embed representing the Encounter. Like the Fight toEmbed,
+    it does not include any meta data about the fight.
+
+    Args
+    ---
+      link: `str`
+        A link to the report used to link to the best fight. Must not contain
+        any queries.
+    """
+    if self.pulls == 1: return self.fightList[0].toEmbed(description)
 
     encounterEmbed = discord.Embed()
     encounterEmbed.title = f"🔷 {self.name}"
     encounterEmbed.set_thumbnail(url=self.bestFight.thumbnailURL)
     
-    encounterEmbed.add_field(name="Pulls",
-                             value=str(self.pulls),
-                             inline=False)
+    encounterEmbed.add_field(name = "Pulls",
+                             value = str(self.pulls),
+                             inline = False)
+    
+    bestPullValue = f"{self.bestFight.completionStatus}"
+    if link is not None:
+      bestPullValue = (f"[{bestPullValue}]"
+                       f"({link}?fight={self.bestFight.id})")
+    encounterEmbed.add_field(name = "Best Pull",
+                              value = bestPullValue,
+                              inline = False)
     return encounterEmbed
