@@ -49,6 +49,10 @@ class Encounter:
   @property
   def bestFight(self) -> Fight:
     return max(self.fightList)
+  
+  @property
+  def clearCount(self) -> int:
+    return sum([1 for fight in self.fightList if fight.kill])
 
   def bestFightDescription(self, 
                            link: str = None) -> str:
@@ -60,6 +64,8 @@ class Encounter:
 
   def clearPullsEmojis(self,
                        link: str = None) -> str:
+    if not self.clearCount: return f"{self.bestFight.emoji}" #X emoji
+    
     emojiString = ""
     for fight in self.fightList:
       if fight.kill:
@@ -103,6 +109,7 @@ class Encounter:
     encounterEmbed.add_field(name = "Best Pull",
                              value = self.bestFightDescription(link),
                              inline = False)
+    # TODO: replace with phase overview
     encounterEmbed.add_field(name = "Clear Pulls?",
                              value = self.clearPullsEmojis(link),
                              inline = False)
