@@ -97,7 +97,7 @@ class Fight:
     if self.rankingData and other.rankingData:
       return self.bestParse > other.bestParse
     
-    return True if self.timeElapsed < other.timeElapsed else False
+    return other.timeElapsed > self.timeElapsed
 
   @property
   def fightTier(self) -> int:
@@ -134,7 +134,7 @@ class Fight:
   def completionStatus(self) -> str:
     """Returns a string summarizing a pull's completion rate."""
     if self.kill: return f"Clear in {self.timeElapsed}"
-    if self.fightTier() == FightTier.ULTIMATE:
+    if self.fightTier == FightTier.ULTIMATE:
       return f"Phase {self.lastPhase} - {self.bossPercentage}% remaining"
     return f"{self.bossPercentage}% remaining"
 
