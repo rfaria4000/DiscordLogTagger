@@ -83,10 +83,10 @@ class Fight:
     if not isinstance(other, Fight): return NotImplemented
     
     if self.fightTier != other.fightTier:
-      return True if self.fightTier > other.fightTier else False
+      return self.fightTier > other.fightTier
     # From here on, same difficulty
     if self.kill != other.kill: 
-      return True if self.kill else False
+      return self.kill
     # from here on, same kill state
     if self.encounterID != other.encounterID:
       return self.encounterID > other.encounterID
@@ -95,7 +95,7 @@ class Fight:
       return self.fightPercentage > other.fightPercentage
     # from here on out, same percentage on fight
     if self.rankingData and other.rankingData:
-      return True if self.bestParse > other.bestParse else False
+      return self.bestParse > other.bestParse
     
     return True if self.timeElapsed < other.timeElapsed else False
 

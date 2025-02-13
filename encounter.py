@@ -58,6 +58,18 @@ class Encounter:
       return (f"[{self.bestFight.completionStatus}]"
                 f"({link}?fight={self.bestFight.id})")
 
+  def clearPullsEmojis(self,
+                       link: str = None) -> str:
+    emojiString = ""
+    for fight in self.fightList:
+      if fight.kill:
+        if link is None:
+          emojiString += f"{fight.emoji} "
+        else:
+          emojiString += (f"[{fight.emoji}]"
+                          f"({link}?fight={fight.id}) ")
+    return emojiString
+
   def addFight(self, fight: Fight) -> None:
     # verify encounterID matches
     # add it to list
@@ -90,5 +102,8 @@ class Encounter:
                              inline = False)
     encounterEmbed.add_field(name = "Best Pull",
                              value = self.bestFightDescription(link),
+                             inline = False)
+    encounterEmbed.add_field(name = "Clear Pulls?",
+                             value = self.clearPullsEmojis(link),
                              inline = False)
     return encounterEmbed

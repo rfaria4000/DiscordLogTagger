@@ -82,7 +82,7 @@ class PreviewSelect(Select):
       embed.set_thumbnail(
         url="https://assets.rpglogs.com/img/ff/bosses/1070-icon.jpg",
       )
-      embed.color = 0xa335ee #Purple
+      embed.color = 0xff8000 #Orange
       embed.set_author(
         name="Uploaded by dapc",
       )
