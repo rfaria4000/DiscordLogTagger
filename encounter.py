@@ -83,6 +83,7 @@ class Encounter:
     encounterEmbed = discord.Embed()
     encounterEmbed.title = f"🔷 {self.name}"
     encounterEmbed.set_thumbnail(url=self.bestFight.thumbnailURL)
+    encounterEmbed.color = self.bestFight.color
     
     encounterEmbed.add_field(name = "Pulls",
                              value = str(self.pulls),
