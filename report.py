@@ -1,7 +1,9 @@
 import discord
 from typing import Optional
 from encounter import Encounter
-from fight import Fight
+from fight import Fight, FightTier
+
+NOTABLE_FIGHT_LIMIT = 5
 
 class Report:
   """
@@ -24,7 +26,7 @@ class Report:
     self.startTime: int = report["startTime"] // 1000 #millisecond precision
     self.url: str = f"https://www.fflogs.com/reports/{self.code}"
 
-  def sortFights(self):
+  def sortFights(self) -> None:
     for pull in self.fightData:
       pullEncounterID: int = pull["encounterID"]
       if pullEncounterID not in self.encounterDict.keys():
@@ -34,6 +36,23 @@ class Report:
                                 if x["fightID"] == pull["id"]), None)
       fightObject = Fight(pull, self.actorData, pullRankings)
       self.encounterDict[pullEncounterID].addFight(fightObject)
+
+  @property
+  def notableEncounters(self) -> Optional[list[Encounter]]:
+    if not self.encounterDict: return None
+
+    sortedEncounters = sorted(self.encounterDict.values(), reverse = True)
+    filterUnranked = lambda x: x.encounterTier > FightTier.UNRANKED
+    filteredEncounters = list(filter(filterUnranked, sortedEncounters))
+    if not filteredEncounters: filteredEncounters = sortedEncounters
+    
+    return filteredEncounters[:NOTABLE_FIGHT_LIMIT]
+
+  @property
+  def notableEncounterNames(self) -> Optional[str]:
+    if not self.encounterDict: return None
+
+    return ", ".join(map(lambda x: x.name, self.notableEncounters))
 
   def addReportDataToEmbed(self, embed: discord.Embed) -> discord.Embed:
     embed.set_author(name=f"Uploaded by {self.author}")
@@ -45,19 +64,29 @@ class Report:
   def toEmbed(self, 
               link: str = None, 
               description: str = None) -> discord.Embed:
-    returnEmbed = None
-    # TODO: Add link validation
     if len(self.encounterDict) == 1:
       soleEncounter: Encounter = next(iter(self.encounterDict.values()), 
                                       Encounter())
-      # TODO: include filter here for specified fight
-      returnEmbed = soleEncounter.toEmbed(link = self.url, 
-                                          description = description)
-    else:
-      returnEmbed = discord.Embed()
-      returnEmbed.title = "💠 Multiple Fights"
+      return self.addReportDataToEmbed(soleEncounter.toEmbed(self.url, 
+                                                             description))
+    
 
-    return self.addReportDataToEmbed(returnEmbed)
+    highlightEncounter = self.notableEncounters[0]
+    reportEmbed = discord.Embed()
+    reportEmbed.title = "💠 Multiple Fights"
+    reportEmbed.color = highlightEncounter.bestFight.color
+    reportEmbed.set_thumbnail(url = highlightEncounter.bestFight.thumbnailURL)
+    
+    reportEmbed.add_field(name = "Notable Fights",
+                          value = self.notableEncounterNames,
+                          inline = False)
+
+    for enc in self.notableEncounters:
+      reportEmbed.add_field(name = f"{enc.name} - {enc.pulls} pull(s)",
+                            value = f"Clears: {enc.clearPullsEmojis(self.url)}",
+                            inline = False)
+
+    return self.addReportDataToEmbed(reportEmbed)
 
 if __name__ == "__main__":
   import json, os
@@ -68,5 +97,8 @@ if __name__ == "__main__":
     mockReportData = json.load(f)
   testReport = Report(mockReportData)
   testReport.sortFights()
-  for k, v in testReport.encounterDict.items():
-    print(f"Key: {k}\n{v.toEmbed().to_dict()}")
+  # print(encounter.name for encounter in testReport.notableEncounters)
+  for encounter in testReport.notableEncounters:
+    print(encounter.name)
+  # for k, v in testReport.encounterDict.items():
+  #   print(f"Key: {k}\n{v.toEmbed().to_dict()}")

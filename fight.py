@@ -67,7 +67,7 @@ class Fight:
       f"Overview for fight {self.id}:\n"
       f"  Name: {self.name}\n"
       f"  Difficulty: {self.fightTier}\n"
-      f"  Status: {self.completionStatus}"
+      f"  Status: {self.completionStatus}\n"
     )
 
   def __eq__(self, other):
@@ -118,7 +118,7 @@ class Fight:
   def secondsElapsed(self) -> int:
     """
      Returns the fight duration in seconds. If a string representation is
-     needed, use `timeElapsed()` instead.
+     needed, use `timeElapsed` instead.
     """
     return math.floor((self.endTime - self.startTime) / 1000)
 
@@ -126,7 +126,7 @@ class Fight:
   def timeElapsed(self) -> str:
     """
      Returns the fight duration as a string in 'XX:YY' format. If seconds are
-     needed for comparison purposes, use `secondsElapsed()` instead.
+     needed for comparison purposes, use `secondsElapsed` instead.
     """
     return f"{self.secondsElapsed//60}:{self.secondsElapsed%60}"
 
@@ -204,7 +204,7 @@ class Fight:
     """
     fightEmbed = discord.Embed()
     fightEmbed.title = f"🔸 {self.name}"
-    fightEmbed.set_thumbnail(url=self.thumbnailURL)
+    fightEmbed.set_thumbnail(url = self.thumbnailURL)
     fightEmbed.color = self.color
     if description is not None:
       fightEmbed.description = description

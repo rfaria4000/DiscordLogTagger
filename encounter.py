@@ -54,6 +54,10 @@ class Encounter:
   def clearCount(self) -> int:
     return sum([1 for fight in self.fightList if fight.kill])
 
+  @property
+  def encounterTier(self) -> int:
+    return self.bestFight.fightTier
+
   def bestFightDescription(self, 
                            link: str = None) -> str:
     if link is None:
