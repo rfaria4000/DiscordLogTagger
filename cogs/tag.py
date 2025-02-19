@@ -1,7 +1,7 @@
 import discord, sys, os
 from discord.ext import commands
 from discord import app_commands
-from urllib.parse import urlparse
+from urllib.parse import urlparse, ParseResult
 from dotenv import load_dotenv
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -21,18 +21,27 @@ class tag(commands.Cog):
   def __init__(self, bot: commands.Bot) -> None:
     self.bot = bot
 
-  def isValidFFLogsPrefix(self, link: str) -> bool:
+  def isValidFFLogsPrefix(self, 
+                          parsedLink: ParseResult) -> bool:
     """Tests link and return True if is an FFLogs Report link."""
-    fflogsEndpoint = "https://www.fflogs.com/reports/"
-    return link.startswith(fflogsEndpoint)
+    return (parsedLink.netloc.startswith("www.fflogs.com") and
+            parsedLink.path.startswith("/reports/"))
 
-  def getFFLogReportCode(self, link:str) -> str:
+  def getFFLogReportCode(self, 
+                         parsedLink: ParseResult) -> str:
     """Extracts url path for FFLogs Report code."""
-    if not self.isValidFFLogsPrefix(link): 
+    if not self.isValidFFLogsPrefix(parsedLink): 
       raise FFLogsReportError("Not a valid FFLogs report.")
-    parsedLink = urlparse(link)
     print(parsedLink)
     return parsedLink.path.split("/")[2]
+
+  def queriedFight(self,
+                   parsedLink: ParseResult) -> int:
+    if not parsedLink.query: return 0
+    fightQuery = parsedLink.query.split("=")[1]
+    if fightQuery == "last": return -1
+    elif fightQuery.isnumeric(): return int(fightQuery)
+    else: raise FFLogsReportError("This links to an invalid fight.")
 
   @app_commands.command(
     name="tag",
@@ -48,12 +57,19 @@ class tag(commands.Cog):
   ) -> None:
     await interaction.response.defer()
     try:
+      linkParse = urlparse(link)
       self.FFLogsSession = FFLogsSession(self.FFLOGS_CLIENT_ID, 
                                          self.FFLOGS_CLIENT_SECRET)
-      self.logReportCode = self.getFFLogReportCode(link)
+      self.logReportCode = self.getFFLogReportCode(linkParse)
       self.reportData = self.FFLogsSession.getReportData(self.logReportCode)
       self.report = Report(self.reportData)
-      self.reportEmbed = self.report.toEmbed(link, description)
+      if self.queriedFight(linkParse):
+        self.reportEmbed = self.report.grabFightEmbedByID(
+          self.queriedFight(linkParse), 
+          description
+          )
+      else:
+        self.reportEmbed = self.report.toEmbed(link, description)
       # self.reportEmbed = embed.generateEmbed(self.reportData, link, description)
       await interaction.followup.send(embed = self.reportEmbed)
     except Exception as exc:
