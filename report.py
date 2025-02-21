@@ -99,8 +99,10 @@ class Report:
                           inline = False)
 
     for enc in self.notableEncounters:
-      reportEmbed.add_field(name = f"{enc.name} - {enc.pulls} pull(s)",
-                            value = f"Clears: {enc.clearPullsEmojis(self.url)}",
+      encounterName = f"{enc.name} - {enc.pulls} pull(s)"
+      if enc.clearCount: encounterName += f", {enc.clearCount} clear(s)"
+      reportEmbed.add_field(name = encounterName,
+                            value = enc.clearPullsEmojis(self.url),
                             inline = False)
 
     return self.addReportDataToEmbed(reportEmbed)

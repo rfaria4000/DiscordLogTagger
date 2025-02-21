@@ -14,6 +14,7 @@ class Pull(IntEnum):
 PULL_HEXCODES = [0xff0000, 0xabebc6, 0x666666, 0x1eff00, 0x0070ff, 
                  0xa335ee, 0xff8000, 0xe268a8, 0xe5cc80]
 PULL_EMOJIS = ["❌", "✅", "🩶", "💚", "💙", "💜", "🧡", "🩷", "💛"]
+# ULTIMATE_PHASE_EMOJIS = ["1️⃣", "2️⃣", "3️⃣", "4️⃣", "5️⃣", "6️⃣", "7️⃣", "8️⃣", "9️⃣"]
 
 def parseToIndex(parse: int) -> int:
   """

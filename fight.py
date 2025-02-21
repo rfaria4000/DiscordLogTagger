@@ -8,6 +8,7 @@ from data import jobinfo, parses
 
 LIMIT_BREAK_NPC = "LimitBreak"
 FIELD_DENOTING_COMBINED_PARSE = "name_2"
+ULTI_PHASE_OFFSET = -1
 
 class FightTier(IntEnum):
   UNRANKED = 0
@@ -54,6 +55,7 @@ class Fight:
                              if character["name"] == player["name"]), 
                              None)
           if playerParse is not None: parse = playerParse["rankPercent"]
+          else: parse = -1
       
       self.partyMembers.append(PartyMember(player["name"],
                                            player["subType"],
@@ -92,7 +94,7 @@ class Fight:
       return self.encounterID > other.encounterID
     # from here on, same encounter
     if self.fightPercentage != other.fightPercentage:
-      return self.fightPercentage > other.fightPercentage
+      return self.fightPercentage < other.fightPercentage
     # from here on out, same percentage on fight
     if self.rankingData and other.rankingData:
       return self.bestParse > other.bestParse
@@ -139,14 +141,13 @@ class Fight:
     return f"{self.bossPercentage}% remaining"
 
   @property
-  def bestParse(self) -> Optional[int]:
+  def bestParse(self) -> int:
     """
     Returns the best parse out of any player on this fight. If there is no
     ranking associated with this fight, returns -1. If the fight was not
     cleared, returns None.
     """
-    if not self.kill: return None
-    if not self.rankingData: return -1
+    if not self.kill or not self.rankingData: return -1
     return max([character.parse for character in self.partyMembers])
 
   @property

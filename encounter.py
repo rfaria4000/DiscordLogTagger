@@ -1,7 +1,8 @@
 import discord
 import functools
 from typing import Optional
-from fight import Fight
+from fight import Fight, FightTier
+from collections import Counter
 
 @functools.total_ordering
 class Encounter:
@@ -68,8 +69,16 @@ class Encounter:
 
   def clearPullsEmojis(self,
                        link: str = None) -> str:
-    if not self.clearCount: return f"{self.bestFight.emoji}" #X emoji
-    
+    if not self.clearCount:
+      if self.encounterTier != FightTier.ULTIMATE:
+        return f"{self.bestFight.emoji}"
+      else:
+        overviewStringList = []
+        fightCollection = Counter([x.lastPhase for x in self.fightList])
+        for phase, pulls in sorted(list(fightCollection.items())):
+          overviewStringList.append(f"Phase {phase}: {pulls} pull(s)")
+        return "\n".join(overviewStringList)
+
     emojiString = ""
     for fight in self.fightList:
       if fight.kill:
