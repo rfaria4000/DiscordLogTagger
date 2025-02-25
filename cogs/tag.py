@@ -39,11 +39,10 @@ class tag(commands.Cog):
 
   def queriedFight(self,
                    parsedLink: ParseResult) -> int:
-    if not parsedLink.query: return 0
-    fightQuery = re.search(r"fight=(\d+|last)", parsedLink.query).groups()[0]
+    fightQuery = re.search(r"fight=(\d+|last)", parsedLink.geturl()).groups()[0]
     if fightQuery == "last": return -1
     elif fightQuery.isnumeric(): return int(fightQuery)
-    else: raise FFLogsReportError("This links to an invalid fight.")
+    else: return 0
 
   @app_commands.command(
     name="tag",

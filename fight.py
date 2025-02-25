@@ -38,6 +38,7 @@ class Fight:
     for key, value in self.fightData.items():
       setattr(self, key, value)
     self._unpackPartyMembers()
+    
 
   def _unpackPartyMembers(self) -> None:
     """
@@ -54,9 +55,10 @@ class Fight:
           playerParse = next((character for character in role["characters"] 
                              if character["name"] == player["name"]), 
                              None)
-          if playerParse is not None: parse = playerParse["rankPercent"]
-          else: parse = -1
-      
+          if playerParse is not None: 
+            parse = playerParse["rankPercent"]
+      if parse is None: parse = -1
+
       self.partyMembers.append(PartyMember(player["name"],
                                            player["subType"],
                                            parse))
