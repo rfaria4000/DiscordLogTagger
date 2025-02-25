@@ -132,7 +132,7 @@ class Fight:
      Returns the fight duration as a string in 'XX:YY' format. If seconds are
      needed for comparison purposes, use `secondsElapsed` instead.
     """
-    return f"{self.secondsElapsed//60}:{self.secondsElapsed%60}"
+    return f"{self.secondsElapsed//60}:{(self.secondsElapsed%60):02d}"
 
   @property
   def completionStatus(self) -> str:
