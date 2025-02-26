@@ -39,10 +39,13 @@ class tag(commands.Cog):
 
   def queriedFight(self,
                    parsedLink: ParseResult) -> int:
-    fightQuery = re.search(r"fight=(\d+|last)", parsedLink.geturl()).groups()[0]
-    if fightQuery == "last": return -1
-    elif fightQuery.isnumeric(): return int(fightQuery)
-    else: return 0
+    try:
+      fightQuery = re.search(r"fight=(\d+|last)", parsedLink.geturl()).groups()[0]
+      if fightQuery == "last": return -1
+      elif fightQuery.isnumeric(): return int(fightQuery)
+      else: raise FFLogsReportError
+    except: 
+      return 0
 
   @app_commands.command(
     name="tag",
@@ -76,7 +79,8 @@ class tag(commands.Cog):
       
       await interaction.followup.send(embed = self.reportEmbed)
     except Exception as exc:
-      await interaction.followup.send(exc, ephemeral=True)
+      raise exc
+      # await interaction.followup.send(exc, ephemeral=True)
 
 async def setup(bot: commands.Bot):
   await bot.add_cog(tag(bot))
