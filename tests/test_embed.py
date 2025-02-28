@@ -1,7 +1,7 @@
 import os
 import json
 import pytest
-import embed
+import report
 
 def get_test_data(filter) -> list:
   test_data = []
@@ -31,8 +31,7 @@ class TestEmbed:
     self.report = test_data
     self.code = get_report_code(self.report)
     self.link = f"https://www.fflogs.com/reports/{self.code}"
-    self.embed = embed.generateEmbed(self.report, self.link)
-    
+    self.embed = report.Report(self.report).toEmbed(self.link)
     yield
     
     print("teardown")
