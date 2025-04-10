@@ -37,7 +37,7 @@ class Fight:
     self.partyMembers: list[PartyMember] = []
     for key, value in self.fightData.items():
       setattr(self, key, value)
-    self._unpackPartyMembers()
+    # self._unpackPartyMembers()
     
 
   def _unpackPartyMembers(self) -> None:
