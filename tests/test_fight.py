@@ -1,5 +1,6 @@
 import pytest
 from fight import Fight
+from unittest.mock import patch
 
 class TestInit():
   def test_init_succeeds_with_placeholders(self):
@@ -9,6 +10,10 @@ class TestInit():
   def test_init_sets_fight_data_when_empty(self):
     fight = Fight({}, [])
     assert fight.fightData == {}
+
+  def test_fails_without_arguments(self):
+    with pytest.raises(Exception):
+      fight = Fight()
   
   def test_init_sets_fight_data_when_populated(self):
     dummy_fight_data = {"name": "Zeromus", "id": 1}
@@ -51,16 +56,21 @@ class TestInit():
     assert fight.actorData == actor_data
     assert fight.rankingData == ranking_data
 
-  def test_fails_without_arguments(self):
-    with pytest.raises(Exception):
-      fight = Fight()
-
 class TestPartyMembers():
-  pass
+  @pytest.fixture(autouse=True)
+  def mock_job_info(self):
+    with patch("data.jobinfo") as mock_job_info:
+      mock_job_info.emojiDict = {
+        "Paladin": {"priority": 1},
+        "Sage": {"priority": 2},
+        "Reaper": {"priority": 3},
+      }
+      yield mock_job_info
+  
+  def test_empty_players(self):
+    pass
 
 # If I'm thinking about entry/exit points for Fight:
-# test exit point for each variable
-# test setting attributes from fightData
 # test unpack party members
 # test comparison (for each possible if)
 # change secondsElapsed/timeElapsed to set variables inside the class
