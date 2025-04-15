@@ -34,17 +34,20 @@ class Fight:
     self.fightData: dict = fightData
     self.actorData: list = actorData
     self.rankingData: dict = rankingData if rankingData is not None else {}
-    self.partyMembers: list[PartyMember] = []
+    # self.partyMembers: list[PartyMember] = []
     for key, value in self.fightData.items():
       setattr(self, key, value)
     # self._unpackPartyMembers()
     
 
-  def _unpackPartyMembers(self) -> None:
+  @functools.cached_property
+  def partyMembers(self) -> list:
     """
      Populates self.partyMembers with a list of PartyMembers sorted by job 
      priority.
     """
+    party_list = []
+
     for actorID in self.friendlyPlayers:
       player = next(actor for actor in self.actorData if actor["id"] == actorID)
       if player["subType"] == LIMIT_BREAK_NPC: continue
@@ -53,18 +56,17 @@ class Fight:
       if self.rankingData:
         for role in self.rankingData["roles"].values():
           playerParse = next((character for character in role["characters"] 
-                             if character["name"] == player["name"]), 
-                             None)
+                             if character["name"] == player["name"]), None)
           if playerParse is not None: 
             parse = playerParse["rankPercent"]
       if parse is None: parse = -1
 
-      self.partyMembers.append(PartyMember(player["name"],
-                                           player["subType"],
-                                           parse))
+      party_list.append(PartyMember(player["name"], player["subType"], parse))
     
-    self.partyMembers.sort(key = lambda player: 
+    party_list.sort(key = lambda player: 
                            jobinfo.emojiDict[player.job].priority)
+
+    return party_list
 
   def __str__(self):
     return (
