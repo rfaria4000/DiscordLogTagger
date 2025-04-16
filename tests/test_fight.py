@@ -1,6 +1,6 @@
 import pytest
 from fight import Fight
-from unittest.mock import patch
+from unittest.mock import patch, PropertyMock
 from typing import NamedTuple
 
 class TestInit():
@@ -129,6 +129,34 @@ class TestPartyMembers():
     assert fight.partyMembers[2].parse == 99
     assert fight.partyMembers[2].job == "Reaper"
 
+class TestStringRepresentation():
+  def test_fails_without_properties(self):
+    fight = Fight({}, [])
+    with pytest.raises(AttributeError):
+      str(fight)
+
+  def test_succeeds_with_overriden_properties(self):
+    fight_data = {
+      "id": 1,
+      "name": "Dragonsong's Reprise",
+    }
+    fight = Fight(fight_data, [])
+    
+    with (
+      patch.object(Fight, 
+                   "fightTier", 
+                   new_callable=PropertyMock) as mock_tier,
+      patch.object(Fight, 
+                   "completionStatus", 
+                   new_callable=PropertyMock) as mock_completion_status
+    ):
+      mock_tier.return_value = "3"
+      mock_completion_status.return_value = "Clear in 18:41"
+
+      assert str(fight) == ("Overview for fight 1:\n"
+                            "  Name: Dragonsong's Reprise\n"
+                            "  Difficulty: 3\n"
+                            "  Status: Clear in 18:41\n")
 # If I'm thinking about entry/exit points for Fight:
 # test comparison (for each possible if)
 # change secondsElapsed/timeElapsed to set variables inside the class
