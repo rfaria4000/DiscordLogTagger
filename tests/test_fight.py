@@ -3,14 +3,17 @@ from fight import Fight
 from unittest.mock import patch, PropertyMock
 from typing import NamedTuple
 
+@pytest.fixture
+def empty_fight():
+  return Fight({}, [])
+
 class TestInit:
   def test_init_succeeds_with_placeholders(self):
     fight = Fight({}, [])
     assert(True)
 
-  def test_init_sets_fight_data_when_empty(self):
-    fight = Fight({}, [])
-    assert fight.fightData == {}
+  def test_init_sets_fight_data_when_empty(self, empty_fight):
+    assert empty_fight.fightData == {}
 
   def test_fails_without_arguments(self):
     with pytest.raises(Exception):
@@ -35,9 +38,8 @@ class TestInit:
     assert len(fight.actorData) == 1
     assert fight.actorData == dummy_actor_list
 
-  def test_init_sets_ranking_data_when_missing(self):
-    fight = Fight({}, [])
-    assert (fight.rankingData == {})
+  def test_init_sets_ranking_data_when_missing(self, empty_fight):
+    assert (empty_fight.rankingData == {})
 
   def test_init_sets_ranking_data_when_populated(self):
     dummy_ranking_data = {"Bob": 93}
@@ -70,10 +72,9 @@ class TestPartyMembers:
       }
       yield mock
   
-  def test_fails_without_friendly_players(self):
-    fight = Fight({}, [])
+  def test_fails_without_friendly_players(self, empty_fight):
     with pytest.raises(Exception):
-      assert(fight.partyMembers == [])
+      assert(empty_fight.partyMembers == [])
   
   def test_succeeds_with_empty_friendly_players(self):
     fight = Fight({"friendlyPlayers": []}, [])
@@ -130,10 +131,10 @@ class TestPartyMembers:
     assert fight.partyMembers[2].job == "Reaper"
 
 class TestStringRepresentation:
-  def test_fails_without_properties(self):
-    fight = Fight({}, [])
+  # TODO: Handle this gracefully
+  def test_fails_without_properties(self, empty_fight):
     with pytest.raises(AttributeError):
-      str(fight)
+      str(empty_fight)
 
   def test_succeeds_with_overriden_properties(self):
     fight_data = {
@@ -159,10 +160,9 @@ class TestStringRepresentation:
                             "  Status: Clear in 18:41\n")
 
 class TestEquality:
-  def test_comparison_to_non_fight(self):
-    fight = Fight({}, [])
+  def test_comparison_to_non_fight(self, empty_fight):
     # with pytest.raises(NotImplemented):
-    assert fight != {}
+    assert empty_fight != {}
 
   def test_empty_fights_equal(self):
     fightOne = Fight({}, [])
@@ -179,17 +179,13 @@ class TestEquality:
     assert fightOne == fightTwo
     assert fightOne is not fightTwo
 
-  def test_different_fight_data(self):
-    fightOne = Fight({}, [])
-    fightTwo = Fight({"id": 3}, [])
+  def test_different_fight_data(self, empty_fight):
+    fight = Fight({"id": 3}, [])
+    assert empty_fight != fight
 
-    assert fightOne != fightTwo
-
-  def test_different_actor_data(self):
-    fightOne = Fight({}, [])
-    fightTwo = Fight({},  [{"name": "Jun'o"}])
-
-    assert fightOne != fightTwo
+  def test_different_actor_data(self, empty_fight):
+    fight = Fight({},  [{"name": "Jun'o"}])
+    assert empty_fight != fight
 
   def test_different_ranking_data(self):
     fightOne = Fight({}, [], {})
@@ -201,7 +197,50 @@ class TestComparison:
   pass
 
 class TestFightTier:
-  pass
+  @pytest.fixture(autouse=True)
+  def mock_fight_tier(self):
+    with patch("fight.FightTier") as mock_tiers:
+      mock_tiers.ULTIMATE = "Ultimate"
+      mock_tiers.SAVAGE = "Savage"
+      mock_tiers.RANKED = "Ranked"
+      mock_tiers.UNRANKED = "Unranked"
+      yield mock_tiers
+  
+  # TODO: Handle this gracefully
+  def test_empty_fight_fails(self, empty_fight):
+    with pytest.raises(Exception):
+      empty_fight.fightTier
+
+  def test_ultimate(self):
+    fight = Fight({"lastPhase": 1}, [])
+    assert fight.fightTier == "Ultimate"
+
+  def test_savage(self):
+    fight = Fight({"lastPhase": 0, "difficulty": 101}, [])
+    assert fight.fightTier == "Savage"
+
+  def test_ultimate_despite_savage_difficulty(self):
+    fight = Fight({"lastPhase": 1, "difficulty": 101}, [])
+    assert fight.fightTier == "Ultimate"
+
+  def test_ranked(self):
+    fight = Fight({"lastPhase": 0, "difficulty": 100}, [], {"name": "Nyx"})
+    assert fight.fightTier == "Ranked"
+
+  def test_unranked(self):
+    fight = Fight({"lastPhase": 0, "difficulty": 100}, [])
+    assert fight.fightTier == "Unranked"
+
+  # TODO: Handle these gracefully as well
+  def test_missing_phase_fails(self):
+    fight = Fight({"difficulty": 101}, [])
+    with pytest.raises(Exception):
+      fight.fightTier
+  
+  def test_missing_difficulty_fails(self):
+    fight = Fight({"lastPhase": 0}, [])
+    with pytest.raises(Exception):
+      fight.fightTier
 
 class TestCompletionStatus:
   pass

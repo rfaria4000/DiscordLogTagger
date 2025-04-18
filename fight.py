@@ -1,7 +1,7 @@
 import functools
 import discord
 import math
-from typing import Optional, Union
+from typing import Optional
 from enum import IntEnum
 from dataclasses import dataclass
 from data import jobinfo, parses
