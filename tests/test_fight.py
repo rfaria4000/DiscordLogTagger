@@ -3,7 +3,7 @@ from fight import Fight
 from unittest.mock import patch, PropertyMock
 from typing import NamedTuple
 
-class TestInit():
+class TestInit:
   def test_init_succeeds_with_placeholders(self):
     fight = Fight({}, [])
     assert(True)
@@ -57,7 +57,7 @@ class TestInit():
     assert fight.actorData == actor_data
     assert fight.rankingData == ranking_data
 
-class TestPartyMembers():
+class TestPartyMembers:
   @pytest.fixture(autouse=True)
   def mock_job_info(self):
     class mock_job_info(NamedTuple):
@@ -129,7 +129,7 @@ class TestPartyMembers():
     assert fight.partyMembers[2].parse == 99
     assert fight.partyMembers[2].job == "Reaper"
 
-class TestStringRepresentation():
+class TestStringRepresentation:
   def test_fails_without_properties(self):
     fight = Fight({}, [])
     with pytest.raises(AttributeError):
@@ -157,6 +157,72 @@ class TestStringRepresentation():
                             "  Name: Dragonsong's Reprise\n"
                             "  Difficulty: 3\n"
                             "  Status: Clear in 18:41\n")
+
+class TestEquality:
+  def test_comparison_to_non_fight(self):
+    fight = Fight({}, [])
+    # with pytest.raises(NotImplemented):
+    assert fight != {}
+
+  def test_empty_fights_equal(self):
+    fightOne = Fight({}, [])
+    fightTwo = Fight({}, [])
+    assert fightOne == fightTwo
+    assert fightOne is not fightTwo
+
+  def test_equal_fights(self,
+                        sample_fight_data,
+                        sample_actor_data,
+                        sample_ranking_data):
+    fightOne = Fight(sample_fight_data, sample_actor_data, sample_ranking_data)
+    fightTwo = Fight(sample_fight_data, sample_actor_data, sample_ranking_data)
+    assert fightOne == fightTwo
+    assert fightOne is not fightTwo
+
+  def test_different_fight_data(self):
+    fightOne = Fight({}, [])
+    fightTwo = Fight({"id": 3}, [])
+
+    assert fightOne != fightTwo
+
+  def test_different_actor_data(self):
+    fightOne = Fight({}, [])
+    fightTwo = Fight({},  [{"name": "Jun'o"}])
+
+    assert fightOne != fightTwo
+
+  def test_different_ranking_data(self):
+    fightOne = Fight({}, [], {})
+    fightTwo = Fight ({}, [], {"name": "Gatita"})
+
+    assert fightOne != fightTwo
+
+class TestComparison:
+  pass
+
+class TestFightTier:
+  pass
+
+class TestCompletionStatus:
+  pass
+
+class TestBestParse:
+  pass
+
+class TestEmoji:
+  pass
+
+class TestColor:
+  pass
+
+class TestPartyMembers:
+  pass
+
+class TestPartyParses:
+  pass
+
+class TestEmbed:
+  pass
 # If I'm thinking about entry/exit points for Fight:
 # test comparison (for each possible if)
 # change secondsElapsed/timeElapsed to set variables inside the class

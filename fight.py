@@ -17,7 +17,7 @@ class FightTier(IntEnum):
   ULTIMATE = 3
 
 @dataclass
-class PartyMember():
+class PartyMember:
   name: str
   job: str
   parse: int = None
