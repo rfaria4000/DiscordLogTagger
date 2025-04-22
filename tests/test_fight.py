@@ -46,8 +46,8 @@ class TestInit:
     fight = Fight({}, [], dummy_ranking_data)
     assert fight.rankingData == dummy_ranking_data
 
-  def test_init_succeeds_with_valid_data(self, extreme_fight_all_data):
-    fight_data, actor_data, ranking_data = extreme_fight_all_data
+  def test_init_succeeds_with_valid_data(self, grab_extreme_fight):
+    fight_data, actor_data, ranking_data = grab_extreme_fight(9, 0)
     fight = Fight(fight_data, actor_data, ranking_data)
     assert fight.name == "Zeromus"
     assert fight.id == 10
@@ -202,7 +202,8 @@ class TestComparison:
     
     with (
       patch.object(Fight, "fightTier", mock_property("fightTier")),
-      patch.object(Fight, "timeElapsed", mock_property("timeElapsed"))
+      patch.object(Fight, "timeElapsed", mock_property("timeElapsed")),
+      patch.object(Fight, "bestParse", mock_property("bestParse"))
     ):
       yield 
 
@@ -210,6 +211,35 @@ class TestComparison:
     fight = Fight({"fightTier": 3, "timeElapsed": 900}, [])
     assert fight.fightTier == 3
     assert fight.timeElapsed == 900
+
+  def test_comparison_to_non_fight(self, empty_fight):
+    assert empty_fight != ""
+
+  def test_fight_tier(self):
+    fight1 = Fight({"fightTier": 3}, [])
+    fight2 = Fight({"fightTier": 2}, [])
+    assert fight1 > fight2
+  
+  def test_kill_status(self):
+    pass
+
+  def test_encounter_id(self):
+    pass
+
+  def test_fight_percentage(self):
+    pass
+
+  def test_best_parse(self):
+    pass
+
+  def test_shortest_fight(self):
+    pass
+
+  def test_fails_without_sufficient_properties(self):
+    pass
+  
+class TestComparisonIntegration():
+  pass
 
 class TestFightTier:
   @pytest.fixture(autouse=True)
@@ -258,6 +288,11 @@ class TestFightTier:
       fight.fightTier
 
 class TestCompletionStatus:
+  @pytest.fixture(autouse=True)
+  def mock_time_elapsed(self):
+    with patch("fight.timeElapsed") as mock_time:
+      mock_time.return_value = "10:10"
+      yield mock_time
   pass
 
 class TestBestParse:
@@ -269,10 +304,10 @@ class TestEmoji:
 class TestColor:
   pass
 
-class TestPartyMembers:
+class TestDisplayPartyMembers:
   pass
 
-class TestPartyParses:
+class TestDisplayPartyParses:
   pass
 
 class TestEmbed:
