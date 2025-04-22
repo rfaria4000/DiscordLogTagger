@@ -194,7 +194,22 @@ class TestEquality:
     assert fightOne != fightTwo
 
 class TestComparison:
-  pass
+  @pytest.fixture(autouse=True)
+  def mock_dependencies(self):
+    def mock_property(prop):
+      return property(lambda self: self.fightData[prop],
+                      lambda self, value: None)
+    
+    with (
+      patch.object(Fight, "fightTier", mock_property("fightTier")),
+      patch.object(Fight, "timeElapsed", mock_property("timeElapsed"))
+    ):
+      yield 
+
+  def test_assignment(self):
+    fight = Fight({"fightTier": 3, "timeElapsed": 900}, [])
+    assert fight.fightTier == 3
+    assert fight.timeElapsed == 900
 
 class TestFightTier:
   @pytest.fixture(autouse=True)
