@@ -221,22 +221,69 @@ class TestComparison:
     assert fight1 > fight2
   
   def test_kill_status(self):
-    pass
+    fight1 = Fight({"fightTier": 2, "kill": True}, [])
+    fight2 = Fight({"fightTier": 2, "kill": False}, [])
+    assert fight1 > fight2
 
   def test_encounter_id(self):
-    pass
+    fight1 = Fight({"fightTier": 2, "kill": True, "encounterID": 2}, [])
+    fight2 = Fight({"fightTier": 2, "kill": True, "encounterID": 1}, [])
+    assert fight1 > fight2
 
   def test_fight_percentage(self):
-    pass
+    fight1 = Fight({
+      "fightTier": 2, 
+      "kill": True, 
+      "encounterID": 1, 
+      "fightPercentage": 50
+      }, [])
+    fight2 = Fight({
+      "fightTier": 2, 
+      "kill": True, 
+      "encounterID": 1, 
+      "fightPercentage": 100
+      },[])
+    assert fight1 > fight2
 
   def test_best_parse(self):
-    pass
+    fight1 = Fight({
+      "fightTier": 2, 
+      "kill": True, 
+      "encounterID": 1, 
+      "fightPercentage": 50,
+      "bestParse": 99
+      }, [], {"name": "Neri"})
+    fight2 = Fight({
+      "fightTier": 2, 
+      "kill": True, 
+      "encounterID": 1, 
+      "fightPercentage": 50,
+      "bestParse": 80
+      }, [], {"name": "Neri"})
+    assert fight1 > fight2
 
   def test_shortest_fight(self):
-    pass
+    fight1 = Fight({
+      "fightTier": 2, 
+      "kill": True, 
+      "encounterID": 1, 
+      "fightPercentage": 50,
+      "timeElapsed": 100
+      }, [])
+    fight2 = Fight({
+      "fightTier": 2, 
+      "kill": True, 
+      "encounterID": 1, 
+      "fightPercentage": 50,
+      "timeElapsed": 120
+      }, [])
+    assert fight1 > fight2
 
   def test_fails_without_sufficient_properties(self):
-    pass
+    fight1 = Fight({"fightTier": 2}, [])
+    fight2 = Fight({"fightTier": 2}, [])
+    with pytest.raises(Exception):
+      fight1 > fight2
   
 class TestComparisonIntegration():
   pass
