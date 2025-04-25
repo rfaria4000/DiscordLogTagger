@@ -161,7 +161,6 @@ class TestStringRepresentation:
 
 class TestEquality:
   def test_comparison_to_non_fight(self, empty_fight):
-    # with pytest.raises(NotImplemented):
     assert empty_fight != {}
 
   def test_empty_fights_equal(self):
@@ -285,9 +284,6 @@ class TestComparison:
     with pytest.raises(Exception):
       fight1 > fight2
   
-class TestComparisonIntegration():
-  pass
-
 class TestFightTier:
   @pytest.fixture(autouse=True)
   def mock_fight_tier(self):
@@ -336,14 +332,86 @@ class TestFightTier:
 
 class TestCompletionStatus:
   @pytest.fixture(autouse=True)
-  def mock_time_elapsed(self):
-    with patch("fight.timeElapsed") as mock_time:
+  def mock_dependencies(self):
+    def mock_property(prop):
+      return property(lambda self: self.fightData[prop],
+                      lambda self, value: None)
+    with (
+      patch.object(Fight, 
+                   "timeElapsed", 
+                   new_callable=PropertyMock) as mock_time, 
+      patch.object(Fight,
+                   "fightTier",
+                   mock_property("fightTier")) as mock_tier,
+    ):
       mock_time.return_value = "10:10"
-      yield mock_time
-  pass
+      yield mock_time, mock_tier
+   
+  @pytest.fixture(autouse=True)
+  def mock_stubs(self):
+    with patch("fight.FightTier") as mock_reference_tiers:
+      mock_reference_tiers.ULTIMATE = "Ultimate"
+      yield mock_reference_tiers
+
+  def test_clear_status(self):
+    fight = Fight({"kill": True, "timeElapsed": None}, [])
+    assert fight.completionStatus == "Clear in 10:10"
+
+  def test_fails_without_kill_status(self, empty_fight):
+    with pytest.raises(Exception):
+      empty_fight.completionStatus
+
+  def test_ultimate_fails_without_last_phase(self):
+    fight = Fight({"kill": False, 
+                   "fightTier": "Ultimate", 
+                   "bossPercentage": 50}, [])
+    with pytest.raises(Exception):
+      fight.completionStatus
+
+  def test_ultimate_fails_without_boss_percentage(self):
+    fight = Fight({"kill": False, 
+            "fightTier": "Ultimate", 
+            "lastPhase": 3
+            }, [])
+    with pytest.raises(Exception):
+      fight.completionStatus
+
+  def test_ultimate_status(self):
+    fight = Fight({"kill": False, 
+            "fightTier": "Ultimate", 
+            "bossPercentage": 50,
+            "lastPhase": 3
+            }, [])
+    assert fight.completionStatus == f"Phase 3 - 50% remaining"
+
+  def test_non_ultimate_status(self):
+    fight = Fight({"kill": False, 
+        "fightTier": "Savage", 
+        "bossPercentage": 50,
+        "lastPhase": 0
+        }, [])
+    assert fight.completionStatus == f"50% remaining"
+  
+  def test_non_ultimate_fails_without_boss_percentage(self):
+    fight = Fight({"kill": False, 
+            "fightTier": "Savage", 
+            "lastPhase": 3
+            }, [])
+    with pytest.raises(Exception):
+      fight.completionStatus
 
 class TestBestParse:
-  pass
+  def test_fails_without_kill(self):
+    pass
+
+  def test_fails_without_ranking(self):
+    pass
+  
+  def test_default_max_parse(self):
+    pass
+
+  def test_grabs_best_parse(self):
+    pass
 
 class TestEmoji:
   pass
@@ -360,8 +428,6 @@ class TestDisplayPartyParses:
 class TestEmbed:
   pass
 # If I'm thinking about entry/exit points for Fight:
-# test comparison (for each possible if)
-# change secondsElapsed/timeElapsed to set variables inside the class
 # Test bestParse for a few ranked fights
 # Test emojis/colors for a multitude of best parses
 # Cursory tests on thumbnail
