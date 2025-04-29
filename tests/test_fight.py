@@ -402,19 +402,70 @@ class TestCompletionStatus:
 
 class TestBestParse:
   def test_fails_without_kill(self):
-    pass
-
-  def test_fails_without_ranking(self):
-    pass
+    fight = Fight({"id": 1}, [], {})
+    with pytest.raises(Exception):
+      fight.bestParse
   
-  def test_default_max_parse(self):
-    pass
+  def test_no_clear_parse(self):
+    fight = Fight({"kill": False}, [])
+    assert fight.bestParse == -1
 
+  def test_no_ranking_parse(self):
+    fight = Fight({"kill": True}, [])
+    assert fight.bestParse == -1
+
+  #TODO: Empty friendly players should handle gracefully
   def test_grabs_best_parse(self):
-    pass
+    fight = Fight({"kill": True}, [], {"name": "Neri"})
+    assert fight.bestParse == -1
+
+  # --- Integration Tests ---
+
+  def test_ranking_and_clear_parse(self,
+                                   sample_fight_data, 
+                                   sample_actor_data, 
+                                   sample_ranking_data):
+    fight = Fight(sample_fight_data, sample_actor_data, sample_ranking_data)
+    assert fight.bestParse == 99
+
+  def test_sample_extreme(self, grab_extreme_fight):
+    fight_data, actor_data, ranking_data = grab_extreme_fight(9, 0)
+    fight = Fight(fight_data, actor_data, ranking_data)
+    assert fight.bestParse == 79
 
 class TestEmoji:
-  pass
+  @pytest.fixture
+  def mock_dependencies(self):
+    with (
+      patch.object(Fight, 
+                   "bestParse", 
+                   new_callable=PropertyMock) as mock_best_parse,
+      patch("fight.parses") as mock_parses
+    ):
+      yield mock_best_parse, mock_parses
+
+  def test_fails_on_empty(self, empty_fight):
+    with pytest.raises(Exception):
+      empty_fight.emoji
+
+  def test_no_clear_emoji(self, mock_dependencies):
+    fight = Fight({"kill": False}, [])
+    
+    _, mock_parses = mock_dependencies
+    mock_parses.Pull.WIPE = 0
+    mock_parses.PULL_EMOJIS = ["🚫"]
+
+    assert fight.emoji == "🚫"
+
+  def test_clear_emoji(self, mock_dependencies):
+    fight = Fight({"kill": True}, [])
+
+    mock_best_parse, mock_parses = mock_dependencies
+    mock_best_parse.return_value = 90
+    mock_parses.parseToIndex.return_value = 0
+    mock_parses.PULL_EMOJIS = ["🏆"]
+    
+    assert fight.emoji == "🏆"
 
 class TestColor:
   pass
@@ -427,6 +478,7 @@ class TestDisplayPartyParses:
 
 class TestEmbed:
   pass
+
 # If I'm thinking about entry/exit points for Fight:
 # Test bestParse for a few ranked fights
 # Test emojis/colors for a multitude of best parses
