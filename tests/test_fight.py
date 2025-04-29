@@ -194,7 +194,7 @@ class TestEquality:
 
 class TestComparison:
   @pytest.fixture(autouse=True)
-  def mock_dependencies(self):
+  def mock_parse_dependencies(self):
     def mock_property(prop):
       return property(lambda self: self.fightData[prop],
                       lambda self, value: None)
@@ -332,7 +332,7 @@ class TestFightTier:
 
 class TestCompletionStatus:
   @pytest.fixture(autouse=True)
-  def mock_dependencies(self):
+  def mock_parse_dependencies(self):
     def mock_property(prop):
       return property(lambda self: self.fightData[prop],
                       lambda self, value: None)
@@ -433,34 +433,36 @@ class TestBestParse:
     fight = Fight(fight_data, actor_data, ranking_data)
     assert fight.bestParse == 79
 
-class TestEmoji:
-  @pytest.fixture
-  def mock_dependencies(self):
-    with (
-      patch.object(Fight, 
-                   "bestParse", 
-                   new_callable=PropertyMock) as mock_best_parse,
-      patch("fight.parses") as mock_parses
-    ):
-      yield mock_best_parse, mock_parses
+# ---
 
+@pytest.fixture
+def mock_parse_dependencies():
+  with (
+    patch.object(Fight, 
+                  "bestParse", 
+                  new_callable=PropertyMock) as mock_best_parse,
+    patch("fight.parses") as mock_parses
+  ):
+    yield mock_best_parse, mock_parses
+
+class TestEmoji:
   def test_fails_on_empty(self, empty_fight):
     with pytest.raises(Exception):
       empty_fight.emoji
 
-  def test_no_clear_emoji(self, mock_dependencies):
+  def test_no_clear_emoji(self, mock_parse_dependencies):
     fight = Fight({"kill": False}, [])
     
-    _, mock_parses = mock_dependencies
+    _, mock_parses = mock_parse_dependencies
     mock_parses.Pull.WIPE = 0
     mock_parses.PULL_EMOJIS = ["🚫"]
 
     assert fight.emoji == "🚫"
 
-  def test_clear_emoji(self, mock_dependencies):
+  def test_clear_emoji(self, mock_parse_dependencies):
     fight = Fight({"kill": True}, [])
 
-    mock_best_parse, mock_parses = mock_dependencies
+    mock_best_parse, mock_parses = mock_parse_dependencies
     mock_best_parse.return_value = 90
     mock_parses.parseToIndex.return_value = 0
     mock_parses.PULL_EMOJIS = ["🏆"]
