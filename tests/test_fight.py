@@ -470,10 +470,70 @@ class TestEmoji:
     assert fight.emoji == "🏆"
 
 class TestColor:
-  pass
+  def test_fails_on_empty(self, empty_fight):
+    with pytest.raises(Exception):
+      empty_fight.color
+
+  def test_no_clear_color(self, mock_parse_dependencies):
+    fight = Fight({"kill": False}, [])
+
+    _, mock_parses = mock_parse_dependencies
+    mock_parses.Pull.WIPE = 0
+    mock_parses.PULL_HEXCODES = ["red", "green"]
+
+    assert fight.color == "red"
+
+  def test_clear(self, mock_parse_dependencies):
+    fight = Fight({"kill": True}, [])
+
+    mock_best_parse, mock_parses = mock_parse_dependencies
+    mock_best_parse.return_value = 90
+    mock_parses.parseToIndex.return_value = 1
+    mock_parses.PULL_HEXCODES = ["red", "orange"]
+
+    assert fight.color == "orange"
 
 class TestDisplayPartyMembers:
-  pass
+  @pytest.fixture
+  def mock_job_info(self):
+    with patch("fight.jobinfo") as mock_jobs:
+      yield mock_jobs
+
+  def test_fails_on_empty(self, empty_fight):
+    with pytest.raises(Exception):
+      empty_fight.displayPartyMembers()
+
+  def test_on_sample_data(self, mock_job_info): 
+    fight = Fight({"friendlyPlayers": [1]}, 
+                  [{"name": "Neri", "subType": "Paladin", "id": 1}])
+
+    class Mock_Job(NamedTuple):
+      emoji: str
+      priority: int
+    
+    mock_job_info.emojiDict = {"Paladin": Mock_Job("🗡️", 0)}
+
+    target_string = ("🗡️ Neri")
+    assert fight.displayPartyMembers() == target_string
+
+  def test_priority_ordering(self, 
+                             mock_job_info, 
+                             sample_fight_data, 
+                             sample_actor_data):
+    fight = Fight(sample_fight_data, sample_actor_data)
+
+    class Mock_Job(NamedTuple):
+      emoji: str
+      priority: int
+
+    mock_job_info.emojiDict = {
+      "Paladin": Mock_Job("🗡️", 1),
+      "Sage": Mock_Job("🩺", 0),
+      "Reaper": Mock_Job("😈", 2)
+    }
+    
+    target_string = ("🩺 Violet\n🗡️ Neri\n😈 Estellia")
+    assert fight.displayPartyMembers() == target_string
 
 class TestDisplayPartyParses:
   pass
