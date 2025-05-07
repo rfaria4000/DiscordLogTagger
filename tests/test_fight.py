@@ -536,14 +536,59 @@ class TestDisplayPartyMembers:
     assert fight.displayPartyMembers() == target_string
 
 class TestDisplayPartyParses:
-  pass
+  @pytest.fixture
+  def mock_job_info(self):
+    with patch("fight.jobinfo") as mock_jobs:
+      yield mock_jobs
+
+  def test_fails_on_empty(self, empty_fight):
+    with pytest.raises(Exception):
+      empty_fight.displayPartyParses()
+
+  def test_on_sample_data(self,
+                          mock_job_info,
+                          mock_parse_dependencies,
+                          sample_actor_data,
+                          sample_ranking_data):
+    fight = Fight({"friendlyPlayers": [1]}, 
+                  sample_actor_data, 
+                  sample_ranking_data)
+
+    class Mock_Job(NamedTuple):
+      emoji: str
+      priority: int
+    
+    mock_job_info.emojiDict = {"Paladin": Mock_Job("🗡️", 0)}
+    _, mock_parses = mock_parse_dependencies
+    mock_parses.PULL_EMOJIS = ["🥉"]
+    mock_parses.parseToIndex.return_value = 0
+
+    target_string = "🗡️ 🥉 20"
+    assert fight.displayPartyParses() == target_string
+    
+  def test_priority_ordering(self,
+                             mock_job_info,
+                             mock_parse_dependencies,
+                             sample_fight_data,
+                             sample_actor_data,
+                             sample_ranking_data):
+    fight = Fight(sample_fight_data, sample_actor_data, sample_ranking_data)
+    class Mock_Job(NamedTuple):
+      emoji: str
+      priority: int
+    
+    mock_job_info.emojiDict = {
+      "Paladin": Mock_Job("🗡️", 1),
+      "Sage": Mock_Job("🩺", 0),
+      "Reaper": Mock_Job("😈", 2)
+    }
+
+    _, mock_parses = mock_parse_dependencies
+    mock_parses.PULL_EMOJIS = ["🥉"]
+    mock_parses.parseToIndex.return_value = 0
+
+    target_string = "🩺 🥉 70\n🗡️ 🥉 20\n😈 🥉 99"
+    assert fight.displayPartyParses() == target_string
 
 class TestEmbed:
   pass
-
-# If I'm thinking about entry/exit points for Fight:
-# Test bestParse for a few ranked fights
-# Test emojis/colors for a multitude of best parses
-# Cursory tests on thumbnail
-# Test party members/parses to match website
-# To embed works based on certain dummy test data
