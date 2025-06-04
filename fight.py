@@ -48,6 +48,8 @@ class Fight:
     """
     party_list = []
 
+    if not hasattr(self, "friendlyPlayers"): return party_list
+
     for actorID in self.friendlyPlayers:
       player = next(actor for actor in self.actorData if actor["id"] == actorID)
       if player["subType"] == LIMIT_BREAK_NPC: continue
@@ -152,6 +154,7 @@ class Fight:
     cleared, returns None.
     """
     if not self.kill or not self.rankingData: return -1
+    if len(self.partyMembers) == 0: return None
     return max([character.parse for character in self.partyMembers])
 
   @property

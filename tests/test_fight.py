@@ -72,9 +72,8 @@ class TestPartyMembers:
       }
       yield mock
   
-  def test_fails_without_friendly_players(self, empty_fight):
-    with pytest.raises(Exception):
-      assert(empty_fight.partyMembers == [])
+  def test_empty_fight(self, empty_fight):
+    assert(empty_fight.partyMembers == [])
   
   def test_succeeds_with_empty_friendly_players(self):
     fight = Fight({"friendlyPlayers": []}, [])
@@ -417,7 +416,7 @@ class TestBestParse:
   #TODO: Empty friendly players should handle gracefully
   def test_grabs_best_parse(self):
     fight = Fight({"kill": True}, [], {"name": "Neri"})
-    assert fight.bestParse == -1
+    assert fight.bestParse == None
 
   # --- Integration Tests ---
 
@@ -499,9 +498,8 @@ class TestDisplayPartyMembers:
     with patch("fight.jobinfo") as mock_jobs:
       yield mock_jobs
 
-  def test_fails_on_empty_fight(self, empty_fight):
-    with pytest.raises(Exception):
-      empty_fight.displayPartyMembers()
+  def test_empty_fight(self, empty_fight):
+    assert empty_fight.displayPartyMembers() == ""
 
   def test_on_sample_data(self, mock_job_info): 
     fight = Fight({"friendlyPlayers": [1]}, 
@@ -541,9 +539,8 @@ class TestDisplayPartyParses:
     with patch("fight.jobinfo") as mock_jobs:
       yield mock_jobs
 
-  def test_fails_on_empty_fight(self, empty_fight):
-    with pytest.raises(Exception):
-      empty_fight.displayPartyParses()
+  def test_empty_fight(self, empty_fight):
+    assert empty_fight.displayPartyParses() == ""
 
   def test_on_sample_data(self,
                           mock_job_info,
