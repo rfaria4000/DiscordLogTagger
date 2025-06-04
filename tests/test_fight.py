@@ -439,8 +439,8 @@ class TestBestParse:
 def mock_parse_dependencies():
   with (
     patch.object(Fight, 
-                  "bestParse", 
-                  new_callable=PropertyMock) as mock_best_parse,
+                 "bestParse", 
+                 new_callable=PropertyMock) as mock_best_parse,
     patch("fight.parses") as mock_parses
   ):
     yield mock_best_parse, mock_parses
@@ -499,7 +499,7 @@ class TestDisplayPartyMembers:
     with patch("fight.jobinfo") as mock_jobs:
       yield mock_jobs
 
-  def test_fails_on_empty(self, empty_fight):
+  def test_fails_on_empty_fight(self, empty_fight):
     with pytest.raises(Exception):
       empty_fight.displayPartyMembers()
 
@@ -541,7 +541,7 @@ class TestDisplayPartyParses:
     with patch("fight.jobinfo") as mock_jobs:
       yield mock_jobs
 
-  def test_fails_on_empty(self, empty_fight):
+  def test_fails_on_empty_fight(self, empty_fight):
     with pytest.raises(Exception):
       empty_fight.displayPartyParses()
 
@@ -591,4 +591,87 @@ class TestDisplayPartyParses:
     assert fight.displayPartyParses() == target_string
 
 class TestEmbed:
-  pass
+  @pytest.fixture(autouse=True)
+  def mock_embed_dependencies(self):
+    with (
+      patch.object(Fight, 
+                   "thumbnailURL", 
+                   new_callable=PropertyMock) as mock_url,
+      patch.object(Fight, 
+                   "color", 
+                   new_callable=PropertyMock) as mock_color,
+      patch.object(Fight,
+                   "completionStatus",
+                   new_callable=PropertyMock) as mock_status,
+      patch.object(Fight,
+                   "displayPartyMembers") as mock_party,
+      patch.object(Fight,
+                   "displayPartyParses") as mock_parses
+    ):
+      mock_url.return_value = "www.example.com"
+      mock_color.return_value = 0xffffff
+      mock_status.return_value = "Clear in 18:40"
+      mock_party.return_value = "🩺 Violet\n🗡️ Neri\n😈 Estellia"
+      mock_parses.return_value = "🩺 🥉 70\n🗡️ 🥉 20\n😈 🥉 99"
+      yield
+
+  def test_fails_on_empty(self, empty_fight):
+    with pytest.raises(Exception):
+      empty_fight.toEmbed()
+
+  def test_title(self, sample_fight_data):
+    fight = Fight(sample_fight_data, [])
+    resultEmbed = fight.toEmbed()
+    assert resultEmbed.title == "🔸 Futures Rewritten"
+  
+  def test_description(self,
+                       sample_fight_data,
+                       sample_actor_data,
+                       sample_ranking_data):
+    fight = Fight(sample_fight_data, sample_actor_data, sample_ranking_data)
+    resultEmbed = fight.toEmbed("Test Description")
+    assert resultEmbed.description == "Test Description"
+
+  def test_no_party_parses_without_ranking_data(self,
+                                                sample_fight_data,
+                                                sample_actor_data):
+    fight = Fight(sample_fight_data, sample_actor_data)
+    resultEmbed = fight.toEmbed()
+    assert len(resultEmbed.fields) == 2 #Status and party members
+
+  def test_embed_status(self,
+                        sample_fight_data):
+    fight = Fight(sample_fight_data, [])
+    resultEmbed = fight.toEmbed()
+    assert resultEmbed.fields[0].name == "Status"
+    assert resultEmbed.fields[0].value == "Clear in 18:40"
+
+  def test_embed_party_members(self,
+                               sample_fight_data,
+                               sample_actor_data):
+    fight = Fight(sample_fight_data, sample_actor_data)
+    resultEmbed = fight.toEmbed()
+    assert resultEmbed.fields[1].name == "Party"
+    assert resultEmbed.fields[1].value == "🩺 Violet\n🗡️ Neri\n😈 Estellia"
+
+  def test_embed_party_parses(self,
+                              sample_fight_data,
+                              sample_actor_data, 
+                              sample_ranking_data):
+    fight = Fight(sample_fight_data, sample_actor_data, sample_ranking_data)
+    resultEmbed = fight.toEmbed()
+    assert len(resultEmbed.fields) == 3
+    assert resultEmbed.fields[2].name == "Parses"
+    assert resultEmbed.fields[2].value == "🩺 🥉 70\n🗡️ 🥉 20\n😈 🥉 99"
+
+  def test_embed_color(self,
+                       sample_fight_data):
+    fight = Fight(sample_fight_data, [])
+    resultEmbed = fight.toEmbed()
+    assert resultEmbed.color.value == 0xffffff
+
+  def test_embed_thumbnail(self,
+                           sample_fight_data):
+    fight = Fight(sample_fight_data, [])
+    resultEmbed = fight.toEmbed()
+    assert resultEmbed.thumbnail.url == "www.example.com"

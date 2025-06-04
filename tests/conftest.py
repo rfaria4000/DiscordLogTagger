@@ -28,7 +28,8 @@ def grab_extreme_fight():
 def sample_fight_data():
   return {
     "friendlyPlayers": [1, 2, 3, 4],
-    "kill": True
+    "kill": True,
+    "name": "Futures Rewritten"
   }
 
 @pytest.fixture
