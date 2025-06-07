@@ -8,7 +8,6 @@ from urllib.parse import urlparse, ParseResult
 from dotenv import load_dotenv
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-import embed
 from report import Report
 from fflogs import FFLogsSession
 
@@ -75,12 +74,10 @@ class tag(commands.Cog):
           )
       else:
         self.reportEmbed = self.report.toEmbed(link, description)
-        # self.reportEmbed = embed.generateEmbed(self.reportData, link, description)
       
       await interaction.followup.send(embed = self.reportEmbed)
     except Exception as exc:
       raise exc
-      # await interaction.followup.send(exc, ephemeral=True)
 
 async def setup(bot: commands.Bot):
   await bot.add_cog(tag(bot))
