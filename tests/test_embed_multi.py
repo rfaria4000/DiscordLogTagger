@@ -1,5 +1,6 @@
 import os, json
 import embed
+import data.parses as parses
 
 FIELD_PULLS = 0
 FIELD_BEST_PULL = 1
@@ -43,10 +44,10 @@ class TestMulti:
     assert(int(self.embed.fields[FIELD_PULLS].value) == pullCount)
 
   def test_multi_color(self):
-    for emoji in reversed(embed.PULL_EMOJIS):
+    for emoji in reversed(parses.PULL_EMOJIS):
       if emoji in self.embed.fields[FIELD_CLEAR_PULLS].value:
-        emojiIndex = embed.PULL_EMOJIS.index(emoji)
-        assert(self.embed.color.value == embed.PULL_HEXCODES[emojiIndex])
+        emojiIndex = parses.PULL_EMOJIS.index(emoji)
+        assert(self.embed.color.value == parses.PULL_HEXCODES[emojiIndex])
         break
 
   def test_multi_thumbnail(self):
